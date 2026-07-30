@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>窗花边框 · 汉设计系统</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    body { padding: 60px 24px; }
+    .demo-section { margin-bottom: 48px; }
+    .demo-section h3 { margin-bottom: 20px; color: var(--dq-color-text-secondary); }
+    .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+  </style>
+</head>
+<body>
+  <div class="dq-container">
+    <h1 style="text-align:center; margin-bottom:8px;">窗花边框</h1>
+    <p style="text-align:center; color:var(--dq-color-text-secondary); margin-bottom:48px;">
+      传统中式窗花纹样边框装饰，四角有精致纹样
+    </p>
+
+    <div class="demo-section">
+      <h3>基础用法</h3>
+      <div class="demo-grid">
+
+        <!-- 基础窗花 -->
+        <div class="dq-frame-window">
+          <span class="dq-corner-tr"></span>
+          <span class="dq-corner-bl"></span>
+          <h4 style="text-align:center; margin-bottom:16px;">梅兰竹菊</h4>
+          <p style="text-align:center; text-indent:0;">
+            梅傲寒霜、兰幽空谷、竹节挺拔、菊傲秋风。
+            四君子各有风骨，代表中国文人的品格追求。
+          </p>
+        </div>
+
+        <!-- 金色版 -->
+        <div class="dq-frame-window dq-frame-window--gold">
+          <span class="dq-corner-tr"></span>
+          <span class="dq-corner-bl"></span>
+          <h4 style="text-align:center; margin-bottom:16px; color:var(--dq-color-gold-700);">文房四宝</h4>
+          <p style="text-align:center; text-indent:0;">
+            笔、墨、纸、砚，是中国文人书画创作的必备工具，
+            承载了千年的文化积淀与艺术精神。
+          </p>
+        </div>
+
+        <!-- 带纹样版 -->
+        <div class="dq-frame-window dq-frame-window--pattern">
+          <span class="dq-corner-tr"></span>
+          <span class="dq-corner-bl"></span>
+          <h4 style="text-align:center; margin-bottom:16px;">诗词雅韵</h4>
+          <p style="text-align:center; text-indent:0;">
+            春江潮水连海平，海上明月共潮生。
+            滟滟随波千万里，何处春江无月明。
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 使用说明 -->
+    <div class="demo-section">
+      <h3>HTML 结构</h3>
+      <pre><code><!-- 基础窗花 -->
+<div class="dq-frame-window">
+  <span class="dq-corner-tr"></span>  <!-- 右上角装饰 -->
+  <span class="dq-corner-bl"></span>  <!-- 左下角装饰 -->
+  <!-- 内容 -->
+</div>
+
+<!-- 金色版 -->
+<div class="dq-frame-window dq-frame-window--gold">
+  …
+</div>
+
+<!-- 带窗格纹样 -->
+<div class="dq-frame-window dq-frame-window--pattern">
+  …
+</div></code></pre>
+    </div>
+
+    <!-- 使用场景 -->
+    <div class="demo-section">
+      <h3>使用场景</h3>
+      <ul>
+        <li>重要区域的视觉框定</li>
+        <li>名言警句、诗词展示</li>
+        <li>产品规格说明、参数展示</li>
+        <li>认证信息、联系方式等</li>
+        <li>--gold 变体适合高端定制场景</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

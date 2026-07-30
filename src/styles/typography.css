@@ -1,0 +1,96 @@
+/**
+ * 汉设计系统 - 字体排印
+ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-semibold);
+  color: var(--ink-900);
+  line-height: var(--lh-snug);
+  letter-spacing: 0.02em;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+h5 { font-size: var(--fs-h5); }
+h6 { font-size: var(--fs-body); }
+
+p {
+  margin-bottom: var(--space-4);
+  line-height: var(--lh-relaxed);
+}
+
+blockquote {
+  margin: var(--space-5) 0;
+  padding: var(--space-3) var(--space-5);
+  border-left: 3px solid var(--ink-400);
+  background: var(--paper-light);
+  color: var(--ink-600);
+  font-style: italic;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 2px 6px;
+  background: var(--ink-100);
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  font-family: var(--font-mono);
+  padding: var(--space-5);
+  background: var(--ink-900);
+  color: var(--ink-100);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* 书法标题 */
+.calligraphy {
+  font-family: var(--font-kai);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  line-height: var(--lh-tight);
+}
+
+/* 竖排文字 */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: var(--space-3);
+}
+
+/* 区域标题修饰 */
+.section-title {
+  font-family: var(--font-kai);
+  text-align: center;
+  display: inline-block;
+}
+
+.section-title::before,
+.section-title::after {
+  content: '';
+  display: inline-block;
+  width: 48px;
+  height: 1px;
+  background: var(--ink-300);
+  vertical-align: middle;
+  margin: 0 var(--space-4);
+}
+
+/* 书法落款 */
+.signature-text {
+  font-family: var(--font-kai);
+  font-size: var(--fs-caption);
+  color: var(--ink-600);
+  letter-spacing: 0.1em;
+}

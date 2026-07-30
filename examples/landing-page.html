@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>汉 · 东方美学设计系统</title>
+  <meta name="description" content="汉 (Han) — 让东方美学在网页上优雅绽放">
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/themes.css">
+  <style>
+    /* ============ 页面级布局 ============ */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: var(--dq-space-10) var(--dq-space-6);
+    }
+
+    /* Hero 背景装饰 —— 远山剪影 (SVG) */
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 40%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 400' preserveAspectRatio='none'%3E%3Cpath d='M0,400 L0,280 C100,240 150,300 250,200 C350,100 400,220 500,180 C600,140 700,260 800,200 C900,140 1000,280 1100,220 C1150,190 1200,260 1200,260 L1200,400 Z' fill='%232a2824' opacity='0.08'/%3E%3Cpath d='M0,400 L0,320 C200,280 300,340 400,280 C500,220 600,300 750,250 C900,200 1000,320 1200,280 L1200,400 Z' fill='%232a2824' opacity='0.05'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      pointer-events: none;
+    }
+
+    /* Hero 圆形装饰 */
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 10%;
+      right: 10%;
+      width: 200px;
+      height: 200px;
+      border: 2px solid var(--dq-color-vermilion-500);
+      border-radius: 50%;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      text-align: center;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    /* 竖排文字装饰 */
+    .hero__vertical {
+      position: absolute;
+      left: var(--dq-space-10);
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-sm);
+      color: var(--dq-color-ink-300);
+      letter-spacing: var(--dq-space-3);
+      z-index: 1;
+      max-height: 70vh;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .hero__vertical-right {
+      position: absolute;
+      right: var(--dq-space-10);
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-sm);
+      color: var(--dq-color-ink-300);
+      letter-spacing: var(--dq-space-3);
+      z-index: 1;
+      max-height: 70vh;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .hero__title {
+      font-family: var(--dq-font-kai);
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: var(--dq-fw-bold);
+      color: var(--dq-color-text-primary);
+      letter-spacing: var(--dq-ls-wider);
+      line-height: var(--dq-lh-tight);
+      margin-bottom: var(--dq-space-4);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero__title-seal {
+      position: absolute;
+      top: -20px;
+      right: -80px;
+      transform: rotate(-8deg);
+    }
+
+    .hero__subtitle {
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-lg);
+      color: var(--dq-color-text-secondary);
+      letter-spacing: var(--dq-ls-wider);
+      margin-bottom: var(--dq-space-6);
+      line-height: var(--dq-lh-relaxed);
+    }
+
+    .hero__desc {
+      font-size: var(--dq-fs-md);
+      color: var(--dq-color-text-tertiary);
+      max-width: 540px;
+      margin: 0 auto var(--dq-space-7);
+      line-height: var(--dq-lh-relaxed);
+    }
+
+    .hero__cta {
+      display: inline-flex;
+      gap: var(--dq-space-4);
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ============ 产品展示 ============ */
+    .products {
+      background: var(--dq-color-bg);
+    }
+
+    .products__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--dq-space-8);
+      margin-top: var(--dq-space-8);
+    }
+
+    /* ============ 品牌故事 ============ */
+    .story {
+      text-align: center;
+    }
+
+    .story__quote {
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-3xl);
+      color: var(--dq-color-text-primary);
+      line-height: var(--dq-lh-loose);
+      letter-spacing: var(--dq-ls-wide);
+      max-width: 720px;
+      margin: 0 auto var(--dq-space-6);
+      font-weight: var(--dq-fw-bold);
+    }
+
+    .story__author {
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-md);
+      color: var(--dq-color-text-tertiary);
+      letter-spacing: var(--dq-ls-wide);
+    }
+
+    /* ============ 底部 ============ */
+    .footer {
+      background: var(--dq-color-bg-dark);
+      color: var(--dq-color-paper-200);
+      padding: var(--dq-space-10) var(--dq-space-6) var(--dq-space-6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--dq-color-gold-500) 0,
+        var(--dq-color-gold-500) 12px,
+        transparent 12px,
+        transparent 24px
+      );
+      opacity: 0.6;
+    }
+
+    .footer__inner {
+      max-width: var(--dq-container-lg);
+      margin: 0 auto;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--dq-space-8);
+      margin-bottom: var(--dq-space-8);
+    }
+
+    .footer__brand {
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-2xl);
+      color: var(--dq-color-paper-50);
+      margin-bottom: var(--dq-space-3);
+    }
+
+    .footer__brand span { color: var(--dq-color-vermilion-400); }
+    .footer__desc { color: var(--dq-color-paper-300); font-size: var(--dq-fs-sm); line-height: var(--dq-lh-relaxed); }
+    .footer__title {
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-md);
+      color: var(--dq-color-gold-400);
+      margin-bottom: var(--dq-space-4);
+      letter-spacing: var(--dq-ls-wide);
+    }
+    .footer__link {
+      display: block;
+      color: var(--dq-color-paper-300);
+      font-size: var(--dq-fs-sm);
+      padding: var(--dq-space-1) 0;
+      transition: color var(--dq-duration-normal);
+    }
+    .footer__link:hover { color: var(--dq-color-gold-400); border-bottom: none; }
+
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: var(--dq-space-5);
+      text-align: center;
+      font-size: var(--dq-fs-xs);
+      color: var(--dq-color-paper-400);
+      letter-spacing: var(--dq-ls-wide);
+    }
+
+    /* ============ 响应式 ============ */
+    @media (max-width: 1024px) {
+      .hero__vertical { left: var(--dq-space-7); font-size: var(--dq-fs-xs); letter-spacing: var(--dq-space-2); }
+      .hero__vertical-right { right: var(--dq-space-7); font-size: var(--dq-fs-xs); letter-spacing: var(--dq-space-2); }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: 70vh; padding: var(--dq-space-8) var(--dq-space-5); }
+      .hero__vertical, .hero__vertical-right { display: none; }
+      .hero__title-seal { position: static; margin: var(--dq-space-3) auto; transform: rotate(-8deg); }
+      .hero__title { font-size: clamp(36px, 10vw, 56px); }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .footer__grid { grid-template-columns: 1fr; }
+      .story__quote { font-size: var(--dq-fs-2xl); }
+      .hero__desc { font-size: var(--dq-fs-sm); }
+    }
+
+    /* ============ 滚动显现动画 ============ */
+    .fade-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s var(--dq-ease-out), transform 0.8s var(--dq-ease-out);
+    }
+    .fade-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ 顶部水墨导航 ============ -->
+  <nav class="dq-navbar">
+    <div class="dq-navbar__inner">
+      <div class="dq-navbar__brand">汉<span>之</span></div>
+      <ul class="dq-navbar__menu">
+        <li class="dq-navbar__item dq-navbar__item--active">首页</li>
+        <li class="dq-navbar__item">设计令牌</li>
+        <li class="dq-navbar__item">组件库</li>
+        <li class="dq-navbar__item">AI 指南</li>
+        <li class="dq-navbar__item">GitHub</li>
+      </ul>
+      <button class="dq-btn-seal dq-btn-seal--sm">开始</button>
+    </div>
+  </nav>
+
+  <!-- ============ Hero 区 ============ -->
+  <section class="hero">
+    <!-- 竖排文字装饰 -->
+    <div class="hero__vertical">汉不语 · 笔墨传心</div>
+    <div class="hero__vertical-right">东方美学 · 网页绽放</div>
+
+    <div class="hero__content">
+      <h1 class="hero__title">
+        汉
+        <div class="dq-stamp dq-stamp--lg dq-stamp--border hero__title-seal">之印</div>
+      </h1>
+      <p class="hero__subtitle">让东方美学在网页上优雅绽放</p>
+      <p class="hero__desc">
+        一个汲取千年中华文化的设计系统 —— 朱红印章、水墨笔触、宣纸质感，
+        为你的网站注入一抹东方神韵。
+      </p>
+      <div class="hero__cta">
+        <button class="dq-btn-seal dq-btn-seal--lg dq-animate-seal-drop">立即体验</button>
+        <a href="#" style="color: var(--dq-color-ink-700); padding: 16px 32px; border: 1px solid var(--dq-color-ink-400); border-radius: var(--dq-radius-md); font-family: var(--dq-font-kai);">
+          查看文档 →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 水墨分割线 ============ -->
+  <div class="dq-container">
+    <!-- 印章分割线 -->
+    <div style="position:relative; margin: var(--dq-space-6) 0;">
+      <div style="position:absolute; top:50%; left:0; right:0; height:2px;
+        background: linear-gradient(90deg, transparent 5%, var(--dq-color-ink-400) 20%, var(--dq-color-ink-400) 80%, transparent 95%);
+        transform: translateY(-50%); filter: blur(0.5px);"></div>
+      <div style="display:flex; justify-content:center; position:relative;">
+        <div class="dq-stamp dq-stamp--sm">汉</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 产品展示区 ============ -->
+  <section class="dq-section products">
+    <div class="dq-container">
+      <h2 style="text-align:center;" class="fade-on-scroll">设计令牌</h2>
+      <p style="text-align:center; color:var(--dq-color-text-secondary); max-width:600px; margin: 0 auto;" class="fade-on-scroll">
+        从中国画的色彩、书法的章法中提炼，形成可复用的设计令牌体系。
+      </p>
+
+      <div class="products__grid">
+
+        <!-- 卷轴卡片 1：色彩 -->
+        <article class="dq-card-scroll fade-on-scroll">
+          <span class="dq-rivet dq-rivet--tl"></span>
+          <span class="dq-rivet dq-rivet--tr"></span>
+          <span class="dq-rivet dq-rivet--bl"></span>
+          <span class="dq-rivet dq-rivet--br"></span>
+          <header class="dq-card-scroll__header">色彩体系</header>
+          <div class="dq-card-scroll__body">
+            <p>朱红、靛蓝、金色、墨色、宣纸白 —— 五大主色取自传统书画颜料。</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
+              <span class="dq-tag dq-tag--vermilion">朱红 · 500</span>
+              <span class="dq-tag">靛蓝 · 500</span>
+              <span class="dq-tag dq-tag--gold">金色 · 500</span>
+              <span class="dq-tag">墨色 · 700</span>
+              <span class="dq-tag">宣纸 · 100</span>
+            </div>
+          </div>
+          <footer class="dq-card-scroll__footer">
+            <span>--dq-color-*</span>
+            <a href="#">查看 →</a>
+          </footer>
+        </article>
+
+        <!-- 卷轴卡片 2：字体 -->
+        <article class="dq-card-scroll fade-on-scroll">
+          <span class="dq-rivet dq-rivet--tl"></span>
+          <span class="dq-rivet dq-rivet--tr"></span>
+          <span class="dq-rivet dq-rivet--bl"></span>
+          <span class="dq-rivet dq-rivet--br"></span>
+          <header class="dq-card-scroll__header">字体排版</header>
+          <div class="dq-card-scroll__body">
+            <p>楷体做标题、宋体做正文、思源黑体做界面 —— 三级字体各司其职。</p>
+            <div style="margin-top:16px; display:flex; flex-direction:column; gap:4px;">
+              <div style="font-family: var(--dq-font-kai); font-size: 20px; font-weight:bold; color: var(--dq-color-ink-700);">楷体标题</div>
+              <div style="font-family: var(--dq-font-song); font-size: 14px; color: var(--dq-color-ink-500);">宋体正文</div>
+              <div style="font-family: var(--dq-font-sans); font-size: 12px; color: var(--dq-color-ink-400);">Sans 界面</div>
+            </div>
+          </div>
+          <footer class="dq-card-scroll__footer">
+            <span>--dq-font-*</span>
+            <a href="#">查看 →</a>
+          </footer>
+        </article>
+
+        <!-- 卷轴卡片 3：组件 -->
+        <article class="dq-card-scroll fade-on-scroll">
+          <span class="dq-rivet dq-rivet--tl"></span>
+          <span class="dq-rivet dq-rivet--tr"></span>
+          <span class="dq-rivet dq-rivet--bl"></span>
+          <span class="dq-rivet dq-rivet--br"></span>
+          <header class="dq-card-scroll__header">核心组件</header>
+          <div class="dq-card-scroll__body">
+            <p>印章按钮、水墨导航、卷轴卡片、窗花边框、水墨分割线、印章 —— 六大组件开箱即用。</p>
+            <div style="display:flex; gap:12px; margin-top:16px; align-items:center;">
+              <div class="dq-stamp dq-stamp--sm">用</div>
+              <div style="font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary);">点击体验印章落下动画</div>
+            </div>
+          </div>
+          <footer class="dq-card-scroll__footer">
+            <span>.dq-btn-seal · .dq-card-scroll · …</span>
+            <a href="#">查看 →</a>
+          </footer>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 品牌故事区 ============ -->
+  <section class="dq-section story">
+    <div class="dq-container">
+
+      <!-- 印章分割线 -->
+      <div style="position:relative; margin-bottom: var(--dq-space-9);">
+        <div style="position:absolute; top:50%; left:10%; right:10%; height:3px;
+          background: linear-gradient(90deg, transparent, var(--dq-color-ink-700) 10%, var(--dq-color-ink-600) 50%, var(--dq-color-ink-700) 90%, transparent);
+          transform: translateY(-50%); filter: blur(0.8px); border-radius: 50%;"></div>
+        <div style="position:absolute; top:calc(50% + 8px); left:15%; right:15%; height:1px;
+          background: linear-gradient(90deg, transparent, var(--dq-color-ink-300), transparent);
+          transform: translateY(-50%); opacity:0.3; filter: blur(1px);"></div>
+        <div style="display:flex; justify-content:center; position:relative;">
+          <div class="dq-stamp">汉</div>
+        </div>
+      </div>
+
+      <h2 style="text-align:center;" class="fade-on-scroll">品牌故事</h2>
+
+      <div class="dq-frame-window dq-frame-window--gold fade-on-scroll" style="max-width: 720px; margin: var(--dq-space-7) auto 0;">
+        <span class="dq-corner-tr"></span>
+        <span class="dq-corner-bl"></span>
+        <p class="story__quote">
+          墨落宣纸成汉，<br>
+          笔走龙蛇绘古今。
+        </p>
+        <p class="story__author">—— 汉设计系统</p>
+      </div>
+
+      <div style="margin-top: var(--dq-space-9);" class="fade-on-scroll">
+        <p style="max-width: 600px; margin: 0 auto; color: var(--dq-color-text-secondary); text-indent: 0; line-height: var(--dq-lh-relaxed);">
+          我们相信，中国的设计语言不应只是符号的堆砌，而是一种意境的传递。
+          汉系统从千年文化中汲取养分，将朱红印章、水墨笔触、宣纸质感、书法章法
+          转化为可组合的设计令牌和组件，让东方美学在现代网页上优雅绽放。
+        </p>
+      </div>
+
+      <!-- 三个特色 -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--dq-space-6); margin-top: var(--dq-space-9);" class="fade-on-scroll">
+        <div style="padding: var(--dq-space-5); text-align:center;">
+          <div style="width: 48px; height: 48px; margin: 0 auto var(--dq-space-4); background: var(--dq-color-vermilion-500); border-radius: 4px; display: flex; align-items:center; justify-content:center; color: var(--dq-color-paper-100); font-family: var(--dq-font-kai); font-weight: bold; transform: rotate(-5deg); box-shadow: 2px 3px 6px rgba(192,57,43,0.35);;">印</div>
+          <h4 style="margin-bottom: 8px;">文化自信</h4>
+          <p style="font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary); text-indent: 0;">每个色彩、每个组件都有文化出处</p>
+        </div>
+        <div style="padding: var(--dq-space-5); text-align:center;">
+          <div style="width: 48px; height: 48px; margin: 0 auto var(--dq-space-4); background: var(--dq-color-ink-700); border-radius: 4px; display: flex; align-items:center; justify-content:center; color: var(--dq-color-paper-100); font-family: var(--dq-font-kai); font-weight: bold; position:relative;">
+            <span>墨</span>
+          </div>
+          <h4 style="margin-bottom: 8px;">AI 友好</h4>
+          <p style="font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary); text-indent: 0;">提供 AI 设计规范，AI 可生成一致性代码</p>
+        </div>
+        <div style="padding: var(--dq-space-5); text-align:center;">
+          <div style="width: 48px; height: 48px; margin: 0 auto var(--dq-space-4); background: var(--dq-color-gold-500); border-radius: 4px; display: flex; align-items:center; justify-content:center; color: var(--dq-color-paper-100); font-family: var(--dq-font-kai); font-weight: bold; transform: rotate(5deg); box-shadow: 2px 3px 6px rgba(198,138,46,0.35);;">雅</div>
+          <h4 style="margin-bottom: 8px;">极简优雅</h4>
+          <p style="font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary); text-indent: 0;">克制的视觉语言，留白的艺术</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 底部 ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">汉<span>之</span></div>
+          <p class="footer__desc">
+            让东方美学在网页上优雅绽放。<br>
+            一个汲取千年中华文化的 CSS 设计系统。
+          </p>
+        </div>
+        <div>
+          <div class="footer__title">产品</div>
+          <a href="#" class="footer__link">设计令牌</a>
+          <a href="#" class="footer__link">组件库</a>
+          <a href="#" class="footer__link">示例页面</a>
+        </div>
+        <div>
+          <div class="footer__title">资源</div>
+          <a href="#" class="footer__link">AI 指南</a>
+          <a href="#" class="footer__link">API 文档</a>
+          <a href="#" class="footer__link">博客</a>
+        </div>
+        <div>
+          <div class="footer__title">社区</div>
+          <a href="#" class="footer__link">GitHub</a>
+          <a href="#" class="footer__link">Discord</a>
+          <a href="#" class="footer__link">贡献指南</a>
+        </div>
+      </div>
+
+      <!-- 底部装饰线 -->
+      <div class="footer__bottom">
+        <div style="display:flex; justify-content:center; align-items:center; gap: 16px; margin-bottom: 12px;">
+          <div style="width: 40px; height: 1px; background: rgba(255,255,255,0.2);"></div>
+          <span style="color: var(--dq-color-gold-400); font-family: var(--dq-font-kai); font-size: var(--dq-fs-sm); letter-spacing: var(--dq-ls-wider);;">汉 · 笔墨传心</span>
+          <div style="width: 40px; height: 1px; background: rgba(255,255,255,0.2);"></div>
+        </div>
+        <p>© 2024 汉设计系统 · MIT License · Made with ❤️ in China</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 滚动显现动画
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+
+    // 导航栏滚动阴影
+    const navbar = document.querySelector('.dq-navbar');
+    if (navbar) {
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.boundingClientRect.top <= 0) {
+            navbar.classList.add('is-scrolled');
+          } else {
+            navbar.classList.remove('is-scrolled');
+          }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -100% 0px' });
+      navObserver.observe(navbar);
+    }
+
+    // 印章按钮点击涟漪
+    document.querySelectorAll('.dq-btn-seal').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        btn.classList.remove('dq-animate-seal-drop');
+        void btn.offsetWidth;
+        btn.classList.add('dq-animate-seal-drop');
+      });
+    });
+
+    // 导航项点击
+    document.querySelectorAll('.dq-navbar__item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.dq-navbar__item').forEach(i => i.classList.remove('dq-navbar__item--active'));
+        item.classList.add('dq-navbar__item--active');
+      });
+    });
+  </script>
+
+</body>
+</html>

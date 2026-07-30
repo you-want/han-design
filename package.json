@@ -1,0 +1,64 @@
+{
+  "name": "han-design",
+  "version": "0.1.0",
+  "description": "让东方美学在网页上优雅绽放 — 中国风 CSS 设计系统",
+  "keywords": [
+    "中国风",
+    "设计系统",
+    "CSS",
+    "UI",
+    "design-system",
+    "chinese-design",
+    "ink",
+    "seal",
+    "水墨",
+    "汉"
+  ],
+  "author": "Han Design Team",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/han/han-design.git"
+  },
+  "homepage": "https://han.design",
+  "bugs": {
+    "url": "https://github.com/han/han-design/issues"
+  },
+  "files": [
+    "assets/css/",
+    "components/",
+    "examples/",
+    "DESIGN_GUIDE.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "assets/css/tokens.css",
+  "exports": {
+    ".": "./assets/css/tokens.css",
+    "./tokens": "./assets/css/tokens.css",
+    "./base": "./assets/css/base.css",
+    "./components": "./assets/css/components.css",
+    "./guide": "./DESIGN_GUIDE.md"
+  },
+  "style": "assets/css/tokens.css",
+  "scripts": {
+    "dev": "python3 -m http.server 8080",
+    "start": "python3 -m http.server 8080",
+    "build": "echo 'Pure CSS package — no build step required'",
+    "test": "echo 'Open components/ files in browser to verify'",
+    "lint": "echo 'No linting required for pure CSS'",
+    "clean": "echo 'No cleanup needed'"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}

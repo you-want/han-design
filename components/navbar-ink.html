@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水墨导航 · 汉设计系统</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    body { padding: 0; }
+    .demo-page { padding: 80px 24px; }
+    .demo-section { margin-bottom: 48px; }
+    .demo-section h3 { margin-bottom: 20px; color: var(--dq-color-text-secondary); }
+    .demo-preview { background: var(--dq-color-bg-surface); border-radius: 8px; overflow: hidden; }
+    .demo-preview .dq-navbar { position: relative; }
+    .demo-text { padding: 40px; text-align: center; color: var(--dq-color-text-secondary); }
+    .code-block { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- 导航示例 -->
+  <nav class="dq-navbar">
+    <div class="dq-navbar__inner">
+      <div class="dq-navbar__brand">丹<span>青</span></div>
+      <ul class="dq-navbar__menu">
+        <li class="dq-navbar__item dq-navbar__item--active">首页</li>
+        <li class="dq-navbar__item">作品</li>
+        <li class="dq-navbar__item">技法</li>
+        <li class="dq-navbar__item">故事</li>
+        <li class="dq-navbar__item">关于</li>
+      </ul>
+      <button class="dq-btn-seal dq-btn-seal--sm">体验</button>
+    </div>
+  </nav>
+
+  <div class="demo-page">
+    <div class="dq-container">
+      <h1 style="text-align:center; margin-bottom:8px;">水墨导航</h1>
+      <p style="text-align:center; color:var(--dq-color-text-secondary); margin-bottom:48px;">
+        底部毛笔下划线 + 墨迹扩散悬停效果
+      </p>
+
+      <!-- 交互演示说明 -->
+      <div class="demo-section">
+        <h3>交互说明</h3>
+        <p>将鼠标悬停在导航菜单上，可以看到：</p>
+        <ul>
+          <li>文字颜色由浅墨变浓墨</li>
+          <li>底部墨迹线条由中心向两侧晕开（scaleX 动画）</li>
+          <li>当前激活项（首页）保持浓墨色 + 墨迹线常驻</li>
+        </ul>
+      </div>
+
+      <!-- 代码示例 -->
+      <div class="demo-section">
+        <h3>HTML 结构</h3>
+        <div class="code-block">
+          <pre><code><!-- 顶部导航 -->
+<nav class="dq-navbar">
+  <div class="dq-navbar__inner">
+    <div class="dq-navbar__brand">丹<span>青</span></div>
+    <ul class="dq-navbar__menu">
+      <li class="dq-navbar__item dq-navbar__item--active">首页</li>
+      <li class="dq-navbar__item">作品</li>
+      <li class="dq-navbar__item">技法</li>
+      <li class="dq-navbar__item">故事</li>
+    </ul>
+  </div>
+</nav></code></pre>
+        </div>
+      </div>
+
+      <!-- 使用场景 -->
+      <div class="demo-section">
+        <h3>使用场景</h3>
+        <ul>
+          <li>品牌官网顶部导航</li>
+          <li>文章目录、侧边菜单</li>
+          <li>标签页/选项卡导航</li>
+          <li>支持 sticky 粘性定位和毛玻璃背景</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 移动端菜单切换演示
+    document.querySelectorAll('.dq-navbar__item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.dq-navbar__item').forEach(i => {
+          i.classList.remove('dq-navbar__item--active');
+        });
+        item.classList.add('dq-navbar__item--active');
+      });
+    });
+
+    // 导航栏滚动阴影
+    const navbar = document.querySelector('.dq-navbar');
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+          navbar.classList.add('is-scrolled');
+        } else {
+          navbar.classList.remove('is-scrolled');
+        }
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>

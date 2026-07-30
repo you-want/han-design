@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水墨分割线 · 汉设计系统</title>
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    body { padding: 60px 24px; }
+    .demo-section { margin-bottom: 48px; }
+    .demo-section h3 { margin-bottom: 20px; color: var(--dq-color-text-secondary); }
+    .demo-box {
+      background: var(--dq-color-bg-surface);
+      padding: 48px 24px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="dq-container">
+    <h1 style="text-align:center; margin-bottom:8px;">水墨分割线</h1>
+    <p style="text-align:center; color:var(--dq-color-text-secondary); margin-bottom:48px;">
+      毛笔笔触效果的分割线，模拟墨迹渲染
+    </p>
+
+    <!-- 基础分割线 -->
+    <div class="demo-section">
+      <h3>基础用法</h3>
+      <div class="demo-box">
+        <p style="text-align:center;">春江潮水连海平，海上明月共潮生。</p>
+
+        <!-- 默认分割线 -->
+        <hr class="dq-divider-ink">
+        <div class="dq-divider-dot" style="display:none;"></div>
+
+        <p style="text-align:center;">滟滟随波千万里，何处春江无月明。</p>
+      </div>
+    </div>
+
+    <!-- 带印章 -->
+    <div class="demo-section">
+      <h3>带印章装饰</h3>
+      <div class="demo-box">
+        <p style="text-align:center;">人生得意须尽欢，莫使金樽空对月。</p>
+
+        <!-- 印章分割线 -->
+        <div style="position:relative; margin: 24px 0;">
+          <div style="position:absolute; top:50%; left:0; right:0; height:2px;
+            background: linear-gradient(90deg, transparent, var(--dq-color-ink-400) 15%, var(--dq-color-ink-400) 85%, transparent);
+            transform: translateY(-50%); filter: blur(0.5px);"></div>
+          <div style="display:flex; justify-content:center; position:relative;">
+            <div class="dq-stamp dq-stamp--sm" style="width:36px; height:36px; font-size:10px; letter-spacing:0;">之印</div>
+          </div>
+        </div>
+
+        <p style="text-align:center;">天生我材必有用，千金散尽还复来。</p>
+      </div>
+    </div>
+
+    <!-- 毛笔笔触 -->
+    <div class="demo-section">
+      <h3>毛笔笔触不对称</h3>
+      <div class="demo-box">
+        <p style="text-align:center;">床前明月光，疑是地上霜。</p>
+
+        <!-- 毛笔效果 -->
+        <div style="position:relative; height:32px; margin: 16px 0;">
+          <div style="position:absolute; top:50%; left:5%; right:5%; height:3px;
+            background: linear-gradient(90deg, transparent, var(--dq-color-ink-700) 8%, var(--dq-color-ink-600) 45%, var(--dq-color-ink-700) 85%, transparent);
+            transform: translateY(-50%); border-radius: 50%; filter: blur(0.8px);"></div>
+          <div style="position:absolute; top:calc(50% + 6px); left:10%; right:10%; height:1px;
+            background: linear-gradient(90deg, transparent, var(--dq-color-ink-300), transparent);
+            opacity:0.4; filter: blur(1px);"></div>
+        </div>
+
+        <p style="text-align:center;">举头望明月，低头思故乡。</p>
+      </div>
+    </div>
+
+    <!-- 代码示例 -->
+    <div class="demo-section">
+      <h3>HTML 结构</h3>
+      <pre><code><!-- 基础分割线 -->
+<div style="position:relative; text-align:center;">
+  <div style="position:absolute; top:50%; left:0; right:0; height:2px;
+    background: linear-gradient(90deg, transparent, var(--dq-color-ink-400) 15%, transparent);
+    transform: translateY(-50%); filter: blur(0.5px);"></div>
+  <span style="background: var(--dq-color-paper-100); padding: 0 16px; position:relative;">
+    中
+  </span>
+</div>
+
+<!-- 带印章的分割线 -->
+<div style="position:relative;">
+  <div style="position:absolute; top:50%; left:0; right:0; height:2px;
+    background: linear-gradient(90deg, transparent, var(--dq-color-ink-400), transparent);
+    transform: translateY(-50%); filter: blur(0.5px);"></div>
+  <div style="display:flex; justify-content:center; position:relative;">
+    <span class="dq-stamp">印</span>
+  </div>
+</div></code></pre>
+    </div>
+  </div>
+</body>
+</html>

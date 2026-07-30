@@ -1,0 +1,795 @@
+/* ============================================================
+ * 汉设计系统 · 主题系统 (Theme System)
+ * 
+ * 使用方式：
+ *   <html data-theme="ink">  水墨主题
+ *   <html data-theme="landscape">  青绿山水
+ *   <html data-theme="porcelain">  青花瓷
+ *   <html data-theme="dunhuang">  敦煌壁画
+ *   <html data-theme="imperial">  宫廷金
+ *   <html data-theme="wuxia">  武侠玄墨
+ *   <html data-theme="tea">  茶道禅意
+ * 
+ * 也可自定义：覆盖以下变量即可
+ *   --dq-color-bg
+ *   --dq-color-accent
+ *   --dq-seal-bg
+ *   ...
+ * ============================================================ */
+
+
+/* ============================================================
+ * 主题 1: 水墨 (Ink Wash)
+ * 关键词：留白、意境、文人画
+ * 适用：文学网站、艺术作品集、禅意品牌
+ * ============================================================ */
+[data-theme='ink'] {
+  --dq-color-bg:              #f4f3ef;
+  --dq-color-bg-surface:      #faf9f5;
+  --dq-color-bg-elevated:     #eae8e2;
+  --dq-color-text-primary:    #2c2b28;
+  --dq-color-text-secondary:  #5c5b57;
+  --dq-color-text-tertiary:   #9b9a95;
+  --dq-color-border:          #d4d2cc;
+  --dq-color-accent:          #2c2b28;
+  
+  --dq-seal-bg:               #2c2b28;
+  --dq-seal-bg-hover:         #1a1917;
+  --dq-seal-text:             #faf9f5;
+  --dq-seal-border:           #8a8985;
+  
+  --dq-stamp-bg:              #2c2b28;
+  --dq-stamp-text:            #faf9f5;
+  
+  --dq-scroll-roller:         #2c2b28;
+  --dq-scroll-rivet:          #8a8985;
+  
+  --dq-nav-bg:                rgba(244, 243, 239, 0.9);
+  --dq-nav-text:              #5c5b57;
+  --dq-nav-text-hover:        #2c2b28;
+  --dq-nav-ink-color:         #2c2b28;
+  
+  --dq-color-gold-500:        #8a8985;
+}
+
+
+/* ============================================================
+ * 主题 2: 青绿山水 (Landscape)
+ * 关键词：青山、绿水、宋画意境
+ * 适用：文旅网站、自然品牌、茶业
+ * ============================================================ */
+[data-theme='landscape'] {
+  --dq-color-bg:              #f2f5f0;
+  --dq-color-bg-surface:      #f8faf6;
+  --dq-color-bg-elevated:     #e3eadd;
+  --dq-color-text-primary:    #2d3d35;
+  --dq-color-text-secondary:  #5a7263;
+  --dq-color-text-tertiary:   #93a99a;
+  --dq-color-border:          #c8d6c4;
+  --dq-color-accent:          #4a7c59;
+  
+  --dq-seal-bg:               #4a7c59;
+  --dq-seal-bg-hover:         #3d6a4a;
+  --dq-seal-text:             #f8faf6;
+  --dq-seal-border:           #8aab8f;
+  
+  --dq-stamp-bg:              #4a7c59;
+  --dq-stamp-text:            #f8faf6;
+  
+  --dq-scroll-roller:         #3d6a4a;
+  --dq-scroll-rivet:          #a3bf9b;
+  
+  --dq-nav-bg:                rgba(242, 245, 240, 0.9);
+  --dq-nav-text:              #5a7263;
+  --dq-nav-text-hover:        #2d3d35;
+  --dq-nav-ink-color:         #2d3d35;
+  
+  --dq-color-gold-500:        #a3bf9b;
+}
+
+
+/* ============================================================
+ * 主题 3: 青花瓷 (Blue Porcelain)
+ * 关键词：蓝白、雅致、景德镇
+ * 适用：瓷器品牌、婚礼、高端礼品
+ * ============================================================ */
+[data-theme='porcelain'] {
+  --dq-color-bg:              #f5f6f8;
+  --dq-color-bg-surface:      #fafbfc;
+  --dq-color-bg-elevated:     #e5e7ec;
+  --dq-color-text-primary:    #1a3a5c;
+  --dq-color-text-secondary:  #4a6d8c;
+  --dq-color-text-tertiary:   #8ba3b8;
+  --dq-color-border:          #c0ccd9;
+  --dq-color-accent:          #1a3a5c;
+  
+  --dq-seal-bg:               #1a3a5c;
+  --dq-seal-bg-hover:         #142b45;
+  --dq-seal-text:             #fafbfc;
+  --dq-seal-border:           #7a99b5;
+  
+  --dq-stamp-bg:              #1a3a5c;
+  --dq-stamp-text:            #fafbfc;
+  
+  --dq-scroll-roller:         #142b45;
+  --dq-scroll-rivet:          #7a99b5;
+  
+  --dq-nav-bg:                rgba(245, 246, 248, 0.9);
+  --dq-nav-text:              #4a6d8c;
+  --dq-nav-text-hover:        #1a3a5c;
+  --dq-nav-ink-color:         #1a3a5c;
+  
+  --dq-color-gold-500:        #b89c6a;
+}
+
+
+/* ============================================================
+ * 主题 4: 敦煌 (Dunhuang)
+ * 关键词：壁画、暖橙、千年艺术
+ * 适用：文化遗产、博物馆、艺术展览
+ * ============================================================ */
+[data-theme='dunhuang'] {
+  --dq-color-bg:              #f4ead5;
+  --dq-color-bg-surface:      #faf3e0;
+  --dq-color-bg-elevated:     #e8dab8;
+  --dq-color-text-primary:    #5c3a1e;
+  --dq-color-text-secondary:  #8a6240;
+  --dq-color-text-tertiary:   #b89a70;
+  --dq-color-border:          #d4c09a;
+  --dq-color-accent:          #c05a2e;
+  
+  --dq-seal-bg:               #c05a2e;
+  --dq-seal-bg-hover:         #a04a24;
+  --dq-seal-text:             #faf3e0;
+  --dq-seal-border:           #d4a050;
+  
+  --dq-stamp-bg:              #c05a2e;
+  --dq-stamp-text:            #faf3e0;
+  
+  --dq-scroll-roller:         #8a6240;
+  --dq-scroll-rivet:          #d4a050;
+  
+  --dq-nav-bg:                rgba(244, 234, 213, 0.9);
+  --dq-nav-text:              #8a6240;
+  --dq-nav-text-hover:        #5c3a1e;
+  --dq-nav-ink-color:         #5c3a1e;
+  
+  --dq-color-gold-500:        #d4a050;
+}
+
+
+/* ============================================================
+ * 主题 5: 宫廷金 (Imperial Gold)
+ * 关键词：金色、尊贵、皇室气派
+ * 适用：高端奢侈、珠宝、茶文化
+ * ============================================================ */
+[data-theme='imperial'] {
+  --dq-color-bg:              #fdf8ed;
+  --dq-color-bg-surface:      #fefaf0;
+  --dq-color-bg-elevated:     #f5ecc8;
+  --dq-color-text-primary:    #4a3a1a;
+  --dq-color-text-secondary:  #7a6538;
+  --dq-color-text-tertiary:   #b89a5c;
+  --dq-color-border:          #d4c090;
+  --dq-color-accent:          #b8860b;
+  
+  --dq-seal-bg:               #b8860b;
+  --dq-seal-bg-hover:         #9a7209;
+  --dq-seal-text:             #fefaf0;
+  --dq-seal-border:           #d4a040;
+  
+  --dq-stamp-bg:              #b8860b;
+  --dq-stamp-text:            #fefaf0;
+  
+  --dq-scroll-roller:         #7a5c1e;
+  --dq-scroll-rivet:          #d4a040;
+  
+  --dq-nav-bg:                rgba(253, 248, 237, 0.9);
+  --dq-nav-text:              #7a6538;
+  --dq-nav-text-hover:        #4a3a1a;
+  --dq-nav-ink-color:         #4a3a1a;
+  
+  --dq-color-gold-500:        #d4a040;
+}
+
+
+/* ============================================================
+ * 主题 6: 武侠玄墨 (Wuxia)
+ * 关键词：玄黑、侠气、江湖
+ * 适用：武侠小说、游戏、暗色品牌
+ * ============================================================ */
+[data-theme='wuxia'] {
+  --dq-color-bg:              #1a1917;
+  --dq-color-bg-surface:      #252420;
+  --dq-color-bg-elevated:     #32302c;
+  --dq-color-text-primary:    #e8e4da;
+  --dq-color-text-secondary:  #a8a498;
+  --dq-color-text-tertiary:   #6c6a63;
+  --dq-color-border:          #3d3b36;
+  --dq-color-accent:          #c0392b;
+  
+  --dq-seal-bg:               #c0392b;
+  --dq-seal-bg-hover:         #e46e55;
+  --dq-seal-text:             #e8e4da;
+  --dq-seal-border:           #c68a2e;
+  
+  --dq-stamp-bg:              #c0392b;
+  --dq-stamp-text:            #e8e4da;
+  
+  --dq-scroll-roller:         #3d3b36;
+  --dq-scroll-rivet:          #c68a2e;
+  
+  --dq-nav-bg:                rgba(26, 25, 23, 0.9);
+  --dq-nav-text:              #a8a498;
+  --dq-nav-text-hover:        #e8e4da;
+  --dq-nav-ink-color:         #e8e4da;
+  
+  --dq-color-gold-500:        #c68a2e;
+}
+
+
+/* ============================================================
+ * 主题 7: 茶道禅意 (Zen Tea)
+ * 关键词：禅茶、素雅、枯山水
+ * 适用：茶文化、禅修、养生
+ * ============================================================ */
+[data-theme='tea'] {
+  --dq-color-bg:              #f6f3ee;
+  --dq-color-bg-surface:      #fbf9f4;
+  --dq-color-bg-elevated:     #e8e3d8;
+  --dq-color-text-primary:    #3a352c;
+  --dq-color-text-secondary:  #6b6458;
+  --dq-color-text-tertiary:   #a39d90;
+  --dq-color-border:          #ccc5b6;
+  --dq-color-accent:          #6b7c5e;
+  
+  --dq-seal-bg:               #6b7c5e;
+  --dq-seal-bg-hover:         #55634b;
+  --dq-seal-text:             #fbf9f4;
+  --dq-seal-border:           #9ca98e;
+  
+  --dq-stamp-bg:              #6b7c5e;
+  --dq-stamp-text:            #fbf9f4;
+  
+  --dq-scroll-roller:         #55634b;
+  --dq-scroll-rivet:          #9ca98e;
+  
+  --dq-nav-bg:                rgba(246, 243, 238, 0.9);
+  --dq-nav-text:              #6b6458;
+  --dq-nav-text-hover:        #3a352c;
+  --dq-nav-ink-color:         #3a352c;
+  
+  --dq-color-gold-500:        #9ca98e;
+}
+
+
+/* ============================================================
+ * 主题 8: 朱砂喜庆 (Vermilion Festival)
+ * 关键词：大红、喜庆、中国年
+ * 适用：节日、婚庆、庆典
+ * ============================================================ */
+[data-theme='vermilion'] {
+  --dq-color-bg:              #fdf4f0;
+  --dq-color-bg-surface:      #fef7f3;
+  --dq-color-bg-elevated:     #f8e8e0;
+  --dq-color-text-primary:    #6b1d15;
+  --dq-color-text-secondary:  #8a4540;
+  --dq-color-text-tertiary:   #b88078;
+  --dq-color-border:          #e0c0b5;
+  --dq-color-accent:          #c0392b;
+  
+  --dq-seal-bg:               #c0392b;
+  --dq-seal-bg-hover:         #a92d22;
+  --dq-seal-text:             #fef7f3;
+  --dq-seal-border:           #c68a2e;
+  
+  --dq-stamp-bg:              #c0392b;
+  --dq-stamp-text:            #fef7f3;
+  
+  --dq-scroll-roller:         #8a251b;
+  --dq-scroll-rivet:          #c68a2e;
+  
+  --dq-nav-bg:                rgba(253, 244, 240, 0.9);
+  --dq-nav-text:              #8a4540;
+  --dq-nav-text-hover:        #6b1d15;
+  --dq-nav-ink-color:         #6b1d15;
+  
+  --dq-color-gold-500:        #c68a2e;
+}
+
+
+/* ============================================================
+ * 主题 9: 青瓷 (Celadon)
+ * 关键词：青瓷、温润、如玉
+ * 适用：龙泉青瓷、珠宝、雅致生活
+ * ============================================================ */
+[data-theme='celadon'] {
+  --dq-color-bg:              #f2f6f3;
+  --dq-color-bg-surface:      #f7faf8;
+  --dq-color-bg-elevated:     #dde8df;
+  --dq-color-text-primary:    #2d4a3e;
+  --dq-color-text-secondary:  #5a7a6b;
+  --dq-color-text-tertiary:   #94ab9c;
+  --dq-color-border:          #c0d2c5;
+  --dq-color-accent:          #6fa68c;
+  
+  --dq-seal-bg:               #6fa68c;
+  --dq-seal-bg-hover:         #5a8f75;
+  --dq-seal-text:             #f7faf8;
+  --dq-seal-border:           #a3c7b2;
+  
+  --dq-stamp-bg:              #6fa68c;
+  --dq-stamp-text:            #f7faf8;
+  
+  --dq-scroll-roller:         #3d5a4e;
+  --dq-scroll-rivet:          #a3c7b2;
+  
+  --dq-nav-bg:                rgba(242, 246, 243, 0.9);
+  --dq-nav-text:              #5a7a6b;
+  --dq-nav-text-hover:        #2d4a3e;
+  --dq-nav-ink-color:         #2d4a3e;
+  
+  --dq-color-gold-500:        #a3c7b2;
+}
+
+
+/* ============================================================
+ * 朝代主题：7 个中国历史朝代风格
+ * 
+ * 使用方式：
+ *   <html data-theme='qinhan'>  汉·雄浑质朴
+ *   <html data-theme='weijin'>  魏晋·飘逸超然
+ *   <html data-theme='tang'>  唐·雍容华美
+ *   <html data-theme='song'>  宋·清雅极简
+ *   <html data-theme='yuan'>  元·粗放多元
+ *   <html data-theme='ming'>  明·精致秩序
+ *   <html data-theme='qing'>  清·繁缛富贵
+ * ============================================================ */
+
+
+/* ============================================================
+ * 朝代 1: 汉·雄浑质朴 (QinHan)
+ * 时代气质：帝国初兴，崇尚大美，雄浑质朴
+ * 核心色彩：玄黑 #1A1A1A / 土黄 #C4A882 / 漆红 #8B1A1A / 灰褐 #8B7D6B / 青灰 #6B7B8D
+ * 字体：隶书（蚕头燕尾，宽博厚重）、篆书（圆劲古朴）
+ * 纹样：云气纹、四神纹（青龙白虎朱雀玄武）、车马出行图、瓦当纹
+ * 材质质感：陶器、漆器、石刻、麻布
+ * 适用：历史题材、博物馆、古建筑文化
+ * ============================================================ */
+[data-theme='qinhan'] {
+  --dq-color-bg:              #1A1A1A;
+  --dq-color-bg-surface:      #2A2520;
+  --dq-color-bg-elevated:     #3A3228;
+  --dq-color-text-primary:    #C4A882;
+  --dq-color-text-secondary:  #A89870;
+  --dq-color-text-tertiary:   #7A6B55;
+  --dq-color-border:          #6B5D4A;
+  --dq-color-accent:          #8B1A1A;
+  
+  /* 汉：厚重温润，仿漆器质感，深红底色+黑边 */
+  --dq-seal-bg:               #8B1A1A;
+  --dq-seal-bg-hover:         #6E1515;
+  --dq-seal-text:             #C4A882;
+  --dq-seal-border:           #1A1A1A;
+  --dq-seal-size:             72px;
+  --dq-seal-radius:           4px;
+  --dq-seal-tilt:             -2deg;
+  
+  --dq-stamp-bg:              #8B1A1A;
+  --dq-stamp-text:            #C4A882;
+  
+  --dq-scroll-roller:         #8B7D6B;
+  --dq-scroll-rivet:          #C4A882;
+  
+  --dq-nav-bg:                rgba(26, 26, 26, 0.94);
+  --dq-nav-text:              #A89870;
+  --dq-nav-text-hover:        #C4A882;
+  --dq-nav-ink-color:         #C4A882;
+  
+  --dq-color-gold-500:        #C4A882;
+  
+  /* 汉字体：隶书宽博厚重 */
+  --dq-font-kai: 'STLiti', 'LiSu', 'STLiti-S', 'KaiTi', serif;
+  --dq-font-serif: 'STLiti', 'LiSu', 'SimSun', serif;
+  --dq-font-song: 'STLiti', 'LiSu', 'SimSun', serif;
+  --dq-title-spacing: 0.12em;
+  --dq-title-weight: 600;
+  
+  /* 汉布局：中轴对称、间距小、粗犷厚重 */
+  --dq-section-gap: 56px;
+  --dq-content-max-width: 1200px;
+  --dq-border-width: 4px;
+  
+  /* 汉背景：漆红+土黄云气纹 + 瓦当纹（四角圆形装饰） */
+  --dq-bg-pattern: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cfilter id='lacquer'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.035' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.25 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23lacquer)'/%3E%3Cg opacity='0.18' stroke='%23C4A882' stroke-width='0.6' fill='none'%3E%3Cpath d='M0 60 Q60 40 120 60 T240 60'/%3E%3Cpath d='M0 120 Q60 100 120 120 T240 120'/%3E%3Cpath d='M0 180 Q60 160 120 180 T240 180'/%3E%3Cpath d='M60 0 Q40 60 60 120 T60 240'/%3E%3Cpath d='M180 0 Q160 60 180 120 T180 240'/%3E%3C/g%3E%3Cg opacity='0.25' stroke='%238B1A1A' stroke-width='1' fill='none'%3E%3Ccircle cx='30' cy='30' r='18'/%3E%3Ccircle cx='210' cy='30' r='18'/%3E%3Ccircle cx='30' cy='210' r='18'/%3E%3Ccircle cx='210' cy='210' r='18'/%3E%3Ccircle cx='120' cy='120' r='12'/%3E%3C/g%3E%3Cg opacity='0.12' stroke='%23C4A882' stroke-width='0.3' fill='none'%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3Ccircle cx='210' cy='30' r='10'/%3E%3Ccircle cx='30' cy='210' r='10'/%3E%3Ccircle cx='210' cy='210' r='10'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* ============================================================
+ * 朝代 2: 魏晋·飘逸超然 (WeiJin)
+ * 时代气质：名士风度，超然脱俗，飘逸清俊
+ * 核心色彩：月白 #E8EDF0 / 青灰 #8A9CA8 / 竹青 #789262 / 黛紫 #5A4B66 / 藕荷 #C8B1C0
+ * 字体：行书、草书（王羲之《兰亭序》风格，疏朗飘逸）
+ * 纹样：莲花纹、飞天纹、忍冬纹、仙鹤、竹林七贤
+ * 材质质感：纸张（泛黄宣纸）、绢本（半透明）、石像（风化）、纱（轻薄）
+ * 适用：文学、艺术、禅意、高端文化
+ * ============================================================ */
+[data-theme='weijin'] {
+  --dq-color-bg:              #E8EDF0;
+  --dq-color-bg-surface:      #F2F5F7;
+  --dq-color-bg-elevated:     #DDDEE2;
+  --dq-color-text-primary:    #3D4850;
+  --dq-color-text-secondary:  #6A7A84;
+  --dq-color-text-tertiary:   #9CA8B0;
+  --dq-color-border:          #C4CDD4;
+  --dq-color-accent:          #789262;
+  
+  /* 魏晋：轻描淡写，淡墨色边框，字体清瘦 */
+  --dq-seal-bg:               transparent;
+  --dq-seal-bg-hover:         #E8EDF0;
+  --dq-seal-text:             #3D4850;
+  --dq-seal-border:           #8A9CA8;
+  --dq-seal-size:             40px;
+  --dq-seal-radius:           2px;
+  --dq-seal-tilt:             -1deg;
+  
+  --dq-stamp-bg:              #5A4B66;
+  --dq-stamp-text:            #F5F7F9;
+  
+  --dq-scroll-roller:         #8A9CA8;
+  --dq-scroll-rivet:          #C8B1C0;
+  
+  --dq-nav-bg:                rgba(232, 237, 240, 0.7);
+  --dq-nav-text:              #6A7A84;
+  --dq-nav-text-hover:        #3D4850;
+  --dq-nav-ink-color:         #3D4850;
+  
+  --dq-color-gold-500:        #C8B1C0;
+  
+  /* 魏晋字体：行书飘逸疏朗 */
+  --dq-font-kai: 'STXingkai', 'KaiTi', 'STKaiti', 'STXinwei', serif;
+  --dq-font-serif: 'STXingkai', 'STKaiti', 'KaiTi', serif;
+  --dq-font-song: 'STXingkai', 'KaiTi', 'STKaiti', serif;
+  --dq-title-spacing: 0.3em;
+  --dq-title-weight: 400;
+  
+  /* 魏晋布局：极致留白、间距大、透气 */
+  --dq-section-gap: 140px;
+  --dq-content-max-width: 920px;
+  --dq-border-width: 1px;
+  
+  /* 魏晋背景：泛黄宣纸 + 莲花 + 飞天飘带 */
+  --dq-bg-pattern: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cfilter id='rice'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.93 0 0 0 0 0.90 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23rice)'/%3E%3Cg opacity='0.12' stroke='%238A9CA8' stroke-width='0.4' fill='none'%3E%3Cpath d='M160 80 C140 60 130 80 130 100 C130 120 140 140 160 160 C180 140 190 120 190 100 C190 80 180 60 160 80 Z'/%3E%3Cpath d='M160 100 L160 160 M140 120 L180 120'/%3E%3Ccircle cx='160' cy='115' r='4' fill='%23789262' opacity='0.6'/%3E%3C/g%3E%3Cg opacity='0.08' stroke='%235A4B66' stroke-width='0.4' fill='none'%3E%3Cpath d='M40 260 Q80 240 100 280 Q120 300 80 310'/%3E%3Cpath d='M240 50 Q260 30 290 60 Q300 90 270 100'/%3E%3Cpath d='M280 200 Q300 180 310 220'/%3E%3C/g%3E%3Cg opacity='0.1' stroke='%23C8B1C0' stroke-width='0.3' fill='none'%3E%3Cpath d='M60 60 Q80 40 100 60 Q120 80 100 100'/%3E%3Cpath d='M220 220 Q240 200 260 220 Q280 240 260 260'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* ============================================================
+ * 朝代 3: 唐·雍容华美 (Tang)
+ * 时代气质：盛唐气象，大气磅礴，富丽堂皇
+ * 核心色彩：朱红 #C43B3B / 明黄 #D4A039 / 翠绿 #2E8B57 / 钴蓝 #1A3C6E / 金 #D4AF37 / 胭脂 #D45D4D
+ * 字体：楷书（颜真卿丰腴浑厚、柳公权骨力遒劲）
+ * 纹样：宝相花、唐卷草纹（缠枝纹）、瑞狮/翼马、仕女、团窠纹
+ * 材质质感：丝绸（光泽柔滑）、金箔、唐三彩（釉面光泽）、壁画
+ * 适用：庆典、高端品牌、艺术展览
+ * ============================================================ */
+[data-theme='tang'] {
+  --dq-color-bg:              #FBF5E8;
+  --dq-color-bg-surface:      #FDF8EE;
+  --dq-color-bg-elevated:     #F2E6CE;
+  --dq-color-text-primary:    #4A2A1A;
+  --dq-color-text-secondary:  #7A4A2A;
+  --dq-color-text-tertiary:   #B8864A;
+  --dq-color-border:          #D4B888;
+  --dq-color-accent:          #C43B3B;
+  
+  /* 唐：华丽饱满，朱红底色+金色边框+金色文字 */
+  --dq-seal-bg:               #C43B3B;
+  --dq-seal-bg-hover:         #A62F2F;
+  --dq-seal-text:             #FBF5E8;
+  --dq-seal-border:           #D4AF37;
+  --dq-seal-size:             76px;
+  --dq-seal-radius:           8px;
+  --dq-seal-tilt:             -3deg;
+  
+  --dq-stamp-bg:              #C43B3B;
+  --dq-stamp-text:            #FBF5E8;
+  
+  --dq-scroll-roller:         #8B4513;
+  --dq-scroll-rivet:          #D4AF37;
+  
+  --dq-nav-bg:                rgba(251, 245, 232, 0.94);
+  --dq-nav-text:              #7A4A2A;
+  --dq-nav-text-hover:        #4A2A1A;
+  --dq-nav-ink-color:         #4A2A1A;
+  
+  --dq-color-gold-500:        #D4AF37;
+  
+  /* 唐字体：楷书丰腴浑厚 */
+  --dq-font-kai: 'STKaiti', 'KaiTi', 'FZKai-Z03S', 'STXinwei', serif;
+  --dq-font-serif: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  --dq-font-song: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  --dq-title-spacing: 0.08em;
+  --dq-title-weight: 700;
+  
+  /* 唐布局：饱满均衡、间距适中 */
+  --dq-section-gap: 72px;
+  --dq-content-max-width: 1120px;
+  --dq-border-width: 3px;
+  
+  /* 唐背景：丝绸光泽 + 宝相花 + 金箔 */
+  --dq-bg-pattern: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cdefs%3E%3CradialGradient id='silk' cx='50%25' cy='50%25' r='60%25'%3E%3Cstop offset='0%25' stop-color='%23D4AF37' stop-opacity='0.06'/%3E%3Cstop offset='100%25' stop-color='%23C43B3B' stop-opacity='0.02'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='260' height='260' fill='url(%23silk)'/%3E%3Cg opacity='0.18' stroke='%23C43B3B' stroke-width='0.6' fill='none'%3E%3Ccircle cx='130' cy='130' r='50'/%3E%3Ccircle cx='130' cy='130' r='35' stroke='%23D4AF37' stroke-width='0.5'/%3E%3Ccircle cx='130' cy='130' r='22' stroke='%232E8B57' stroke-width='0.5'/%3E%3Ccircle cx='130' cy='130' r='10' stroke='%23D45D4D' stroke-width='0.4'/%3E%3C/g%3E%3Cg opacity='0.15' stroke='%23D4AF37' stroke-width='0.3' fill='none'%3E%3Cpath d='M130 80 Q155 105 130 130 Q105 155 130 180'/%3E%3Cpath d='M80 130 Q105 105 130 130 Q155 155 180 130'/%3E%3Cpath d='M100 100 Q130 115 160 100'/%3E%3Cpath d='M100 160 Q130 145 160 160'/%3E%3C/g%3E%3Cg opacity='0.1' stroke='%23D4AF37' stroke-width='0.4' fill='none'%3E%3Ccircle cx='30' cy='30' r='12'/%3E%3Ccircle cx='230' cy='30' r='12'/%3E%3Ccircle cx='30' cy='230' r='12'/%3E%3Ccircle cx='230' cy='230' r='12'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* ============================================================
+ * 朝代 4: 宋·清雅极简 (Song)
+ * 时代气质：文人审美巅峰，极简、内敛、高级感
+ * 核心色彩：天青 #87A6B3 / 粉青 #A7BFC6 / 月白 #E0E4E0 / 墨色 #3A3A3A / 藕丝 #C9B8A8 / 艾绿 #8BA78B
+ * 字体：瘦金体（宋徽宗，刚劲清秀）、仿宋体（笔画纤细，横轻竖重）
+ * 纹样：冰裂纹（哥窑）、缠枝莲（纤细清雅）、花鸟小品、山水意境、几何纹
+ * 材质质感：汝窑瓷器（温润如玉、哑光）、宣纸（柔软半透）、丝（细密光泽）、竹（清瘦）
+ * 适用：现代产品、极简品牌、艺术
+ * ============================================================ */
+[data-theme='song'] {
+  --dq-color-bg:              #EBEDE6;
+  --dq-color-bg-surface:      #F3F5F0;
+  --dq-color-bg-elevated:     #DDDFD8;
+  --dq-color-text-primary:    #3A3A3A;
+  --dq-color-text-secondary:  #5F635D;
+  --dq-color-text-tertiary:   #979B93;
+  --dq-color-border:          #C0C4BD;
+  --dq-color-accent:          #87A6B3;
+  
+  /* 宋：极简如一枚玉扣，天青色，无边框或极细边框 */
+  --dq-seal-bg:               transparent;
+  --dq-seal-bg-hover:         #EBEDE6;
+  --dq-seal-text:             #3A3A3A;
+  --dq-seal-border:           #87A6B3;
+  --dq-seal-size:             44px;
+  --dq-seal-radius:           2px;
+  --dq-seal-tilt:             0deg;
+  
+  --dq-stamp-bg:              #3A3A3A;
+  --dq-stamp-text:            #F3F5F0;
+  
+  --dq-scroll-roller:         #6A6D68;
+  --dq-scroll-rivet:          #A7BFC6;
+  
+  --dq-nav-bg:                rgba(235, 237, 230, 0.88);
+  --dq-nav-text:              #5F635D;
+  --dq-nav-text-hover:        #3A3A3A;
+  --dq-nav-ink-color:         #3A3A3A;
+  
+  --dq-color-gold-500:        #A7BFC6;
+  
+  /* 宋字体：瘦金/仿宋，刚劲清秀 */
+  --dq-font-kai: 'STFangsong', 'FangSong', 'STZhongSong', 'KaiTi', serif;
+  --dq-font-serif: 'STFangsong', 'FangSong', 'STSong', serif;
+  --dq-font-song: 'STFangsong', 'FangSong', 'SimSun', serif;
+  --dq-title-spacing: 0.2em;
+  --dq-title-weight: 400;
+  
+  /* 宋布局：极致留白、极简 */
+  --dq-section-gap: 160px;
+  --dq-content-max-width: 880px;
+  --dq-border-width: 1px;
+  
+  /* 宋背景：汝窑冰裂纹 + 宣纸质感 */
+  --dq-bg-pattern: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cfilter id='ruyao'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.93 0 0 0 0 0.89 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23ruyao)'/%3E%3Cg opacity='0.06' stroke='%2387A6B3' stroke-width='0.3' fill='none'%3E%3Cpath d='M30 80 L90 150 L50 220 L130 300 L70 380'/%3E%3Cpath d='M210 30 L270 110 L230 190 L310 270 L250 350'/%3E%3Cpath d='M370 60 L330 140 L390 220 L350 300 L380 390'/%3E%3Cpath d='M90 30 L60 100 L100 180 L80 260'/%3E%3Cpath d='M340 40 L360 120 L330 200'/%3E%3C/g%3E%3Cg opacity='0.04' stroke='%233A3A3A' stroke-width='0.2'%3E%3Cline x1='0' y1='120' x2='420' y2='124'/%3E%3Cline x1='0' y1='280' x2='420' y2='278'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* ============================================================
+ * 朝代 5: 元·粗放多元 (Yuan)
+ * 时代气质：民族融合，粗犷豪放，戏剧性强
+ * 核心色彩：青花蓝 #1D3B5C / 深红 #8B1A1A / 暗绿 #3E5C42
+ * 字体：赵体（赵孟頫，圆润遒劲）
+ * 纹样：缠枝牡丹、凶猛龙纹、戏曲人物
+ * 材质质感：青花瓷、漆器、织金
+ * 适用：艺术展览、戏曲文化、多元文化
+ * ============================================================ */
+[data-theme='yuan'] {
+  --dq-color-bg:              #E8E4DC;
+  --dq-color-bg-surface:      #F2EFE8;
+  --dq-color-bg-elevated:     #D0CBC0;
+  --dq-color-text-primary:    #1D3B5C;
+  --dq-color-text-secondary:  #4A5D75;
+  --dq-color-text-tertiary:   #8094A8;
+  --dq-color-border:          #B8B0A0;
+  --dq-color-accent:          #8B1A1A;
+  
+  /* 元：大气按钮 + 青花蓝 */
+  --dq-seal-bg:               #1D3B5C;
+  --dq-seal-bg-hover:         #132942;
+  --dq-seal-text:             #F2EFE8;
+  --dq-seal-border:           #3E5C42;
+  --dq-seal-size:             76px;
+  --dq-seal-radius:           10px;
+  --dq-seal-tilt:             -2deg;
+  
+  --dq-stamp-bg:              #8B1A1A;
+  --dq-stamp-text:            #F2EFE8;
+  
+  --dq-scroll-roller:         #3E5C42;
+  --dq-scroll-rivet:          #C4B998;
+  
+  --dq-nav-bg:                rgba(232, 228, 220, 0.9);
+  --dq-nav-text:              #4A5D75;
+  --dq-nav-text-hover:        #1D3B5C;
+  --dq-nav-ink-color:         #1D3B5C;
+  
+  --dq-color-gold-500:        #C4B998;
+  
+  /* 元字体：赵体圆润遒劲 */
+  --dq-font-kai: 'STLiti', 'KaiTi', 'STKaiti', 'FZKai-Z03S', serif;
+  --dq-font-serif: 'STLiti', 'KaiTi', 'SimSun', serif;
+  --dq-font-song: 'STLiti', 'KaiTi', 'SimSun', serif;
+  --dq-title-spacing: 0.1em;
+  --dq-title-weight: 600;
+  
+  /* 元布局：满绘饱满 */
+  --dq-section-gap: 48px;
+  --dq-content-max-width: 1200px;
+  --dq-border-width: 3px;
+  
+  /* 元背景：青花瓷 + 缠枝牡丹 */
+  --dq-bg-pattern: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cdefs%3E%3ClinearGradient id='porcelain' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F5F2EB'/%3E%3Cstop offset='100%25' stop-color='%23E8E4DC'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='280' height='280' fill='url(%23porcelain)'/%3E%3Cg opacity='0.15' stroke='%231D3B5C' stroke-width='0.5' fill='none'%3E%3Cpath d='M140 80 C120 60 100 80 120 100 C140 120 160 100 180 80 C160 60 140 60 140 80'/%3E%3Cpath d='M80 200 C60 180 80 160 100 180 C120 200 100 220 80 200'/%3E%3Cpath d='M200 220 C180 200 200 180 220 200 C240 220 220 240 200 220'/%3E%3C/g%3E%3Cg opacity='0.1' stroke='%238B1A1A' stroke-width='0.3' fill='none'%3E%3Ccircle cx='140' cy='140' r='30'/%3E%3Ccircle cx='60' cy='60' r='15'/%3E%3Ccircle cx='220' cy='220' r='15'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* ============================================================
+ * 朝代 6: 明·精致秩序 (Ming)
+ * 时代气质：精致规整，端庄有序，等级森严
+ * 核心色彩：霁红 #9B2C2C / 宝石蓝 #1E3A6B / 明黄 #DAA520 / 白 #F5F0E8 / 紫檀 #4A2A1A / 蟹壳青 #5B6B6B
+ * 字体：台阁体（馆阁体）——方正、圆润、整齐划一
+ * 纹样：海水江崖纹、云纹（规整如意云）、缠枝莲、龙纹、万字纹
+ * 材质质感：紫檀/黄花梨（温润木质）、青花瓷（白底蓝花）、宣纸、缂丝
+ * 适用：传统文化、工艺、家居品牌
+ * ============================================================ */
+[data-theme='ming'] {
+  --dq-color-bg:              #F8F4ED;
+  --dq-color-bg-surface:      #FDFAF3;
+  --dq-color-bg-elevated:     #EBE4D2;
+  --dq-color-text-primary:    #2C3E50;
+  --dq-color-text-secondary:  #5A6577;
+  --dq-color-text-tertiary:   #949AA5;
+  --dq-color-border:          #C8BFA8;
+  --dq-color-accent:          #1E3A6B;
+  
+  /* 明：方正规矩，霁红+金色边框，如青花瓷片或玉印 */
+  --dq-seal-bg:               #9B2C2C;
+  --dq-seal-bg-hover:         #7D2323;
+  --dq-seal-text:             #FDFAF3;
+  --dq-seal-border:           #DAA520;
+  --dq-seal-size:             64px;
+  --dq-seal-radius:           4px;
+  --dq-seal-tilt:             -1deg;
+  
+  --dq-stamp-bg:              #9B2C2C;
+  --dq-stamp-text:            #FDFAF3;
+  
+  --dq-scroll-roller:         #4A2A1A;
+  --dq-scroll-rivet:          #DAA520;
+  
+  --dq-nav-bg:                rgba(248, 244, 237, 0.94);
+  --dq-nav-text:              #5A6577;
+  --dq-nav-text-hover:        #2C3E50;
+  --dq-nav-ink-color:         #2C3E50;
+  
+  --dq-color-gold-500:        #DAA520;
+  
+  /* 明字体：台阁体方正严谨 */
+  --dq-font-kai: 'STFangsong', 'FangSong', 'STSong', 'KaiTi', serif;
+  --dq-font-serif: 'STFangsong', 'FangSong', 'STSong', serif;
+  --dq-font-song: 'STFangsong', 'FangSong', 'SimSun', serif;
+  --dq-title-spacing: 0.08em;
+  --dq-title-weight: 600;
+  
+  /* 明布局：严格对称、秩序感 */
+  --dq-section-gap: 80px;
+  --dq-content-max-width: 1100px;
+  --dq-border-width: 2px;
+  
+  /* 明背景：海水江崖 + 万字纹 + 青花瓷质感 */
+  --dq-bg-pattern: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.97 0 0 0 0 0.95 0 0 0 0 0.90 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='280' height='280' filter='url(%23paper)'/%3E%3Cg opacity='0.1' stroke='%239B2C2C' stroke-width='0.4' fill='none'%3E%3Cpath d='M0 200 Q30 180 50 200 Q70 220 100 200 Q130 180 150 200 Q170 220 200 200 Q230 180 250 200'/%3E%3Cpath d='M0 220 Q30 200 50 220 Q70 240 100 220 Q130 200 150 220 Q170 240 200 220 Q230 200 250 220'/%3E%3Cpath d='M0 240 Q30 220 50 240 Q70 260 100 240 Q130 220 150 240 Q170 260 200 240 Q230 220 250 240'/%3E%3C/g%3E%3Cg opacity='0.08' stroke='%231E3A6B' stroke-width='0.3'%3E%3Crect x='120' y='120' width='40' height='40'/%3E%3Crect x='30' y='30' width='22' height='22'/%3E%3Crect x='228' y='30' width='22' height='22'/%3E%3Crect x='30' y='228' width='22' height='22'/%3E%3Crect x='228' y='228' width='22' height='22'/%3E%3Crect x='120' y='20' width='40' height='8'/%3E%3Crect x='120' y='252' width='40' height='8'/%3E%3Crect x='20' y='120' width='8' height='40'/%3E%3Crect x='252' y='120' width='8' height='40'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* ============================================================
+ * 朝代 7: 清·繁缛富贵 (Qing)
+ * 时代气质：集历代工艺之大成，繁复奢华
+ * 核心色彩：胭脂粉 #E5A1A1 / 淡紫 #B39BC8 / 大金 #D4AF37 / 孔雀蓝 #1D4A6B / 翠绿 #3CB371 / 大红 #CC2222
+ * 字体：馆阁体楷书（圆润饱满、墨色浓重）
+ * 纹样：百花不落地、蝙蝠纹（福）、寿字纹、龙凤呈祥、缠枝莲宝相花、暗八仙
+ * 材质质感：珐琅（光洁亮丽）、玉石镶嵌、缂丝/刺绣（重工纹理）、金漆
+ * 适用：奢华品牌、传统工艺、庆典
+ * ============================================================ */
+[data-theme='qing'] {
+  --dq-color-bg:              #FAF4EF;
+  --dq-color-bg-surface:      #FDF8F4;
+  --dq-color-bg-elevated:     #EDE1D5;
+  --dq-color-text-primary:    #4A3828;
+  --dq-color-text-secondary:  #7A5C42;
+  --dq-color-text-tertiary:   #B89878;
+  --dq-color-border:          #D4C0A8;
+  --dq-color-accent:          #D4AF37;
+  
+  /* 清：重工奢华，金色或孔雀蓝底色，满铺缠枝纹 */
+  --dq-seal-bg:               #1D4A6B;
+  --dq-seal-bg-hover:         #153A54;
+  --dq-seal-text:             #FDF8F4;
+  --dq-seal-border:           #D4AF37;
+  --dq-seal-size:             72px;
+  --dq-seal-radius:           12px;
+  --dq-seal-tilt:             -2deg;
+  
+  --dq-stamp-bg:              #CC2222;
+  --dq-stamp-text:            #FDF8F4;
+  
+  --dq-scroll-roller:         #6B4C30;
+  --dq-scroll-rivet:          #D4AF37;
+  
+  --dq-nav-bg:                rgba(250, 244, 239, 0.95);
+  --dq-nav-text:              #7A5C42;
+  --dq-nav-text-hover:        #4A3828;
+  --dq-nav-ink-color:         #4A3828;
+  
+  --dq-color-gold-500:        #D4AF37;
+  
+  /* 清字体：馆阁体楷书密集饱满 */
+  --dq-font-kai: 'STKaiti', 'KaiTi', 'STFangsong', 'STXinwei', serif;
+  --dq-font-serif: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  --dq-font-song: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  --dq-title-spacing: 0.05em;
+  --dq-title-weight: 700;
+  
+  /* 清布局：密集饱满、不留白 */
+  --dq-section-gap: 56px;
+  --dq-content-max-width: 1200px;
+  --dq-border-width: 4px;
+  
+  /* 清背景：珐琅光泽 + 百花不落地 + 寿字纹 */
+  --dq-bg-pattern: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cdefs%3E%3CradialGradient id='enamel' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23D4AF37' stop-opacity='0.08'/%3E%3Cstop offset='100%25' stop-color='%23E5A1A1' stop-opacity='0.04'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='240' height='240' fill='url(%23enamel)'/%3E%3Cg opacity='0.18' stroke='%23D4AF37' stroke-width='0.5' fill='none'%3E%3Cpath d='M120 40 C100 40 90 60 90 80 C90 100 100 110 120 110 C140 110 150 100 150 80 C150 60 140 40 120 40'/%3E%3Ccircle cx='120' cy='150' r='30'/%3E%3Cpath d='M100 140 L140 140 M120 130 L120 170'/%3E%3C/g%3E%3Cg opacity='0.12' stroke='%23E5A1A1' stroke-width='0.4' fill='none'%3E%3Cpath d='M40 40 Q60 20 80 40 Q100 60 80 80 Q60 100 40 80 Q20 60 40 40'/%3E%3Cpath d='M200 160 Q220 140 200 120 Q180 100 160 120 Q140 140 160 160 Q180 180 200 160'/%3E%3C/g%3E%3Cg opacity='0.1' fill='%231D4A6B'%3E%3Cpath d='M30 100 L50 100 L50 120 L30 120 Z'/%3E%3Cpath d='M190 60 L210 60 L210 80 L190 80 Z'/%3E%3Cpath d='M70 200 L90 200 L90 220 L70 220 Z'/%3E%3Cpath d='M170 200 L190 200 L190 220 L170 220 Z'/%3E%3C/g%3E%3Cg opacity='0.08' stroke='%233CB371' stroke-width='0.3' fill='none'%3E%3Ccircle cx='120' cy='200' r='8'/%3E%3Ccircle cx='60' cy='180' r='6'/%3E%3Ccircle cx='180' cy='40' r='6'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+/* ============================================================
+ * 主题 10: 自定义主题模板
+ * 复制下面内容，修改颜色值即可创建自己的主题
+ * 
+ * [data-theme='my-theme'] {
+ *   --dq-color-bg:              #XXXXXX;
+ *   --dq-color-bg-surface:      #XXXXXX;
+ *   --dq-color-text-primary:    #XXXXXX;
+ *   --dq-color-text-secondary:  #XXXXXX;
+ *   --dq-color-accent:          #XXXXXX;
+ *   --dq-seal-bg:               #XXXXXX;
+ *   --dq-seal-text:             #XXXXXX;
+ *   --dq-scroll-roller:         #XXXXXX;
+ *   --dq-color-gold-500:        #XXXXXX;
+ * }
+ * ============================================================ */
+
+
+/* ============================================================
+ * 主题：深色模式 (Dark)
+ * 独立于视觉主题的深色变体
+ * 使用：<html data-theme="ink" data-color-mode="dark">
+ * ============================================================ */
+[data-color-mode='dark'] {
+  --dq-color-bg:              #1a1917 !important;
+  --dq-color-bg-surface:      #252420 !important;
+  --dq-color-bg-elevated:     #32302c !important;
+  --dq-color-text-primary:    #e8e4da !important;
+  --dq-color-text-secondary:  #a8a498 !important;
+  --dq-color-text-tertiary:   #6c6a63 !important;
+  --dq-color-border:          #3d3b36 !important;
+  --dq-nav-bg:                rgba(26, 25, 23, 0.95) !important;
+}
