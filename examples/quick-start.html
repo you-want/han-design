@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="tang">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快速上手测试 · 汉设计系统</title>
+  <meta name="description" content="按照 README 快速开始方式，测试汉设计系统的使用流程">
+
+  <!-- 第 1 步：引入 CSS（模拟新用户使用） -->
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/themes.css">
+
+  <style>
+    /* 页面布局 */
+    .demo {
+      max-width: var(--dq-container-lg);
+      margin: 0 auto;
+      padding: var(--dq-space-6);
+    }
+
+    .demo__title {
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-3xl);
+      color: var(--dq-color-text-primary);
+      text-align: center;
+      margin-bottom: var(--dq-space-2);
+    }
+
+    .demo__desc {
+      text-align: center;
+      color: var(--dq-color-text-tertiary);
+      font-size: var(--dq-fs-sm);
+      margin-bottom: var(--dq-space-8);
+    }
+
+    /* 主题切换栏 */
+    .theme-bar {
+      display: flex;
+      gap: var(--dq-space-2);
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: var(--dq-space-4);
+      background: var(--dq-color-bg-alt);
+      border-radius: var(--dq-radius-lg);
+      margin-bottom: var(--dq-space-8);
+    }
+
+    .theme-chip {
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-sm);
+      padding: var(--dq-space-2) var(--dq-space-4);
+      border-radius: var(--dq-radius-md);
+      cursor: pointer;
+      border: 1px solid var(--dq-color-border);
+      background: var(--dq-color-surface);
+      color: var(--dq-color-text-secondary);
+      transition: all var(--dq-duration-fast) var(--dq-ease-out);
+    }
+
+    .theme-chip:hover {
+      border-color: var(--dq-color-vermilion-400);
+      color: var(--dq-color-vermilion-500);
+    }
+
+    .theme-chip.is-active {
+      background: var(--dq-color-vermilion-500);
+      color: var(--dq-color-paper-100);
+      border-color: var(--dq-color-vermilion-500);
+    }
+
+    /* 组件展示区 */
+    .section {
+      margin-bottom: var(--dq-space-10);
+    }
+
+    .section__title {
+      font-family: var(--dq-font-kai);
+      font-size: var(--dq-fs-xl);
+      color: var(--dq-color-text-primary);
+      margin-bottom: var(--dq-space-4);
+      padding-bottom: var(--dq-space-2);
+      border-bottom: 2px solid var(--dq-color-border);
+    }
+
+    /* 颜色卡片 */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: var(--dq-space-3);
+    }
+
+    .color-swatch {
+      border-radius: var(--dq-radius-md);
+      overflow: hidden;
+      border: 1px solid var(--dq-color-border);
+    }
+
+    .color-swatch__block {
+      height: 60px;
+    }
+
+    .color-swatch__info {
+      padding: var(--dq-space-2);
+      font-size: var(--dq-fs-xs);
+      background: var(--dq-color-surface);
+    }
+
+    .color-swatch__name {
+      color: var(--dq-color-text-primary);
+      font-weight: var(--dq-fw-medium);
+    }
+
+    .color-swatch__token {
+      color: var(--dq-color-text-tertiary);
+      font-family: monospace;
+    }
+
+    /* 组件行 */
+    .component-row {
+      display: flex;
+      gap: var(--dq-space-4);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* 代码块 */
+    .code-block {
+      background: var(--dq-color-ink-900);
+      color: var(--dq-color-paper-200);
+      padding: var(--dq-space-4);
+      border-radius: var(--dq-radius-md);
+      font-family: monospace;
+      font-size: var(--dq-fs-sm);
+      line-height: var(--dq-lh-relaxed);
+      overflow-x: auto;
+      margin-top: var(--dq-space-3);
+    }
+
+    .code-block .token { color: #c68a2e; }
+    .code-block .tag { color: #5fb3d4; }
+    .code-block .attr { color: #c39b6e; }
+  </style>
+</head>
+<body>
+
+  <!-- 水墨导航 -->
+  <nav class="dq-navbar">
+    <div class="dq-navbar__inner">
+      <div class="dq-navbar__brand">汉<span>之</span></div>
+      <ul class="dq-navbar__menu">
+        <li class="dq-navbar__item dq-navbar__item--active">快速上手</li>
+        <li class="dq-navbar__item">色彩</li>
+        <li class="dq-navbar__item">字体</li>
+        <li class="dq-navbar__item">组件</li>
+        <li class="dq-navbar__item">主题</li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="dq-section demo">
+    <h1 class="demo__title">汉设计系统 · 快速上手测试</h1>
+    <p class="demo__desc">按照 README 使用方式引入 CSS，测试设计令牌与组件是否正常工作</p>
+
+    <!-- 主题切换 -->
+    <div class="theme-bar" id="themeBar">
+      <button class="theme-chip is-active" data-theme="tang">唐 · 雍容</button>
+      <button class="theme-chip" data-theme="song">宋 · 清雅</button>
+      <button class="theme-chip" data-theme="qinhan">汉 · 雄浑</button>
+      <button class="theme-chip" data-theme="ink">水墨</button>
+      <button class="theme-chip" data-theme="porcelain">青花瓷</button>
+      <button class="theme-chip" data-theme="dunhuang">敦煌</button>
+    </div>
+
+    <!-- 1. 色彩令牌测试 -->
+    <section class="section">
+      <h2 class="section__title">① 色彩令牌</h2>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--dq-color-vermilion-500);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">朱红 500</div>
+            <div class="color-swatch__token">--dq-color-vermilion-500</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--dq-color-indigo-500);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">靛蓝 500</div>
+            <div class="color-swatch__token">--dq-color-indigo-500</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--dq-color-gold-500);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">金色 500</div>
+            <div class="color-swatch__token">--dq-color-gold-500</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--dq-color-ink-700);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">浓墨 700</div>
+            <div class="color-swatch__token">--dq-color-ink-700</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--dq-color-paper-100); border-bottom: 1px solid var(--dq-color-border);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">宣纸 100</div>
+            <div class="color-swatch__token">--dq-color-paper-100</div>
+          </div>
+        </div>
+      </div>
+      <div class="code-block"><span class="token">/* 使用示例 */</span>
+<span class="tag">.title</span> {
+  <span class="attr">color</span>: <span class="token">var(--dq-color-vermilion-500)</span>;
+  <span class="attr">background</span>: <span class="token">var(--dq-color-paper-100)</span>;
+}</div>
+    </section>
+
+    <!-- 2. 字体令牌测试 -->
+    <section class="section">
+      <h2 class="section__title">② 字体排版</h2>
+      <div style="display:flex; flex-direction:column; gap:var(--dq-space-3);">
+        <div style="font-family: var(--dq-font-kai); font-size: var(--dq-fs-2xl); color: var(--dq-color-text-primary); font-weight: bold;">楷体标题 — 笔走龙蛇</div>
+        <div style="font-family: var(--dq-font-song); font-size: var(--dq-fs-md); color: var(--dq-color-text-secondary);">宋体正文 — 横平竖直，结构端庄</div>
+        <div style="font-family: var(--dq-font-sans); font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary);">Sans 界面文字 — 现代简洁</div>
+      </div>
+    </section>
+
+    <!-- 3. 间距令牌测试 -->
+    <section class="section">
+      <h2 class="section__title">③ 间距令牌</h2>
+      <div style="display:flex; gap:var(--dq-space-2); align-items:flex-end;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--dq-space-1);">
+          <div style="width:var(--dq-space-2); height:var(--dq-space-2); background:var(--dq-color-vermilion-500); border-radius:var(--dq-radius-sm);"></div>
+          <span style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">space-2</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--dq-space-1);">
+          <div style="width:var(--dq-space-4); height:var(--dq-space-4); background:var(--dq-color-vermilion-400); border-radius:var(--dq-radius-sm);"></div>
+          <span style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">space-4</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--dq-space-1);">
+          <div style="width:var(--dq-space-6); height:var(--dq-space-6); background:var(--dq-color-vermilion-300); border-radius:var(--dq-radius-sm);"></div>
+          <span style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">space-6</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--dq-space-1);">
+          <div style="width:var(--dq-space-8); height:var(--dq-space-8); background:var(--dq-color-vermilion-200); border-radius:var(--dq-radius-sm);"></div>
+          <span style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">space-8</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 组件测试 -->
+    <section class="section">
+      <h2 class="section__title">④ 组件使用</h2>
+
+      <!-- 印章按钮 -->
+      <div style="margin-bottom: var(--dq-space-5);">
+        <h4 style="margin-bottom: var(--dq-space-2);">印章按钮 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-btn-seal</code></h4>
+        <div class="component-row">
+          <button class="dq-btn-seal dq-btn-seal--sm">小印章</button>
+          <button class="dq-btn-seal">中印章</button>
+          <button class="dq-btn-seal dq-btn-seal--lg dq-animate-seal-drop">大印章</button>
+        </div>
+      </div>
+
+      <!-- 印章组件 -->
+      <div style="margin-bottom: var(--dq-space-5);">
+        <h4 style="margin-bottom: var(--dq-space-2);">印章 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-stamp</code></h4>
+        <div class="component-row">
+          <div class="dq-stamp dq-stamp--sm">汉</div>
+          <div class="dq-stamp">印</div>
+          <div class="dq-stamp dq-stamp--lg">之印</div>
+        </div>
+      </div>
+
+      <!-- 卷轴卡片 -->
+      <div style="margin-bottom: var(--dq-space-5);">
+        <h4 style="margin-bottom: var(--dq-space-2);">卷轴卡片 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-card-scroll</code></h4>
+        <article class="dq-card-scroll">
+          <span class="dq-rivet dq-rivet--tl"></span>
+          <span class="dq-rivet dq-rivet--tr"></span>
+          <span class="dq-rivet dq-rivet--bl"></span>
+          <span class="dq-rivet dq-rivet--br"></span>
+          <header class="dq-card-scroll__header">测试卡片</header>
+          <div class="dq-card-scroll__body">
+            <p>这是一个测试卡片，验证卷轴卡片组件是否正常渲染。</p>
+          </div>
+          <footer class="dq-card-scroll__footer">
+            <span>测试通过 ✓</span>
+            <a href="#">查看 →</a>
+          </footer>
+        </article>
+      </div>
+
+      <!-- 标签 -->
+      <div style="margin-bottom: var(--dq-space-5);">
+        <h4 style="margin-bottom: var(--dq-space-2);">标签 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-tag</code></h4>
+        <div class="component-row">
+          <span class="dq-tag">默认标签</span>
+          <span class="dq-tag dq-tag--vermilion">朱红标签</span>
+          <span class="dq-tag dq-tag--gold">金色标签</span>
+        </div>
+      </div>
+
+      <!-- 窗花边框 -->
+      <div>
+        <h4 style="margin-bottom: var(--dq-space-2);">窗花边框 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-frame-window</code></h4>
+        <div class="dq-frame-window dq-frame-window--gold" style="padding: var(--dq-space-6); max-width: 400px;">
+          <span class="dq-corner-tr"></span>
+          <span class="dq-corner-bl"></span>
+          <p style="font-family: var(--dq-font-kai); font-size: var(--dq-fs-xl); text-align: center; color: var(--dq-color-text-primary);">窗花边框测试</p>
+          <p style="text-align: center; font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary);">验证四角装饰是否正常渲染</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 代码示例 -->
+    <section class="section">
+      <h2 class="section__title">⑤ 引入方式</h2>
+      <div class="code-block"><span class="token">&lt;!-- 方式一：CDN 引入 --&gt;</span>
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"../assets/css/tokens.css"</span>&gt;
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"../assets/css/base.css"</span>&gt;
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"../assets/css/components.css"</span>&gt;
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"../assets/css/themes.css"</span>&gt;
+
+<span class="token">&lt;!-- 方式二：npm 安装 --&gt;</span>
+npm install han-design</div>
+    </section>
+  </div>
+
+  <!-- 水墨分割线 -->
+  <div class="dq-container">
+    <div style="position:relative; margin: var(--dq-space-6) 0;">
+      <div style="position:absolute; top:50%; left:0; right:0; height:2px;
+        background: linear-gradient(90deg, transparent 5%, var(--dq-color-ink-400) 20%, var(--dq-color-ink-400) 80%, transparent 95%);
+        transform: translateY(-50%); filter: blur(0.5px);"></div>
+      <div style="display:flex; justify-content:center; position:relative;">
+        <div class="dq-stamp dq-stamp--sm">汉</div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="text-align:center; padding: var(--dq-space-8); color: var(--dq-color-text-tertiary); font-size: var(--dq-fs-sm);">
+    © 2024 汉设计系统 · 快速上手测试
+  </footer>
+
+  <script>
+    // 主题切换
+    const themeBar = document.getElementById('themeBar');
+    const html = document.documentElement;
+
+    themeBar.addEventListener('click', (e) => {
+      const chip = e.target.closest('.theme-chip');
+      if (!chip) return;
+
+      // 更新选中状态
+      themeBar.querySelectorAll('.theme-chip').forEach(c => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+
+      // 切换主题
+      const theme = chip.dataset.theme;
+      html.setAttribute('data-theme', theme);
+    });
+
+    // 印章按钮点击动画
+    document.querySelectorAll('.dq-btn-seal').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.remove('dq-animate-seal-drop');
+        void btn.offsetWidth;
+        btn.classList.add('dq-animate-seal-drop');
+      });
+    });
+  </script>
+
+</body>
+</html>

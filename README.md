@@ -145,18 +145,9 @@ vercel
 vercel --prod
 ```
 
-### GitHub Actions 自动部署
+### Git 自动部署
 
-项目已配置 GitHub Actions 工作流，推送到 `main` 分支会自动部署到 Vercel：
-
-1. **Fork 本仓库**，并推送到你的 GitHub 账号
-2. **在 Vercel 创建项目**，获取以下凭据
-3. **在 GitHub 仓库 Settings → Secrets 中添加：**
-   - `VERCEL_TOKEN` — Vercel API Token（在 [vercel.com/account/tokens](https://vercel.com/account/tokens) 生成）
-   - `VERCEL_ORG_ID` — 可选项
-   - `VERCEL_PROJECT_ID` — 可选项
-
-4. **推送代码到 `main` 分支**，自动触发部署：
+在 Vercel 控制台导入 GitHub 仓库后，每次 push 到 `main` 分支会自动触发部署，无需额外配置：
 
 ```bash
 git add .
