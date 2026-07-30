@@ -1,4 +1,7 @@
 {
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
@@ -13,6 +16,10 @@
     {
       "source": "/showcase/",
       "destination": "/examples/theme-showcase.html"
+    },
+    {
+      "source": "/quick-start",
+      "destination": "/examples/quick-start.html"
     },
     {
       "source": "/components/:path*",
