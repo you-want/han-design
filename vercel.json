@@ -23,12 +23,12 @@
     },
     {
       "source": "/components/:path*",
-      "destination": "/components/:path*"
+      "destination": "/examples/components/:path*"
     }
   ],
   "headers": [
     {
-      "source": "/assets/(.*)",
+      "source": "/skill/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -37,20 +37,11 @@
       ]
     },
     {
-      "source": "/assets/css/(.*)",
+      "source": "/skill/assets/(.*)",
       "headers": [
         {
           "key": "Content-Type",
           "value": "text/css; charset=utf-8"
-        }
-      ]
-    },
-    {
-      "source": "/assets/icons/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/svg+xml"
         }
       ]
     }

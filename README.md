@@ -87,23 +87,20 @@
 
 ```html
 <!-- 在 HTML 中引入 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/assets/css/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/assets/css/base.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/assets/css/components.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/assets/css/themes.css">
+<link rel="stylesheet" href="skill/assets/tokens.css">
+<link rel="stylesheet" href="skill/assets/base.css">
+<link rel="stylesheet" href="skill/assets/components.css">
+<link rel="stylesheet" href="skill/assets/themes.css">
 ```
 
-### 方式二：让 AI 生成
+### 方式二：CDN 引用
 
-告诉 AI：
-
-> "请使用汉设计系统 (han-design) 为我生成一个中国风的 XX 页面，遵循 DESIGN_GUIDE.md 中的设计规范。"
-
-AI 将自动：
-- 引入 `tokens.css`、`base.css`、`components.css`、`themes.css`
-- 使用 `--dq-` 前缀的设计令牌
-- 应用中国风组件（印章按钮、水墨导航等）
-- 遵循色彩比例、排版规范、布局原则
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/components.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/themes.css">
+```
 
 ### 方式三：npm 安装
 
@@ -113,11 +110,55 @@ npm install han-design
 
 ```css
 /* 在项目中使用 */
-@import 'han-design/assets/css/tokens.css';
-@import 'han-design/assets/css/base.css';
-@import 'han-design/assets/css/components.css';
-@import 'han-design/assets/css/themes.css';
+@import 'han-design/skill/assets/tokens.css';
+@import 'han-design/skill/assets/base.css';
+@import 'han-design/skill/assets/components.css';
+@import 'han-design/skill/assets/themes.css';
 ```
+
+---
+
+## 🤖 作为 AI Skill 使用（通用）
+
+本项目本身就是一个**标准的 AI Skill 包**，包含：
+
+```
+han-design/
+├── SKILL.md           ← AI 指令文件（定义设计规范、组件用法、禁忌）
+└── skill/
+    ├── assets/        ← CSS 资产（tokens/base/components/themes）
+    └── snippets/      ← 组件代码片段
+```
+
+AI 读取 `SKILL.md` 后会自动遵循全部设计规范。
+
+### 使用方式
+
+**1. 直接在项目中使用**
+
+Clone 到本地后，在支持 AI 的编辑器（VS Code + Copilot、Cursor、Trae 等）中打开项目根目录，AI 会自动识别 `SKILL.md`。
+
+**2. 作为 Skill 安装到全局**
+
+```bash
+# 克隆仓库
+git clone https://github.com/your-username/han-design.git
+
+# 在任意项目中引用
+cd your-project
+# 将 SKILL.md 和 skill/ 目录作为上下文提供给 AI
+```
+
+**3. 使用时对 AI 说：**
+
+> "帮我生成一个中国风的落地页" 或 "用宋韵主题做一个产品展示页"
+
+AI 会自动：
+- 读取 `SKILL.md` 中的设计规范
+- 引入 `skill/assets/` 下的 CSS 文件
+- 使用 `--dq-` 前缀的设计令牌
+- 从 `skill/snippets/` 引用组件代码
+- 遵循色彩比例、排版、布局原则和禁忌
 
 ---
 
@@ -269,18 +310,18 @@ vercel --prod
 
 基于 4px 基础单位：`--dq-space-1`(4px) → `--dq-space-16`(192px)
 
-> 💡 **完整令牌列表**请查看 [tokens.css](assets/css/tokens.css)
+> 💡 **完整令牌列表**请查看 [tokens.css](skill/assets/tokens.css)
 
 ---
 
 ## 📚 文档
 
-- [设计令牌](assets/css/tokens.css) — 所有设计变量
-- [基础样式](assets/css/base.css) — 重置与排版
-- [组件样式](assets/css/components.css) — 组件 CSS
-- [主题系统](assets/css/themes.css) — 7 朝代 + 10 国风主题
+- [设计令牌](skill/assets/tokens.css) — 所有设计变量
+- [基础样式](skill/assets/base.css) — 重置与排版
+- [组件样式](skill/assets/components.css) — 组件 CSS
+- [主题系统](skill/assets/themes.css) — 7 朝代 + 10 国风主题
 - [AI 设计规范](DESIGN_GUIDE.md) — AI 系统提示词
-- [组件示例](components/) — 每个组件的 HTML 示例
+- [组件示例](examples/components/) — 每个组件的 HTML 演示
 - [品牌首页示例](examples/landing-page.html) — 完整落地页
 - [主题切换示例](examples/theme-showcase.html) — 所有主题预览
 
@@ -290,30 +331,30 @@ vercel --prod
 
 ```
 han-design/
-├── assets/
-│   ├── css/
-│   │   ├── tokens.css       # 设计令牌（--dq- 变量）
-│   │   ├── base.css         # 基础样式重置
-│   │   ├── components.css   # 组件样式
-│   │   └── themes.css       # 7 朝代 + 10 国风主题
-│   └── icons/               # SVG 图标
-├── components/              # 组件 HTML 示例
-│   ├── button-seal.html
-│   ├── navbar-ink.html
-│   ├── card-scroll.html
-│   ├── frame-window.html
-│   ├── divider-ink.html
-│   └── stamp.html
-├── examples/
-│   ├── landing-page.html    # 完整品牌首页示例
-│   └── theme-showcase.html  # 所有主题预览
-├── .github/workflows/       # GitHub Actions 工作流
-│   ├── deploy.yml           # 主分支自动部署
-│   └── deploy-preview.yml   # 预览部署
-├── vercel.json              # Vercel 部署配置
-├── DESIGN_GUIDE.md          # AI 设计规范
-├── README.md
-└── package.json
+├── SKILL.md              # AI 指令文件（核心）
+├── skill/                # Skill 核心（给所有用户）
+│   ├── assets/           # CSS 资产
+│   │   ├── tokens.css
+│   │   ├── base.css
+│   │   ├── components.css
+│   │   └── themes.css
+│   └── snippets/         # 组件代码片段
+│       ├── page-shell.html
+│       ├── btn-seal.html
+│       ├── navbar.html
+│       ├── card-scroll.html
+│       ├── divider-ink.html
+│       ├── stamp.html
+│       ├── frame-window.html
+│       └── hero-section.html
+├── examples/             # 示例页面
+│   ├── components/       # 组件演示
+│   ├── landing-page.html
+│   ├── quick-start.html
+│   └── theme-showcase.html
+├── DESIGN_GUIDE.md       # 设计规范
+├── LICENSE
+└── README.md
 ```
 
 ---

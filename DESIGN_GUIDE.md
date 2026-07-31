@@ -297,9 +297,9 @@ Hero 书法标题: --dq-fs-5xl (64px) + --dq-ls-wider (0.3em) + --dq-lh-tight (1
 
 ```html
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/assets/css/tokens.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/assets/css/base.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/assets/css/components.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/base.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/components.css">
 </head>
 ```
 
