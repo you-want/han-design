@@ -10,11 +10,19 @@
       "destination": "/examples/landing-page"
     },
     {
+      "source": "/landing-page",
+      "destination": "/examples/landing-page"
+    },
+    {
+      "source": "/landing-page.html",
+      "destination": "/examples/landing-page"
+    },
+    {
       "source": "/showcase",
       "destination": "/examples/showcase"
     },
     {
-      "source": "/showcase/",
+      "source": "/showcase.html",
       "destination": "/examples/showcase"
     },
     {
@@ -22,7 +30,23 @@
       "destination": "/examples/theme-showcase"
     },
     {
+      "source": "/themes.html",
+      "destination": "/examples/theme-showcase"
+    },
+    {
+      "source": "/theme-showcase",
+      "destination": "/examples/theme-showcase"
+    },
+    {
+      "source": "/theme-showcase.html",
+      "destination": "/examples/theme-showcase"
+    },
+    {
       "source": "/quick-start",
+      "destination": "/examples/quick-start"
+    },
+    {
+      "source": "/quick-start.html",
       "destination": "/examples/quick-start"
     },
     {
