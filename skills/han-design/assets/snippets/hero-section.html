@@ -1,0 +1,20 @@
+<section class="han-section" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; position: relative;">
+  <!-- Vertical text decoration -->
+  <div class="han-vertical" aria-hidden="true" style="position:absolute; left:64px; top:50%; transform:translateY(-50%); color: var(--han-color-ink-300);">
+    {vertical_text}
+  </div>
+  <div style="text-align:center; max-width: 720px;">
+    <h1 style="font-family: var(--han-font-kai); font-size: var(--han-fs-5xl); font-weight: var(--han-fw-bold);
+         letter-spacing: var(--han-ls-wider); color: var(--han-color-text-primary); position: relative; display: inline-block;">
+      {title}
+      <span class="han-stamp han-stamp--lg han-stamp--border" aria-hidden="true" style="position:absolute; top:-16px; right:-72px;">
+        {stamp_text}
+      </span>
+    </h1>
+    <p style="font-family: var(--han-font-kai); font-size: var(--han-fs-xl);
+             color: var(--han-color-text-secondary); margin: 16px 0 24px;">
+      {subtitle}
+    </p>
+    <button type="button" class="han-btn-seal han-btn-seal--lg han-animate-seal-drop">{cta}</button>
+  </div>
+</section>

@@ -1,0 +1,542 @@
+/* ============================================================
+ * 汉 · 基础样式重置 (Base Reset)
+ * 保留中国风韵味，不做过于激进的重置
+ * 依赖：tokens.css
+ * ============================================================ */
+
+/* ---------- CSS Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--han-font-serif);
+  font-size: var(--han-fs-base);
+  font-weight: var(--han-fw-regular);
+  line-height: var(--han-lh-normal);
+  color: var(--han-color-text-primary);
+  background-color: var(--han-color-bg);
+  /* 使用主题定义的背景图案，如果没有则使用默认宣纸纹理 */
+  background-image: var(--han-bg-pattern,
+    radial-gradient(
+      circle at 15% 5%,
+      rgba(42, 40, 36, 0.03) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 95%,
+      rgba(42, 40, 36, 0.04) 0%,
+      transparent 40%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cfilter id='rice'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.92 0 0 0 0 0.85 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23rice)'/%3E%3C/svg%3E")
+  );
+  background-attachment: fixed;
+  background-repeat: repeat;
+  min-height: 100vh;
+  letter-spacing: var(--han-ls-normal);
+}
+
+/* ---------- 排版元素 ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--han-font-kai);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  line-height: var(--han-lh-snug);
+  letter-spacing: var(--han-title-spacing, var(--han-ls-wider));
+  margin-bottom: var(--han-space-4);
+}
+
+h1 { font-size: var(--han-fs-4xl); }
+h2 { font-size: var(--han-fs-3xl); }
+h3 { font-size: var(--han-fs-2xl); }
+h4 { font-size: var(--han-fs-xl); }
+h5 { font-size: var(--han-fs-lg); }
+h6 { font-size: var(--han-fs-md); }
+
+p {
+  margin-bottom: var(--han-space-4);
+  line-height: var(--han-lh-relaxed);
+}
+
+.han-prose p,
+.han-article p {
+  text-indent: 2em;
+}
+
+/* 诗词段落（不缩进，加行距） */
+.han-poem p,
+.han-classical p {
+  text-indent: 0;
+  line-height: var(--han-lh-loose);
+  letter-spacing: var(--han-ls-wide);
+  text-align: justify;
+}
+
+blockquote {
+  position: relative;
+  margin: var(--han-space-6) 0;
+  padding: var(--han-space-5) var(--han-space-6);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border);
+  border-left: var(--han-border-width-3) solid var(--han-color-vermilion-500);
+  border-radius: var(--han-radius-md);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-lg);
+  color: var(--han-color-text-secondary);
+  line-height: var(--han-lh-relaxed);
+}
+
+blockquote::before {
+  content: "「";
+  position: absolute;
+  top: -8px;
+  left: var(--han-space-4);
+  font-size: var(--han-fs-3xl);
+  color: var(--han-color-vermilion-400);
+  line-height: 1;
+}
+
+blockquote::after {
+  content: "」";
+  position: absolute;
+  bottom: -12px;
+  right: var(--han-space-4);
+  font-size: var(--han-fs-3xl);
+  color: var(--han-color-vermilion-400);
+  line-height: 1;
+}
+
+/* ---------- 链接 ---------- */
+a {
+  color: var(--han-color-accent-text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+}
+
+a:hover {
+  color: var(--han-color-accent-text);
+  border-bottom-color: var(--han-color-accent-control);
+}
+
+/* ---------- 列表 ---------- */
+ul,
+ol {
+  padding-inline-start: 1.5em;
+}
+
+.han-prose ul,
+.han-prose ol,
+.han-article ul,
+.han-article ol,
+.han-list {
+  list-style: none;
+  padding: 0;
+}
+
+.han-prose li,
+.han-article li,
+.han-list > li {
+  position: relative;
+  padding-left: var(--han-space-6);
+  margin-bottom: var(--han-space-3);
+  line-height: var(--han-lh-relaxed);
+}
+
+/* 墨点项目符号 */
+.han-prose ul > li::before,
+.han-article ul > li::before,
+.han-list > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 8px;
+  height: 8px;
+  background: var(--han-color-ink-400);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.han-prose ol,
+.han-article ol {
+  counter-reset: han-counter;
+}
+
+.han-prose ol > li,
+.han-article ol > li {
+  counter-increment: han-counter;
+}
+
+.han-prose ol > li::before,
+.han-article ol > li::before {
+  content: counter(han-counter);
+  width: 24px;
+  height: 24px;
+  background: var(--han-color-accent-control);
+  color: var(--han-color-on-accent);
+  font-size: var(--han-fs-xs);
+  font-weight: var(--han-fw-bold);
+  border-radius: var(--han-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 0.3em;
+}
+
+/* ---------- 代码 ---------- */
+code {
+  font-family: var(--han-font-mono);
+  font-size: 0.9em;
+  padding: 2px 6px;
+  background: var(--han-color-ink-100);
+  color: var(--han-color-accent-text);
+  border-radius: var(--han-radius-sm);
+  border: 1px solid var(--han-color-ink-200);
+}
+
+pre {
+  font-family: var(--han-font-mono);
+  padding: var(--han-space-5);
+  background: var(--han-color-ink-700);
+  color: var(--han-color-paper-100);
+  border-radius: var(--han-radius-lg);
+  overflow-x: auto;
+  font-size: var(--han-fs-sm);
+  line-height: 1.7;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: none;
+}
+
+/* ---------- 图片/媒体 ---------- */
+img, svg, video, canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- 表单元素 ---------- */
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.han-skip-link {
+  position: fixed;
+  top: var(--han-space-3);
+  left: var(--han-space-3);
+  z-index: var(--han-z-max);
+  padding: var(--han-space-2) var(--han-space-4);
+  color: var(--han-color-on-accent);
+  background: var(--han-color-accent-control);
+  border-radius: var(--han-radius-md);
+  transform: translateY(calc(-100% - var(--han-space-5)));
+  transition: transform var(--han-duration-fast) var(--han-ease-out);
+}
+
+.han-skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.han-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ---------- 统一键盘焦点 ---------- */
+:where(
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  summary,
+  [tabindex]:not([tabindex="-1"])
+):focus-visible {
+  outline: 3px solid var(--han-focus-ring);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--han-focus-ring-offset);
+}
+
+@media (forced-colors: active) {
+  :where(
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    summary,
+    [tabindex]:not([tabindex="-1"])
+  ):focus-visible {
+    outline: 2px solid Highlight;
+    box-shadow: none;
+  }
+
+  .han-btn-seal,
+  .han-stamp,
+  .han-pagination__item.is-active,
+  .han-pagination-enhanced__btn.is-active {
+    forced-color-adjust: auto;
+  }
+}
+
+/* ---------- 选中样式（中国风） ---------- */
+::selection {
+  background: rgba(192, 57, 43, 0.25);
+  color: var(--han-color-text-primary);
+}
+
+/* ---------- 滚动条样式（中国风） ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--han-color-ink-100);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--han-color-ink-300);
+  border-radius: 4px;
+  border: 2px solid var(--han-color-ink-100);
+  transition: background var(--han-duration-normal);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--han-color-ink-400);
+}
+
+/* Firefox 滚动条 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--han-color-ink-300) var(--han-color-ink-100);
+}
+
+/* ---------- 工具类 ---------- */
+.han-container {
+  width: 100%;
+  max-width: var(--han-content-max-width, var(--han-container-lg));
+  margin: 0 auto;
+  padding: 0 var(--han-space-6);
+}
+
+.han-container-sm { max-width: var(--han-container-sm); }
+.han-container-md { max-width: var(--han-container-md); }
+.han-container-xl { max-width: var(--han-container-xl); }
+
+.han-section {
+  padding: var(--han-section-gap, var(--han-space-16)) 0;
+  position: relative;
+}
+
+/* ---------- 书法标题 ---------- */
+.han-calligraphy {
+  font-family: var(--han-font-kai);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  letter-spacing: var(--han-title-spacing, var(--han-ls-wider));
+  line-height: var(--han-lh-tight);
+}
+
+/* ---------- 竖排文字 ---------- */
+.han-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: var(--han-space-3);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 768px) {
+  html { font-size: 15px; }
+  .han-container { padding: 0 var(--han-space-4); }
+  .han-section { padding: var(--han-space-8) 0; }
+  h1 { font-size: var(--han-fs-3xl); }
+  h2 { font-size: var(--han-fs-2xl); }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 14px; }
+  .han-container { padding: 0 var(--han-space-3); }
+}
+
+/* ---------- 减少动画偏好 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================================
+ * 中国传统画风布局工具类
+ * 基于中国画论：开合、虚实、疏密、留白
+ * ====================================================== */
+
+/* ---------- 开合布局 (Composition) ----------
+ * 中国传统绘画构图讲究"开合"：
+ * - 开：画面展开，内容繁茂
+ * - 合：画面收束，意境深远
+ *
+ * 使用 flex 实现不对称构图 */
+
+/* 七三开布局：主内容占70%，辅内容占30% */
+.han-layout-painting {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: var(--han-space-7);
+  align-items: start;
+}
+
+/* 黄金分割布局 */
+.han-layout-golden {
+  display: grid;
+  grid-template-columns: 6.18fr 3.82fr;
+  gap: var(--han-space-6);
+}
+
+/* 对称双联布局：对联、书法配对 */
+.han-layout-couplet {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--han-space-8);
+  text-align: center;
+}
+
+/* ---------- 虚实布局 (Void & Substance) ----------
+ * 中国艺术哲学中的"虚实"：
+ * - 实：有内容的部分
+ * - 虚：留白、意境的部分
+ *
+ * 通过不同间距和透明度实现 */
+
+/* 左侧偏重布局 */
+.han-balance-left {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--han-space-6);
+}
+
+/* 右侧偏重布局 */
+.han-balance-right {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--han-space-6);
+}
+
+/* 留白区域：用于营造意境 */
+.han-void {
+  min-height: var(--han-space-16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 虚实交替：内容与留白交替 */
+.han-alternating {
+  display: flex;
+  flex-direction: column;
+  gap: var(--han-space-9);
+}
+
+.han-alternating > *:nth-child(even) {
+  padding-left: 15%;
+  max-width: 75%;
+}
+
+.han-alternating > *:nth-child(odd) {
+  padding-right: 15%;
+  max-width: 75%;
+  margin-left: auto;
+}
+
+/* ---------- 疏密布局 (Density) ----------
+ * "疏可走马，密不透风"
+ * 内容紧密与稀疏的对比 */
+
+/* 稀疏布局：大间距，高端感 */
+.han-layout-sparse {
+  gap: var(--han-space-9);
+}
+
+/* 密集布局：小间距，信息密集 */
+.han-layout-dense {
+  gap: var(--han-space-3);
+}
+
+/* 疏密结合：奇数稀疏，偶数密集 */
+.han-layout-varied > *:nth-child(odd) {
+  margin-bottom: var(--han-space-9);
+}
+
+.han-layout-varied > *:nth-child(even) {
+  margin-bottom: var(--han-space-4);
+}
+
+/* ---------- 竖排叙事 (Vertical Narrative) ----------
+ * 仿古籍阅读的竖向叙事布局 */
+
+.han-layout-scroll {
+  writing-mode: horizontal-tb;
+  display: flex;
+  flex-direction: column;
+  gap: var(--han-space-7);
+  padding: var(--han-space-7) var(--han-space-6);
+  max-width: var(--han-container-md);
+  margin: 0 auto;
+}
+
+/* ---------- 响应式布局调整 ---------- */
+@media (max-width: 768px) {
+  .han-layout-painting,
+  .han-layout-golden,
+  .han-layout-couplet,
+  .han-balance-left,
+  .han-balance-right {
+    grid-template-columns: 1fr;
+  }
+
+  .han-alternating > *:nth-child(even),
+  .han-alternating > *:nth-child(odd) {
+    padding: 0;
+    max-width: 100%;
+    margin: 0;
+  }
+}

@@ -11,10 +11,14 @@
     },
     {
       "source": "/showcase",
-      "destination": "/examples/theme-showcase.html"
+      "destination": "/examples/showcase.html"
     },
     {
       "source": "/showcase/",
+      "destination": "/examples/showcase.html"
+    },
+    {
+      "source": "/themes",
       "destination": "/examples/theme-showcase.html"
     },
     {
@@ -28,16 +32,16 @@
   ],
   "headers": [
     {
-      "source": "/skill/(.*)",
+      "source": "/skills/han-design/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=3600"
         }
       ]
     },
     {
-      "source": "/skill/assets/(.*)",
+      "source": "/skills/han-design/assets/(.*)",
       "headers": [
         {
           "key": "Content-Type",

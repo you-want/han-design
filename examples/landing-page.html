@@ -5,10 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>汉 · 东方美学设计系统</title>
   <meta name="description" content="汉 (Han) — 让东方美学在网页上优雅绽放">
-  <link rel="stylesheet" href="../skill/assets/tokens.css">
-  <link rel="stylesheet" href="../skill/assets/base.css">
-  <link rel="stylesheet" href="../skill/assets/components.css">
-  <link rel="stylesheet" href="../skill/assets/themes.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/fonts.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/tokens.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/base.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/themes.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/icons.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/patterns.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/typography.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/components.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/iconic.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/structure.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/enhanced.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/motion.css">
   <style>
     /* ============ 页面级布局 ============ */
     .hero {
@@ -18,7 +26,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      padding: var(--dq-space-10) var(--dq-space-6);
+      padding: var(--han-space-10) var(--han-space-6);
     }
 
     /* Hero 背景装饰 —— 远山剪影 (SVG) */
@@ -43,7 +51,7 @@
       right: 10%;
       width: 200px;
       height: 200px;
-      border: 2px solid var(--dq-color-vermilion-500);
+      border: 2px solid var(--han-color-vermilion-500);
       border-radius: 50%;
       opacity: 0.15;
       pointer-events: none;
@@ -59,15 +67,15 @@
     /* 竖排文字装饰 */
     .hero__vertical {
       position: absolute;
-      left: var(--dq-space-10);
+      left: var(--han-space-10);
       top: 50%;
       transform: translateY(-50%);
       writing-mode: vertical-rl;
       text-orientation: upright;
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-sm);
-      color: var(--dq-color-ink-300);
-      letter-spacing: var(--dq-space-3);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-ink-300);
+      letter-spacing: var(--han-space-3);
       z-index: 1;
       max-height: 70vh;
       overflow: hidden;
@@ -76,15 +84,15 @@
 
     .hero__vertical-right {
       position: absolute;
-      right: var(--dq-space-10);
+      right: var(--han-space-10);
       top: 50%;
       transform: translateY(-50%);
       writing-mode: vertical-rl;
       text-orientation: upright;
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-sm);
-      color: var(--dq-color-ink-300);
-      letter-spacing: var(--dq-space-3);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-ink-300);
+      letter-spacing: var(--han-space-3);
       z-index: 1;
       max-height: 70vh;
       overflow: hidden;
@@ -92,13 +100,13 @@
     }
 
     .hero__title {
-      font-family: var(--dq-font-kai);
+      font-family: var(--han-font-kai);
       font-size: clamp(48px, 8vw, 96px);
-      font-weight: var(--dq-fw-bold);
-      color: var(--dq-color-text-primary);
-      letter-spacing: var(--dq-ls-wider);
-      line-height: var(--dq-lh-tight);
-      margin-bottom: var(--dq-space-4);
+      font-weight: var(--han-fw-bold);
+      color: var(--han-color-text-primary);
+      letter-spacing: var(--han-ls-wider);
+      line-height: var(--han-lh-tight);
+      margin-bottom: var(--han-space-4);
       position: relative;
       display: inline-block;
     }
@@ -111,25 +119,25 @@
     }
 
     .hero__subtitle {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-lg);
-      color: var(--dq-color-text-secondary);
-      letter-spacing: var(--dq-ls-wider);
-      margin-bottom: var(--dq-space-6);
-      line-height: var(--dq-lh-relaxed);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-text-secondary);
+      letter-spacing: var(--han-ls-wider);
+      margin-bottom: var(--han-space-6);
+      line-height: var(--han-lh-relaxed);
     }
 
     .hero__desc {
-      font-size: var(--dq-fs-md);
-      color: var(--dq-color-text-tertiary);
+      font-size: var(--han-fs-md);
+      color: var(--han-color-text-tertiary);
       max-width: 540px;
-      margin: 0 auto var(--dq-space-7);
-      line-height: var(--dq-lh-relaxed);
+      margin: 0 auto var(--han-space-7);
+      line-height: var(--han-lh-relaxed);
     }
 
     .hero__cta {
       display: inline-flex;
-      gap: var(--dq-space-4);
+      gap: var(--han-space-4);
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
@@ -137,14 +145,14 @@
 
     /* ============ 产品展示 ============ */
     .products {
-      background: var(--dq-color-bg);
+      background: var(--han-color-bg);
     }
 
     .products__grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--dq-space-8);
-      margin-top: var(--dq-space-8);
+      gap: var(--han-space-8);
+      margin-top: var(--han-space-8);
     }
 
     /* ============ 品牌故事 ============ */
@@ -153,28 +161,28 @@
     }
 
     .story__quote {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-3xl);
-      color: var(--dq-color-text-primary);
-      line-height: var(--dq-lh-loose);
-      letter-spacing: var(--dq-ls-wide);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-3xl);
+      color: var(--han-color-text-primary);
+      line-height: var(--han-lh-loose);
+      letter-spacing: var(--han-ls-wide);
       max-width: 720px;
-      margin: 0 auto var(--dq-space-6);
-      font-weight: var(--dq-fw-bold);
+      margin: 0 auto var(--han-space-6);
+      font-weight: var(--han-fw-bold);
     }
 
     .story__author {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-md);
-      color: var(--dq-color-text-tertiary);
-      letter-spacing: var(--dq-ls-wide);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-md);
+      color: var(--han-color-text-tertiary);
+      letter-spacing: var(--han-ls-wide);
     }
 
     /* ============ 底部 ============ */
     .footer {
-      background: var(--dq-color-bg-dark);
-      color: var(--dq-color-paper-200);
-      padding: var(--dq-space-10) var(--dq-space-6) var(--dq-space-6);
+      background: var(--han-color-bg-dark);
+      color: var(--han-color-paper-200);
+      padding: var(--han-space-10) var(--han-space-6) var(--han-space-6);
       position: relative;
       overflow: hidden;
     }
@@ -188,8 +196,8 @@
       height: 3px;
       background: repeating-linear-gradient(
         90deg,
-        var(--dq-color-gold-500) 0,
-        var(--dq-color-gold-500) 12px,
+        var(--han-color-gold-500) 0,
+        var(--han-color-gold-500) 12px,
         transparent 12px,
         transparent 24px
       );
@@ -197,95 +205,232 @@
     }
 
     .footer__inner {
-      max-width: var(--dq-container-lg);
+      max-width: var(--han-container-lg);
       margin: 0 auto;
     }
 
     .footer__grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: var(--dq-space-8);
-      margin-bottom: var(--dq-space-8);
+      gap: var(--han-space-8);
+      margin-bottom: var(--han-space-8);
     }
 
     .footer__brand {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-2xl);
-      color: var(--dq-color-paper-50);
-      margin-bottom: var(--dq-space-3);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-2xl);
+      color: var(--han-color-paper-50);
+      margin-bottom: var(--han-space-3);
     }
 
-    .footer__brand span { color: var(--dq-color-vermilion-400); }
-    .footer__desc { color: var(--dq-color-paper-300); font-size: var(--dq-fs-sm); line-height: var(--dq-lh-relaxed); }
+    .footer__brand span { color: var(--han-color-vermilion-400); }
+    .footer__desc { color: var(--han-color-paper-300); font-size: var(--han-fs-sm); line-height: var(--han-lh-relaxed); }
     .footer__title {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-md);
-      color: var(--dq-color-gold-400);
-      margin-bottom: var(--dq-space-4);
-      letter-spacing: var(--dq-ls-wide);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-md);
+      color: var(--han-color-gold-400);
+      margin-bottom: var(--han-space-4);
+      letter-spacing: var(--han-ls-wide);
     }
     .footer__link {
       display: block;
-      color: var(--dq-color-paper-300);
-      font-size: var(--dq-fs-sm);
-      padding: var(--dq-space-1) 0;
-      transition: color var(--dq-duration-normal);
+      color: var(--han-color-paper-300);
+      font-size: var(--han-fs-sm);
+      padding: var(--han-space-1) 0;
+      transition: color var(--han-duration-normal);
     }
-    .footer__link:hover { color: var(--dq-color-gold-400); border-bottom: none; }
+    .footer__link:hover { color: var(--han-color-gold-400); border-bottom: none; }
 
     .footer__bottom {
       border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: var(--dq-space-5);
+      padding-top: var(--han-space-5);
       text-align: center;
-      font-size: var(--dq-fs-xs);
-      color: var(--dq-color-paper-400);
-      letter-spacing: var(--dq-ls-wide);
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-paper-400);
+      letter-spacing: var(--han-ls-wide);
     }
+
+    /* ============ 通用 Demo 样式 ============ */
+    .demo-section-label {
+      display: inline-block;
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-tertiary);
+      letter-spacing: var(--han-ls-widest);
+      margin-bottom: var(--han-space-3);
+      padding: var(--han-space-1) var(--han-space-3);
+      border: var(--han-border-width) dashed var(--han-color-border);
+      border-radius: var(--han-radius-sm);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--han-space-5);
+    }
+
+    .demo-item {
+      background: var(--han-color-bg-surface);
+      border: var(--han-border-width) solid var(--han-color-border);
+      border-radius: var(--han-radius-md);
+      padding: var(--han-space-5);
+      transition: all var(--han-duration-normal) var(--han-ease-out);
+    }
+
+    .demo-item:hover {
+      border-color: var(--han-color-accent-control);
+      box-shadow: var(--han-shadow-md);
+    }
+
+    .demo-label {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-tertiary);
+      letter-spacing: var(--han-ls-wide);
+      margin-bottom: var(--han-space-3);
+      padding-bottom: var(--han-space-2);
+      border-bottom: var(--han-border-width) solid var(--han-color-border);
+    }
+
+    .intro-block {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      padding: var(--han-space-6);
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: var(--han-space-3);
+    }
+
+    .icon-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--han-space-2);
+      padding: var(--han-space-3);
+      border: var(--han-border-width) solid var(--han-color-border);
+      border-radius: var(--han-radius-sm);
+      background: var(--han-color-bg-surface);
+      transition: all var(--han-duration-fast) var(--han-ease-out);
+    }
+
+    .icon-cell:hover {
+      border-color: var(--han-color-accent-control);
+      transform: translateY(-2px);
+    }
+
+    .icon-cell span {
+      font-size: 11px;
+      font-family: var(--han-font-kai);
+      color: var(--han-color-text-tertiary);
+    }
+
+    .pattern-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: var(--han-space-3);
+    }
+
+    .pattern-demo > div {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-secondary);
+      border: var(--han-border-width) solid var(--han-color-border);
+      border-radius: var(--han-radius-md);
+      background-color: var(--han-color-bg-surface);
+    }
+
+    .gradient-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: var(--han-space-3);
+    }
+
+    .gradient-demo > div {
+      height: 80px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: var(--han-space-2);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-primary);
+      border-radius: var(--han-radius-md);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: var(--han-space-3);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .form-demo {
+      display: flex;
+      flex-direction: column;
+      gap: var(--han-space-3);
+    }
+
+    .center-text { text-align: center; }
 
     /* ============ 响应式 ============ */
     @media (max-width: 1024px) {
-      .hero__vertical { left: var(--dq-space-7); font-size: var(--dq-fs-xs); letter-spacing: var(--dq-space-2); }
-      .hero__vertical-right { right: var(--dq-space-7); font-size: var(--dq-fs-xs); letter-spacing: var(--dq-space-2); }
+      .hero__vertical { left: var(--han-space-7); font-size: var(--han-fs-xs); letter-spacing: var(--han-space-2); }
+      .hero__vertical-right { right: var(--han-space-7); font-size: var(--han-fs-xs); letter-spacing: var(--han-space-2); }
     }
     @media (max-width: 768px) {
-      .hero { min-height: 70vh; padding: var(--dq-space-8) var(--dq-space-5); }
+      .hero { min-height: 70vh; padding: var(--han-space-8) var(--han-space-5); }
       .hero__vertical, .hero__vertical-right { display: none; }
-      .hero__title-seal { position: static; margin: var(--dq-space-3) auto; transform: rotate(-8deg); }
+      .hero__title-seal { position: static; margin: var(--han-space-3) auto; transform: rotate(-8deg); }
       .hero__title { font-size: clamp(36px, 10vw, 56px); }
       .footer__grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
       .footer__grid { grid-template-columns: 1fr; }
-      .story__quote { font-size: var(--dq-fs-2xl); }
-      .hero__desc { font-size: var(--dq-fs-sm); }
+      .story__quote { font-size: var(--han-fs-2xl); }
+      .hero__desc { font-size: var(--han-fs-sm); }
     }
 
     /* ============ 滚动显现动画 ============ */
     .fade-on-scroll {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.8s var(--dq-ease-out), transform 0.8s var(--dq-ease-out);
+      transition: opacity 0.8s var(--han-ease-out), transform 0.8s var(--han-ease-out);
     }
     .fade-on-scroll.is-visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* ============ 花瓣飘落容器 ============ */
+    .petal-container {
+      position: relative;
+      overflow: hidden;
+      min-height: 300px;
     }
   </style>
 </head>
 <body>
 
   <!-- ============ 顶部水墨导航 ============ -->
-  <nav class="dq-navbar">
-    <div class="dq-navbar__inner">
-      <div class="dq-navbar__brand">汉<span>之</span></div>
-      <ul class="dq-navbar__menu">
-        <li class="dq-navbar__item dq-navbar__item--active">首页</li>
-        <li class="dq-navbar__item">设计令牌</li>
-        <li class="dq-navbar__item">组件库</li>
-        <li class="dq-navbar__item">AI 指南</li>
-        <li class="dq-navbar__item">GitHub</li>
+  <nav class="han-navbar">
+    <div class="han-navbar__inner">
+      <div class="han-navbar__brand">汉<span>之</span></div>
+      <ul class="han-navbar__menu">
+        <li class="han-navbar__item han-navbar__item--active">首页</li>
+        <li class="han-navbar__item">设计令牌</li>
+        <li class="han-navbar__item">组件库</li>
+        <li class="han-navbar__item">AI 指南</li>
+        <li class="han-navbar__item">GitHub</li>
       </ul>
-      <button class="dq-btn-seal dq-btn-seal--sm">开始</button>
+      <button class="han-btn-seal han-btn-seal--sm">开始</button>
     </div>
   </nav>
 
@@ -296,9 +441,10 @@
     <div class="hero__vertical-right">东方美学 · 网页绽放</div>
 
     <div class="hero__content">
+      <div class="han-plaque han-plaque--shine" style="margin: 0 auto var(--han-space-5); padding: var(--han-space-2) var(--han-space-5); font-size: var(--han-fs-sm); letter-spacing: var(--han-ls-wider);">东 方 美 学</div>
       <h1 class="hero__title">
         汉
-        <div class="dq-stamp dq-stamp--lg dq-stamp--border hero__title-seal">之印</div>
+        <span class="han-stamp han-stamp--lg han-stamp--border hero__title-seal">之印</span>
       </h1>
       <p class="hero__subtitle">让东方美学在网页上优雅绽放</p>
       <p class="hero__desc">
@@ -306,289 +452,839 @@
         为你的网站注入一抹东方神韵。
       </p>
       <div class="hero__cta">
-        <button class="dq-btn-seal dq-btn-seal--lg dq-animate-seal-drop">立即体验</button>
-        <a href="#" style="color: var(--dq-color-ink-700); padding: 16px 32px; border: 1px solid var(--dq-color-ink-400); border-radius: var(--dq-radius-md); font-family: var(--dq-font-kai);">
+        <button class="han-btn-seal han-btn-seal--lg han-animate-seal-drop">立即体验</button>
+        <a href="#" style="color: var(--han-color-ink-700); padding: 16px 32px; border: 1px solid var(--han-color-ink-400); border-radius: var(--han-radius-md); font-family: var(--han-font-kai);">
           查看文档 →
         </a>
+      </div>
+
+      <!-- 快速展示图标 -->
+      <div style="display: flex; gap: var(--han-space-5); justify-content: center; margin-top: var(--han-space-8); flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <div class="han-icon han-icon-seal han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
+          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">印章</span>
+        </div>
+        <div style="text-align: center;">
+          <div class="han-icon han-icon-brush han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
+          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">毛笔</span>
+        </div>
+        <div style="text-align: center;">
+          <div class="han-icon han-icon-lotus han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
+          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">莲花</span>
+        </div>
+        <div style="text-align: center;">
+          <div class="han-icon han-icon-mountain han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
+          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">山水</span>
+        </div>
+        <div style="text-align: center;">
+          <div class="han-icon han-icon-lantern han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
+          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">灯笼</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============ 水墨分割线 ============ -->
-  <div class="dq-container">
+  <div class="han-container">
     <!-- 印章分割线 -->
-    <div style="position:relative; margin: var(--dq-space-6) 0;">
+    <div style="position:relative; margin: var(--han-space-6) 0;">
       <div style="position:absolute; top:50%; left:0; right:0; height:2px;
-        background: linear-gradient(90deg, transparent 5%, var(--dq-color-ink-400) 20%, var(--dq-color-ink-400) 80%, transparent 95%);
+        background: linear-gradient(90deg, transparent 5%, var(--han-color-ink-400) 20%, var(--han-color-ink-400) 80%, transparent 95%);
         transform: translateY(-50%); filter: blur(0.5px);"></div>
       <div style="display:flex; justify-content:center; position:relative;">
-        <div class="dq-stamp dq-stamp--sm">汉</div>
+        <div class="han-stamp han-stamp--sm">汉</div>
       </div>
     </div>
   </div>
 
-  <!-- ============ 产品展示区 ============ -->
-  <section class="dq-section products">
-    <div class="dq-container">
-      <h2 style="text-align:center;" class="fade-on-scroll">设计令牌</h2>
-      <p style="text-align:center; color:var(--dq-color-text-secondary); max-width:600px; margin: 0 auto;" class="fade-on-scroll">
-        从中国画的色彩、书法的章法中提炼，形成可复用的设计令牌体系。
-      </p>
+  <!-- ============ 设计令牌区 ============ -->
+  <section class="han-section products">
+    <div class="han-container">
+      <div class="intro-block fade-on-scroll">
+        <div class="demo-section-label">· 设计令牌 ·</div>
+        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">设 计 令 牌</h2>
+        <p>从中国画的色彩、书法的章法中提炼，形成可复用的设计令牌体系。</p>
+      </div>
 
       <div class="products__grid">
 
         <!-- 卷轴卡片 1：色彩 -->
-        <article class="dq-card-scroll fade-on-scroll">
-          <span class="dq-rivet dq-rivet--tl"></span>
-          <span class="dq-rivet dq-rivet--tr"></span>
-          <span class="dq-rivet dq-rivet--bl"></span>
-          <span class="dq-rivet dq-rivet--br"></span>
-          <header class="dq-card-scroll__header">色彩体系</header>
-          <div class="dq-card-scroll__body">
+        <article class="han-card-scroll fade-on-scroll">
+          <span class="han-rivet han-rivet--tl"></span>
+          <span class="han-rivet han-rivet--tr"></span>
+          <span class="han-rivet han-rivet--bl"></span>
+          <span class="han-rivet han-rivet--br"></span>
+          <header class="han-card-scroll__header">色彩体系</header>
+          <div class="han-card-scroll__body">
             <p>朱红、靛蓝、金色、墨色、宣纸白 —— 五大主色取自传统书画颜料。</p>
             <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
-              <span class="dq-tag dq-tag--vermilion">朱红 · 500</span>
-              <span class="dq-tag">靛蓝 · 500</span>
-              <span class="dq-tag dq-tag--gold">金色 · 500</span>
-              <span class="dq-tag">墨色 · 700</span>
-              <span class="dq-tag">宣纸 · 100</span>
+              <span class="han-tag han-tag--vermilion">朱红 · 500</span>
+              <span class="han-tag">靛蓝 · 500</span>
+              <span class="han-tag han-tag--gold">金色 · 500</span>
+              <span class="han-tag">墨色 · 700</span>
+              <span class="han-tag">宣纸 · 100</span>
             </div>
           </div>
-          <footer class="dq-card-scroll__footer">
-            <span>--dq-color-*</span>
+          <footer class="han-card-scroll__footer">
+            <span>--han-color-*</span>
             <a href="#">查看 →</a>
           </footer>
         </article>
 
         <!-- 卷轴卡片 2：字体 -->
-        <article class="dq-card-scroll fade-on-scroll">
-          <span class="dq-rivet dq-rivet--tl"></span>
-          <span class="dq-rivet dq-rivet--tr"></span>
-          <span class="dq-rivet dq-rivet--bl"></span>
-          <span class="dq-rivet dq-rivet--br"></span>
-          <header class="dq-card-scroll__header">字体排版</header>
-          <div class="dq-card-scroll__body">
+        <article class="han-card-scroll fade-on-scroll">
+          <span class="han-rivet han-rivet--tl"></span>
+          <span class="han-rivet han-rivet--tr"></span>
+          <span class="han-rivet han-rivet--bl"></span>
+          <span class="han-rivet han-rivet--br"></span>
+          <header class="han-card-scroll__header">字体排版</header>
+          <div class="han-card-scroll__body">
             <p>楷体做标题、宋体做正文、思源黑体做界面 —— 三级字体各司其职。</p>
             <div style="margin-top:16px; display:flex; flex-direction:column; gap:4px;">
-              <div style="font-family: var(--dq-font-kai); font-size: 20px; font-weight:bold; color: var(--dq-color-ink-700);">楷体标题</div>
-              <div style="font-family: var(--dq-font-song); font-size: 14px; color: var(--dq-color-ink-500);">宋体正文</div>
-              <div style="font-family: var(--dq-font-sans); font-size: 12px; color: var(--dq-color-ink-400);">Sans 界面</div>
+              <div style="font-family: var(--han-font-kai); font-size: 20px; font-weight:bold; color: var(--han-color-ink-700);">楷体标题</div>
+              <div style="font-family: var(--han-font-song); font-size: 14px; color: var(--han-color-ink-500);">宋体正文</div>
+              <div style="font-family: var(--han-font-sans); font-size: 12px; color: var(--han-color-ink-400);">Sans 界面</div>
             </div>
           </div>
-          <footer class="dq-card-scroll__footer">
-            <span>--dq-font-*</span>
+          <footer class="han-card-scroll__footer">
+            <span>--han-font-*</span>
             <a href="#">查看 →</a>
           </footer>
         </article>
 
         <!-- 卷轴卡片 3：组件 -->
-        <article class="dq-card-scroll fade-on-scroll">
-          <span class="dq-rivet dq-rivet--tl"></span>
-          <span class="dq-rivet dq-rivet--tr"></span>
-          <span class="dq-rivet dq-rivet--bl"></span>
-          <span class="dq-rivet dq-rivet--br"></span>
-          <header class="dq-card-scroll__header">核心组件</header>
-          <div class="dq-card-scroll__body">
+        <article class="han-card-scroll fade-on-scroll">
+          <span class="han-rivet han-rivet--tl"></span>
+          <span class="han-rivet han-rivet--tr"></span>
+          <span class="han-rivet han-rivet--bl"></span>
+          <span class="han-rivet han-rivet--br"></span>
+          <header class="han-card-scroll__header">核心组件</header>
+          <div class="han-card-scroll__body">
             <p>印章按钮、水墨导航、卷轴卡片、窗花边框、水墨分割线、印章 —— 六大组件开箱即用。</p>
             <div style="display:flex; gap:12px; margin-top:16px; align-items:center;">
-              <div class="dq-stamp dq-stamp--sm">用</div>
-              <div style="font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary);">点击体验印章落下动画</div>
+              <div class="han-stamp han-stamp--sm">用</div>
+              <div style="font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary);">点击体验印章落下动画</div>
             </div>
           </div>
-          <footer class="dq-card-scroll__footer">
-            <span>.dq-btn-seal · .dq-card-scroll · …</span>
+          <footer class="han-card-scroll__footer">
+            <span>.han-btn-seal · .han-card-scroll · …</span>
             <a href="#">查看 →</a>
           </footer>
         </article>
 
       </div>
-    </div>
-  </section>
 
-  <!-- ============ 品牌故事区 ============ -->
-  <section class="dq-section story">
-    <div class="dq-container">
-
-      <!-- 印章分割线 -->
-      <div style="position:relative; margin-bottom: var(--dq-space-9);">
-        <div style="position:absolute; top:50%; left:10%; right:10%; height:3px;
-          background: linear-gradient(90deg, transparent, var(--dq-color-ink-700) 10%, var(--dq-color-ink-600) 50%, var(--dq-color-ink-700) 90%, transparent);
-          transform: translateY(-50%); filter: blur(0.8px); border-radius: 50%;"></div>
-        <div style="position:absolute; top:calc(50% + 8px); left:15%; right:15%; height:1px;
-          background: linear-gradient(90deg, transparent, var(--dq-color-ink-300), transparent);
-          transform: translateY(-50%); opacity:0.3; filter: blur(1px);"></div>
-        <div style="display:flex; justify-content:center; position:relative;">
-          <div class="dq-stamp">汉</div>
+      <!-- ============ 装饰图案系统 ============ -->
+      <div class="fade-on-scroll" style="margin-top: var(--han-space-9);">
+        <div class="intro-block">
+          <div class="demo-section-label">· 装饰图案 ·</div>
+          <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">中 国 传 统 图 案</h2>
+          <p>回纹、万字纹、云纹、冰裂纹、缠枝纹 —— 东方装饰之美</p>
         </div>
-      </div>
-
-      <h2 style="text-align:center;" class="fade-on-scroll">品牌故事</h2>
-
-      <div class="dq-frame-window dq-frame-window--gold fade-on-scroll" style="max-width: 720px; margin: var(--dq-space-7) auto 0;">
-        <span class="dq-corner-tr"></span>
-        <span class="dq-corner-bl"></span>
-        <p class="story__quote">
-          墨落宣纸成汉，<br>
-          笔走龙蛇绘古今。
-        </p>
-        <p class="story__author">—— 汉设计系统</p>
-      </div>
-
-      <div style="margin-top: var(--dq-space-9);" class="fade-on-scroll">
-        <p style="max-width: 600px; margin: 0 auto; color: var(--dq-color-text-secondary); text-indent: 0; line-height: var(--dq-lh-relaxed);">
-          我们相信，中国的设计语言不应只是符号的堆砌，而是一种意境的传递。
-          汉系统从千年文化中汲取养分，将朱红印章、水墨笔触、宣纸质感、书法章法
-          转化为可组合的设计令牌和组件，让东方美学在现代网页上优雅绽放。
-        </p>
-      </div>
-
-      <!-- 三个特色 -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--dq-space-6); margin-top: var(--dq-space-9);" class="fade-on-scroll">
-        <div style="padding: var(--dq-space-5); text-align:center;">
-          <div style="width: 48px; height: 48px; margin: 0 auto var(--dq-space-4); background: var(--dq-color-vermilion-500); border-radius: 4px; display: flex; align-items:center; justify-content:center; color: var(--dq-color-paper-100); font-family: var(--dq-font-kai); font-weight: bold; transform: rotate(-5deg); box-shadow: 2px 3px 6px rgba(192,57,43,0.35);;">印</div>
-          <h4 style="margin-bottom: 8px;">文化自信</h4>
-          <p style="font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary); text-indent: 0;">每个色彩、每个组件都有文化出处</p>
+        <div class="pattern-demo">
+          <div class="han-pattern-cloud-bg" style="color: var(--han-color-text-secondary);">云 纹</div>
+          <div class="han-pattern-huiwen-bg" style="color: var(--han-color-text-secondary);">回 纹</div>
+          <div class="han-pattern-binglie-bg" style="color: var(--han-color-text-secondary);">冰 裂 纹</div>
+          <div class="han-pattern-cloud" style="color: var(--han-color-text-secondary);">云 纹 装 饰</div>
+          <div class="han-pattern-huiwen" style="color: var(--han-color-text-secondary);">回 纹 装 饰</div>
+          <div class="han-pattern-chanzhi" style="color: var(--han-color-text-secondary);">缠 枝 纹</div>
+          <div class="han-pattern-wanzi" style="color: var(--han-color-text-secondary);">万 字 纹</div>
+          <div style="color: var(--han-color-text-secondary); background: var(--han-color-bg-surface);">冰 裂 纹</div>
         </div>
-        <div style="padding: var(--dq-space-5); text-align:center;">
-          <div style="width: 48px; height: 48px; margin: 0 auto var(--dq-space-4); background: var(--dq-color-ink-700); border-radius: 4px; display: flex; align-items:center; justify-content:center; color: var(--dq-color-paper-100); font-family: var(--dq-font-kai); font-weight: bold; position:relative;">
-            <span>墨</span>
+
+        <!-- 装饰条带 & 角花 -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--han-space-5); margin-top: var(--han-space-5);">
+          <div class="han-band-cloud" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); color: var(--han-color-text-secondary); letter-spacing: var(--han-ls-wider);">
+            云 纹 条 带 · han-band-cloud
           </div>
-          <h4 style="margin-bottom: 8px;">AI 友好</h4>
-          <p style="font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary); text-indent: 0;">提供 AI 设计规范，AI 可生成一致性代码</p>
+          <div class="han-band-huiwen" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); color: var(--han-color-text-secondary); letter-spacing: var(--han-ls-wider);">
+            回 纹 条 带 · han-band-huiwen
+          </div>
+          <div class="han-corner-cloud" style="padding: var(--han-space-5); text-align: center; font-family: var(--han-font-kai); color: var(--han-color-text-secondary); border-radius: var(--han-radius-md);">
+            云 纹 角 花 · han-corner-cloud
+          </div>
         </div>
-        <div style="padding: var(--dq-space-5); text-align:center;">
-          <div style="width: 48px; height: 48px; margin: 0 auto var(--dq-space-4); background: var(--dq-color-gold-500); border-radius: 4px; display: flex; align-items:center; justify-content:center; color: var(--dq-color-paper-100); font-family: var(--dq-font-kai); font-weight: bold; transform: rotate(5deg); box-shadow: 2px 3px 6px rgba(198,138,46,0.35);;">雅</div>
-          <h4 style="margin-bottom: 8px;">极简优雅</h4>
-          <p style="font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary); text-indent: 0;">克制的视觉语言，留白的艺术</p>
+      </div>
+
+      <!-- ============ 渐变背景系统 ============ -->
+      <div class="fade-on-scroll" style="margin-top: var(--han-space-9);">
+        <div class="intro-block">
+          <div class="demo-section-label">· 渐变系统 ·</div>
+          <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">中 国 风 渐 变</h2>
+          <p>墨色、天青、朱砂、金辉、宣纸 —— 取自传统书画的七种渐变</p>
+        </div>
+        <div class="gradient-demo">
+          <div class="han-bg-gradient-ink" style="color: #fff;">墨 色</div>
+          <div class="han-bg-gradient-sky">天 青</div>
+          <div class="han-bg-gradient-vermilion" style="color: #fff;">朱 砂</div>
+          <div class="han-bg-gradient-gold" style="color: #fff;">金 辉</div>
+          <div class="han-bg-gradient-paper">宣 纸</div>
+          <div class="han-bg-gradient-celadon">青 瓷</div>
+          <div class="han-bg-gradient-indigo" style="color: #fff;">靛 蓝</div>
+        </div>
+
+        <!-- 混合背景 -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--han-space-5); margin-top: var(--han-space-5);">
+          <div class="han-bg-mix-sky-cloud" style="height: 100px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); color: var(--han-color-text-primary); border-radius: var(--han-radius-md);">天 青 + 云 纹</div>
+          <div class="han-bg-mix-ink-ice" style="height: 100px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); color: #fff; border-radius: var(--han-radius-md);">墨 色 + 冰 裂</div>
+          <div class="han-bg-mix-gold-chanzhi" style="height: 100px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); color: #fff; border-radius: var(--han-radius-md);">金 辉 + 缠 枝</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 标志性组件展示条 ============ -->
+  <section class="han-section" style="background: var(--han-gradient-paper);">
+    <div class="han-container">
+      <div class="intro-block fade-on-scroll">
+        <div class="demo-section-label">· 标志性组件 ·</div>
+        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">千 年 符 号 · 当 代 演 绎</h2>
+        <p>卷轴 · 匾额 · 折扇 · 屏风 · 灯笼 · 册页 · 封面 — 全标志性组件</p>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">卷轴 · han-scroll</div>
+          <div class="han-scroll" style="padding: var(--han-space-4);">
+            <div class="han-scroll-head han-scroll-head--left"></div>
+            <div class="han-scroll-head han-scroll-head--right"></div>
+            <div class="han-scroll__content" style="font-family: var(--han-font-kai); text-align: center;">卷轴内容</div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">纸质卷轴 · han-scroll--paper</div>
+          <div class="han-scroll han-scroll--paper" style="padding: var(--han-space-4);">
+            <div class="han-scroll-head han-scroll-head--left"></div>
+            <div class="han-scroll-head han-scroll-head--right"></div>
+            <div class="han-scroll__content" style="font-family: var(--han-font-kai); text-align: center;">纸质纹理</div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">竖卷轴 · han-scroll--vertical</div>
+          <div class="han-scroll han-scroll--vertical" style="height: 180px; width: 80px; padding: var(--han-space-4); text-align: center;">
+            <div style="writing-mode: vertical-rl; font-family: var(--han-font-kai); margin: 0 auto;">汉 风 画 谱</div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">匾额变体</div>
+          <div style="display: flex; flex-direction: column; gap: var(--han-space-3); align-items: center;">
+            <div class="han-plaque han-plaque--sm">品 名</div>
+            <div class="han-plaque han-plaque--gold" style="padding: var(--han-space-2) var(--han-space-4); font-size: var(--han-fs-sm);">金 匾</div>
+            <div class="han-plaque han-plaque--redwood" style="padding: var(--han-space-2) var(--han-space-4); font-size: var(--han-fs-sm);">雅 斋</div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">折扇 · han-fan--spread</div>
+          <div class="han-fan han-fan--spread" style="width: 220px; height: 150px;">
+            <div class="han-fan__surface">
+              <div class="han-fan__painting">
+                <div class="han-fan__painting-title">山水</div>
+                <p style="font-size: var(--han-fs-xs); margin: 2px 0;">扇 面 书 画</p>
+              </div>
+            </div>
+            <div class="han-fan__ribs"></div>
+            <div class="han-fan__handle"></div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">屏风 · han-screen</div>
+          <div class="han-screen" style="min-height: 180px;">
+            <div class="han-screen__panel han-screen__panel--side"><h4 style="font-family: var(--han-font-kai);">左 屏</h4><p style="font-size: var(--han-fs-sm);">侧 栏 内 容</p></div>
+            <div class="han-screen__panel han-screen__panel--center" style="min-height: 140px;"><h4 style="font-family: var(--han-font-kai); text-align: center;">中 间 主 屏</h4><p style="font-size: var(--han-fs-sm); text-align: center;">主 内 容 展 示</p></div>
+            <div class="han-screen__panel han-screen__panel--side"><h4 style="font-family: var(--han-font-kai);">右 屏</h4><p style="font-size: var(--han-fs-sm);">侧 栏 内 容</p></div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">灯笼组 · han-lantern-group</div>
+          <div class="han-lantern-group" style="gap: var(--han-space-6);">
+            <div class="han-lantern"><div class="han-lantern__cap"></div><div class="han-lantern__body">福</div><div class="han-lantern__tassel"></div></div>
+            <div class="han-lantern"><div class="han-lantern__cap"></div><div class="han-lantern__body">禄</div><div class="han-lantern__tassel"></div></div>
+            <div class="han-lantern"><div class="han-lantern__cap"></div><div class="han-lantern__body">寿</div><div class="han-lantern__tassel"></div></div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">册页 · han-album</div>
+          <div class="han-album" style="padding: var(--han-space-4);">
+            <div class="han-album__title" style="font-size: var(--han-fs-lg);">文 集</div>
+            <div class="han-album__body" style="font-size: var(--han-fs-sm);">古籍风格封面</div>
+            <div class="han-album__seal" style="width: 24px; height: 24px; font-size: var(--han-fs-xs);">珍</div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">装布册页 · han-album--cloth</div>
+          <div class="han-album han-album--cloth" style="padding: var(--han-space-4);">
+            <div class="han-album__title" style="font-size: var(--han-fs-lg);">画 谱</div>
+            <div class="han-album__body" style="font-size: var(--han-fs-sm);">布 面 封 装</div>
+            <div class="han-album__seal" style="width: 24px; height: 24px; font-size: var(--han-fs-xs);">藏</div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
+          <div class="demo-label">中式封面 · han-cover</div>
+          <div style="display: flex; gap: var(--han-space-4); flex-wrap: wrap; justify-content: center;">
+            <div class="han-cover" style="width: 200px; height: 260px;">
+              <div class="han-cover__header"><div class="han-cover__title">书 名</div><div class="han-cover__author">作 者</div></div>
+              <div class="han-cover__illustration"><div class="han-icon han-icon-mountain" style="width:48px;height:48px;"></div></div>
+              <div class="han-cover__footer"><div class="han-cover__seal">印</div></div>
+            </div>
+            <div class="han-cover han-cover--blue" style="width: 200px; height: 260px;">
+              <div class="han-cover__header"><div class="han-cover__title">史 集</div><div class="han-cover__author">佚 名</div></div>
+              <div class="han-cover__illustration"><div class="han-icon han-icon-cloud" style="width:48px;height:48px;"></div></div>
+              <div class="han-cover__footer"><div class="han-cover__seal">藏</div></div>
+            </div>
+            <div class="han-cover han-cover--red" style="width: 200px; height: 260px;">
+              <div class="han-cover__header"><div class="han-cover__title">文 选</div><div class="han-cover__author">古 人</div></div>
+              <div class="han-cover__illustration"><div class="han-icon han-icon-lotus" style="width:48px;height:48px;"></div></div>
+              <div class="han-cover__footer"><div class="han-cover__seal">珍</div></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ 底部 ============ -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__grid">
-        <div>
-          <div class="footer__brand">汉<span>之</span></div>
-          <p class="footer__desc">
-            让东方美学在网页上优雅绽放。<br>
-            一个汲取千年中华文化的 CSS 设计系统。
-          </p>
-        </div>
-        <div>
-          <div class="footer__title">产品</div>
-          <a href="#" class="footer__link">设计令牌</a>
-          <a href="#" class="footer__link">组件库</a>
-          <a href="#" class="footer__link">示例页面</a>
-        </div>
-        <div>
-          <div class="footer__title">资源</div>
-          <a href="#" class="footer__link">AI 指南</a>
-          <a href="#" class="footer__link">API 文档</a>
-          <a href="#" class="footer__link">博客</a>
-        </div>
-        <div>
-          <div class="footer__title">社区</div>
-          <a href="#" class="footer__link">GitHub</a>
-          <a href="#" class="footer__link">Discord</a>
-          <a href="#" class="footer__link">贡献指南</a>
+  <!-- ============ 中国风 SVG 图标展示 ============ -->
+  <section class="han-section">
+    <div class="han-container">
+      <div class="intro-block fade-on-scroll">
+        <div class="demo-section-label">· 中式图标 ·</div>
+        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">中 国 风 SVG 图 标</h2>
+        <p>印章、毛笔、莲花、祥云、山水、四君子 —— 30+ 中国风 SVG 图标</p>
+      </div>
+
+      <!-- 文化图标 -->
+      <div class="fade-on-scroll">
+        <div style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary); margin-bottom: var(--han-space-3); text-align: center;">文化图标</div>
+        <div class="icon-grid">
+          <div class="icon-cell"><div class="han-icon han-icon-seal han-icon--lg"></div><span>印章</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-seal-round han-icon--lg"></div><span>圆印</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-seal-imperial han-icon--lg"></div><span>御印</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-brush han-icon--lg"></div><span>毛笔</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-ink-stick han-icon--lg"></div><span>墨条</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-inkstone han-icon--lg"></div><span>砚台</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-paper han-icon--lg"></div><span>宣纸</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-brush-rack han-icon--lg"></div><span>笔架</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-lotus han-icon--lg"></div><span>莲花</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-cloud han-icon--lg"></div><span>祥云</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-mountain han-icon--lg"></div><span>山水</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-pine han-icon--lg"></div><span>松树</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-bamboo han-icon--lg"></div><span>竹子</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-plum han-icon--lg"></div><span>梅花</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-chrysanthemum han-icon--lg"></div><span>菊花</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-lantern han-icon--lg"></div><span>灯笼</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-fan han-icon--lg"></div><span>扇子</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-teapot han-icon--lg"></div><span>茶壶</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-go han-icon--lg"></div><span>围棋</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-guqin han-icon--lg"></div><span>古琴</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-bamboo-scroll han-icon--lg"></div><span>竹简</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-pagoda han-icon--lg"></div><span>宝塔</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-wanzi han-icon--lg"></div><span>万字</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-huiwen han-icon--lg"></div><span>回纹</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-taiji han-icon--lg"></div><span>太极</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-coin han-icon--lg"></div><span>铜钱</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-dot-deco han-icon--lg"></div><span>圆点</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-deco-line han-icon--lg"></div><span>装饰线</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-seal-mark han-icon--lg"></div><span>印章标记</span></div>
         </div>
       </div>
 
-      <!-- 底部装饰线 -->
-      <div class="footer__bottom">
-        <div style="display:flex; justify-content:center; align-items:center; gap: 16px; margin-bottom: 12px;">
-          <div style="width: 40px; height: 1px; background: rgba(255,255,255,0.2);"></div>
-          <span style="color: var(--dq-color-gold-400); font-family: var(--dq-font-kai); font-size: var(--dq-fs-sm); letter-spacing: var(--dq-ls-wider);;">汉 · 笔墨传心</span>
-          <div style="width: 40px; height: 1px; background: rgba(255,255,255,0.2);"></div>
+      <!-- 通用 UI 图标 -->
+      <div class="fade-on-scroll" style="margin-top: var(--han-space-6);">
+        <div style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary); margin-bottom: var(--han-space-3); text-align: center;">通用 UI 图标</div>
+        <div class="icon-grid">
+          <div class="icon-cell"><div class="han-icon han-icon-menu han-icon--lg"></div><span>菜单</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-close han-icon--lg"></div><span>关闭</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-search han-icon--lg"></div><span>搜索</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-arrow-right han-icon--lg"></div><span>箭头</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-chevron-down han-icon--lg"></div><span>下拉</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-chevron-up han-icon--lg"></div><span>上拉</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-chevron-left han-icon--lg"></div><span>左拉</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-chevron-right han-icon--lg"></div><span>右拉</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-user han-icon--lg"></div><span>用户</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-cart han-icon--lg"></div><span>购物车</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-heart han-icon--lg"></div><span>收藏</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-share han-icon--lg"></div><span>分享</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-mail han-icon--lg"></div><span>邮件</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-phone han-icon--lg"></div><span>电话</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-location han-icon--lg"></div><span>定位</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-calendar han-icon--lg"></div><span>日历</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-success han-icon--lg"></div><span>成功</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-warning han-icon--lg"></div><span>警告</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-error han-icon--lg"></div><span>错误</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-info han-icon--lg"></div><span>信息</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-help han-icon--lg"></div><span>帮助</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-loading-ink han-icon--lg"></div><span>水墨加载</span></div>
+          <div class="icon-cell"><div class="han-icon han-icon-loading-seal han-icon--lg"></div><span>印章加载</span></div>
         </div>
-        <p>© 2024 汉设计系统 · MIT License · Made with ❤️ in China</p>
+      </div>
+
+      <!-- 图标变体 -->
+      <div class="fade-on-scroll" style="margin-top: var(--han-space-6);">
+        <div style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary); margin-bottom: var(--han-space-3); text-align: center;">图标变体</div>
+        <div style="display: flex; gap: var(--han-space-5); justify-content: center; flex-wrap: wrap;">
+          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md);">
+            <div class="han-icon han-icon-seal han-icon--xl han-icon--ink" style="margin-bottom: var(--han-space-2);"></div>
+            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">水墨风格</span>
+          </div>
+          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md);">
+            <div class="han-icon han-icon-seal han-icon--xl han-icon--vermilion" style="margin-bottom: var(--han-space-2);"></div>
+            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">朱红风格</span>
+          </div>
+          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md);">
+            <div class="han-icon han-icon-seal han-icon--xl han-icon--gold" style="margin-bottom: var(--han-space-2);"></div>
+            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">金色风格</span>
+          </div>
+          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md);">
+            <div class="han-icon han-icon-seal han-icon--xl han-icon--light" style="margin-bottom: var(--han-space-2);"></div>
+            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">浅色风格</span>
+          </div>
+          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md); background: var(--han-color-ink-700);">
+            <div class="han-icon han-icon-mountain han-icon--xl han-icon--light" style="margin-bottom: var(--han-space-2);"></div>
+            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: #fff;">深色背景</span>
+          </div>
+        </div>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <script>
-    // 滚动显现动画
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
+  <!-- ============ 文字装饰系统 ============ -->
+  <section class="han-section" style="background: var(--han-color-bg);">
+    <div class="han-container">
+      <div class="intro-block fade-on-scroll">
+        <div class="demo-section-label">· 文字装饰 ·</div>
+        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">书 法 章 法</h2>
+        <p>书法笔触标题、印章标记、对联双行、毛笔签名、诗词竖排</p>
+      </div>
 
-    document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+      <div class="demo-grid">
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">书法笔触标题 · han-title-brush</div>
+          <h3 class="han-title-brush" style="font-size: var(--han-fs-xl);">墨 落 宣 纸</h3>
+          <p style="font-size: var(--han-fs-sm); color: var(--han-color-text-secondary); margin-top: var(--han-space-3);">笔触自然，意境深远</p>
+        </div>
 
-    // 导航栏滚动阴影
-    const navbar = document.querySelector('.dq-navbar');
-    if (navbar) {
-      const navObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.boundingClientRect.top <= 0) {
-            navbar.classList.add('is-scrolled');
-          } else {
-            navbar.classList.remove('is-scrolled');
-          }
-        });
-      }, { threshold: 0, rootMargin: '0px 0px -100% 0px' });
-      navObserver.observe(navbar);
-    }
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">标题+印章 · han-title-with-seal</div>
+          <div class="han-title-with-seal">
+            <h3 class="han-title-brush" style="font-size: var(--han-fs-xl);">题 款 之 处</h3>
+            <div class="han-stamp han-stamp--sm">印</div>
+          </div>
+        </div>
 
-    // 印章按钮点击涟漪
-    document.querySelectorAll('.dq-btn-seal').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        btn.classList.remove('dq-animate-seal-drop');
-        void btn.offsetWidth;
-        btn.classList.add('dq-animate-seal-drop');
-      });
-    });
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">印章文字 · han-seal-text</div>
+          <div style="display: flex; gap: var(--han-space-3); align-items: center; flex-wrap: wrap;">
+            <div class="han-seal-text">珍 品</div>
+            <div class="han-seal-text han-seal-text--gold">雅 集</div>
+            <div class="han-seal-text han-seal-text--ink">藏 印</div>
+            <div class="han-seal-text han-seal-text--circle">圆</div>
+            <div class="han-seal-text han-seal-text--lg">大 字</div>
+            <div class="han-seal-text han-seal-text--aged">古 旧</div>
+          </div>
+        </div>
 
-    // 导航项点击
-    document.querySelectorAll('.dq-navbar__item').forEach(item => {
-      item.addEventListener('click', () => {
-        document.querySelectorAll('.dq-navbar__item').forEach(i => i.classList.remove('dq-navbar__item--active'));
-        item.classList.add('dq-navbar__item--active');
-      });
-    });
-  </script>
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">对联 · han-couplet</div>
+          <div class="han-couplet han-couplet--sm">
+            <div class="han-couplet__top">山 水 有 情 皆 入 画</div>
+            <div class="han-couplet__center"><div class="han-stamp han-stamp--sm">印</div></div>
+            <div class="han-couplet__bottom">风 云 无 意 亦 成 诗</div>
+          </div>
+        </div>
 
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">毛笔签名 · han-signature</div>
+          <div class="han-signature">
+            <div class="han-signature__text">李 白</div>
+            <div class="han-stamp han-stamp--sm" style="position: static;">青 莲</div>
+          </div>
+          <div style="margin-top: var(--han-space-4);">
+            <div class="han-signature han-signature--lg">
+              <div class="han-signature__text">苏 东 坡</div>
+              <div class="han-stamp han-stamp--sm" style="position: static;">雪 堂</div>
+            </div>
+          </div>
+        </div>
 
-  <!-- 页面导航 -->
-  <style>
-    .dq-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--dq-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--dq-font-kai,KaiTi,serif)!important;}
-    .dq-nav-fab:hover{transform:scale(1.1)!important;}
-    .dq-nav-panel{position:fixed!important;right:16px!important;top:72px!important;z-index:99998!important;width:220px!important;max-height:70vh!important;overflow-y:auto!important;background:var(--dq-color-paper-100,#faf6ea)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.15)!important;border:1px solid var(--dq-color-border,#e0dcd4)!important;padding:16px!important;display:none!important;}
-    .dq-nav-panel.is-open{display:block!important;}
-    .dq-nav-panel h4{margin:0 0 8px!important;font-family:var(--dq-font-kai,KaiTi,serif)!important;font-size:13px!important;color:var(--dq-color-ink-700,#2a2824)!important;}
-    .dq-nav-panel ul{list-style:none!important;margin:0 0 10px!important;padding:0!important;}
-    .dq-nav-panel li{margin:0!important;}
-    .dq-nav-panel a{display:block!important;padding:5px 10px!important;border-radius:6px!important;font-size:12px!important;color:var(--dq-color-text-secondary,#555)!important;text-decoration:none!important;transition:all .15s!important;}
-    .dq-nav-panel a:hover{background:var(--dq-color-vermilion-500,#c0392b)!important;color:#fff!important;}
-    .dq-nav-panel hr{border:none!important;border-top:1px solid var(--dq-color-border,#e0dcd4)!important;margin:10px 0!important;}
-    @media(max-width:768px){.dq-nav-panel{width:180px!important;}}
-  </style>
-  <button class="dq-nav-fab" onclick="document.getElementById('dqNavPanel').classList.toggle('is-open')">☰</button>
-  <div class="dq-nav-panel" id="dqNavPanel" onclick="event.stopPropagation()">
-    <h4>示例页面</h4>
-    <ul>
-      <li><a href="./landing-page.html">落地页</a></li>
-      <li><a href="./quick-start.html">快速上手</a></li>
-      <li><a href="./theme-showcase.html">主题展示</a></li>
-    </ul>
-    <hr>
-    <h4>组件示例</h4>
-    <ul>
-      <li><a href="./components/button-seal.html">印章按钮</a></li>
-      <li><a href="./components/card-scroll.html">卷轴卡片</a></li>
-      <li><a href="./components/divider-ink.html">水墨分割线</a></li>
-      <li><a href="./components/frame-window.html">窗花边框</a></li>
-      <li><a href="./components/navbar-ink.html">水墨导航</a></li>
-      <li><a href="./components/stamp.html">印章</a></li>
-    </ul>
-  </div>
-  <script>document.addEventListener("click",function(e){var p=document.getElementById("dqNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("dq-nav-fab"))p.classList.remove("is-open");});</script>
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">古典引文 · han-classical-quote</div>
+          <div class="han-classical-quote">
+            <p>春江潮水连海平，海上明月共潮生。</p>
+            <p>滟滟随波千万里，何处春江无月明！</p>
+          </div>
+        </div>
 
-</body>
-</html>
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">诗词居中 · han-poem-centered</div>
+          <div class="han-poem-centered">
+            <p>床 前 明 月 光，</p>
+            <p>疑 是 地 上 霜。</p>
+            <p>举 头 望 明 月，</p>
+            <p>低 头 思 故 乡。</p>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">标题组 · han-title-group</div>
+          <div class="han-title-group">
+            <div class="han-title-group__main">论 语</div>
+            <div class="han-title-group__subtitle">学而时习之，不亦说乎</div>
+            <div class="han-title-group__en" style="font-size: var(--han-fs-xs);">The Analects</div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">墨块 · han-ink-block</div>
+          <div style="display: flex; gap: var(--han-space-3); flex-wrap: wrap;">
+            <div class="han-ink-block" style="padding: var(--han-space-3); color: #fff; font-family: var(--han-font-kai); font-size: var(--han-fs-sm);">墨 色 块</div>
+            <div class="han-ink-block han-ink-block--gradient" style="padding: var(--han-space-3); color: #fff; font-family: var(--han-font-kai); font-size: var(--han-fs-sm);">渐 变 墨</div>
+            <div class="han-gold-block" style="padding: var(--han-space-3); color: #fff; font-family: var(--han-font-kai); font-size: var(--han-fs-sm);">金 块</div>
+            <div class="han-vermilion-block" style="padding: var(--han-space-3); color: #fff; font-family: var(--han-font-kai); font-size: var(--han-fs-sm);">朱 块</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 结构组件：面包屑/步骤条/时间线/树形 ============ -->
+  <section class="han-section">
+    <div class="han-container">
+      <div class="intro-block fade-on-scroll">
+        <div class="demo-section-label">· 结构组件 ·</div>
+        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">内 容 结 构</h2>
+        <p>中式面包屑、步骤条、时间线、树形目录、增强分页器</p>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">中式面包屑 · han-breadcrumb</div>
+          <nav class="han-breadcrumb">
+            <ol class="han-breadcrumb__list">
+              <li class="han-breadcrumb__item"><a href="#">首页</a></li>
+              <li class="han-breadcrumb__separator han-breadcrumb__separator--huiwen">◆</li>
+              <li class="han-breadcrumb__item"><a href="#">设计系统</a></li>
+              <li class="han-breadcrumb__separator han-breadcrumb__separator--huiwen">◆</li>
+              <li class="han-breadcrumb__item is-current">组件库</li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">步骤条 · han-steps</div>
+          <ol class="han-steps">
+            <li class="han-steps__item is-completed">
+              <div class="han-steps__node">1</div>
+              <div class="han-steps__title">选 择 主 题</div>
+              <div class="han-steps__connector"></div>
+            </li>
+            <li class="han-steps__item is-active">
+              <div class="han-steps__node">2</div>
+              <div class="han-steps__title">配 置 组 件</div>
+              <div class="han-steps__connector"></div>
+            </li>
+            <li class="han-steps__item">
+              <div class="han-steps__node">3</div>
+              <div class="han-steps__title">生 成 页 面</div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
+          <div class="demo-label">时间线 · han-timeline</div>
+          <div class="han-timeline">
+            <div class="han-timeline__item is-completed">
+              <div class="han-timeline__date">2026-01</div>
+              <div class="han-timeline__node"></div>
+              <div class="han-timeline__title">汉诞生</div>
+              <div class="han-timeline__content">首版发布，包含 6 个核心组件和 5 种主题色。</div>
+            </div>
+            <div class="han-timeline__item is-current">
+              <div class="han-timeline__date">2026-03</div>
+              <div class="han-timeline__node"></div>
+              <div class="han-timeline__title">组件库扩展至 20+</div>
+              <div class="han-timeline__content">新增表单、模态框、标签页、表格等核心组件，融入水墨、印章等中国风元素。</div>
+            </div>
+            <div class="han-timeline__item">
+              <div class="han-timeline__date">2026-06</div>
+              <div class="han-timeline__node"></div>
+              <div class="han-timeline__title">AI Skill 发布</div>
+              <div class="han-timeline__content">正式发布为标准 AI Skill，用户可直接在 AI 助手中使用生成中国风页面。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">树形目录 · han-tree</div>
+          <div class="han-tree">
+            <div class="han-tree__node is-open">
+              <div class="han-tree__content"><span class="han-tree__arrow">▼</span><span class="han-tree__text">设 计 系 统</span></div>
+              <div class="han-tree__children">
+                <div class="han-tree__node is-active">
+                  <div class="han-tree__content"><span class="han-tree__arrow">▶</span><span class="han-tree__text">色 彩 体 系</span></div>
+                </div>
+                <div class="han-tree__node">
+                  <div class="han-tree__content"><span class="han-tree__arrow">▶</span><span class="han-tree__text">字 体 排 版</span></div>
+                </div>
+                <div class="han-tree__node">
+                  <div class="han-tree__content"><span class="han-tree__arrow">▶</span><span class="han-tree__text">组 件 库</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
+          <div class="demo-label">增强分页器 · han-pagination-enhanced</div>
+          <div class="han-pagination-enhanced">
+            <div class="han-pagination-enhanced__info">共 128 条 · 每页 10 条</div>
+            <div class="han-pagination-enhanced__btn is-disabled">‹</div>
+            <div class="han-pagination-enhanced__btn is-active">1</div>
+            <div class="han-pagination-enhanced__btn">2</div>
+            <div class="han-pagination-enhanced__btn">3</div>
+            <div class="han-pagination-enhanced__btn">4</div>
+            <div class="han-pagination-enhanced__btn">5</div>
+            <div class="han-pagination-enhanced__btn">›</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 增强组件：画廊/相框/滤镜/评分 ============ -->
+  <section class="han-section" style="background: var(--han-color-bg);">
+    <div class="han-container">
+      <div class="intro-block fade-on-scroll">
+        <div class="demo-section-label">· 增强组件 ·</div>
+        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">画 廊 · 相 框 · 评 分</h2>
+        <p>水墨画廊、印章相框、图片滤镜、印章评分、空状态、骨架屏</p>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
+          <div class="demo-label">水墨画廊 · han-gallery</div>
+          <div class="han-gallery">
+            <div class="han-gallery__item han-filter-ink" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">山 水 画</div></div>
+            <div class="han-gallery__item han-filter-sepia" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">人 物 画</div></div>
+            <div class="han-gallery__item han-filter-sung" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">花 鸟 画</div></div>
+            <div class="han-gallery__item han-filter-ink" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">书 法</div></div>
+            <div class="han-gallery__item han-filter-sepia" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">扇 面</div></div>
+            <div class="han-gallery__item han-filter-sung" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">卷 轴</div></div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">相框变体</div>
+          <div style="display: flex; gap: var(--han-space-3); flex-wrap: wrap;">
+            <div class="han-frame-seal" style="width: 120px;">
+              <div class="han-corner"></div>
+              <div class="han-corner--br"></div>
+              <div style="background: var(--han-gradient-paper); height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">印章框</div>
+            </div>
+            <div class="han-frame-gold" style="width: 120px;">
+              <div style="background: var(--han-gradient-paper); height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">金框</div>
+            </div>
+            <div class="han-frame-paper" style="width: 120px;">
+              <div style="background: var(--han-gradient-paper); height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">纸框</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">图片滤镜</div>
+          <div style="display: flex; gap: var(--han-space-3); flex-wrap: wrap;">
+            <div style="text-align: center;">
+              <div class="han-filter-ink" style="width: 140px; height: 80px; background: var(--han-gradient-paper); display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">墨 色</div>
+            </div>
+            <div style="text-align: center;">
+              <div class="han-filter-sepia" style="width: 140px; height: 80px; background: var(--han-gradient-paper); display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">复 古</div>
+            </div>
+            <div style="text-align: center;">
+              <div class="han-filter-sung" style="width: 140px; height: 80px; background: var(--han-gradient-paper); display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">宋 风</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">印章评分 · han-rating-enhanced</div>
+          <div class="han-rating-enhanced">
+            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+            <div class="han-rating-enhanced__star"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+          </div>
+          <p style="font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary); margin-top: var(--han-space-2);">普 通 评 分</p>
+          <div class="han-rating-enhanced han-rating-enhanced--seal" style="margin-top: var(--han-space-3);">
+            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
+          </div>
+          <p style="font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary); margin-top: var(--han-space-2);">印 章 评 分</p>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">空状态 · han-empty</div>
+          <div class="han-empty">
+            <div class="han-empty__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5-2 4-2 4 2 4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <div class="han-empty__title">暂无数据</div>
+            <div class="han-empty__desc">当 前 没 有 可 显 示 的 内 容</div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">骨架屏 · han-skeleton-card</div>
+          <div class="han-skeleton-card">
+            <div class="han-skeleton-card__avatar han-skeleton han-skeleton--avatar"></div>
+            <div class="han-skeleton-card__content">
+              <div class="han-skeleton han-skeleton--title"></div>
+              <div class="han-skeleton han-skeleton--text"></div>
+              <div class="han-skeleton han-skeleton--text"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">水墨加载 · han-loader</div>
+          <div class="han-loader">
+            <div class="han-loader__spinner"></div>
+            <div class="han-loader__text">墨 砚 研 磨 中 …</div>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
+          <div class="demo-label">增强表单 · han-select / han-date-picker / han-upload</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--han-space-5);">
+            <div>
+              <div class="han-select">
+                <div class="han-select__trigger"><span>选 择 一 项</span><span class="han-select__arrow">▼</span></div>
+                <div class="han-select__menu" style="display: block;">
+                  <div class="han-select__item">选 项 一</div>
+                  <div class="han-select__item is-selected">✓ 选 项 二</div>
+                  <div class="han-select__item">选 项 三</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="han-date-picker">
+                <input type="text" class="han-date-picker__input" placeholder="选 择 日 期" readonly>
+              </div>
+            </div>
+            <div>
+              <div class="han-upload">
+                <div class="han-upload__dropzone">
+                  <div class="han-upload__icon"></div>
+                  <div class="han-upload__text">拖 入 上 传</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 环境动效 & 交互效果 ============ -->
+  <section class="han-section" style="background: var(--han-gradient-paper);">
+    <div class="han-container">
+      <div class="intro-block fade-on-scroll">
+        <div class="demo-section-label">· 环境动效 ·</div>
+        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">东 方 意 境 动 效</h2>
+        <p>花瓣飘落、烟雾飘渺、墨迹扩散、笔写入场 —— 营造东方意境</p>
+      </div>
+
+      <!-- 花瓣飘落 -->
+      <div class="petal-container fade-on-scroll" style="background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-lg); margin-bottom: var(--han-space-6);">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 1;">
+          <div class="han-lantern" style="transform: scale(1.2);"><div class="han-lantern__cap"></div><div class="han-lantern__body">夜</div><div class="han-lantern__tassel"></div></div>
+          <p style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-secondary); margin-top: var(--han-space-3);">花 瓣 飘 落 · 灯 火 摇 曳</p>
+        </div>
+        <div class="han-petal-fall" style="position: absolute; top: 0; left: 20%;">
+          <div class="han-petal-fall__petal" style="--duration: 6s; --delay: 0s;"></div>
+        </div>
+        <div class="han-petal-fall" style="position: absolute; top: 0; left: 40%;">
+          <div class="han-petal-fall__petal" style="--duration: 5s; --delay: 1s;"></div>
+        </div>
+        <div class="han-petal-fall" style="position: absolute; top: 0; left: 60%;">
+          <div class="han-petal-fall__petal" style="--duration: 7s; --delay: 2s;"></div>
+        </div>
+        <div class="han-petal-fall" style="position: absolute; top: 0; left: 80%;">
+          <div class="han-petal-fall__petal" style="--duration: 5.5s; --delay: 0.5s;"></div>
+        </div>
+        <!-- 烟雾效果 -->
+        <div class="han-smoke" style="position: absolute; bottom: 20px; left: 30%; opacity: 0.4;"></div>
+        <div class="han-smoke" style="position: absolute; bottom: 10px; right: 30%; opacity: 0.3;"></div>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">墨迹扩散悬停 · han-hover-ink</div>
+          <div class="han-hover-ink" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-md); cursor: pointer;">
+            悬 停 体 验 墨 迹 扩 散
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">朱砂墨迹悬停 · han-hover-ink--vermilion</div>
+          <div class="han-hover-ink han-hover-ink--vermilion" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-md); cursor: pointer;">
+            朱 砂 墨 迹 扩 散
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">金色墨迹悬停 · han-hover-ink--gold</div>
+          <div class="han-hover-ink han-hover-ink--gold" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-md); cursor: pointer;">
+            金 色 墨 迹 扩 散
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">水墨涟漪 · han-ripple-ink</div>
+          <button class="han-btn-seal han-ripple-ink">点 击 产 生 涟 漪</button>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">印章冲击 · han-btn-seal-impact</div>
+          <button class="han-btn-seal han-btn-seal-impact">盖 下 印 章</button>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">笔写入场 · han-brush-path</div>
+          <div class="han-brush-path" style="height: 80px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-lg); color: var(--han-color-ink-700);">
+            <span class="han-brush-path__stroke han-brush-path__stroke--slow">笔 墨 入 场</span>
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">悬停提升 · han-hover-lift</div>
+          <div class="han-hover-lift" style="padding: var(--han-space-5); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-md); cursor: pointer;">
+            悬 停 提 升 效 果
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">墨迹边框 · han-border-ink</div>
+          <div class="han-border-ink" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border-radius: var(--han-radius-md); cursor: pointer;">
+            悬 停 显 示 墨 迹 边 框
+          </div>
+        </div>
+
+        <div class="demo-item fade-on-scroll">
+          <div class="demo-label">灯笼摇晃 · han-lantern-sway</div>
+          <div class="han-lantern han-lantern-sway" style="margin: 0 auto; transform: scale(0.9);"><div class="han-lantern__cap"></div><div class="han-lantern__body">福</div><div class="han-lantern__tassel"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>

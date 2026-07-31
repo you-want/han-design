@@ -1,0 +1,1865 @@
+/* ============================================================
+ * 汉 · 组件样式 (Components)
+ * 所有组件使用 --han- 设计令牌
+ * 依赖：tokens.css + base.css
+ * ============================================================ */
+
+
+/* ============================================================
+ * 1. 印章按钮 (Seal Button)
+ * 红色方形印章风格按钮，模拟印章盖下的视觉感。
+ * 场景：关键 CTA、提交按钮、落款确认。
+ * ============================================================ */
+.han-btn-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--han-space-2);
+  min-width: var(--han-seal-size);
+  height: var(--han-seal-size);
+  padding: 0 var(--han-space-5);
+  background-color: var(--han-seal-bg);
+  color: var(--han-seal-text);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-md);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  letter-spacing: var(--han-ls-wide);
+  border: var(--han-border-width, var(--han-border-width-2)) solid var(--han-seal-border);
+  border-radius: var(--han-seal-radius);
+  transform: rotate(var(--han-seal-tilt));
+  box-shadow: var(--han-shadow-seal);
+  cursor: pointer;
+  position: relative;
+  transition:
+    transform var(--han-duration-normal) var(--han-ease-spring),
+    background-color var(--han-duration-normal) var(--han-ease-out),
+    box-shadow var(--han-duration-normal) var(--han-ease-out),
+    filter var(--han-duration-normal) var(--han-ease-out);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.han-btn-seal:hover {
+  background-color: var(--han-seal-bg-hover);
+  transform: rotate(var(--han-seal-tilt)) scale(1.05);
+  box-shadow: 3px 6px 16px rgba(192, 57, 43, 0.5);
+  filter: brightness(1.08);
+}
+
+.han-btn-seal:active {
+  transform: rotate(var(--han-seal-tilt)) scale(0.97);
+  box-shadow: 1px 2px 4px rgba(192, 57, 43, 0.4);
+  transition-duration: 80ms;
+}
+
+.han-btn-seal:focus-visible {
+  outline: 3px solid var(--han-focus-ring);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--han-focus-ring-offset);
+}
+
+.han-btn-seal::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: var(--han-border-width) solid rgba(255, 255, 255, 0.3);
+  border-radius: calc(var(--han-seal-radius) - 1px);
+  pointer-events: none;
+}
+
+/* 印章斑驳纹理 — 仿印泥质感 */
+.han-btn-seal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='sealTexture'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23sealTexture)'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* 大号印章按钮 */
+.han-btn-seal--lg {
+  min-width: 72px;
+  height: 72px;
+  padding: 0 var(--han-space-6);
+  font-size: var(--han-fs-lg);
+}
+
+/* 小号印章按钮 */
+.han-btn-seal--sm {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 var(--han-space-3);
+  font-size: var(--han-fs-sm);
+}
+
+/* 圆形印章按钮 */
+.han-btn-seal--circle {
+  min-width: var(--han-seal-size);
+  width: var(--han-seal-size);
+  height: var(--han-seal-size);
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* 带印章盖下动画 */
+.han-btn-seal--drop {
+  animation: han-seal-drop 0.6s var(--han-ease-spring);
+}
+
+
+/* ============================================================
+ * 2. 水墨导航 (Ink Navigation)
+ * 底部毛笔下划线 + 墨迹扩散悬停效果。
+ * 场景：网站顶部导航、菜单导航。
+ * ============================================================ */
+.han-navbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--han-z-sticky);
+  height: var(--han-nav-height);
+  background-color: var(--han-nav-bg);
+  border-bottom: var(--han-border-width) solid var(--han-nav-border, var(--han-color-ink-200));
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  transition: box-shadow var(--han-duration-normal) var(--han-ease-out),
+              background-color var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-navbar.is-scrolled {
+  box-shadow: 0 2px 12px rgba(26, 24, 22, 0.08);
+  background-color: var(--han-nav-bg, rgba(250, 246, 234, 0.95));
+}
+
+.han-navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--han-container-lg);
+  margin: 0 auto;
+  padding: 0 var(--han-space-6);
+}
+
+.han-navbar__brand {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-xl);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  letter-spacing: var(--han-ls-wider);
+}
+
+.han-navbar__brand span {
+  color: var(--han-color-accent-text);
+}
+
+.han-navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--han-space-6);
+  list-style: none;
+}
+
+.han-navbar__item {
+  position: relative;
+  padding: var(--han-space-2) var(--han-space-1);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-base);
+  color: var(--han-nav-text);
+  letter-spacing: var(--han-ls-wide);
+  cursor: pointer;
+  transition: color var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-navbar__item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  transform: translateX(-50%) scaleX(0);
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--han-nav-ink-color) 15%,
+    var(--han-nav-ink-color) 85%,
+    transparent 100%
+  );
+  transition: transform var(--han-duration-slow) var(--han-ease-out);
+  transform-origin: center;
+}
+
+.han-navbar__item:hover {
+  color: var(--han-nav-text-hover);
+}
+
+.han-navbar__item:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.han-navbar__item--active {
+  color: var(--han-nav-text-hover);
+}
+
+.han-navbar__item--active::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 0.8;
+}
+
+/* 移动端汉堡按钮 */
+.han-navbar__toggle {
+  display: none;
+  width: 32px;
+  height: 32px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.han-navbar__toggle span {
+  display: block;
+  height: 2px;
+  width: 24px;
+  background: var(--han-nav-text-hover);
+  border-radius: 2px;
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-navbar__toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.han-navbar__toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.han-navbar__toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .han-navbar__toggle { display: flex; }
+  .han-navbar__menu {
+    position: absolute;
+    top: var(--han-nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--han-nav-bg);
+    border-bottom: var(--han-border);
+    padding: var(--han-space-4) var(--han-space-6);
+    gap: var(--han-space-4);
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--han-duration-normal) var(--han-ease-out);
+  }
+  .han-navbar--open .han-navbar__menu {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+
+/* 匾额式导航 — 品牌名用匾额样式 */
+.han-navbar--plaque .han-navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--han-space-1) var(--han-space-4);
+  background: linear-gradient(
+    180deg,
+    #4A3728 0%,
+    #5C4632 50%,
+    #4A3728 100%
+  );
+  color: #F5E6C8;
+  border-radius: var(--han-radius-sm);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 215, 128, 0.2);
+  font-size: var(--han-fs-lg);
+  letter-spacing: var(--han-ls-widest);
+}
+
+.han-navbar--plaque .han-navbar__brand::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--han-color-vermilion-500);
+  margin-left: var(--han-space-2);
+  border-radius: var(--han-radius-sm);
+}
+
+.han-navbar--plaque .han-navbar__brand span {
+  color: #FFD700;
+}
+
+/* 金色匾额导航 */
+.han-navbar--plaque--gold .han-navbar__brand {
+  background: linear-gradient(
+    180deg,
+    #8B7532 0%,
+    #C4A85C 50%,
+    #8B7532 100%
+  );
+  color: #2A1F15;
+}
+
+.han-navbar--plaque--gold .han-navbar__brand span {
+  color: #5C1F1F;
+}
+
+/* 卡片纸质纹理变体 */
+.han-card--paper {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.98 0 0 0 0 0.95 0 0 0 0 0.88 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23paper)'/%3E%3C/svg%3E");
+  background-color: var(--han-color-bg-surface);
+}
+
+
+/* ============================================================
+ * 3. 卷轴卡片 (Scroll Card)
+ * 模拟中国传统卷轴形态，左右两端有卷轴头。
+ * 场景：产品展示、文章卡片、内容容器。
+ * ============================================================ */
+.han-card-scroll {
+  position: relative;
+  background-color: var(--han-scroll-bg);
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(139, 115, 85, 0.04) 100%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='1'/%3E%3CfeColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.78 0 0 0 0 0.65 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23s)'/%3E%3C/svg%3E");
+  border-radius: var(--han-radius-lg);
+  box-shadow: var(--han-scroll-shadow);
+  padding: var(--han-space-7) var(--han-space-6);
+  margin: var(--han-space-6) 0;
+  transition: transform var(--han-duration-slow) var(--han-ease-out),
+              box-shadow var(--han-duration-slow) var(--han-ease-out);
+}
+
+.han-card-scroll:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--han-shadow-xl);
+}
+
+/* 左右卷轴头 */
+.han-card-scroll::before,
+.han-card-scroll::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  background: linear-gradient(
+    90deg,
+    var(--han-scroll-roller) 0%,
+    #3a3833 40%,
+    #4a4842 60%,
+    var(--han-scroll-roller) 100%
+  );
+  border-radius: 4px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.han-card-scroll::before { left: -10px; }
+.han-card-scroll::after  { right: -10px; }
+
+/* 卷轴装饰铆钉 */
+.han-card-scroll > .han-scroll-rivet,
+.han-card-scroll::before {
+  /* 铆钉通过伪元素添加 */
+}
+
+.han-card-scroll .han-rivet {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #e9be64, var(--han-scroll-rivet));
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.han-card-scroll .han-rivet--tl { top: 6px;  left: 2px; }
+.han-card-scroll .han-rivet--tr { top: 6px;  right: 2px; }
+.han-card-scroll .han-rivet--bl { bottom: 6px; left: 2px; }
+.han-card-scroll .han-rivet--br { bottom: 6px; right: 2px; }
+
+.han-card-scroll__header {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-xl);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  letter-spacing: var(--han-ls-wide);
+  margin-bottom: var(--han-space-4);
+  padding-bottom: var(--han-space-3);
+  border-bottom: var(--han-border-width) dashed var(--han-color-ink-200);
+}
+
+.han-card-scroll__body {
+  font-size: var(--han-fs-base);
+  line-height: var(--han-lh-relaxed);
+  color: var(--han-color-text-secondary);
+}
+
+.han-card-scroll__footer {
+  margin-top: var(--han-space-5);
+  padding-top: var(--han-space-4);
+  border-top: var(--han-border-width) dashed var(--han-color-ink-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-tertiary);
+}
+
+/* 迷你卷轴卡片 */
+.han-card-scroll--sm {
+  padding: var(--han-space-5) var(--han-space-5);
+}
+
+
+/* ============================================================
+ * 4. 窗花边框 (Window Frame)
+ * 传统中式窗花纹样边框装饰。
+ * 场景：重要区域分区、特殊模块框定。
+ * ============================================================ */
+.han-frame-window {
+  position: relative;
+  padding: var(--han-space-7) var(--han-space-6);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-ink-300);
+  border-radius: var(--han-radius-xl);
+  margin: var(--han-space-6) 0;
+}
+
+/* 四角装饰 */
+.han-frame-window::before,
+.han-frame-window::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%235e5a53' stroke-width='1.5'%3E%3Cpath d='M2 2 L2 12 M2 2 L12 2 M2 2 L10 10'/%3E%3Ccircle cx='4' cy='4' r='2'/%3E%3Cpath d='M8 2 L8 8 L2 8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.han-frame-window::before { top: -2px; left: -2px; }
+.han-frame-window::after  { bottom: -2px; right: -2px; transform: rotate(180deg); }
+
+/* 另外两个角 */
+.han-frame-window > .han-corner-tr,
+.han-frame-window > .han-corner-bl {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%235e5a53' stroke-width='1.5'%3E%3Cpath d='M26 2 L26 12 M26 2 L16 2 M26 2 L18 10'/%3E%3Ccircle cx='24' cy='4' r='2'/%3E%3Cpath d='M20 2 L20 8 L26 8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.han-frame-window > .han-corner-tr { top: -2px; right: -2px; }
+.han-frame-window > .han-corner-bl { bottom: -2px; left: -2px;  transform: rotate(180deg); }
+
+/* 中心窗格纹样（可选装饰） */
+.han-frame-window--ornament::selection {
+  background: transparent;
+}
+
+/* 竖排纹样装饰线 */
+.han-frame-window--pattern {
+  background-image:
+    linear-gradient(to bottom, transparent 48%, var(--han-color-ink-200) 48%, var(--han-color-ink-200) 52%, transparent 52%),
+    linear-gradient(to right, transparent 48%, var(--han-color-ink-200) 48%, var(--han-color-ink-200) 52%, transparent 52%);
+  background-size: 24px 24px;
+  background-position: center;
+}
+
+/* 金边装饰 */
+.han-frame-window--gold {
+  border-color: var(--han-color-gold-400);
+  box-shadow:
+    0 0 0 3px var(--han-color-bg-surface),
+    0 0 0 4px var(--han-color-gold-300);
+}
+
+.han-frame-window--gold::before,
+.han-frame-window--gold::after,
+.han-frame-window--gold > .han-corner-tr,
+.han-frame-window--gold > .han-corner-bl {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28' fill='none' stroke='%23c68a2e' stroke-width='1.5'%3E%3Cpath d='M2 2 L2 12 M2 2 L12 2 M2 2 L10 10'/%3E%3Ccircle cx='4' cy='4' r='2'/%3E%3Cpath d='M8 2 L8 8 L2 8'/%3E%3C/svg%3E");
+}
+
+
+/* ============================================================
+ * 5. 水墨分割线 (Ink Divider)
+ * 毛笔笔触效果的分割线。
+ * 场景：章节分隔、内容区分。
+ * ============================================================ */
+.han-divider-ink {
+  position: relative;
+  height: 24px;
+  margin: var(--han-space-7) 0;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--han-space-4);
+}
+
+.han-divider-ink::before,
+.han-divider-ink::after {
+  content: "";
+  flex: 1;
+  max-width: 40%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--han-color-ink-400) 10%,
+    var(--han-color-ink-500) 50%,
+    var(--han-color-ink-400) 90%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+
+.han-divider-ink > .han-divider-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--han-color-ink-600);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--han-color-paper-100),
+              0 0 0 4px var(--han-color-ink-300);
+}
+
+/* 带印章装饰的分割线 */
+.han-divider-ink--seal > .han-divider-dot {
+  width: 28px;
+  height: 28px;
+  background: var(--han-color-accent-control);
+  color: var(--han-color-on-accent);
+  border-radius: var(--han-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-xs);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  letter-spacing: 0;
+  box-shadow: var(--han-shadow-seal);
+  transform: rotate(-3deg);
+}
+
+/* 毛笔墨痕不对称分割线 */
+.han-divider-ink--brush {
+  height: 32px;
+}
+
+.han-divider-ink--brush::before {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--han-color-ink-700) 8%,
+    var(--han-color-ink-600) 45%,
+    var(--han-color-ink-700) 85%,
+    transparent 100%
+  );
+  filter: blur(0.8px);
+  border-radius: 50%;
+}
+
+.han-divider-ink--brush::after {
+  height: 1px;
+  opacity: 0.4;
+  margin-top: 8px;
+  filter: blur(1px);
+}
+
+/* 双分割线（印章居中型） */
+.han-divider-ink--double::before,
+.han-divider-ink--double::after {
+  height: 1px;
+}
+
+
+/* ============================================================
+ * 6. 印章 (Stamp)
+ * 红色方形印章组件，可用于署名或强调。
+ * 场景：文章署名、品牌印章、认证标记。
+ * ============================================================ */
+.han-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--han-stamp-size);
+  height: var(--han-stamp-size);
+  background-color: var(--han-stamp-bg);
+  color: var(--han-stamp-text);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-stamp-font);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  letter-spacing: 0;
+  line-height: 1;
+  border-radius: var(--han-stamp-border-radius);
+  box-shadow: var(--han-shadow-seal);
+  transform: rotate(-5deg);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  padding: var(--han-space-2);
+  text-align: center;
+  transition: transform var(--han-duration-slow) var(--han-ease-spring);
+}
+
+.han-stamp:hover {
+  transform: rotate(-5deg) scale(1.1);
+}
+
+/* 印章斑驳效果（通过伪元素模拟岁月痕迹） */
+.han-stamp::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 25%),
+    radial-gradient(circle at 70% 60%, rgba(0,0,0,0.1) 0%, transparent 20%),
+    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.08) 0%, transparent 15%);
+  pointer-events: none;
+}
+
+/* 印章文字排版（竖排两字或四字） */
+.han-stamp--2char {
+  font-size: calc(var(--han-stamp-font) * 1.4);
+  flex-direction: column;
+  gap: 2px;
+}
+
+.han-stamp--4char {
+  font-size: calc(var(--han-stamp-font) * 1.1);
+  flex-direction: column;
+  gap: 1px;
+}
+
+.han-stamp--multi {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: var(--han-space-1);
+  font-size: calc(var(--han-stamp-font) * 0.9);
+}
+
+/* 印章带边框 */
+.han-stamp--border {
+  border: var(--han-border-width-2) solid var(--han-color-gold-500);
+  background: var(--han-color-vermilion-500);
+}
+
+/* 印泥效果（印章底部阴影） */
+.han-stamp::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 10%;
+  right: 10%;
+  height: 6px;
+  background: radial-gradient(ellipse at center, rgba(192, 57, 43, 0.35) 0%, transparent 70%);
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+/* 大号印章 */
+.han-stamp--lg {
+  --han-stamp-size: 72px;
+  --han-stamp-font: 24px;
+}
+
+/* 小号印章 */
+.han-stamp--sm {
+  --han-stamp-size: 36px;
+  --han-stamp-font: 12px;
+}
+
+/* 方形印章（正正方方，不倒角） */
+.han-stamp--square {
+  --han-stamp-border-radius: 0;
+}
+
+/* 印章组（用于署名） */
+.han-stamp-group {
+  display: inline-flex;
+  gap: var(--han-space-3);
+  align-items: flex-end;
+}
+
+
+/* ============================================================
+ * 辅助组件：分隔和标签
+ * ============================================================ */
+
+/* 标签 */
+.han-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--han-space-1) var(--han-space-3);
+  font-family: var(--han-font-sans);
+  font-size: var(--han-fs-xs);
+  color: var(--han-color-text-secondary);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border);
+  border-radius: var(--han-radius-pill);
+  letter-spacing: var(--han-ls-wide);
+}
+
+.han-tag--vermilion {
+  color: var(--han-color-vermilion-600);
+  border-color: var(--han-color-vermilion-300);
+  background: var(--han-color-vermilion-50);
+}
+
+.han-tag--gold {
+  color: var(--han-color-gold-700);
+  border-color: var(--han-color-gold-300);
+  background: var(--han-color-gold-50);
+}
+
+/* 徽章 */
+.han-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--han-space-2);
+  font-size: var(--han-fs-xs);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-on-accent);
+  background: var(--han-color-accent-control);
+  border-radius: var(--han-radius-pill);
+}
+
+
+/* ============================================================
+ * 动画辅助类
+ * ============================================================ */
+.han-animate-fade-in {
+  animation: han-fade-in var(--han-duration-slower) var(--han-ease-out) both;
+}
+
+.han-animate-fade-in-up {
+  animation: han-fade-in-up var(--han-duration-slower) var(--han-ease-out) both;
+}
+
+.han-animate-ink-spread {
+  animation: han-ink-spread var(--han-duration-slower) var(--han-ease-out) both;
+}
+
+.han-animate-seal-drop {
+  animation: han-seal-drop 0.6s var(--han-ease-spring) both;
+}
+
+.han-animate-sway {
+  animation: han-sway 4s var(--han-ease-inout) infinite;
+}
+
+
+/* ============================================================
+ * 浏览器兼容与降级
+ * ============================================================ */
+
+/* backdrop-filter 降级 */
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+  .han-navbar {
+    background-color: var(--han-color-bg);
+    opacity: 0.95;
+  }
+}
+
+/* writing-mode 降级 */
+@supports not (writing-mode: vertical-rl) {
+  .han-vertical {
+    display: inline-block;
+    transform: rotate(90deg);
+    transform-origin: left top;
+  }
+}
+
+/* 减少动画时移除 transform */
+@media (prefers-reduced-motion: reduce) {
+  .han-btn-seal,
+  .han-stamp {
+    transform: none !important;
+  }
+  .han-card-scroll:hover {
+    transform: none;
+  }
+}
+
+
+/* ============================================================
+ * 7. 水墨输入框 (Ink Input)
+ * 中国风表单组件，水墨边框 + 毛笔焦点效果
+ * 场景：表单、搜索框、留言板
+ * ============================================================ */
+.han-input {
+  display: block;
+  width: 100%;
+  padding: var(--han-space-3) var(--han-space-4);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-primary);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-md);
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+  position: relative;
+}
+
+.han-input:focus-visible {
+  border-color: var(--han-color-accent-control);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--han-focus-ring) 22%, transparent),
+    inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.han-input::placeholder {
+  color: var(--han-color-text-tertiary);
+  font-family: var(--han-font-kai);
+}
+
+.han-input--ink {
+  border: none;
+  border-bottom: 2px solid var(--han-color-border);
+  background: transparent;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.han-input--ink:focus-visible {
+  border-bottom-color: var(--han-color-accent-control);
+  box-shadow: none;
+}
+
+/* 标签 */
+.han-form-label {
+  display: block;
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+  margin-bottom: var(--han-space-2);
+  letter-spacing: var(--han-ls-wide);
+}
+
+/* 表单组 */
+.han-form-group {
+  margin-bottom: var(--han-space-5);
+}
+
+/* 按钮组 */
+.han-btn-group {
+  display: flex;
+  gap: var(--han-space-3);
+  flex-wrap: wrap;
+}
+
+/* 次要按钮 */
+.han-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--han-space-2) var(--han-space-5);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-primary);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-md);
+  cursor: pointer;
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-btn-secondary:hover {
+  border-color: var(--han-color-accent-control);
+  color: var(--han-color-accent-text);
+}
+
+/* 水墨链接按钮 */
+.han-btn-ink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--han-space-1);
+  padding: var(--han-space-2) var(--han-space-4);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-btn-ink:hover {
+  color: var(--han-color-accent-text);
+  border-bottom-color: var(--han-color-accent-control);
+}
+
+
+/* ============================================================
+ * 8. 中国风模态框 (Classical Modal)
+ * 窗花边框 + 水墨标题的对话框
+ * 场景：确认框、表单弹窗、图片查看
+ * ============================================================ */
+.han-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--han-space-5);
+  background: rgba(26, 24, 22, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: var(--han-z-modal);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--han-duration-slow) var(--han-ease-out),
+              visibility var(--han-duration-slow) var(--han-ease-out);
+}
+
+.han-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.han-modal__dialog {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border-strong);
+  border-radius: var(--han-radius-lg);
+  box-shadow: var(--han-shadow-xl);
+  transform: scale(0.95) translateY(10px);
+  transition: transform var(--han-duration-slow) var(--han-ease-out);
+}.han-modal.is-open .han-modal__dialog {
+  transform: scale(1) translateY(0);
+}
+
+.han-modal__header {
+  padding: var(--han-space-5) var(--han-space-6);
+  border-bottom: 1px solid var(--han-color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.han-modal__title {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-lg);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  letter-spacing: var(--han-ls-wide);
+  position: relative;
+  padding-left: var(--han-space-4);
+}
+
+.han-modal__title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background: var(--han-color-accent-decorative);
+  border-radius: 2px;
+}
+
+.han-modal__close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--han-color-border);
+  border-radius: var(--han-radius-sm);
+  color: var(--han-color-text-secondary);
+  cursor: pointer;
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-modal__close:hover {
+  border-color: var(--han-color-accent-control);
+  color: var(--han-color-accent-text);
+}
+
+.han-modal__body {
+  padding: var(--han-space-6);
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-secondary);
+  line-height: var(--han-lh-relaxed);
+}
+
+.han-modal__footer {
+  padding: var(--han-space-4) var(--han-space-6);
+  border-top: 1px dashed var(--han-color-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--han-space-3);
+}
+
+/* 带窗花边角的模态框 */
+.han-modal--ornament .han-modal__dialog::before,
+.han-modal--ornament .han-modal__dialog::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235e5a53' stroke-width='1.5'%3E%3Cpath d='M2 2 L2 10 M2 2 L10 2 M2 2 L8 8'/%3E%3Ccircle cx='4' cy='4' r='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.han-modal--ornament .han-modal__dialog::before { top: 8px; left: 8px; }
+.han-modal--ornament .han-modal__dialog::after { top: 8px; right: 8px; transform: scaleX(-1); }
+
+
+/* ============================================================
+ * 9. 水墨标签页 (Ink Tabs)
+ * 毛笔笔触指示器的标签页
+ * 场景：内容切换、分类展示
+ * ============================================================ */
+.han-tabs {
+  width: 100%;
+}
+
+.han-tabs__nav {
+  display: flex;
+  gap: var(--han-space-2);
+  border-bottom: var(--han-border-width) solid var(--han-color-border);
+  margin-bottom: var(--han-space-5);
+}
+
+.han-tabs__item {
+  position: relative;
+  padding: var(--han-space-3) var(--han-space-5);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: var(--han-ls-wide);
+  transition: color var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-tabs__item::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--han-color-accent-decorative) 20%,
+    var(--han-color-accent-decorative) 80%,
+    transparent 100%
+  );
+  border-radius: 2px;
+  transition: transform var(--han-duration-slow) var(--han-ease-out);
+}
+
+.han-tabs__item:hover {
+  color: var(--han-color-text-primary);
+}
+
+.han-tabs__item.is-active {
+  color: var(--han-color-text-primary);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+}
+
+.han-tabs__item.is-active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.han-tabs__content {
+  animation: han-fade-in var(--han-duration-slower) var(--han-ease-out);
+}
+
+
+/* ============================================================
+ * 10. 中国风表格 (Classical Table)
+ * 水墨线框、传统风格的数据表格
+ * 场景：数据展示、价格列表
+ * ============================================================ */
+.han-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+}
+
+.han-table thead {
+  background: var(--han-color-bg-elevated);
+}
+
+.han-table th {
+  padding: var(--han-space-3) var(--han-space-4);
+  text-align: left;
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  letter-spacing: var(--han-ls-wide);
+  border-bottom: var(--han-border-width-2) solid var(--han-color-border-strong);
+}
+
+.han-table td {
+  padding: var(--han-space-3) var(--han-space-4);
+  color: var(--han-color-text-secondary);
+  border-bottom: var(--han-border-width) solid var(--han-color-border);
+}
+
+.han-table tbody tr {
+  transition: background-color var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-table tbody tr:hover {
+  background: var(--han-color-bg-surface);
+}
+
+/* 竖线分隔表格 */
+.han-table--lined th,
+.han-table--lined td {
+  border-right: var(--han-border-width) dashed var(--han-color-border);
+}
+
+.han-table--lined th:last-child,
+.han-table--lined td:last-child {
+  border-right: none;
+}
+
+/* 印章行样式 */
+.han-table--seal tbody tr:last-child td {
+  border-bottom: var(--han-border-width-2) solid var(--han-color-vermilion-500);
+}
+
+
+/* ============================================================
+ * 11. 分页器 (Seal Pagination)
+ * 印章风格的分页组件
+ * 场景：列表分页、产品翻页
+ * ============================================================ */
+.han-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--han-space-2);
+  margin: var(--han-space-6) 0;
+}
+
+.han-pagination__item {
+  min-width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-sm);
+  cursor: pointer;
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-pagination__item:hover {
+  border-color: var(--han-color-accent-control);
+  color: var(--han-color-accent-text);
+}
+
+.han-pagination__item.is-active {
+  background: var(--han-color-accent-control);
+  color: var(--han-color-on-accent);
+  border-color: var(--han-color-accent-control);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  transform: rotate(-2deg);
+  box-shadow: var(--han-shadow-seal);
+}
+
+.han-pagination__item.is-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.han-pagination__dots {
+  color: var(--han-color-text-tertiary);
+  padding: 0 var(--han-space-1);
+}
+
+
+/* ============================================================
+ * 12. 常规卡片 (Regular Card)
+ * 不同于卷轴卡片的普通卡片
+ * 场景：信息展示、内容容器
+ * ============================================================ */
+.han-card {
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-lg);
+  padding: var(--han-space-5);
+  box-shadow: var(--han-shadow-sm);
+  transition: all var(--han-duration-slow) var(--han-ease-out);
+}
+
+.han-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--han-shadow-md);
+}
+
+.han-card__title {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-lg);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  margin-bottom: var(--han-space-3);
+  letter-spacing: var(--han-ls-wide);
+}
+
+.han-card__body {
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-secondary);
+  line-height: var(--han-lh-relaxed);
+}
+
+.han-card__footer {
+  margin-top: var(--han-space-4);
+  padding-top: var(--han-space-3);
+  border-top: var(--han-border-width) dashed var(--han-color-border);
+}
+
+/* 带装饰边的卡片 */
+.han-card--ornament {
+  position: relative;
+  border: var(--han-border-width-2) solid var(--han-color-border-strong);
+}
+
+.han-card--ornament::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: var(--han-border-width) solid var(--han-color-gold-400);
+  border-radius: calc(var(--han-radius-lg) - 2px);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* 水墨卡片 */
+.han-card--ink {
+  background: linear-gradient(135deg, var(--han-color-bg-surface) 0%, var(--han-color-bg-elevated) 100%);
+  border: none;
+  box-shadow:
+    0 2px 8px rgba(26, 24, 22, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+
+/* ============================================================
+ * 13. Hero 区域组件
+ * 中国风首页横幅
+ * 场景：网站首页、品牌展示
+ * ============================================================ */
+.han-hero {
+  position: relative;
+  padding: var(--han-space-16) 0;
+  overflow: hidden;
+}
+
+.han-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.han-hero__title {
+  font-family: var(--han-font-kai);
+  font-size: clamp(var(--han-fs-3xl), 6vw, var(--han-fs-5xl));
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  line-height: var(--han-lh-tight);
+  letter-spacing: var(--han-ls-widest);
+  margin-bottom: var(--han-space-5);
+  animation: han-fade-in-up var(--han-duration-slower) var(--han-ease-out);
+}
+
+.han-hero__subtitle {
+  font-family: var(--han-font-song);
+  font-size: var(--han-fs-lg);
+  color: var(--han-color-text-secondary);
+  max-width: 600px;
+  line-height: var(--han-lh-relaxed);
+  margin-bottom: var(--han-space-7);
+  animation: han-fade-in-up var(--han-duration-slower) 0.2s var(--han-ease-out) both;
+}
+
+.han-hero__actions {
+  display: flex;
+  gap: var(--han-space-4);
+  animation: han-fade-in-up var(--han-duration-slower) 0.4s var(--han-ease-out) both;
+}
+
+/* 带装饰的 Hero */
+.han-hero--ornament {
+  background: var(--han-gradient-paper);
+}
+
+.han-hero--ornament::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%235e5a53' stroke-width='0.4' opacity='0.08'%3E%3Ccircle cx='100' cy='100' r='80'/%3E%3Ccircle cx='100' cy='100' r='60'/%3E%3Ccircle cx='100' cy='100' r='40'/%3E%3Ccircle cx='100' cy='100' r='20'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* 山水 Hero — 带远山剪影背景 */
+.han-hero--landscape {
+  background: var(--han-gradient-paper);
+  overflow: hidden;
+}
+
+.han-hero--landscape::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200' preserveAspectRatio='none'%3E%3Cpath d='M0 200 L0 140 L80 80 L150 120 L220 60 L320 110 L400 50 L500 100 L580 70 L680 120 L760 40 L860 90 L950 60 L1050 110 L1150 70 L1200 100 L1200 200 Z' fill='%232a2824' opacity='0.08'/%3E%3Cpath d='M0 200 L0 160 L100 110 L200 140 L300 90 L400 130 L500 80 L600 120 L700 100 L800 140 L900 90 L1000 130 L1100 100 L1200 120 L1200 200 Z' fill='%232a2824' opacity='0.12'/%3E%3C/svg%3E");
+  background-size: 100% 200px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.han-hero--landscape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* 书法 Hero */
+.han-hero--calligraphy .han-hero__title {
+  font-family: "LXGW WenKai", var(--han-font-kai);
+  writing-mode: horizontal-tb;
+  position: relative;
+}
+
+.han-hero--calligraphy .han-hero__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--han-color-vermilion-500);
+  margin-top: var(--han-space-4);
+  border-radius: 2px;
+}
+
+/* Hero 印章装饰 */
+.han-hero__seal {
+  position: absolute;
+  bottom: var(--han-space-8);
+  right: var(--han-space-8);
+  opacity: 0.9;
+}
+
+/* Hero 中式落款 */
+.han-hero__signature {
+  position: absolute;
+  bottom: var(--han-space-6);
+  right: var(--han-space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--han-space-3);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+  writing-mode: vertical-rl;
+  letter-spacing: var(--han-ls-wide);
+}
+
+/* Hero 装饰边框 */
+.han-hero--framed {
+  padding-top: var(--han-space-10);
+  padding-bottom: var(--han-space-10);
+}
+
+.han-hero--framed::before {
+  content: "";
+  position: absolute;
+  inset: var(--han-space-5);
+  border: var(--han-border-width) solid var(--han-color-gold-400);
+  border-radius: var(--han-radius-lg);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+
+/* ============================================================
+ * 14. Footer 组件
+ * 中国风页脚，带装饰线
+ * 场景：网站底部
+ * ============================================================ */
+.han-footer {
+  margin-top: var(--han-space-12);
+  padding: var(--han-space-7) 0 var(--han-space-6);
+  border-top: var(--han-border-width) solid var(--han-color-border);
+  position: relative;
+}
+
+.han-footer::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--han-color-vermilion-500) 50%,
+    transparent 100%
+  );
+  border-radius: 2px;
+}
+
+.han-footer__content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--han-space-7);
+  margin-bottom: var(--han-space-6);
+}
+
+.han-footer__section h4 {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-md);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  margin-bottom: var(--han-space-3);
+  letter-spacing: var(--han-ls-wide);
+}
+
+.han-footer__section ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--han-space-2);
+}
+
+.han-footer__section a {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+  transition: color var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-footer__section a:hover {
+  color: var(--han-color-accent-text);
+}
+
+.han-footer__bottom {
+  text-align: center;
+  padding-top: var(--han-space-5);
+  border-top: var(--han-border-width) dashed var(--han-color-border);
+  font-size: var(--han-fs-xs);
+  color: var(--han-color-text-tertiary);
+}
+
+/* 印章页脚 */
+.han-footer__seal {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--han-space-5);
+}
+
+
+/* ============================================================
+ * 15. 手风琴组件 (Accordion)
+ * 卷轴展开动画的折叠面板
+ * 场景：FAQ、详情展示
+ * ============================================================ */
+.han-accordion {
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-md);
+  overflow: hidden;
+}
+
+.han-accordion__item {
+  border-bottom: var(--han-border-width) solid var(--han-color-border);
+}
+
+.han-accordion__item:last-child {
+  border-bottom: none;
+}
+
+.han-accordion__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--han-space-4) var(--han-space-5);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-primary);
+  background: var(--han-color-bg-surface);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-accordion__trigger:hover {
+  background: var(--han-color-bg-elevated);
+}
+
+.han-accordion__icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  flex-shrink: 0;
+  margin-left: var(--han-space-3);
+}
+
+.han-accordion__icon::before,
+.han-accordion__icon::after {
+  content: "";
+  position: absolute;
+  background: var(--han-color-text-secondary);
+  transition: transform var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-accordion__icon::before {
+  top: 50%;
+  left: 2px;
+  right: 2px;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.han-accordion__icon::after {
+  left: 50%;
+  top: 2px;
+  bottom: 2px;
+  width: 2px;
+  transform: translateX(-50%);
+}
+
+.han-accordion__item.is-open .han-accordion__icon::after {
+  transform: translateX(-50%) scaleY(0);
+}
+
+.han-accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--han-duration-slower) var(--han-ease-out);
+}
+
+.han-accordion__item.is-open .han-accordion__panel {
+  max-height: 500px;
+}
+
+.han-accordion__content {
+  padding: var(--han-space-4) var(--han-space-5);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+  line-height: var(--han-lh-relaxed);
+  background: var(--han-color-bg-surface);
+}
+
+
+/* ============================================================
+ * 16. 徽章组件 (Seal Badge)
+ * 印章风格的徽章/标签
+ * 场景：分类标记、状态标识
+ * ============================================================ */
+.han-seal-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 22px;
+  padding: 0 var(--han-space-2);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-xs);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-on-accent);
+  background: var(--han-color-accent-control);
+  border-radius: var(--han-radius-sm);
+  letter-spacing: 0;
+  transform: rotate(-2deg);
+  box-shadow: 1px 2px 4px rgba(192, 57, 43, 0.3);
+}
+
+.han-seal-badge--gold {
+  background: var(--han-color-gold-500);
+  box-shadow: 1px 2px 4px rgba(198, 138, 46, 0.3);
+}
+
+.han-seal-badge--ink {
+  background: var(--han-color-ink-700);
+  box-shadow: 1px 2px 4px rgba(42, 40, 36, 0.3);
+}
+
+.han-seal-badge--circle {
+  min-width: 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+
+/* ============================================================
+ * 17. 进度指示器 (Ink Progress)
+ * 水墨风格的进度条
+ * 场景：加载进度、完成度
+ * ============================================================ */
+.han-progress {
+  width: 100%;
+  height: 8px;
+  background: var(--han-color-bg-elevated);
+  border-radius: var(--han-radius-pill);
+  overflow: hidden;
+}
+
+.han-progress__bar {
+  height: 100%;
+  background: var(--han-gradient-ink);
+  border-radius: inherit;
+  transition: width var(--han-duration-slow) var(--han-ease-out);
+}
+
+.han-progress--seal .han-progress__bar {
+  background: var(--han-gradient-vermilion);
+}
+
+.han-progress--gold .han-progress__bar {
+  background: var(--han-gradient-gold);
+}
+
+/* 环形进度 */
+.han-progress-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+}
+
+.han-progress-ring svg {
+  transform: rotate(-90deg);
+}
+
+.han-progress-ring circle {
+  fill: none;
+  stroke: var(--han-color-bg-elevated);
+  stroke-width: 4;
+}
+
+.han-progress-ring circle:nth-child(2) {
+  stroke: var(--han-color-accent-control);
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--han-duration-slow) var(--han-ease-out);
+}
+
+
+/* ============================================================
+ * 18. 头像组件 (Classical Avatar)
+ * 圆形/方形头像，带印章装饰
+ * ============================================================ */
+.han-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--han-color-bg-elevated);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-md);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-lg);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-secondary);
+  overflow: hidden;
+}
+
+.han-avatar--circle {
+  border-radius: 50%;
+}
+
+.han-avatar--seal {
+  border-color: var(--han-color-accent-control);
+  color: var(--han-color-accent-text);
+  border-radius: var(--han-radius-sm);
+  transform: rotate(-3deg);
+}
+
+.han-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ============================================================
+ * 19. 价格标签 (Price Tag)
+ * 带印章装饰的价格展示
+ * ============================================================ */
+.han-price-tag {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--han-space-1);
+}
+
+.han-price-tag__currency {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+}
+
+.han-price-tag__amount {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-2xl);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-accent-text);
+}
+
+.han-price-tag__unit {
+  font-size: var(--han-fs-xs);
+  color: var(--han-color-text-tertiary);
+}
+
+.han-price-tag--original .han-price-tag__amount {
+  text-decoration: line-through;
+  color: var(--han-color-text-tertiary);
+  font-size: var(--han-fs-base);
+}
+
+
+/* ============================================================
+ * 20. 星级评分 (Seal Rating)
+ * 印章风格的评分组件
+ * ============================================================ */
+.han-rating {
+  display: inline-flex;
+  gap: var(--han-space-1);
+}
+
+.han-rating__star {
+  width: 20px;
+  height: 20px;
+  color: var(--han-color-ink-200);
+  cursor: pointer;
+  transition: color var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-rating__star.is-active,
+.han-rating__star.is-hover {
+  color: var(--han-color-gold-500);
+}
+
+.han-rating__star svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* 印章评分 */
+.han-rating--seal .han-rating__star.is-active {
+  color: var(--han-color-accent-text);
+}
+
+
+/* ========================================================
+ * 图案-组件集成 (Pattern-Component Integration)
+ * 将 patterns.css 中的图案与组件结合
+ * 配合 .han-pattern-overlay / .han-pattern-cloud-bg 等使用
+ * ====================================================== */
+
+/* 带图案的卡片 — 轻量纹样叠加 */
+.han-card--pattern {
+  position: relative;
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-lg);
+  padding: var(--han-space-5);
+  box-shadow: var(--han-shadow-sm);
+  overflow: hidden;
+}
+
+.han-card--pattern > * {
+  position: relative;
+  z-index: 1;
+}
+
+.han-card--pattern::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%235e5a53' stroke-width='1' opacity='0.10'%3E%3Cpath d='M20 60 Q20 40 40 40 Q45 30 55 35 Q65 30 70 40 Q90 40 90 60 Q90 80 70 80 Q65 85 55 80 Q45 85 40 80 Q20 80 20 60'/%3E%3Ccircle cx='40' cy='55' r='6'/%3E%3Ccircle cx='60' cy='50' r='8'/%3E%3Ccircle cx='80' cy='55' r='6'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 120px 120px;
+  opacity: var(--han-pattern-opacity, 0.12);
+  mix-blend-mode: multiply;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+/* 带图案的区块背景 */
+.han-section--pattern {
+  position: relative;
+  padding: var(--han-section-pattern-padding, var(--han-space-12)) 0;
+  overflow: hidden;
+}
+
+.han-section--pattern::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%235e5a53' stroke-width='0.8' opacity='0.08'%3E%3Cpath d='M80 20 C60 20 50 40 60 60 C70 80 90 80 100 60 C110 40 100 20 80 20'/%3E%3Cpath d='M20 80 C20 60 40 50 60 60 C80 70 80 90 60 100 C40 110 20 100 20 80'/%3E%3Cpath d='M140 80 C140 60 120 50 100 60 C80 70 80 90 100 100 C120 110 140 100 140 80'/%3E%3Cpath d='M80 140 C60 140 50 120 60 100 C70 80 90 80 100 100 C110 120 100 140 80 140'/%3E%3Ccircle cx='80' cy='80' r='6'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 160px 160px;
+  opacity: var(--han-pattern-opacity, 0.12);
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+
+.han-section--pattern > * {
+  position: relative;
+  z-index: 1;
+}

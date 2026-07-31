@@ -1,0 +1,496 @@
+/* ============================================================
+ * 汉 · 页面结构组件 (Page Structure Components)
+ * 中式面包屑、步骤条、时间线、树形目录等
+ *
+ * 使用方式：
+ *   <nav class="han-breadcrumb">...</nav>
+ *   <div class="han-steps">...</div>
+ *   <div class="han-timeline">...</div>
+ * ============================================================ */
+
+
+/* ========================================================
+ * 1. 中式面包屑 (Breadcrumb)
+ * 水墨线条分隔的面包屑导航
+ * ====================================================== */
+.han-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--han-space-2);
+  padding: var(--han-space-3) var(--han-space-4);
+  background: var(--han-color-bg-surface);
+  border-radius: var(--han-radius-md);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+}
+
+.han-breadcrumb__list {
+  display: flex;
+  align-items: center;
+  gap: var(--han-space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.han-breadcrumb__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--han-space-2);
+  color: var(--han-color-text-tertiary);
+}
+
+.han-breadcrumb__item a {
+  color: var(--han-color-text-secondary);
+  text-decoration: none;
+  transition: color var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-breadcrumb__item a:hover {
+  color: var(--han-color-accent-text);
+}
+
+.han-breadcrumb__item.is-current {
+  color: var(--han-color-text-primary);
+  font-weight: var(--han-fw-medium);
+}
+
+/* 分隔符 - 水墨点或回纹 */
+.han-breadcrumb__separator {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--han-color-ink-300);
+  border-radius: 50%;
+}
+
+/* 回纹分隔符 */
+.han-breadcrumb__separator--huiwen {
+  width: 16px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'%3E%3Cpath d='M2 6 L2 3 L5 3 L5 6 L3 6 L3 9 L7 9 L7 6' fill='none' stroke='%235e5a53' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+/* ========================================================
+ * 2. 中式步骤条 (Steps)
+ * 带印章节点的步骤指示器
+ * ====================================================== */
+.han-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--han-space-5) 0;
+}
+
+.han-steps__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+/* 步骤节点 */
+.han-steps__node {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-sm);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-tertiary);
+  position: relative;
+  z-index: 1;
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+}
+
+/* 当前步骤 */
+.han-steps__item.is-active .han-steps__node {
+  background: var(--han-color-accent-control);
+  border-color: var(--han-color-accent-control);
+  color: var(--han-color-on-accent);
+  box-shadow: var(--han-shadow-seal);
+  transform: scale(1.1);
+}
+
+/* 已完成步骤 */
+.han-steps__item.is-completed .han-steps__node {
+  background: var(--han-color-ink-700);
+  border-color: var(--han-color-ink-700);
+  color: var(--han-color-paper-100);
+}
+
+/* 步骤标题 */
+.han-steps__title {
+  margin-top: var(--han-space-3);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-tertiary);
+  text-align: center;
+  max-width: 100px;
+  line-height: var(--han-lh-normal);
+}
+
+.han-steps__item.is-active .han-steps__title {
+  color: var(--han-color-text-primary);
+  font-weight: var(--han-fw-medium);
+}
+
+.han-steps__item.is-completed .han-steps__title {
+  color: var(--han-color-text-secondary);
+}
+
+/* 连接线 */
+.han-steps__connector {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: var(--han-color-border);
+  z-index: 0;
+}
+
+.han-steps__item.is-completed .han-steps__connector {
+  background: var(--han-color-ink-700);
+}
+
+.han-steps__item:last-child .han-steps__connector {
+  display: none;
+}
+
+
+/* ========================================================
+ * 3. 中式时间线 (Timeline)
+ * 竖排时间线，带印章节点
+ * ====================================================== */
+.han-timeline {
+  position: relative;
+  padding: var(--han-space-5) 0;
+}
+
+.han-timeline::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--han-color-ink-200) 0%,
+    var(--han-color-ink-300) 50%,
+    var(--han-color-ink-200) 100%
+  );
+}
+
+.han-timeline__item {
+  position: relative;
+  padding-left: var(--han-space-7);
+  padding-bottom: var(--han-space-7);
+}
+
+.han-timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+/* 时间线节点 */
+.han-timeline__node {
+  position: absolute;
+  left: 8px;
+  top: var(--han-space-2);
+  width: 18px;
+  height: 18px;
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-ink-400);
+  border-radius: var(--han-radius-sm);
+  z-index: 1;
+}
+
+/* 当前节点 */
+.han-timeline__item.is-current .han-timeline__node {
+  background: var(--han-color-accent-control);
+  border-color: var(--han-color-accent-control);
+  box-shadow: 0 0 0 4px var(--han-color-bg-elevated);
+}
+
+/* 已完成节点 */
+.han-timeline__item.is-completed .han-timeline__node {
+  background: var(--han-color-ink-700);
+  border-color: var(--han-color-ink-700);
+}
+
+/* 时间标签 */
+.han-timeline__date {
+  display: inline-block;
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-tertiary);
+  margin-bottom: var(--han-space-1);
+}
+
+/* 时间标题 */
+.han-timeline__title {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-lg);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  margin-bottom: var(--han-space-2);
+}
+
+/* 时间描述 */
+.han-timeline__content {
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-secondary);
+  line-height: var(--han-lh-relaxed);
+}
+
+/* 右侧时间线（反转） */
+.han-timeline--right::before {
+  left: auto;
+  right: 16px;
+}
+
+.han-timeline--right .han-timeline__item {
+  padding-left: 0;
+  padding-right: var(--han-space-7);
+  text-align: right;
+}
+
+.han-timeline--right .han-timeline__node {
+  left: auto;
+  right: 8px;
+}
+
+
+/* ========================================================
+ * 4. 树形目录 (Tree)
+ * 中式目录树，带展开/收起
+ * ====================================================== */
+.han-tree {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--han-font-kai);
+}
+
+.han-tree__node {
+  padding: var(--han-space-2) var(--han-space-3);
+  border-radius: var(--han-radius-md);
+  cursor: pointer;
+  transition: background-color var(--han-duration-fast) var(--han-ease-out);
+}
+
+.han-tree__node:hover {
+  background: var(--han-color-bg-elevated);
+}
+
+.han-tree__node.is-active {
+  background: var(--han-color-bg-elevated);
+  border-left: 3px solid var(--han-color-accent-control);
+}
+
+/* 节点内容 */
+.han-tree__content {
+  display: flex;
+  align-items: center;
+  gap: var(--han-space-2);
+}
+
+/* 展开箭头 */
+.han-tree__arrow {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--han-duration-fast) var(--han-ease-out);
+}
+
+.han-tree__node.is-open > .han-tree__content .han-tree__arrow {
+  transform: rotate(90deg);
+}
+
+/* 节点文字 */
+.han-tree__text {
+  flex: 1;
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+}
+
+.han-tree__node.is-active > .han-tree__content .han-tree__text {
+  color: var(--han-color-text-primary);
+  font-weight: var(--han-fw-medium);
+}
+
+/* 子节点 */
+.han-tree__children {
+  list-style: none;
+  padding-left: var(--han-space-5);
+  margin-top: var(--han-space-1);
+  border-left: var(--han-border-width) dashed var(--han-color-border);
+  margin-left: var(--han-space-2);
+}
+
+.han-tree__children .han-tree__node {
+  font-size: var(--han-fs-sm);
+}
+
+/* 叶子节点（不可展开） */
+.han-tree__node.is-leaf > .han-tree__content .han-tree__arrow {
+  visibility: hidden;
+}
+
+
+/* ========================================================
+ * 5. 中式分页 (Pagination)
+ * 印章风格的分页器（增强版）
+ * ====================================================== */
+.han-pagination-enhanced {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--han-space-2);
+  padding: var(--han-space-5) 0;
+}
+
+.han-pagination-enhanced__info {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-tertiary);
+  margin: 0 var(--han-space-4);
+}
+
+.han-pagination-enhanced__btn {
+  min-width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--han-space-3);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-sm);
+  cursor: pointer;
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-pagination-enhanced__btn:hover:not(.is-disabled) {
+  border-color: var(--han-color-accent-control);
+  color: var(--han-color-accent-text);
+}
+
+.han-pagination-enhanced__btn.is-active {
+  background: var(--han-color-accent-control);
+  border-color: var(--han-color-accent-control);
+  color: var(--han-color-on-accent);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  transform: rotate(-2deg);
+  box-shadow: var(--han-shadow-seal);
+}
+
+.han-pagination-enhanced__btn.is-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+/* ========================================================
+ * 6. 中式分割布局 (Split Layout)
+ * 不等分页面布局
+ * ====================================================== */
+
+/* 左右分屏 */
+.han-split-layout {
+  display: grid;
+  gap: var(--han-space-7);
+  align-items: start;
+}
+
+/* 主要内容 2/3 + 次要 1/3 */
+.han-split-layout--main {
+  grid-template-columns: 2fr 1fr;
+}
+
+/* 主要内容 7/10 + 次要 3/10 */
+.han-split-layout--painting {
+  grid-template-columns: 7fr 3fr;
+}
+
+/* 主内容 + 侧边栏 */
+.han-split-layout {
+  grid-template-columns: 1fr 320px;
+}
+
+/* 侧边栏 */
+.han-sidebar {
+  position: sticky;
+  top: calc(var(--han-nav-height) + var(--han-space-5));
+}
+
+.han-sidebar__card {
+  background: var(--han-color-bg-surface);
+  border: var(--han-border);
+  border-radius: var(--han-radius-lg);
+  padding: var(--han-space-5);
+}
+
+.han-sidebar__title {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-md);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+  margin-bottom: var(--han-space-4);
+  padding-bottom: var(--han-space-2);
+  border-bottom: var(--han-border-width) solid var(--han-color-border);
+}
+
+
+/* ========================================================
+ * 7. 响应式调整
+ * ====================================================== */
+@media (max-width: 768px) {
+  .han-steps {
+    flex-wrap: wrap;
+    gap: var(--han-space-4);
+  }
+
+  .han-steps__item {
+    flex: 0 0 calc(50% - var(--han-space-2));
+  }
+
+  .han-split-layout,
+  .han-split-layout--main,
+  .han-split-layout--painting {
+    grid-template-columns: 1fr;
+  }
+
+  .han-timeline__item {
+    padding-left: var(--han-space-6);
+  }
+
+  .han-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .han-steps__item {
+    flex: 0 0 100%;
+  }
+
+  .han-steps__connector {
+    display: none;
+  }
+}

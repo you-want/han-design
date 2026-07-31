@@ -1,0 +1,4 @@
+interface:
+  display_name: "Han Design"
+  short_description: "Build accessible, contextual Chinese-inspired interfaces"
+  default_prompt: "Use $han-design to create a restrained, accessible Chinese-inspired interface with clear cultural context."

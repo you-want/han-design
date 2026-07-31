@@ -1,397 +1,195 @@
-# 汉 · Han Design System
-
-> 让东方美学在网页上优雅绽放
-
-![version](https://img.shields.io/badge/version-0.1.0-emerald)
-![license](https://img.shields.io/badge/license-MIT-amber)
-![deploy](https://img.shields.io/badge/deploy-Vercel-black)
-
-**汉** 是一个汲取千年中华文化的 CSS 设计系统。我们将朱红印章、水墨笔触、宣纸质感、书法章法，转化为可组合的设计令牌和组件，让东方美学在现代网页上优雅绽放。
-
----
-
-## ✨ 核心特色
-
-- 🎨 **7 大主题系统** — 秦、魏晋、唐、宋、元、明、清七朝风格一键切换
-- 🎨 **10 国风主题** — 水墨、青绿山水、青花瓷、敦煌、宫廷金等
-- ✍️ **书法排版系统** — 楷体标题，宽松字距，留白呼吸
-- 🏮 **中国风组件** — 印章按钮、水墨导航、卷轴卡片、窗花边框
-- 🤖 **AI 友好** — 提供完整的 AI 设计规范，AI 可生成一致性代码
-- 📱 **响应式设计** — 完美适配桌面、平板、手机
-- 🌙 **深色模式** — 内置深色主题支持
-- 🚀 **Vercel 部署** — 一键部署到 Vercel，GitHub Actions 自动化
-
----
-
-## 🎨 主题系统
-
-### 朝代主题 👑
-
-一键穿越千年，为你的项目赋予历史质感：
-
-| 朝代 | data-theme | 时代气质 | 核心色彩 |
-|------|-----------|----------|----------|
-| **汉** | `qinhan` | 雄浑质朴 | 玄黑 #1A1A1A + 土黄 #C4A882 + 漆红 #8B1A1A |
-| **魏晋** | `weijin` | 飘逸超然 | 月白 #E8EDF0 + 青灰 #8A9CA8 + 黛紫 #5A4B66 |
-| **唐** ⭐ | `tang` | 雍容华美 | 朱红 #C43B3B + 明黄 #D4A039 + 翠绿 #2E8B57 |
-| **宋** ⭐ | `song` | 清雅极简 | 天青 #87A6B3 + 粉青 #A7BFC6 + 墨色 #3A3A3A |
-| **元** | `yuan` | 粗放多元 | 青花蓝 #1D3B5C + 深红 #8B1A1A + 暗绿 #3E5C42 |
-| **明** | `ming` | 精致秩序 | 霁红 #9B2C2C + 宝石蓝 #1E3A6B + 明黄 #DAA520 |
-| **清** | `qing` | 繁缛富贵 | 胭脂粉 #E5A1A1 + 大金 #D4AF37 + 孔雀蓝 #1D4A6B |
-
-> ⭐ 标注为最推荐、最适合现代审美
-
-**快速使用：**
-
-```html
-<!-- 汉·雄浑质朴 -->
-<html data-theme="qinhan">
-
-<!-- 魏晋·飘逸超然 -->
-<html data-theme="weijin">
-
-<!-- 唐·雍容华美 -->
-<html data-theme="tang">
-
-<!-- 宋·清雅极简 -->
-<html data-theme="song">
-
-<!-- 明·精致秩序 -->
-<html data-theme="ming">
-
-<!-- 清·繁缛富贵 -->
-<html data-theme="qing">
-```
-
-### 国风主题 🎋
-
-除了朝代主题，还提供 10 种国风主题：
-
-| 主题 | data-theme | 风格描述 |
-|------|-----------|----------|
-| 水墨 | `ink` | 黑白灰，文人画意境 |
-| 青绿山水 | `landscape` | 青山绿水，宋画意境 |
-| 青花瓷 | `porcelain` | 蓝白雅致，景德镇风 |
-| 敦煌 | `dunhuang` | 暖橙壁画，千年艺术 |
-| 宫廷金 | `imperial` | 金色尊贵，皇室气派 |
-| 武侠玄墨 | `wuxia` | 玄黑侠气，江湖暗色 |
-| 茶道禅意 | `tea` | 素雅禅茶，枯山水 |
-| 朱砂喜庆 | `vermilion` | 大红喜庆，中国年味儿 |
-| 青瓷 | `celadon` | 温润如玉，龙泉青瓷 |
-
----
-
-## 📦 快速开始
-
-### 方式一：直接引用 CSS
-
-```html
-<!-- 在 HTML 中引入 -->
-<link rel="stylesheet" href="skill/assets/tokens.css">
-<link rel="stylesheet" href="skill/assets/base.css">
-<link rel="stylesheet" href="skill/assets/components.css">
-<link rel="stylesheet" href="skill/assets/themes.css">
-```
-
-### 方式二：CDN 引用
-
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/base.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/components.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/han-design@0.1.0/skill/assets/themes.css">
-```
-
-### 方式三：npm 安装
-
-```bash
-npm install han-design
-```
-
-```css
-/* 在项目中使用 */
-@import 'han-design/skill/assets/tokens.css';
-@import 'han-design/skill/assets/base.css';
-@import 'han-design/skill/assets/components.css';
-@import 'han-design/skill/assets/themes.css';
-```
-
----
-
-## 🤖 作为 AI Skill 使用（通用）
-
-本项目本身就是一个**标准的 AI Skill 包**，包含：
-
-```
-han-design/
-├── SKILL.md           ← AI 指令文件（定义设计规范、组件用法、禁忌）
-└── skill/
-    ├── assets/        ← CSS 资产（tokens/base/components/themes）
-    └── snippets/      ← 组件代码片段
-```
-
-AI 读取 `SKILL.md` 后会自动遵循全部设计规范。
-
-### 使用方式
-
-**1. 直接在项目中使用**
-
-Clone 到本地后，在支持 AI 的编辑器（VS Code + Copilot、Cursor、Trae 等）中打开项目根目录，AI 会自动识别 `SKILL.md`。
-
-**2. 作为 Skill 安装到全局**
-
-```bash
-# 克隆仓库
-git clone https://github.com/your-username/han-design.git
-
-# 在任意项目中引用
-cd your-project
-# 将 SKILL.md 和 skill/ 目录作为上下文提供给 AI
-```
-
-**3. 使用时对 AI 说：**
-
-> "帮我生成一个中国风的落地页" 或 "用宋韵主题做一个产品展示页"
-
-AI 会自动：
-- 读取 `SKILL.md` 中的设计规范
-- 引入 `skill/assets/` 下的 CSS 文件
-- 使用 `--dq-` 前缀的设计令牌
-- 从 `skill/snippets/` 引用组件代码
-- 遵循色彩比例、排版、布局原则和禁忌
-
----
-
-## 🚀 部署到 Vercel
-
-### 一键部署
-
-点击下方按钮，直接部署到 Vercel：
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/han-design)
-
-### 本地部署
-
-```bash
-# 1. 安装 Vercel CLI
-npm install -g vercel
-
-# 2. 登录 Vercel
-vercel login
-
-# 3. 部署（预览环境）
-vercel
-
-# 4. 部署到生产环境
-vercel --prod
-```
-
-### Git 自动部署
-
-在 Vercel 控制台导入 GitHub 仓库后，每次 push 到 `main` 分支会自动触发部署，无需额外配置：
-
-```bash
-git add .
-git commit -m "feat: update design tokens"
-git push origin main
-```
-
-### 手动部署
-
-```bash
-# 构建预览版本
-vercel
-
-# 发布到生产环境
-vercel --prod
-```
-
----
-
-## 🧩 组件列表
-
-### 1. 印章按钮 `.dq-btn-seal`
-
-红色方形印章风格按钮，带金色边框和盖章动画。
-
-```html
-<button class="dq-btn-seal dq-btn-seal--lg dq-animate-seal-drop">立即开始</button>
-```
-
-### 2. 水墨导航 `.dq-navbar`
-
-底部毛笔下划线 + 墨迹扩散悬停效果。
-
-```html
-<nav class="dq-navbar">
-  <div class="dq-navbar__inner">
-    <div class="dq-navbar__brand">汉<span>之</span></div>
-    <ul class="dq-navbar__menu">
-      <li class="dq-navbar__item dq-navbar__item--active">首页</li>
-      <li class="dq-navbar__item">作品</li>
-    </ul>
-  </div>
-</nav>
-```
-
-### 3. 卷轴卡片 `.dq-card-scroll`
-
-模拟中国传统卷轴形态，左右卷轴头 + 四角铆钉。
-
-```html
-<article class="dq-card-scroll">
-  <span class="dq-rivet dq-rivet--tl"></span>
-  <span class="dq-rivet dq-rivet--tr"></span>
-  <span class="dq-rivet dq-rivet--bl"></span>
-  <span class="dq-rivet dq-rivet--br"></span>
-  <header class="dq-card-scroll__header">标题</header>
-  <div class="dq-card-scroll__body"><p>内容…</p></div>
-</article>
-```
-
-### 4. 窗花边框 `.dq-frame-window`
-
-传统中式窗花纹样边框装饰，支持金色变体。
-
-```html
-<div class="dq-frame-window dq-frame-window--gold">
-  <span class="dq-corner-tr"></span>
-  <span class="dq-corner-bl"></span>
-  <p>内容…</p>
-</div>
-```
-
-### 5. 水墨分割线
-
-毛笔笔触效果的分割线，配合印章作为中间装饰。
-
-```html
-<div style="position:relative; margin: 48px 0;">
-  <div style="position:absolute; top:50%; left:0; right:0; height:2px;
-    background: linear-gradient(90deg, transparent, var(--dq-color-ink-400) 20%, transparent);
-    transform: translateY(-50%); filter: blur(0.5px);"></div>
-  <div style="display:flex; justify-content:center; position:relative;">
-    <div class="dq-stamp dq-stamp--sm">印</div>
-  </div>
-</div>
-```
-
-### 6. 印章 `.dq-stamp`
-
-红色方形印章组件，可用于署名或强调。
-
-```html
-<div class="dq-stamp dq-stamp--2char">汉</div>
-```
-
----
-
-## 📐 设计令牌
-
-### 色彩
-
-| 令牌 | 色值 | 用途 |
-|------|------|------|
-| `--dq-color-vermilion-500` | `#c0392b` | 朱红 · CTA / 印章 |
-| `--dq-color-indigo-500` | `#3a5285` | 靛蓝 · 链接 / 导航 |
-| `--dq-color-gold-500` | `#c68a2e` | 金色 · 装饰点缀 |
-| `--dq-color-ink-700` | `#2a2824` | 浓墨 · 标题文字 |
-| `--dq-color-paper-100` | `#faf6ea` | 宣纸 · 页面底色 |
-
-### 字体
-
-| 令牌 | 含义 |
-|------|------|
-| `--dq-font-kai` | 楷体（标题、书法） |
-| `--dq-font-song` | 宋体（正文） |
-| `--dq-font-sans` | 思源黑体（UI 界面） |
-
-### 间距
-
-基于 4px 基础单位：`--dq-space-1`(4px) → `--dq-space-16`(192px)
-
-> 💡 **完整令牌列表**请查看 [tokens.css](skill/assets/tokens.css)
-
----
-
-## 📚 文档
-
-- [设计令牌](skill/assets/tokens.css) — 所有设计变量
-- [基础样式](skill/assets/base.css) — 重置与排版
-- [组件样式](skill/assets/components.css) — 组件 CSS
-- [主题系统](skill/assets/themes.css) — 7 朝代 + 10 国风主题
-- [AI 设计规范](DESIGN_GUIDE.md) — AI 系统提示词
-- [组件示例](examples/components/) — 每个组件的 HTML 演示
-- [品牌首页示例](examples/landing-page.html) — 完整落地页
-- [主题切换示例](examples/theme-showcase.html) — 所有主题预览
-
----
-
-## 🗂️ 项目结构
-
-```
-han-design/
-├── SKILL.md              # AI 指令文件（核心）
-├── skill/                # Skill 核心（给所有用户）
-│   ├── assets/           # CSS 资产
-│   │   ├── tokens.css
-│   │   ├── base.css
-│   │   ├── components.css
-│   │   └── themes.css
-│   └── snippets/         # 组件代码片段
-│       ├── page-shell.html
-│       ├── btn-seal.html
-│       ├── navbar.html
-│       ├── card-scroll.html
-│       ├── divider-ink.html
-│       ├── stamp.html
-│       ├── frame-window.html
-│       └── hero-section.html
-├── examples/             # 示例页面
-│   ├── components/       # 组件演示
-│   ├── landing-page.html
-│   ├── quick-start.html
-│   └── theme-showcase.html
-├── DESIGN_GUIDE.md       # 设计规范
+# 汉 · Han
+
+一个面向 AI Agent 的中国文化设计 Skill。它将宣纸、墨色、朱红、书法、卷轴和传统构图转化为可复用的设计令牌、主题、视觉配方与文化决策规则。
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-c68a2e.svg)](LICENSE)
+
+## 项目特点
+
+- 7 个朝代启发主题：秦汉、魏晋、唐、宋、元、明、清
+- 9 个文化主题：水墨、青绿山水、青花瓷、敦煌、宫廷金、武侠、茶道、朱砂、青瓷
+- 完整的 CSS 令牌、组件、图标、纹样和动效
+- 标准 Agent Skill frontmatter 与独立可安装目录
+- 响应式、键盘焦点和 reduced-motion 基础支持
+- 无构建步骤的静态 HTML 示例
+
+## 当前版本
+
+Han 当前作为 `v0.1.0-preview` 发布，适合安装试用、生成页面和收集反馈。它是设计 Skill 与视觉资产包，不是通用前端组件库；复杂交互应继续使用目标项目已有的原生或可访问组件。
+
+## 仓库结构
+
+```text
+han/
+├── skills/
+│   └── han-design/              # 可独立安装的 Skill
+│       ├── SKILL.md
+│       ├── agents/openai.yaml
+│       ├── references/
+│       └── assets/
+│           ├── han.css          # 完整 CSS 入口
+│           ├── fonts.css        # 可选远程字体
+│           ├── *.css
+│           └── snippets/
+├── examples/                    # 仓库示例，不属于 Skill 运行时包
+├── scripts/validate.mjs
+├── vercel.json
 ├── LICENSE
 └── README.md
 ```
 
----
+## 安装为 Agent Skill
 
-## 🤝 贡献指南
+克隆仓库：
 
-欢迎贡献代码！
+```bash
+git clone https://github.com/you-want/han-design.git han
+```
 
-1. Fork 本仓库
-2. 创建功能分支：`git checkout -b feature/amazing-feature`
-3. 提交更改：`git commit -m 'feat: add amazing feature'`
-4. 推送分支：`git push origin feature/amazing-feature`
-5. 提交 Pull Request
+Skill 的可安装目录是：
 
-### 贡献方向
+```text
+skills/han-design
+```
 
-- 新的中国风组件
-- 更多设计令牌
-- 深色主题完善
-- 更多文化主题（如山水、花鸟系列）
-- AI 生成模板
-- 更多朝代主题
+以 Codex 为例，可复制到个人 Skill 目录：
 
----
+```bash
+cp -R skills/han-design "${CODEX_HOME:-$HOME/.codex}/skills/han-design"
+```
 
-## 📄 许可证
+其他支持 Agent Skills 的工具，请让其安装器或配置指向 `skills/han-design/`。不同工具的自动发现目录并不相同，因此本项目不假设“打开仓库后所有 AI 编辑器都会自动识别”。
 
-本项目基于 [MIT License](LICENSE) 开源。
+安装后可以这样调用：
 
----
+> 使用 han-design，帮我生成一个克制的宋韵产品落地页。
 
-## 致谢
+> 用汉重构当前页面，保留现有 React 组件和交互。
 
-- 灵感来源于千年中华文化
-- 字体：楷体、思源黑体
-- 色彩：中国画传统颜料
+更多可直接复制的调用任务见 [Skill 调用示例](examples/skill-prompts.md)。
 
----
+## 直接使用 CSS
 
-> **汉** — 墨落宣纸，笔走龙蛇。
+复制 `skills/han-design/assets/` 到你的项目，然后引入完整入口：
+
+```html
+<!-- 可选：会从 jsDelivr 与 Google Fonts 加载字体 -->
+<link rel="stylesheet" href="/han/fonts.css">
+
+<!-- 设计令牌、主题和全部组件 -->
+<link rel="stylesheet" href="/han/han.css">
+```
+
+选择主题：
+
+```html
+<html lang="zh-CN" data-theme="song">
+```
+
+深色模式：
+
+```html
+<html lang="zh-CN" data-theme="song" data-color-mode="dark">
+```
+
+Han 的核心发布物是 `skills/han-design/` Skill 包，不以 npm 组件库为目标。需要 CSS 时复制 Skill 中的 assets，并继续使用单一入口 `han.css`。
+
+## 主题
+
+### 朝代主题
+
+这些主题是面向现代网页的视觉诠释，不是历史复原，也不代表一个朝代的全部视觉文化。
+
+| 主题 | `data-theme` | 气质 |
+|---|---|---|
+| 秦汉启发 | `qinhan` | 漆器、石刻与厚重材质感 |
+| 魏晋 | `weijin` | 飘逸清峻 |
+| 唐 | `tang` | 雍容明丽 |
+| 宋 | `song` | 清雅克制 |
+| 元 | `yuan` | 多元交汇、对比鲜明 |
+| 明 | `ming` | 精致有序 |
+| 清 | `qing` | 华丽繁复 |
+
+### 文化主题
+
+| 主题 | `data-theme` |
+|---|---|
+| 水墨 | `ink` |
+| 青绿山水 | `landscape` |
+| 青花瓷 | `porcelain` |
+| 敦煌 | `dunhuang` |
+| 宫廷金 | `imperial` |
+| 武侠玄墨 | `wuxia` |
+| 当代茶空间 | `tea` |
+| 朱砂喜庆 | `vermilion` |
+| 青瓷 | `celadon` |
+
+## 示例
+
+- [品牌落地页](examples/landing-page.html)
+- [快速开始](examples/quick-start.html)
+- [主题展示](examples/theme-showcase.html)
+- [完整组件展示](examples/showcase.html)
+- [单组件示例](examples/components/)
+
+示例使用仓库内的相对路径，可直接部署为静态站点。Vercel 配置会将首页映射到品牌落地页。
+
+`showcase.html` 主要用于展示视觉状态。Modal、Tabs、自定义 Select、Date Picker、Tree、Upload 等复杂控件不能仅复制展示结构用于生产；请按照组件目录补齐键盘、焦点、状态和 ARIA，或将 Han 样式应用到目标项目已有的可访问组件上。
+
+## Skill 资源
+
+- [Skill 指令](skills/han-design/SKILL.md)
+- [详细设计规范](skills/han-design/references/design-guide.md)
+- [组件目录](skills/han-design/references/component-catalog.md)
+- [文化方法](skills/han-design/references/cultural-methodology.md)
+- [朝代主题边界](skills/han-design/references/dynasty-contexts.md)
+- [纹样语义](skills/han-design/references/motif-semantics.md)
+- [书法与印章](skills/han-design/references/calligraphy-and-seals.md)
+- [地域、民族与活态文化](skills/han-design/references/regional-and-ethnic-contexts.md)
+- [文化来源索引](skills/han-design/references/cultural-sources.md)
+- [真实任务配方](skills/han-design/references/task-recipes.md)
+- [输出质量评测](skills/han-design/references/output-evaluation.md)
+- [完整 CSS 入口](skills/han-design/assets/han.css)
+- [HTML snippets](skills/han-design/assets/snippets/)
+- [独立 HTML 输出检查](skills/han-design/scripts/check-output.mjs)
+
+Skill 会按需读取 references，不会在每次任务开始前加载全部 CSS。
+
+## 开发与校验
+
+运行无依赖校验：
+
+```bash
+node scripts/validate.mjs
+```
+
+校验内容包括：
+
+- Skill frontmatter 和目录命名
+- 必需文件与本地引用
+- CSS 自定义变量
+- 主题功能色对比度与语义令牌
+- 文化 references 和高风险绝对化表述
+- HTML snippet 的基础语义问题
+- README 中失效的占位发布说明
+
+Pull Request 也会通过 GitHub Actions 执行相同校验。
+
+## 贡献
+
+欢迎提交主题、组件、可访问性修复、示例和文档改进。
+
+1. Fork 仓库并创建功能分支。
+2. 完成修改后运行 `node scripts/validate.mjs`。
+3. 确保新增组件同时包含样式、成熟度说明和示例；复杂交互必须说明键盘、焦点、状态与 ARIA 行为。
+4. 提交 Pull Request，并说明视觉意图和验证方式。
+
+新增历史、地域、民族、宗教、纹样或活态文化内容时，还应提供来源、适用边界和现代转译说明。
+
+## 字体与网络
+
+`fonts.css` 会加载 LXGW WenKai、Noto Serif SC 和 Noto Sans SC。对于离线、严格 CSP、隐私敏感或中国大陆网络环境，建议不加载该文件，改用设计令牌中定义的系统字体回退，或自行托管字体。
+
+## License
+
+[MIT](LICENSE)

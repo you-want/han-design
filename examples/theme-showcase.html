@@ -3,43 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>主题切换 · 汉设计系统</title>
-  <link rel="stylesheet" href="../skill/assets/tokens.css">
-  <link rel="stylesheet" href="../skill/assets/base.css">
-  <link rel="stylesheet" href="../skill/assets/components.css">
-  <link rel="stylesheet" href="../skill/assets/themes.css">
+  <title>主题切换 · 汉</title>
+  <link rel="stylesheet" href="../skills/han-design/assets/fonts.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/tokens.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/base.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/themes.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/icons.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/patterns.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/typography.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/components.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/iconic.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/structure.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/enhanced.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/motion.css">
   <style>
     * { transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease; }
-    
+
     .theme-showcase {
       min-height: 100vh;
       padding: 48px 24px;
-      font-family: var(--dq-font-song);
-      color: var(--dq-color-text-primary);
-      background: var(--dq-color-bg);
+      font-family: var(--han-font-song);
+      color: var(--han-color-text-primary);
+      background: var(--han-color-bg);
     }
-    
+
     .theme-header {
       text-align: center;
       max-width: 800px;
       margin: 0 auto 48px;
     }
-    
+
     .theme-header h1 {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-5xl);
-      font-weight: var(--dq-fw-bold);
-      letter-spacing: var(--dq-ls-wider);
-      color: var(--dq-color-text-primary);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-5xl);
+      font-weight: var(--han-fw-bold);
+      letter-spacing: var(--han-ls-wider);
+      color: var(--han-color-text-primary);
       margin-bottom: 16px;
     }
-    
+
     .theme-header p {
-      font-size: var(--dq-fs-lg);
-      color: var(--dq-color-text-secondary);
-      line-height: var(--dq-lh-relaxed);
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-text-secondary);
+      line-height: var(--han-lh-relaxed);
     }
-    
+
     .theme-switcher {
       display: flex;
       flex-wrap: wrap;
@@ -47,134 +55,134 @@
       gap: 12px;
       margin-bottom: 48px;
       padding: 24px;
-      background: var(--dq-color-bg-surface);
-      border: 1px solid var(--dq-color-border);
-      border-radius: var(--dq-radius-lg);
+      background: var(--han-color-bg-surface);
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-lg);
     }
-    
+
     .theme-btn {
       padding: 10px 20px;
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-base);
-      color: var(--dq-color-text-secondary);
-      background: var(--dq-color-bg-elevated);
-      border: 1px solid var(--dq-color-border);
-      border-radius: var(--dq-radius-md);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-base);
+      color: var(--han-color-text-secondary);
+      background: var(--han-color-bg-elevated);
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-md);
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    
+
     .theme-btn:hover {
-      color: var(--dq-color-text-primary);
-      border-color: var(--dq-color-accent);
+      color: var(--han-color-text-primary);
+      border-color: var(--han-color-accent-control);
     }
-    
+
     .theme-btn.active {
-      color: var(--dq-seal-text);
-      background: var(--dq-seal-bg);
-      border-color: var(--dq-seal-bg);
+      color: var(--han-seal-text);
+      background: var(--han-seal-bg);
+      border-color: var(--han-seal-bg);
     }
-    
+
     .preview-card {
       max-width: 900px;
       margin: 0 auto;
       padding: 48px;
-      background: var(--dq-color-bg-surface);
-      border: 1px solid var(--dq-color-border);
-      border-radius: var(--dq-radius-xl);
+      background: var(--han-color-bg-surface);
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-xl);
     }
-    
+
     .preview-section {
       margin-bottom: 48px;
     }
-    
+
     .preview-section:last-child {
       margin-bottom: 0;
     }
-    
+
     .preview-label {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-sm);
-      color: var(--dq-color-text-tertiary);
-      letter-spacing: var(--dq-ls-wide);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-tertiary);
+      letter-spacing: var(--han-ls-wide);
       margin-bottom: 12px;
     }
-    
+
     .demo-hero {
       text-align: center;
       padding: 48px 24px;
-      background: var(--dq-color-bg-elevated);
-      border-radius: var(--dq-radius-lg);
+      background: var(--han-color-bg-elevated);
+      border-radius: var(--han-radius-lg);
       position: relative;
     }
-    
+
     .demo-hero h2 {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-4xl);
-      font-weight: var(--dq-fw-bold);
-      letter-spacing: var(--dq-ls-wider);
-      color: var(--dq-color-text-primary);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-4xl);
+      font-weight: var(--han-fw-bold);
+      letter-spacing: var(--han-ls-wider);
+      color: var(--han-color-text-primary);
       margin-bottom: 12px;
     }
-    
+
     .demo-hero p {
-      font-size: var(--dq-fs-md);
-      color: var(--dq-color-text-secondary);
+      font-size: var(--han-fs-md);
+      color: var(--han-color-text-secondary);
       margin-bottom: 24px;
     }
-    
+
     .demo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
     }
-    
+
     .demo-item {
       padding: 20px;
-      background: var(--dq-color-bg-elevated);
-      border-radius: var(--dq-radius-md);
+      background: var(--han-color-bg-elevated);
+      border-radius: var(--han-radius-md);
       text-align: center;
     }
-    
-    .demo-item .dq-stamp {
+
+    .demo-item .han-stamp {
       margin: 0 auto 12px;
     }
-    
+
     .demo-item h4 {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-base);
-      color: var(--dq-color-text-primary);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-base);
+      color: var(--han-color-text-primary);
     }
-    
+
     .color-palette {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
       justify-content: center;
     }
-    
+
     .color-swatch {
       width: 48px;
       height: 48px;
-      border-radius: var(--dq-radius-md);
-      border: 2px solid var(--dq-color-border);
+      border-radius: var(--han-radius-md);
+      border: 2px solid var(--han-color-border);
     }
-    
-    .color-swatch.paper { background: var(--dq-color-bg); }
-    .color-swatch.surface { background: var(--dq-color-bg-surface); }
-    .color-swatch.accent { background: var(--dq-color-accent); }
-    .color-swatch.seal { background: var(--dq-seal-bg); }
-    
+
+    .color-swatch.paper { background: var(--han-color-bg); }
+    .color-swatch.surface { background: var(--han-color-bg-surface); }
+    .color-swatch.accent { background: var(--han-color-accent); }
+    .color-swatch.seal { background: var(--han-seal-bg); }
+
     .dark-mode-toggle {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
       margin-bottom: 24px;
-      font-size: var(--dq-fs-sm);
-      color: var(--dq-color-text-secondary);
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-secondary);
     }
-    
+
     .dark-mode-toggle label {
       cursor: pointer;
     }
@@ -184,9 +192,9 @@
   <div class="theme-showcase">
     <div class="theme-header">
       <h1>汉 · 主题花园</h1>
-      <p>17 种主题 · 10 国风 + 7 朝代，一键切换东方美学</p>
+      <p>16 种主题 · 9 国风 + 7 朝代，一键切换东方美学</p>
     </div>
-    
+
     <div class="theme-switcher" id="themeSwitcher">
       <button class="theme-btn active" data-theme="">汉</button>
       <button class="theme-btn" data-theme="ink">水墨</button>
@@ -195,55 +203,55 @@
       <button class="theme-btn" data-theme="dunhuang">敦煌</button>
       <button class="theme-btn" data-theme="imperial">宫廷金</button>
       <button class="theme-btn" data-theme="wuxia">武侠玄墨</button>
-      <button class="theme-btn" data-theme="tea">茶道禅意</button>
+      <button class="theme-btn" data-theme="tea">当代茶空间</button>
       <button class="theme-btn" data-theme="vermilion">朱砂喜庆</button>
       <button class="theme-btn" data-theme="celadon">青瓷</button>
     </div>
-    
+
     <div class="preview-label" style="text-align:center; margin-bottom:16px;">◆ 朝代主题 · 千年穿越</div>
     <div class="theme-switcher" id="dynastySwitcher">
       <button class="theme-btn" data-theme="qinhan">秦汉·雄浑</button>
       <button class="theme-btn" data-theme="weijin">魏晋·飘逸</button>
       <button class="theme-btn" data-theme="tang">大唐·华美</button>
       <button class="theme-btn" data-theme="song">大宋·清雅</button>
-      <button class="theme-btn" data-theme="yuan">元代·粗放</button>
+      <button class="theme-btn" data-theme="yuan">元代·多元交汇</button>
       <button class="theme-btn" data-theme="ming">大明·精致</button>
       <button class="theme-btn" data-theme="qing">大清·繁缛</button>
     </div>
-    
+
     <div class="dark-mode-toggle">
       <input type="checkbox" id="darkToggle">
       <label for="darkToggle">深色模式</label>
     </div>
-    
+
     <div class="preview-card">
       <div class="preview-section">
         <div class="preview-label">◆ 主题预览</div>
         <div class="demo-hero">
           <h2 id="themeName">汉</h2>
           <p id="themeDesc">朱红印章 + 宣纸质感，典雅东方</p>
-          <button class="dq-btn-seal dq-btn-seal--lg">立即体验</button>
+          <button class="han-btn-seal han-btn-seal--lg">立即体验</button>
         </div>
       </div>
-      
+
       <div class="preview-section">
         <div class="preview-label">◆ 组件演示</div>
         <div class="demo-grid">
           <div class="demo-item">
-            <div class="dq-stamp">印</div>
+            <div class="han-stamp">印</div>
             <h4>印章</h4>
           </div>
           <div class="demo-item">
-            <div class="dq-stamp dq-stamp--2char">汉</div>
+            <div class="han-stamp han-stamp--2char">汉</div>
             <h4>双字印章</h4>
           </div>
           <div class="demo-item">
-            <button class="dq-btn-seal dq-btn-seal--sm">按钮</button>
+            <button class="han-btn-seal han-btn-seal--sm">按钮</button>
             <h4>印章按钮</h4>
           </div>
         </div>
       </div>
-      
+
       <div class="preview-section">
         <div class="preview-label">◆ 色彩体系</div>
         <div class="color-palette">
@@ -253,9 +261,82 @@
           <div class="color-swatch seal" title="印章色"></div>
         </div>
       </div>
+
+      <!-- 主题化标志性组件展示 -->
+      <div class="preview-section">
+        <div class="preview-label">◆ 主题化标志性组件</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--han-space-5);">
+          <div style="padding: var(--han-space-4); background: var(--han-color-bg-elevated); border-radius: var(--han-radius-md); text-align: center;">
+            <div class="han-scroll han-scroll--sm" style="width: 130px; margin: 0 auto;">
+              <div class="han-scroll-head han-scroll-head--left"></div>
+              <div class="han-scroll-head han-scroll-head--right"></div>
+              <div class="han-scroll__content" style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); text-align: center;">主题卷轴</div>
+            </div>
+            <p style="font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary); margin-top: var(--han-space-3);">han-scroll · 卷轴</p>
+          </div>
+          <div style="padding: var(--han-space-4); background: var(--han-color-bg-elevated); border-radius: var(--han-radius-md); text-align: center;">
+            <div class="han-plaque han-plaque--shine" style="margin: 0 auto; padding: var(--han-space-2) var(--han-space-3); font-size: var(--han-fs-sm);">主题匾额</div>
+            <p style="font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary); margin-top: var(--han-space-3);">han-plaque · 匾额</p>
+          </div>
+          <div style="padding: var(--han-space-4); background: var(--han-color-bg-elevated); border-radius: var(--han-radius-md); text-align: center;">
+            <div class="han-lantern" style="transform: scale(0.85);"><div class="han-lantern__cap"></div><div class="han-lantern__body">福</div><div class="han-lantern__tassel"></div></div>
+            <p style="font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary); margin-top: var(--han-space-3);">han-lantern · 灯笼</p>
+          </div>
+          <div style="padding: var(--han-space-4); background: var(--han-color-bg-elevated); border-radius: var(--han-radius-md); text-align: center;">
+            <div class="han-fan han-fan--spread" style="width: 140px; height: 90px; margin: 0 auto;">
+              <div class="han-fan__surface"><div class="han-fan__painting"><div class="han-fan__painting-title">扇</div></div></div>
+              <div class="han-fan__ribs"></div>
+              <div class="han-fan__handle"></div>
+            </div>
+            <p style="font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary); margin-top: var(--han-space-3);">han-fan · 折扇</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 主题化文字展示 -->
+      <div class="preview-section">
+        <div class="preview-label">◆ 主题化文字 · 书法笔触 / 印章标记</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--han-space-4);">
+          <div style="padding: var(--han-space-4); background: var(--han-color-bg-elevated); border-radius: var(--han-radius-md);">
+            <h3 class="han-title-brush" style="font-size: var(--han-fs-lg); margin: 0;">墨 落 宣 纸</h3>
+          </div>
+          <div style="padding: var(--han-space-4); background: var(--han-color-bg-elevated); border-radius: var(--han-radius-md); display: flex; gap: var(--han-space-2); align-items: center;">
+            <span style="font-family: var(--han-font-kai);">题 款 之 处</span>
+            <div class="han-stamp han-stamp--sm">印</div>
+          </div>
+          <div style="padding: var(--han-space-4); background: var(--han-color-bg-elevated); border-radius: var(--han-radius-md);">
+            <div class="han-couplet han-couplet--sm">
+              <div class="han-couplet__top">山 水 有 情</div>
+              <div class="han-couplet__center"><div class="han-stamp han-stamp--sm">印</div></div>
+              <div class="han-couplet__bottom">风 云 无 意</div>
+            </div>
+          </div>
+          <div style="padding: var(--han-space-4); background: var(--han-color-bg-elevated); border-radius: var(--han-radius-md);">
+            <div class="han-signature" style="justify-content: center;">
+              <div class="han-signature__text">李 白</div>
+              <div class="han-stamp han-stamp--sm" style="position: static;">青 莲</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 主题化装饰图案 -->
+      <div class="preview-section">
+        <div class="preview-label">◆ 主题化装饰 · 渐变 / 图案 / 分割线</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--han-space-3);">
+          <div class="han-bg-gradient-ink" style="height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); color: #fff; border-radius: var(--han-radius-md);">墨 色</div>
+          <div class="han-bg-gradient-sky" style="height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); border-radius: var(--han-radius-md);">天 青</div>
+          <div class="han-bg-gradient-vermilion" style="height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); color: #fff; border-radius: var(--han-radius-md);">朱 红</div>
+          <div class="han-bg-gradient-gold" style="height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); color: #fff; border-radius: var(--han-radius-md);">金 辉</div>
+          <div class="han-bg-gradient-paper" style="height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); border-radius: var(--han-radius-md);">宣 纸</div>
+          <div class="han-bg-gradient-celadon" style="height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); border-radius: var(--han-radius-md);">青 瓷</div>
+        </div>
+        <div class="han-divider-ink" style="margin: var(--han-space-5) 0;"></div>
+        <div class="han-divider-ink han-divider-ink--brush"></div>
+      </div>
     </div>
   </div>
-  
+
   <script>
     const themes = {
       '': { name: '汉', desc: '朱红印章 + 宣纸质感，典雅东方' },
@@ -265,48 +346,48 @@
       'dunhuang': { name: '敦煌', desc: '暖橙壁画，千年艺术' },
       'imperial': { name: '宫廷金', desc: '金色尊贵，皇室气派' },
       'wuxia': { name: '武侠玄墨', desc: '玄黑侠气，江湖暗色' },
-      'tea': { name: '茶道禅意', desc: '素雅禅茶，枯山水意' },
+      'tea': { name: '当代茶空间', desc: '素雅材质，自然留白，现代茶事' },
       'vermilion': { name: '朱砂喜庆', desc: '大红喜庆，中国年味儿' },
       'celadon': { name: '青瓷', desc: '温润如玉，龙泉青瓷' },
       'qinhan': { name: '秦汉·雄浑古朴', desc: '玄黑土黄，帝国初兴，瓦当云气' },
       'weijin': { name: '魏晋·飘逸超然', desc: '月白青灰，士人风骨，飘逸脱俗' },
       'tang': { name: '大唐·雍容华美', desc: '朱红明金，盛世气象，富丽堂皇' },
       'song': { name: '大宋·清雅极简', desc: '天青月白，文人审美，极简高级感' },
-      'yuan': { name: '元代·粗放多元', desc: '青花深红，民族融合，粗犷豪放' },
+      'yuan': { name: '元代·多元交汇', desc: '青花深红，跨区域交流，对比鲜明' },
       'ming': { name: '大明·精致世俗', desc: '霁红宝石蓝，精致规整，雅俗共赏' },
       'qing': { name: '大清·繁缛富贵', desc: '粉彩大金，集大成者，繁复奢华' }
     };
-    
+
     const html = document.documentElement;
     const buttons = document.querySelectorAll('.theme-btn');
     const themeName = document.getElementById('themeName');
     const themeDesc = document.getElementById('themeDesc');
     const darkToggle = document.getElementById('darkToggle');
-    
+
     function setTheme(theme) {
       if (theme) {
         html.setAttribute('data-theme', theme);
       } else {
         html.removeAttribute('data-theme');
       }
-      
+
       buttons.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.theme === theme);
       });
-      
+
       const info = themes[theme];
       if (info) {
         themeName.textContent = info.name;
         themeDesc.textContent = info.desc;
       }
-      
+
       localStorage.setItem('han-theme', theme);
     }
-    
+
     buttons.forEach(btn => {
       btn.addEventListener('click', () => setTheme(btn.dataset.theme));
     });
-    
+
     darkToggle.addEventListener('change', (e) => {
       if (e.target.checked) {
         html.setAttribute('data-color-mode', 'dark');
@@ -315,7 +396,7 @@
       }
       localStorage.setItem('han-dark', e.target.checked ? 'dark' : '');
     });
-    
+
     const savedTheme = localStorage.getItem('han-theme') || '';
     const savedDark = localStorage.getItem('han-dark') === 'dark';
     darkToggle.checked = savedDark;
@@ -324,20 +405,20 @@
 
   <!-- 页面导航 -->
   <style>
-    .dq-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--dq-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--dq-font-kai,KaiTi,serif)!important;}
-    .dq-nav-fab:hover{transform:scale(1.1)!important;}
-    .dq-nav-panel{position:fixed!important;right:16px!important;top:72px!important;z-index:99998!important;width:220px!important;max-height:70vh!important;overflow-y:auto!important;background:var(--dq-color-paper-100,#faf6ea)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.15)!important;border:1px solid var(--dq-color-border,#e0dcd4)!important;padding:16px!important;display:none!important;}
-    .dq-nav-panel.is-open{display:block!important;}
-    .dq-nav-panel h4{margin:0 0 8px!important;font-family:var(--dq-font-kai,KaiTi,serif)!important;font-size:13px!important;color:var(--dq-color-ink-700,#2a2824)!important;}
-    .dq-nav-panel ul{list-style:none!important;margin:0 0 10px!important;padding:0!important;}
-    .dq-nav-panel li{margin:0!important;}
-    .dq-nav-panel a{display:block!important;padding:5px 10px!important;border-radius:6px!important;font-size:12px!important;color:var(--dq-color-text-secondary,#555)!important;text-decoration:none!important;transition:all .15s!important;}
-    .dq-nav-panel a:hover{background:var(--dq-color-vermilion-500,#c0392b)!important;color:#fff!important;}
-    .dq-nav-panel hr{border:none!important;border-top:1px solid var(--dq-color-border,#e0dcd4)!important;margin:10px 0!important;}
-    @media(max-width:768px){.dq-nav-panel{width:180px!important;}}
+    .han-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--han-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--han-font-kai,KaiTi,serif)!important;}
+    .han-nav-fab:hover{transform:scale(1.1)!important;}
+    .han-nav-panel{position:fixed!important;right:16px!important;top:72px!important;z-index:99998!important;width:220px!important;max-height:70vh!important;overflow-y:auto!important;background:var(--han-color-paper-100,#faf6ea)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.15)!important;border:1px solid var(--han-color-border,#e0dcd4)!important;padding:16px!important;display:none!important;}
+    .han-nav-panel.is-open{display:block!important;}
+    .han-nav-panel h4{margin:0 0 8px!important;font-family:var(--han-font-kai,KaiTi,serif)!important;font-size:13px!important;color:var(--han-color-ink-700,#2a2824)!important;}
+    .han-nav-panel ul{list-style:none!important;margin:0 0 10px!important;padding:0!important;}
+    .han-nav-panel li{margin:0!important;}
+    .han-nav-panel a{display:block!important;padding:5px 10px!important;border-radius:6px!important;font-size:12px!important;color:var(--han-color-text-secondary,#555)!important;text-decoration:none!important;transition:all .15s!important;}
+    .han-nav-panel a:hover{background:var(--han-color-vermilion-500,#c0392b)!important;color:#fff!important;}
+    .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
+    @media(max-width:768px){.han-nav-panel{width:180px!important;}}
   </style>
-  <button class="dq-nav-fab" onclick="document.getElementById('dqNavPanel').classList.toggle('is-open')">☰</button>
-  <div class="dq-nav-panel" id="dqNavPanel" onclick="event.stopPropagation()">
+  <button class="han-nav-fab" onclick="document.getElementById('hanNavPanel').classList.toggle('is-open')">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel" onclick="event.stopPropagation()">
     <h4>示例页面</h4>
     <ul>
       <li><a href="./landing-page.html">落地页</a></li>
@@ -355,7 +436,7 @@
       <li><a href="./components/stamp.html">印章</a></li>
     </ul>
   </div>
-  <script>document.addEventListener("click",function(e){var p=document.getElementById("dqNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("dq-nav-fab"))p.classList.remove("is-open");});</script>
+  <script>document.addEventListener("click",function(e){var p=document.getElementById("hanNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("han-nav-fab"))p.classList.remove("is-open");});</script>
 
 </body>
 </html>

@@ -1,0 +1,133 @@
+/* ============================================================
+ * 汉 · 字体加载 (Fonts)
+ * 通过 CDN 引入中国风字体，确保跨平台可用性
+ *
+ * 字体来源：
+ * - 霞鹜文楷 (LXGW WenKai)：开源楷体，字形优美
+ * - 思源宋体 (Noto Serif SC)：Google Fonts，优雅宋体
+ * - 思源黑体 (Noto Sans SC)：Google Fonts，现代无衬线
+ *
+ * 使用方式：
+ *   <link rel="stylesheet" href="/han/fonts.css">
+ *   或在 tokens.css 之前引入
+ * ============================================================ */
+
+/* ---------- 霞鹜文楷 (LXGW WenKai) ----------
+ * 基于楷书的开源中文字体，风格典雅
+ * GitHub: https://github.com/lxgw/LxgwWenKai
+ * CDN: jsDelivr */
+@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css');
+
+/* ---------- 思源宋体 (Noto Serif SC) ----------
+ * Google Fonts 提供，适合古典正文和标题 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&display=swap');
+
+/* ---------- 思源黑体 (Noto Sans SC) ----------
+ * Google Fonts 提供，适合现代 UI 元素 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+/* ---------- 字体加载降级 ----------
+ * 如果 CDN 加载失败，使用系统字体作为后备
+ * 通过 font-display: swap 确保文字在字体加载完成前可见 */
+
+/*
+ * 字体使用建议：
+ *
+ * 1. 书法标题、印章、古典标题：
+ *    font-family: "LXGW WenKai", "KaiTi", "STKaiti", serif;
+ *
+ * 2. 正文、描述文字：
+ *    font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+ *
+ * 3. UI 元素（按钮、导航、标签）：
+ *    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+ *
+ * 4. 诗词、竖排文字：
+ *    font-family: "LXGW WenKai", "Noto Serif SC", "STKaiti", serif;
+ *    writing-mode: vertical-rl;
+ *
+ * ============================================================
+ *
+ * 朝代字体建议 (Dynasty Font Suggestions)：
+ *
+ * 周/秦 — 金文石鼓、古朴庄严
+ *   font-family: "LXGW WenKai", "KaiTi", serif;
+ *   风格：沉厚、肃穆，适合祭祀、青铜器铭文
+ *
+ * 汉 — 隶书典雅
+ *   font-family: "LXGW WenKai", "Noto Serif SC", serif;
+ *   风格：端庄、典雅，适合史书、典籍
+ *
+ * 魏晋 — 行书飘逸
+ *   font-family: "LXGW WenKai", "KaiTi", "STKaiti", serif;
+ *   风格：洒脱、飘逸，适合书信、玄学论著
+ *
+ * 唐 — 楷书华美
+ *   font-family: "LXGW WenKai", "KaiTi", "STKaiti", serif;
+ *   风格：端正、饱满，适合诗歌、书法碑刻
+ *
+ * 宋 — 宋体秀丽
+ *   font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+ *   风格：纤细、秀丽，适合经卷、算学、科技
+ *
+ * 元 — 豪放行楷
+ *   font-family: "LXGW WenKai", "Noto Serif SC", serif;
+ *   风格：豪放、圆润，适合戏曲、散曲
+ *
+ * 明 — 雅致宋体
+ *   font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+ *   风格：雅致、工整，适合小说、八股
+ *
+ * 清 — 馆阁工整
+ *   font-family: "Noto Sans SC", "Noto Serif SC", "PingFang SC", sans-serif;
+ *   风格：规整、圆润，适合奏折、公文
+ */
+
+/* ---------- 朝代字体辅助类 ----------
+ * 使用 data-dynasty 属性提示字体选择
+ * 示例：<div class="han-font-dynasty" data-dynasty="song">...</div> */
+.han-font-dynasty[data-dynasty="zhou"],
+.han-font-dynasty[data-dynasty="qin"] {
+  font-family: "LXGW WenKai", "KaiTi", "STKaiti", serif;
+  font-weight: var(--han-fw-bold);
+  letter-spacing: var(--han-ls-wide);
+}
+
+.han-font-dynasty[data-dynasty="han"] {
+  font-family: "LXGW WenKai", "Noto Serif SC", "Songti SC", serif;
+  letter-spacing: var(--han-ls-wide);
+}
+
+.han-font-dynasty[data-dynasty="wei-jin"] {
+  font-family: "LXGW WenKai", "KaiTi", "STKaiti", serif;
+  font-style: italic;
+  letter-spacing: var(--han-ls-normal);
+}
+
+.han-font-dynasty[data-dynasty="tang"] {
+  font-family: "LXGW WenKai", "KaiTi", "STKaiti", serif;
+  font-weight: var(--han-fw-bold);
+  letter-spacing: var(--han-ls-wide);
+}
+
+.han-font-dynasty[data-dynasty="song"] {
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  font-weight: var(--han-fw-regular);
+  letter-spacing: var(--han-ls-normal);
+}
+
+.han-font-dynasty[data-dynasty="yuan"] {
+  font-family: "LXGW WenKai", "Noto Serif SC", "KaiTi", serif;
+  font-weight: var(--han-fw-medium);
+}
+
+.han-font-dynasty[data-dynasty="ming"] {
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  letter-spacing: var(--han-ls-tight);
+}
+
+.han-font-dynasty[data-dynasty="qing"] {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: var(--han-fw-regular);
+  letter-spacing: var(--han-ls-normal);
+}

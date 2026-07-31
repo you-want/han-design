@@ -3,98 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>快速上手测试 · 汉设计系统</title>
-  <meta name="description" content="按照 README 快速开始方式，测试汉设计系统的使用流程">
+  <title>快速上手测试 · 汉</title>
+  <meta name="description" content="按照 README 快速开始方式，测试汉的使用流程">
 
   <!-- 第 1 步：引入 CSS（模拟新用户使用） -->
-  <link rel="stylesheet" href="../skill/assets/tokens.css">
-  <link rel="stylesheet" href="../skill/assets/base.css">
-  <link rel="stylesheet" href="../skill/assets/components.css">
-  <link rel="stylesheet" href="../skill/assets/themes.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/fonts.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/tokens.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/base.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/themes.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/icons.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/patterns.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/typography.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/components.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/iconic.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/structure.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/enhanced.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/motion.css">
 
   <style>
     /* 页面布局 */
     .demo {
-      max-width: var(--dq-container-lg);
+      max-width: var(--han-container-lg);
       margin: 0 auto;
-      padding: var(--dq-space-6);
+      padding: var(--han-space-6);
     }
 
     .demo__title {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-3xl);
-      color: var(--dq-color-text-primary);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-3xl);
+      color: var(--han-color-text-primary);
       text-align: center;
-      margin-bottom: var(--dq-space-2);
+      margin-bottom: var(--han-space-2);
     }
 
     .demo__desc {
       text-align: center;
-      color: var(--dq-color-text-tertiary);
-      font-size: var(--dq-fs-sm);
-      margin-bottom: var(--dq-space-8);
+      color: var(--han-color-text-tertiary);
+      font-size: var(--han-fs-sm);
+      margin-bottom: var(--han-space-8);
     }
 
     /* 主题切换栏 */
     .theme-bar {
       display: flex;
-      gap: var(--dq-space-2);
+      gap: var(--han-space-2);
       flex-wrap: wrap;
       justify-content: center;
-      padding: var(--dq-space-4);
-      background: var(--dq-color-bg-alt);
-      border-radius: var(--dq-radius-lg);
-      margin-bottom: var(--dq-space-8);
+      padding: var(--han-space-4);
+      background: var(--han-color-bg-alt);
+      border-radius: var(--han-radius-lg);
+      margin-bottom: var(--han-space-8);
     }
 
     .theme-chip {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-sm);
-      padding: var(--dq-space-2) var(--dq-space-4);
-      border-radius: var(--dq-radius-md);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-sm);
+      padding: var(--han-space-2) var(--han-space-4);
+      border-radius: var(--han-radius-md);
       cursor: pointer;
-      border: 1px solid var(--dq-color-border);
-      background: var(--dq-color-surface);
-      color: var(--dq-color-text-secondary);
-      transition: all var(--dq-duration-fast) var(--dq-ease-out);
+      border: 1px solid var(--han-color-border);
+      background: var(--han-color-surface);
+      color: var(--han-color-text-secondary);
+      transition: all var(--han-duration-fast) var(--han-ease-out);
     }
 
     .theme-chip:hover {
-      border-color: var(--dq-color-vermilion-400);
-      color: var(--dq-color-vermilion-500);
+      border-color: var(--han-color-vermilion-400);
+      color: var(--han-color-accent-text);
     }
 
     .theme-chip.is-active {
-      background: var(--dq-color-vermilion-500);
-      color: var(--dq-color-paper-100);
-      border-color: var(--dq-color-vermilion-500);
+      background: var(--han-color-vermilion-500);
+      color: var(--han-color-paper-100);
+      border-color: var(--han-color-accent-control);
     }
 
     /* 组件展示区 */
     .section {
-      margin-bottom: var(--dq-space-10);
+      margin-bottom: var(--han-space-10);
     }
 
     .section__title {
-      font-family: var(--dq-font-kai);
-      font-size: var(--dq-fs-xl);
-      color: var(--dq-color-text-primary);
-      margin-bottom: var(--dq-space-4);
-      padding-bottom: var(--dq-space-2);
-      border-bottom: 2px solid var(--dq-color-border);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      color: var(--han-color-text-primary);
+      margin-bottom: var(--han-space-4);
+      padding-bottom: var(--han-space-2);
+      border-bottom: 2px solid var(--han-color-border);
     }
 
     /* 颜色卡片 */
     .color-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: var(--dq-space-3);
+      gap: var(--han-space-3);
     }
 
     .color-swatch {
-      border-radius: var(--dq-radius-md);
+      border-radius: var(--han-radius-md);
       overflow: hidden;
-      border: 1px solid var(--dq-color-border);
+      border: 1px solid var(--han-color-border);
     }
 
     .color-swatch__block {
@@ -102,40 +110,40 @@
     }
 
     .color-swatch__info {
-      padding: var(--dq-space-2);
-      font-size: var(--dq-fs-xs);
-      background: var(--dq-color-surface);
+      padding: var(--han-space-2);
+      font-size: var(--han-fs-xs);
+      background: var(--han-color-surface);
     }
 
     .color-swatch__name {
-      color: var(--dq-color-text-primary);
-      font-weight: var(--dq-fw-medium);
+      color: var(--han-color-text-primary);
+      font-weight: var(--han-fw-medium);
     }
 
     .color-swatch__token {
-      color: var(--dq-color-text-tertiary);
+      color: var(--han-color-text-tertiary);
       font-family: monospace;
     }
 
     /* 组件行 */
     .component-row {
       display: flex;
-      gap: var(--dq-space-4);
+      gap: var(--han-space-4);
       align-items: center;
       flex-wrap: wrap;
     }
 
     /* 代码块 */
     .code-block {
-      background: var(--dq-color-ink-900);
-      color: var(--dq-color-paper-200);
-      padding: var(--dq-space-4);
-      border-radius: var(--dq-radius-md);
+      background: var(--han-color-ink-900);
+      color: var(--han-color-paper-200);
+      padding: var(--han-space-4);
+      border-radius: var(--han-radius-md);
       font-family: monospace;
-      font-size: var(--dq-fs-sm);
-      line-height: var(--dq-lh-relaxed);
+      font-size: var(--han-fs-sm);
+      line-height: var(--han-lh-relaxed);
       overflow-x: auto;
-      margin-top: var(--dq-space-3);
+      margin-top: var(--han-space-3);
     }
 
     .code-block .token { color: #c68a2e; }
@@ -146,31 +154,31 @@
 <body>
 
   <!-- 水墨导航 -->
-  <nav class="dq-navbar">
-    <div class="dq-navbar__inner">
-      <div class="dq-navbar__brand">汉<span>之</span></div>
-      <ul class="dq-navbar__menu">
-        <li class="dq-navbar__item dq-navbar__item--active">快速上手</li>
-        <li class="dq-navbar__item">色彩</li>
-        <li class="dq-navbar__item">字体</li>
-        <li class="dq-navbar__item">组件</li>
-        <li class="dq-navbar__item">主题</li>
+  <nav class="han-navbar">
+    <div class="han-navbar__inner">
+      <div class="han-navbar__brand">汉<span>之</span></div>
+      <ul class="han-navbar__menu">
+        <li class="han-navbar__item han-navbar__item--active">快速上手</li>
+        <li class="han-navbar__item">色彩</li>
+        <li class="han-navbar__item">字体</li>
+        <li class="han-navbar__item">组件</li>
+        <li class="han-navbar__item">主题</li>
       </ul>
     </div>
   </nav>
 
-  <div class="dq-section demo">
-    <h1 class="demo__title">汉设计系统 · 快速上手测试</h1>
+  <main class="han-section demo">
+    <h1 class="demo__title">汉 · 快速上手测试</h1>
     <p class="demo__desc">按照 README 使用方式引入 CSS，测试设计令牌与组件是否正常工作</p>
 
     <!-- 主题切换 -->
     <div class="theme-bar" id="themeBar">
-      <button class="theme-chip is-active" data-theme="tang">唐 · 雍容</button>
-      <button class="theme-chip" data-theme="song">宋 · 清雅</button>
-      <button class="theme-chip" data-theme="qinhan">汉 · 雄浑</button>
-      <button class="theme-chip" data-theme="ink">水墨</button>
-      <button class="theme-chip" data-theme="porcelain">青花瓷</button>
-      <button class="theme-chip" data-theme="dunhuang">敦煌</button>
+      <button type="button" class="theme-chip is-active" data-theme="tang">唐 · 雍容</button>
+      <button type="button" class="theme-chip" data-theme="song">宋 · 清雅</button>
+      <button type="button" class="theme-chip" data-theme="qinhan">汉 · 雄浑</button>
+      <button type="button" class="theme-chip" data-theme="ink">水墨</button>
+      <button type="button" class="theme-chip" data-theme="porcelain">青花瓷</button>
+      <button type="button" class="theme-chip" data-theme="dunhuang">敦煌</button>
     </div>
 
     <!-- 1. 色彩令牌测试 -->
@@ -178,77 +186,77 @@
       <h2 class="section__title">① 色彩令牌</h2>
       <div class="color-grid">
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: var(--dq-color-vermilion-500);"></div>
+          <div class="color-swatch__block" style="background: var(--han-color-vermilion-500);"></div>
           <div class="color-swatch__info">
             <div class="color-swatch__name">朱红 500</div>
-            <div class="color-swatch__token">--dq-color-vermilion-500</div>
+            <div class="color-swatch__token">--han-color-vermilion-500</div>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: var(--dq-color-indigo-500);"></div>
+          <div class="color-swatch__block" style="background: var(--han-color-indigo-500);"></div>
           <div class="color-swatch__info">
             <div class="color-swatch__name">靛蓝 500</div>
-            <div class="color-swatch__token">--dq-color-indigo-500</div>
+            <div class="color-swatch__token">--han-color-indigo-500</div>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: var(--dq-color-gold-500);"></div>
+          <div class="color-swatch__block" style="background: var(--han-color-gold-500);"></div>
           <div class="color-swatch__info">
             <div class="color-swatch__name">金色 500</div>
-            <div class="color-swatch__token">--dq-color-gold-500</div>
+            <div class="color-swatch__token">--han-color-gold-500</div>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: var(--dq-color-ink-700);"></div>
+          <div class="color-swatch__block" style="background: var(--han-color-ink-700);"></div>
           <div class="color-swatch__info">
             <div class="color-swatch__name">浓墨 700</div>
-            <div class="color-swatch__token">--dq-color-ink-700</div>
+            <div class="color-swatch__token">--han-color-ink-700</div>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="color-swatch__block" style="background: var(--dq-color-paper-100); border-bottom: 1px solid var(--dq-color-border);"></div>
+          <div class="color-swatch__block" style="background: var(--han-color-paper-100); border-bottom: 1px solid var(--han-color-border);"></div>
           <div class="color-swatch__info">
             <div class="color-swatch__name">宣纸 100</div>
-            <div class="color-swatch__token">--dq-color-paper-100</div>
+            <div class="color-swatch__token">--han-color-paper-100</div>
           </div>
         </div>
       </div>
       <div class="code-block"><span class="token">/* 使用示例 */</span>
 <span class="tag">.title</span> {
-  <span class="attr">color</span>: <span class="token">var(--dq-color-vermilion-500)</span>;
-  <span class="attr">background</span>: <span class="token">var(--dq-color-paper-100)</span>;
+  <span class="attr">color</span>: <span class="token">var(--han-color-vermilion-500)</span>;
+  <span class="attr">background</span>: <span class="token">var(--han-color-paper-100)</span>;
 }</div>
     </section>
 
     <!-- 2. 字体令牌测试 -->
     <section class="section">
       <h2 class="section__title">② 字体排版</h2>
-      <div style="display:flex; flex-direction:column; gap:var(--dq-space-3);">
-        <div style="font-family: var(--dq-font-kai); font-size: var(--dq-fs-2xl); color: var(--dq-color-text-primary); font-weight: bold;">楷体标题 — 笔走龙蛇</div>
-        <div style="font-family: var(--dq-font-song); font-size: var(--dq-fs-md); color: var(--dq-color-text-secondary);">宋体正文 — 横平竖直，结构端庄</div>
-        <div style="font-family: var(--dq-font-sans); font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary);">Sans 界面文字 — 现代简洁</div>
+      <div style="display:flex; flex-direction:column; gap:var(--han-space-3);">
+        <div style="font-family: var(--han-font-kai); font-size: var(--han-fs-2xl); color: var(--han-color-text-primary); font-weight: bold;">楷体标题 — 笔走龙蛇</div>
+        <div style="font-family: var(--han-font-song); font-size: var(--han-fs-md); color: var(--han-color-text-secondary);">宋体正文 — 横平竖直，结构端庄</div>
+        <div style="font-family: var(--han-font-sans); font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary);">Sans 界面文字 — 现代简洁</div>
       </div>
     </section>
 
     <!-- 3. 间距令牌测试 -->
     <section class="section">
       <h2 class="section__title">③ 间距令牌</h2>
-      <div style="display:flex; gap:var(--dq-space-2); align-items:flex-end;">
-        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--dq-space-1);">
-          <div style="width:var(--dq-space-2); height:var(--dq-space-2); background:var(--dq-color-vermilion-500); border-radius:var(--dq-radius-sm);"></div>
-          <span style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">space-2</span>
+      <div style="display:flex; gap:var(--han-space-2); align-items:flex-end;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--han-space-1);">
+          <div style="width:var(--han-space-2); height:var(--han-space-2); background:var(--han-color-vermilion-500); border-radius:var(--han-radius-sm);"></div>
+          <span style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">space-2</span>
         </div>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--dq-space-1);">
-          <div style="width:var(--dq-space-4); height:var(--dq-space-4); background:var(--dq-color-vermilion-400); border-radius:var(--dq-radius-sm);"></div>
-          <span style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">space-4</span>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--han-space-1);">
+          <div style="width:var(--han-space-4); height:var(--han-space-4); background:var(--han-color-vermilion-400); border-radius:var(--han-radius-sm);"></div>
+          <span style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">space-4</span>
         </div>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--dq-space-1);">
-          <div style="width:var(--dq-space-6); height:var(--dq-space-6); background:var(--dq-color-vermilion-300); border-radius:var(--dq-radius-sm);"></div>
-          <span style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">space-6</span>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--han-space-1);">
+          <div style="width:var(--han-space-6); height:var(--han-space-6); background:var(--han-color-vermilion-300); border-radius:var(--han-radius-sm);"></div>
+          <span style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">space-6</span>
         </div>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--dq-space-1);">
-          <div style="width:var(--dq-space-8); height:var(--dq-space-8); background:var(--dq-color-vermilion-200); border-radius:var(--dq-radius-sm);"></div>
-          <span style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">space-8</span>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--han-space-1);">
+          <div style="width:var(--han-space-8); height:var(--han-space-8); background:var(--han-color-vermilion-200); border-radius:var(--han-radius-sm);"></div>
+          <span style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">space-8</span>
         </div>
       </div>
     </section>
@@ -258,62 +266,62 @@
       <h2 class="section__title">④ 组件使用</h2>
 
       <!-- 印章按钮 -->
-      <div style="margin-bottom: var(--dq-space-5);">
-        <h4 style="margin-bottom: var(--dq-space-2);">印章按钮 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-btn-seal</code></h4>
+      <div style="margin-bottom: var(--han-space-5);">
+        <h4 style="margin-bottom: var(--han-space-2);">印章按钮 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-btn-seal</code></h4>
         <div class="component-row">
-          <button class="dq-btn-seal dq-btn-seal--sm">小印章</button>
-          <button class="dq-btn-seal">中印章</button>
-          <button class="dq-btn-seal dq-btn-seal--lg dq-animate-seal-drop">大印章</button>
+          <button type="button" class="han-btn-seal han-btn-seal--sm">小印章</button>
+          <button type="button" class="han-btn-seal">中印章</button>
+          <button type="button" class="han-btn-seal han-btn-seal--lg han-animate-seal-drop">大印章</button>
         </div>
       </div>
 
       <!-- 印章组件 -->
-      <div style="margin-bottom: var(--dq-space-5);">
-        <h4 style="margin-bottom: var(--dq-space-2);">印章 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-stamp</code></h4>
+      <div style="margin-bottom: var(--han-space-5);">
+        <h4 style="margin-bottom: var(--han-space-2);">印章 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-stamp</code></h4>
         <div class="component-row">
-          <div class="dq-stamp dq-stamp--sm">汉</div>
-          <div class="dq-stamp">印</div>
-          <div class="dq-stamp dq-stamp--lg">之印</div>
+          <div class="han-stamp han-stamp--sm">汉</div>
+          <div class="han-stamp">印</div>
+          <div class="han-stamp han-stamp--lg">之印</div>
         </div>
       </div>
 
       <!-- 卷轴卡片 -->
-      <div style="margin-bottom: var(--dq-space-5);">
-        <h4 style="margin-bottom: var(--dq-space-2);">卷轴卡片 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-card-scroll</code></h4>
-        <article class="dq-card-scroll">
-          <span class="dq-rivet dq-rivet--tl"></span>
-          <span class="dq-rivet dq-rivet--tr"></span>
-          <span class="dq-rivet dq-rivet--bl"></span>
-          <span class="dq-rivet dq-rivet--br"></span>
-          <header class="dq-card-scroll__header">测试卡片</header>
-          <div class="dq-card-scroll__body">
+      <div style="margin-bottom: var(--han-space-5);">
+        <h4 style="margin-bottom: var(--han-space-2);">卷轴卡片 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-card-scroll</code></h4>
+        <article class="han-card-scroll">
+          <span class="han-rivet han-rivet--tl"></span>
+          <span class="han-rivet han-rivet--tr"></span>
+          <span class="han-rivet han-rivet--bl"></span>
+          <span class="han-rivet han-rivet--br"></span>
+          <header class="han-card-scroll__header">测试卡片</header>
+          <div class="han-card-scroll__body">
             <p>这是一个测试卡片，验证卷轴卡片组件是否正常渲染。</p>
           </div>
-          <footer class="dq-card-scroll__footer">
+          <footer class="han-card-scroll__footer">
             <span>测试通过 ✓</span>
-            <a href="#">查看 →</a>
+            <a href="#main-content">查看 →</a>
           </footer>
         </article>
       </div>
 
       <!-- 标签 -->
-      <div style="margin-bottom: var(--dq-space-5);">
-        <h4 style="margin-bottom: var(--dq-space-2);">标签 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-tag</code></h4>
+      <div style="margin-bottom: var(--han-space-5);">
+        <h4 style="margin-bottom: var(--han-space-2);">标签 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-tag</code></h4>
         <div class="component-row">
-          <span class="dq-tag">默认标签</span>
-          <span class="dq-tag dq-tag--vermilion">朱红标签</span>
-          <span class="dq-tag dq-tag--gold">金色标签</span>
+          <span class="han-tag">默认标签</span>
+          <span class="han-tag han-tag--vermilion">朱红标签</span>
+          <span class="han-tag han-tag--gold">金色标签</span>
         </div>
       </div>
 
       <!-- 窗花边框 -->
       <div>
-        <h4 style="margin-bottom: var(--dq-space-2);">窗花边框 <code style="font-size:var(--dq-fs-xs); color:var(--dq-color-text-tertiary);">.dq-frame-window</code></h4>
-        <div class="dq-frame-window dq-frame-window--gold" style="padding: var(--dq-space-6); max-width: 400px;">
-          <span class="dq-corner-tr"></span>
-          <span class="dq-corner-bl"></span>
-          <p style="font-family: var(--dq-font-kai); font-size: var(--dq-fs-xl); text-align: center; color: var(--dq-color-text-primary);">窗花边框测试</p>
-          <p style="text-align: center; font-size: var(--dq-fs-sm); color: var(--dq-color-text-tertiary);">验证四角装饰是否正常渲染</p>
+        <h4 style="margin-bottom: var(--han-space-2);">窗花边框 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-frame-window</code></h4>
+        <div class="han-frame-window han-frame-window--gold" style="padding: var(--han-space-6); max-width: 400px;">
+          <span class="han-corner-tr"></span>
+          <span class="han-corner-bl"></span>
+          <p style="font-family: var(--han-font-kai); font-size: var(--han-fs-xl); text-align: center; color: var(--han-color-text-primary);">窗花边框测试</p>
+          <p style="text-align: center; font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary);">验证四角装饰是否正常渲染</p>
         </div>
       </div>
     </section>
@@ -321,31 +329,26 @@
     <!-- 5. 代码示例 -->
     <section class="section">
       <h2 class="section__title">⑤ 引入方式</h2>
-      <div class="code-block"><span class="token">&lt;!-- 方式一：CDN 引入 --&gt;</span>
-&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"../skill/assets/tokens.css"</span>&gt;
-&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"../skill/assets/base.css"</span>&gt;
-&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"../skill/assets/components.css"</span>&gt;
-&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"../skill/assets/themes.css"</span>&gt;
-
-<span class="token">&lt;!-- 方式二：npm 安装 --&gt;</span>
-npm install han-design</div>
+      <div class="code-block"><span class="token">&lt;!-- 复制 assets 后引入完整入口 --&gt;</span>
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"/han/fonts.css"</span>&gt;
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"/han/han.css"</span>&gt;</div>
     </section>
-  </div>
+  </main>
 
   <!-- 水墨分割线 -->
-  <div class="dq-container">
-    <div style="position:relative; margin: var(--dq-space-6) 0;">
+  <div class="han-container">
+    <div style="position:relative; margin: var(--han-space-6) 0;">
       <div style="position:absolute; top:50%; left:0; right:0; height:2px;
-        background: linear-gradient(90deg, transparent 5%, var(--dq-color-ink-400) 20%, var(--dq-color-ink-400) 80%, transparent 95%);
+        background: linear-gradient(90deg, transparent 5%, var(--han-color-ink-400) 20%, var(--han-color-ink-400) 80%, transparent 95%);
         transform: translateY(-50%); filter: blur(0.5px);"></div>
       <div style="display:flex; justify-content:center; position:relative;">
-        <div class="dq-stamp dq-stamp--sm">汉</div>
+        <div class="han-stamp han-stamp--sm">汉</div>
       </div>
     </div>
   </div>
 
-  <footer style="text-align:center; padding: var(--dq-space-8); color: var(--dq-color-text-tertiary); font-size: var(--dq-fs-sm);">
-    © 2024 汉设计系统 · 快速上手测试
+  <footer style="text-align:center; padding: var(--han-space-8); color: var(--han-color-text-tertiary); font-size: var(--han-fs-sm);">
+    © 2026 汉 · 快速上手测试
   </footer>
 
   <script>
@@ -367,11 +370,11 @@ npm install han-design</div>
     });
 
     // 印章按钮点击动画
-    document.querySelectorAll('.dq-btn-seal').forEach(btn => {
+    document.querySelectorAll('.han-btn-seal').forEach(btn => {
       btn.addEventListener('click', () => {
-        btn.classList.remove('dq-animate-seal-drop');
+        btn.classList.remove('han-animate-seal-drop');
         void btn.offsetWidth;
-        btn.classList.add('dq-animate-seal-drop');
+        btn.classList.add('han-animate-seal-drop');
       });
     });
   </script>
@@ -379,20 +382,20 @@ npm install han-design</div>
 
   <!-- 页面导航 -->
   <style>
-    .dq-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--dq-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--dq-font-kai,KaiTi,serif)!important;}
-    .dq-nav-fab:hover{transform:scale(1.1)!important;}
-    .dq-nav-panel{position:fixed!important;right:16px!important;top:72px!important;z-index:99998!important;width:220px!important;max-height:70vh!important;overflow-y:auto!important;background:var(--dq-color-paper-100,#faf6ea)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.15)!important;border:1px solid var(--dq-color-border,#e0dcd4)!important;padding:16px!important;display:none!important;}
-    .dq-nav-panel.is-open{display:block!important;}
-    .dq-nav-panel h4{margin:0 0 8px!important;font-family:var(--dq-font-kai,KaiTi,serif)!important;font-size:13px!important;color:var(--dq-color-ink-700,#2a2824)!important;}
-    .dq-nav-panel ul{list-style:none!important;margin:0 0 10px!important;padding:0!important;}
-    .dq-nav-panel li{margin:0!important;}
-    .dq-nav-panel a{display:block!important;padding:5px 10px!important;border-radius:6px!important;font-size:12px!important;color:var(--dq-color-text-secondary,#555)!important;text-decoration:none!important;transition:all .15s!important;}
-    .dq-nav-panel a:hover{background:var(--dq-color-vermilion-500,#c0392b)!important;color:#fff!important;}
-    .dq-nav-panel hr{border:none!important;border-top:1px solid var(--dq-color-border,#e0dcd4)!important;margin:10px 0!important;}
-    @media(max-width:768px){.dq-nav-panel{width:180px!important;}}
+    .han-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--han-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--han-font-kai,KaiTi,serif)!important;}
+    .han-nav-fab:hover{transform:scale(1.1)!important;}
+    .han-nav-panel{position:fixed!important;right:16px!important;top:72px!important;z-index:99998!important;width:220px!important;max-height:70vh!important;overflow-y:auto!important;background:var(--han-color-paper-100,#faf6ea)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.15)!important;border:1px solid var(--han-color-border,#e0dcd4)!important;padding:16px!important;display:none!important;}
+    .han-nav-panel.is-open{display:block!important;}
+    .han-nav-panel h4{margin:0 0 8px!important;font-family:var(--han-font-kai,KaiTi,serif)!important;font-size:13px!important;color:var(--han-color-ink-700,#2a2824)!important;}
+    .han-nav-panel ul{list-style:none!important;margin:0 0 10px!important;padding:0!important;}
+    .han-nav-panel li{margin:0!important;}
+    .han-nav-panel a{display:block!important;padding:5px 10px!important;border-radius:6px!important;font-size:12px!important;color:var(--han-color-text-secondary,#555)!important;text-decoration:none!important;transition:all .15s!important;}
+    .han-nav-panel a:hover{background:var(--han-color-vermilion-500,#c0392b)!important;color:#fff!important;}
+    .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
+    @media(max-width:768px){.han-nav-panel{width:180px!important;}}
   </style>
-  <button class="dq-nav-fab" onclick="document.getElementById('dqNavPanel').classList.toggle('is-open')">☰</button>
-  <div class="dq-nav-panel" id="dqNavPanel" onclick="event.stopPropagation()">
+  <button type="button" class="han-nav-fab" aria-expanded="false" aria-controls="hanNavPanel" aria-label="打开示例页面导航">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel">
     <h4>示例页面</h4>
     <ul>
       <li><a href="./landing-page.html">落地页</a></li>
@@ -410,7 +413,27 @@ npm install han-design</div>
       <li><a href="./components/stamp.html">印章</a></li>
     </ul>
   </div>
-  <script>document.addEventListener("click",function(e){var p=document.getElementById("dqNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("dq-nav-fab"))p.classList.remove("is-open");});</script>
+  <script>
+    const pageNavButton = document.querySelector('.han-nav-fab');
+    const pageNavPanel = document.getElementById('hanNavPanel');
+    const setPageNavOpen = (open) => {
+      pageNavPanel.classList.toggle('is-open', open);
+      pageNavButton.setAttribute('aria-expanded', String(open));
+      pageNavButton.setAttribute('aria-label', open ? '关闭示例页面导航' : '打开示例页面导航');
+    };
+    pageNavButton.addEventListener('click', () => {
+      setPageNavOpen(pageNavButton.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('click', (event) => {
+      if (!pageNavPanel.contains(event.target) && event.target !== pageNavButton) setPageNavOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setPageNavOpen(false);
+        pageNavButton.focus();
+      }
+    });
+  </script>
 
 </body>
 </html>

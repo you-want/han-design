@@ -1,0 +1,422 @@
+/* ============================================================
+ * 汉 · 设计令牌 (Design Tokens)
+ * 所有变量使用 --han- 前缀
+ * ============================================================ */
+
+:root {
+
+  /* ========================================================
+   * 一、色彩体系 (Color Palette)
+   * ====================================================== */
+
+  /* ---------- 1.1 主色：朱红 (Vermilion) ----------
+   * 朱砂色，取自中国传统印章用朱。
+   * 代表权威、诚信、喜庆，是汉的灵魂色。
+   * 仅用于关键 CTA、印章、强调标记，占比建议 ≤ 5%。 */
+  --han-color-vermilion-50:  #fdf2f0;
+  --han-color-vermilion-100: #fbe3de;
+  --han-color-vermilion-200: #f5c6bb;
+  --han-color-vermilion-300: #ee9f8e;
+  --han-color-vermilion-400: #e46e55;
+  --han-color-vermilion-500: #c0392b;  /* ★ 主色：印章朱 */
+  --han-color-vermilion-600: #a92d22;
+  --han-color-vermilion-700: #8a251b;
+  --han-color-vermilion-800: #6b1d15;
+  --han-color-vermilion-900: #4e1410;
+
+  /* ---------- 1.2 主色：靛蓝 (Indigo) ----------
+   * 深藏青、青花瓷色。
+   * 代表沉静、智慧、高远意境。
+   * 用于标题文字、导航栏、链接。 */
+  --han-color-indigo-50:  #f0f3f7;
+  --han-color-indigo-100: #dde4ee;
+  --han-color-indigo-200: #b9c7dc;
+  --han-color-indigo-300: #8fa3c5;
+  --han-color-indigo-400: #5e76a6;
+  --han-color-indigo-500: #3a5285;  /* ★ 主色：墨蓝 */
+  --han-color-indigo-600: #2c3f6a;
+  --han-color-indigo-700: #223253;
+  --han-color-indigo-800: #1a2740;
+  --han-color-indigo-900: #121c2e;
+
+  /* ---------- 1.3 主色：金色 (Gold) ----------
+   * 古金色、金箔色。
+   * 代表尊贵、典雅、高端。
+   * 用于装饰线条、印章边框、奖项标记。 */
+  --han-color-gold-50:  #fdf8ed;
+  --han-color-gold-100: #f9edcf;
+  --han-color-gold-200: #f2d89a;
+  --han-color-gold-300: #e9be64;
+  --han-color-gold-400: #dfa441;
+  --han-color-gold-500: #c68a2e;  /* ★ 主色：古金 */
+  --han-color-gold-600: #a67224;
+  --han-color-gold-700: #82581c;
+  --han-color-gold-800: #5f4014;
+  --han-color-gold-900: #3e2a0d;
+
+  /* ---------- 1.4 主色：墨色 (Ink) ----------
+   * 松烟墨、墨锭色。
+   * 汉系统最核心的色彩，承载文字与结构。
+   * 从浓墨到淡墨共 10 级，模拟墨在水中的溶解层次。 */
+  --han-color-ink-50:  #f7f6f3;   /* 极淡墨：背景微染 */
+  --han-color-ink-100: #ecebe6;   /* 淡墨：分割线、次级背景 */
+  --han-color-ink-200: #d8d6cf;   /* 清墨：边框、装饰 */
+  --han-color-ink-300: #b5b2a9;   /* 浅墨：次要文字 */
+  --han-color-ink-400: #8a867d;   /* 中墨：说明文字 */
+  --han-color-ink-500: #5e5a53;   /* 墨色：正文 */
+  --han-color-ink-600: #3e3b36;   /* 深墨：小标题 */
+  --han-color-ink-700: #2a2824;   /* 浓墨：大标题 */
+  --han-color-ink-800: #1a1916;   /* 焦墨：强调文字 */
+  --han-color-ink-900: #0d0c0a;   /* 宿墨：最深对比 */
+
+  /* ---------- 1.5 主色：宣纸白 (Rice Paper) ----------
+   * 安徽泾县宣纸色，略带暖黄。
+   * 整个系统的底色，温和不刺眼。 */
+  --han-color-paper-50:  #fdfbf5;  /* 最白宣纸 */
+  --han-color-paper-100: #faf6ea;  /* ★ 默认宣纸底 */
+  --han-color-paper-200: #f4eedb;  /* 旧宣纸 */
+  --han-color-paper-300: #ebe2c4;  /* 年久宣纸 */
+  --han-color-paper-400: #ddcfa4;  /* 古旧宣纸 */
+
+  /* ---------- 1.6 辅助色 (Accent) ----------
+   * 青瓷色：取自宋代龙泉窑。
+   * 竹青色：取翠竹之色。
+   * 赭石：取自国画颜料。 */
+  --han-color-celadon:  #6fa68c;   /* 青瓷：辅助强调 */
+  --han-color-bamboo:   #4a7c59;   /* 竹青：自然主题 */
+  --han-color-ochre:    #b57152;   /* 赭石：复古/山水 */
+  --han-color-lapis:    #2f4858;   /* 青金石：高端深色 */
+
+  /* ---------- 1.7 功能色 (Functional) ----------
+   * 用于状态提示、确认、警告、错误。 */
+  --han-color-success:  #4a7c59;   /* 成功：竹青色 */
+  --han-color-warning:  #c68a2e;   /* 警告：金色 */
+  --han-color-danger:   #c0392b;   /* 错误：朱红色 */
+  --han-color-info:     #3a5285;   /* 信息：靛蓝色 */
+
+  /* ---------- 1.8 语义化色彩映射 ---------- */
+  --han-color-text-primary:   var(--han-color-ink-700);   /* 主要文字 */
+  --han-color-text-secondary: var(--han-color-ink-500);   /* 次要文字 */
+  --han-color-text-tertiary:  var(--han-color-ink-300);   /* 辅助文字 */
+  --han-color-text-inverse:   var(--han-color-paper-100); /* 反色文字 */
+  --han-color-bg:             var(--han-color-paper-100); /* 页面背景 */
+  --han-color-bg-surface:     var(--han-color-paper-50);  /* 卡片背景 */
+  --han-color-bg-elevated:    var(--han-color-paper-200); /* 悬浮背景 */
+  --han-color-bg-dark:        var(--han-color-ink-800);   /* 深色区域背景 */
+  --han-color-border:         var(--han-color-ink-200);   /* 默认边框 */
+  --han-color-border-strong:  var(--han-color-ink-400);   /* 强边框 */
+  --han-color-accent:         var(--han-color-vermilion-500); /* 主题装饰强调色，兼容旧用法 */
+
+  /* ---------- 1.9 功能强调色 ----------
+   * 装饰色不保证可承载文字。交互和文字使用以下语义令牌。 */
+  --han-color-accent-decorative: var(--han-color-accent);
+  --han-color-accent-text:       var(--han-color-vermilion-700);
+  --han-color-accent-control:    var(--han-color-vermilion-600);
+  --han-color-on-accent:         var(--han-color-paper-50);
+  --han-focus-ring:              var(--han-color-indigo-600);
+  --han-focus-ring-offset:       var(--han-color-bg);
+
+  /* ========================================================
+   * 二、字体体系 (Typography)
+   * ====================================================== */
+
+  /* ---------- 2.1 字体栈 (Font Family) ----------
+   * 优先使用 web fonts，系统字体作为降级 */
+  --han-font-serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  --han-font-sans:  "Noto Sans SC", "PingFang SC", "Source Han Sans CN", "Microsoft YaHei", sans-serif;
+  --han-font-mono:  "SF Mono", "JetBrains Mono", "Fira Code", "Consolas", monospace;
+  --han-font-kai:   "LXGW WenKai", "KaiTi", "STKaiti", "Noto Serif SC", serif;
+  --han-font-song:  "Noto Serif SC", "Songti SC", "SimSun", serif;
+
+  /* ---------- 2.2 字号 (Font Size) ----------
+   * 基于 16px 基准，遵循 1.25 比例阶跃。 */
+  --han-fs-xs:      12px;   /* 辅助说明 */
+  --han-fs-sm:      14px;   /* 次要文字 */
+  --han-fs-base:    16px;   /* 正文 */
+  --han-fs-md:      18px;   /* 小标题 */
+  --han-fs-lg:      20px;   /* 大标题 */
+  --han-fs-xl:      24px;   /* 二级标题 */
+  --han-fs-2xl:     30px;   /* 一级标题 */
+  --han-fs-3xl:     38px;   /* 大标题 */
+  --han-fs-4xl:     48px;   /* 展示标题 */
+  --han-fs-5xl:     64px;   /* Hero 书法标题 */
+  --han-fs-6xl:     80px;   /* 超大书法 */
+
+  /* ---------- 2.3 字重 (Font Weight) ---------- */
+  --han-fw-light:   300;
+  --han-fw-regular: 400;
+  --han-fw-medium:  500;
+  --han-fw-bold:    700;
+
+  /* ---------- 2.4 行高 (Line Height) ---------- */
+  --han-lh-tight:   1.1;   /* 书法标题 */
+  --han-lh-snug:    1.3;   /* 标题 */
+  --han-lh-normal:  1.5;   /* 正文 */
+  --han-lh-relaxed: 1.8;   /* 长段落 */
+  --han-lh-loose:   2.2;   /* 诗词 */
+
+  /* ---------- 2.5 字间距 (Letter Spacing) ---------- */
+  --han-ls-tight:   -0.02em;
+  --han-ls-normal:   0;
+  --han-ls-wide:     0.05em;
+  --han-ls-wider:    0.1em;   /* 标题 */
+  --han-ls-widest:   0.3em;   /* 书法落款 */
+
+  /* ========================================================
+   * 三、间距体系 (Spacing)
+   * 基于 4px 基础单位，倍数关系清晰。
+   * ====================================================== */
+  --han-space-1:   4px;
+  --han-space-2:   8px;
+  --han-space-3:   12px;
+  --han-space-4:   16px;
+  --han-space-5:   24px;
+  --han-space-6:   32px;
+  --han-space-7:   48px;
+  --han-space-8:   64px;
+  --han-space-9:   80px;
+  --han-space-10:  96px;
+  --han-space-12:  128px;
+  --han-space-14:  160px;
+  --han-space-16:  192px;
+
+  /* ---------- 布局间距 ---------- */
+  --han-gutter:     24px;   /* 栅格间距 */
+  --han-section-gap: 96px;  /* 区块间距 */
+
+  /* ========================================================
+   * 四、尺寸 (Sizing)
+   * ====================================================== */
+  --han-container-sm:  640px;
+  --han-container-md:  800px;
+  --han-container-lg:  1040px;
+  --han-container-xl:  1200px;
+
+  /* ========================================================
+   * 五、圆角 (Border Radius)
+   * 中国风圆角偏大但不夸张，模拟器物圆润感。
+   * ====================================================== */
+  --han-radius-none: 0;
+  --han-radius-sm:   2px;   /* 印章、小标签 */
+  --han-radius-md:   4px;   /* 按钮、输入框 */
+  --han-radius-lg:   8px;   /* 卡片、卷轴 */
+  --han-radius-xl:   12px;  /* 大卡片、窗口 */
+  --han-radius-pill: 999px; /* 胶囊按钮 */
+  --han-radius-full: var(--han-radius-pill);
+
+  /* ========================================================
+   * 六、边框 (Border)
+   * ====================================================== */
+  --han-border-width:   1px;
+  --han-border-width-2: 2px;
+  --han-border-width-3: 3px;
+  --han-border-style:   solid;
+  --han-border:         var(--han-border-width) var(--han-border-style) var(--han-color-border);
+  --han-border-strong:  var(--han-border-width-2) var(--han-border-style) var(--han-color-border-strong);
+
+  /* ========================================================
+   * 七、阴影 (Shadow)
+   * 中国风阴影柔和克制，不用重投影。
+   * ====================================================== */
+  --han-shadow-xs:     0 1px 2px rgba(26, 24, 22, 0.04);
+  --han-shadow-sm:     0 2px 4px rgba(26, 24, 22, 0.06);
+  --han-shadow-md:     0 4px 12px rgba(26, 24, 22, 0.08);
+  --han-shadow-lg:     0 8px 24px rgba(26, 24, 22, 0.10);
+  --han-shadow-xl:     0 16px 48px rgba(26, 24, 22, 0.12);
+  --han-shadow-seal:   2px 3px 6px rgba(192, 57, 43, 0.35);
+  --han-shadow-scroll: 0 6px 18px rgba(26, 24, 22, 0.08), inset 0 1px 0 rgba(255,255,255,0.5);
+
+  /* ========================================================
+   * 八、动画 (Motion)
+   * ====================================================== */
+
+  /* ---------- 8.1 缓动曲线 ---------- */
+  --han-ease-out:   cubic-bezier(0.22, 1, 0.36, 1);   /* 墨迹扩散 */
+  --han-ease-in:    cubic-bezier(0.64, 0, 0.78, 0);
+  --han-ease-inout: cubic-bezier(0.45, 0, 0.55, 1);
+  --han-ease-in-out: var(--han-ease-inout);
+  --han-ease-spring:cubic-bezier(0.34, 1.56, 0.64, 1);  /* 印章落下 */
+
+  /* ---------- 8.2 时长 ---------- */
+  --han-duration-fast:    100ms;
+  --han-duration-normal:  200ms;
+  --han-duration-slow:    400ms;
+  --han-duration-slower:  600ms;
+
+  /* ========================================================
+   * 九、层级 (Z-Index)
+   * ====================================================== */
+  --han-z-base:     0;
+  --han-z-sticky:   100;
+  --han-z-overlay:  200;
+  --han-z-modal:    300;
+  --han-z-tooltip:  400;
+  --han-z-max:      999;
+
+  /* ========================================================
+   * 十、组件级变量
+   * ====================================================== */
+
+  /* ---------- 印章按钮 ---------- */
+  --han-seal-bg:        var(--han-color-vermilion-500);
+  --han-seal-bg-hover:  var(--han-color-vermilion-600);
+  --han-seal-text:      var(--han-color-paper-100);
+  --han-seal-border:    var(--han-color-gold-500);
+  --han-seal-size:      56px;
+  --han-seal-radius:    var(--han-radius-sm);
+  --han-seal-tilt:      -3deg;
+
+  /* ---------- 水墨导航 ---------- */
+  --han-nav-height:     64px;
+  --han-nav-bg:         var(--han-color-paper-100);
+  --han-nav-border:     var(--han-color-ink-200);
+  --han-nav-text:       var(--han-color-ink-500);
+  --han-nav-text-hover: var(--han-color-ink-700);
+  --han-nav-ink-width:  0;
+  --han-nav-ink-color:  var(--han-color-ink-700);
+
+  /* ---------- 卷轴卡片 ---------- */
+  --han-scroll-bg:      var(--han-color-paper-100);
+  --han-scroll-roller:  var(--han-color-ink-700);
+  --han-scroll-rivet:    var(--han-color-gold-500);
+  --han-scroll-shadow:   var(--han-shadow-scroll);
+
+  /* ---------- 印章组件 ---------- */
+  --han-stamp-bg:       var(--han-color-vermilion-500);
+  --han-stamp-text:     var(--han-color-paper-100);
+  --han-stamp-size:     48px;
+  --han-stamp-font:     var(--han-fs-base);
+  --han-stamp-border-radius: var(--han-radius-sm);
+
+  /* ========================================================
+   * 十一、渐变系统 (Gradient)
+   * 中国风渐变：墨色渐变、天青→月白、朱砂渐变、金辉渐变
+   * ====================================================== */
+
+  /* 墨色渐变：浓墨→淡墨，模拟墨迹扩散 */
+  --han-gradient-ink:
+    linear-gradient(180deg,
+      var(--han-color-ink-700) 0%,
+      var(--han-color-ink-500) 40%,
+      var(--han-color-ink-300) 70%,
+      var(--han-color-ink-100) 100%);
+
+  /* 天青→月白：宋瓷质感 */
+  --han-gradient-sky:
+    linear-gradient(135deg,
+      #87A6B3 0%,
+      #A7BFC6 30%,
+      #D4DBE0 70%,
+      #F0F2F0 100%);
+
+  /* 朱砂渐变：印章、喜庆 */
+  --han-gradient-vermilion:
+    linear-gradient(180deg,
+      var(--han-color-vermilion-600) 0%,
+      var(--han-color-vermilion-500) 50%,
+      var(--han-color-vermilion-400) 100%);
+
+  /* 金辉渐变：尊贵、装饰 */
+  --han-gradient-gold:
+    linear-gradient(135deg,
+      var(--han-color-gold-700) 0%,
+      var(--han-color-gold-500) 40%,
+      var(--han-color-gold-400) 70%,
+      var(--han-color-gold-300) 100%);
+
+  /* 宣纸渐变：温暖底色 */
+  --han-gradient-paper:
+    radial-gradient(ellipse at center,
+      var(--han-color-paper-100) 0%,
+      var(--han-color-paper-200) 100%);
+
+  /* 青瓷渐变：温润如玉 */
+  --han-gradient-celadon:
+    linear-gradient(135deg,
+      #6FA68C 0%,
+      #8BBF9F 40%,
+      #C5E0D0 100%);
+
+  /* 靛蓝渐变：青花瓷 */
+  --han-gradient-indigo:
+    linear-gradient(135deg,
+      var(--han-color-indigo-700) 0%,
+      var(--han-color-indigo-500) 50%,
+      var(--han-color-indigo-300) 100%);
+
+  /* 渐变角度变量（可被主题覆盖） */
+  --han-gradient-angle: 135deg;
+
+  /* ========================================================
+   * 十二、图案系统 (Pattern Tokens)
+   * 供 patterns.css 中的图案类和组件集成类消费
+   * ====================================================== */
+
+  --han-pattern-opacity: 0.12;
+  --han-pattern-color: var(--han-color-ink-500);
+  --han-pattern-overlay-opacity: 0.12;
+  --han-pattern-z: 0;
+}
+
+/* ============================================================
+ * 关键帧 (Keyframes)
+ * ====================================================== */
+@keyframes han-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes han-fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes han-ink-spread {
+  from { opacity: 0; transform: scale(0.8); filter: blur(8px); }
+  to   { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+@keyframes han-seal-drop {
+  0%   { transform: scale(1.15) rotate(-3deg); }
+  60%  { transform: scale(0.95) rotate(-2deg); }
+  80%  { transform: scale(1.05) rotate(-2deg); }
+  100% { transform: scale(1) rotate(-2deg); }
+}
+
+@keyframes han-brush-write {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes han-scroll-unroll {
+  from { max-height: 0; opacity: 0; }
+  to   { max-height: 2000px; opacity: 1; }
+}
+
+@keyframes han-sway {
+  0%, 100% { transform: rotate(-1deg); }
+  50%      { transform: rotate(1deg); }
+}
+
+/* ============================================================
+ * 深色主题 (Dark Theme)
+ * ====================================================== */
+[data-theme='dark'] {
+  --han-color-text-primary:   var(--han-color-paper-50);
+  --han-color-text-secondary: var(--han-color-paper-200);
+  --han-color-text-tertiary:  var(--han-color-ink-300);
+  --han-color-text-inverse:   var(--han-color-ink-700);
+  --han-color-bg:             var(--han-color-ink-800);
+  --han-color-bg-surface:     var(--han-color-ink-700);
+  --han-color-bg-elevated:    var(--han-color-ink-600);
+  --han-color-border:         var(--han-color-ink-500);
+  --han-color-accent-text:    var(--han-color-vermilion-300);
+  --han-color-accent-control: var(--han-color-vermilion-300);
+  --han-color-on-accent:      var(--han-color-ink-900);
+  --han-focus-ring:           var(--han-color-gold-300);
+  --han-focus-ring-offset:    var(--han-color-ink-800);
+
+  --han-pattern-opacity: 0.18;
+  --han-pattern-color: var(--han-color-paper-200);
+  --han-pattern-overlay-opacity: 0.18;
+}

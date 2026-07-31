@@ -1,0 +1,44 @@
+<nav class="han-navbar" data-han-navbar aria-label="{navigation_label}">
+  <div class="han-navbar__inner">
+    <a class="han-navbar__brand" href="{home_url}">{brand}<span>{accent_char}</span></a>
+    <button class="han-navbar__toggle" type="button" aria-expanded="false" aria-controls="{nav_id}" aria-label="打开导航菜单">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+    <ul class="han-navbar__menu" id="{nav_id}">
+      <li class="han-navbar__item han-navbar__item--active"><a href="{active_url}" aria-current="page">{active_item}</a></li>
+      <li class="han-navbar__item"><a href="{item2_url}">{item2}</a></li>
+      <li class="han-navbar__item"><a href="{item3_url}">{item3}</a></li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  document.querySelectorAll('[data-han-navbar]').forEach((navbar) => {
+    const toggle = navbar.querySelector('.han-navbar__toggle');
+    const menu = navbar.querySelector('.han-navbar__menu');
+    if (!toggle || !menu) return;
+
+    const setOpen = (open) => {
+      navbar.classList.toggle('han-navbar--open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? '关闭导航菜单' : '打开导航菜单');
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    navbar.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    menu.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setOpen(false);
+    });
+  });
+</script>

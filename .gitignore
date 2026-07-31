@@ -58,6 +58,13 @@ temp
 *.tmp
 .cache/
 
+# Generated release audits and local QA artifacts
+output/
+evals/results/
+playwright-report/
+test-results/
+screenshots/
+
 # OS generated
 Thumbs.db
 ehthumbs.db

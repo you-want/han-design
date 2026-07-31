@@ -1,0 +1,812 @@
+/* ============================================================
+ * 汉 · 增强组件 (Enhanced Components)
+ * 中国风图片滤镜、印章相框、水墨画廊
+ * 中式下拉选择、日期选择、文件上传、星级评分
+ * 中国风空状态、水墨骨架屏、加载指示器
+ *
+ * 使用方式：
+ *   <div class="han-frame-seal">...</div>
+ *   <div class="han-gallery">...</div>
+ * ============================================================ */
+
+
+/* ========================================================
+ * 1. 中国风图片组件
+ * ====================================================== */
+
+/* 印章相框 - 四角装饰边框 */
+.han-frame-seal {
+  position: relative;
+  display: inline-block;
+  padding: var(--han-space-2);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border-strong);
+  border-radius: var(--han-radius-lg);
+  box-shadow: var(--han-shadow-md);
+}
+
+/* 四角装饰 */
+.han-frame-seal::before,
+.han-frame-seal::after,
+.han-frame-seal > .han-corner,
+.han-frame-seal > .han-corner--br {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 2 L2 8 M2 2 L8 2 M2 2 L6 6' fill='none' stroke='%23c0392b' stroke-width='1.5'/%3E%3Ccircle cx='4' cy='4' r='1.5' fill='%23c0392b'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.han-frame-seal::before { top: 4px; left: 4px; }
+.han-frame-seal::after { top: 4px; right: 4px; transform: scaleX(-1); }
+.han-frame-seal > .han-corner { bottom: 4px; left: 4px; transform: scaleY(-1); }
+.han-frame-seal > .han-corner--br { bottom: 4px; right: 4px; transform: scale(-1, -1); }
+
+.han-frame-seal img {
+  display: block;
+  border-radius: calc(var(--han-radius-lg) - 2px);
+}
+
+/* 金边相框 */
+.han-frame-gold {
+  border-color: var(--han-color-gold-400);
+  box-shadow:
+    0 0 0 3px var(--han-color-bg-surface),
+    0 0 0 4px var(--han-color-gold-300),
+    var(--han-shadow-lg);
+}
+
+/* 宣纸相框 */
+.han-frame-paper {
+  background: var(--han-color-paper-50);
+  border-width: 2px;
+  border-style: double;
+}
+
+.han-frame-paper::before,
+.han-frame-paper::after,
+.han-frame-paper > .han-corner,
+.han-frame-paper > .han-corner--br {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 2 L2 8 M2 2 L8 2 M2 2 L6 6' fill='none' stroke='%23c68a2e' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+
+/* 图片滤镜类 */
+.han-filter-ink {
+  filter: grayscale(0.8) contrast(1.2) brightness(0.9);
+}
+
+.han-filter-sepia {
+  filter: sepia(0.6) saturate(1.2);
+}
+
+.han-filter-sung {
+  filter: saturate(0.8) brightness(1.05) contrast(0.95);
+}
+
+
+/* ========================================================
+ * 2. 水墨画廊组件
+ * ====================================================== */
+.han-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--han-space-5);
+}
+
+.han-gallery__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--han-radius-lg);
+  background: var(--han-color-bg-surface);
+  box-shadow: var(--han-shadow-sm);
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+.han-gallery__item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--han-shadow-lg);
+}
+
+.han-gallery__item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  transition: transform var(--duration-slower) var(--ease-out);
+}
+
+.han-gallery__item:hover img {
+  transform: scale(1.05);
+}
+
+.han-gallery__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--han-space-4) var(--han-space-5);
+  background: linear-gradient(
+    0deg,
+    rgba(42, 40, 36, 0.9) 0%,
+    rgba(42, 40, 36, 0.6) 50%,
+    transparent 100%
+  );
+  color: var(--han-color-paper-100);
+  font-family: var(--han-font-kai);
+}
+
+.han-gallery__title {
+  font-size: var(--han-fs-md);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  margin-bottom: var(--han-space-1);
+}
+
+.han-gallery__desc {
+  font-size: var(--han-fs-sm);
+  opacity: 0.9;
+}
+
+/* 画廊变体 */
+.han-gallery--masonry {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-flow: dense;
+}
+
+.han-gallery--masonry .han-gallery__item:nth-child(4n+1) {
+  grid-row: span 2;
+}
+
+
+/* ========================================================
+ * 3. 中式下拉选择组件
+ * ====================================================== */
+.han-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.han-select__trigger {
+  width: 100%;
+  padding: var(--han-space-3) var(--han-space-5);
+  padding-right: var(--han-space-10);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-primary);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-md);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-select__trigger:hover,
+.han-select.is-open .han-select__trigger {
+  border-color: var(--han-color-accent-control);
+}
+
+.han-select__arrow {
+  position: absolute;
+  right: var(--han-space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4 L6 8 L10 4' fill='none' stroke='%235e5a53' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  transition: transform var(--han-duration-normal) var(--han-ease-out);
+  pointer-events: none;
+}
+
+.han-select.is-open .han-select__arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.han-select__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: var(--han-space-2);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-md);
+  box-shadow: var(--han-shadow-lg);
+  max-height: 240px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all var(--duration-normal) var(--ease-out);
+  z-index: var(--han-z-overlay);
+}
+
+.han-select.is-open .han-select__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.han-select__item {
+  padding: var(--han-space-3) var(--han-space-5);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.han-select__item:hover,
+.han-select__item.is-hover {
+  background: var(--han-color-bg-elevated);
+  color: var(--han-color-text-primary);
+}
+
+.han-select__item.is-selected {
+  color: var(--han-color-accent-text);
+  background: var(--han-color-bg-elevated);
+}
+
+.han-select__empty {
+  padding: var(--han-space-5);
+  text-align: center;
+  color: var(--han-color-text-tertiary);
+  font-family: var(--han-font-kai);
+}
+
+
+/* ========================================================
+ * 4. 中式日期选择组件
+ * ====================================================== */
+.han-date-picker {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.han-date-picker__input {
+  width: 100%;
+  padding: var(--han-space-3) var(--han-space-5);
+  padding-right: var(--han-space-10);
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-primary);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-md);
+  cursor: pointer;
+}
+
+.han-date-picker__input:focus-visible {
+  border-color: var(--han-color-accent-control);
+}
+
+.han-date-picker__calendar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: var(--han-space-2);
+  padding: var(--han-space-4);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) solid var(--han-color-border);
+  border-radius: var(--han-radius-lg);
+  box-shadow: var(--han-shadow-xl);
+  z-index: var(--han-z-overlay);
+}
+
+.han-date-picker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--han-space-4);
+  padding-bottom: var(--han-space-2);
+  border-bottom: var(--han-border-width) dashed var(--han-color-border);
+}
+
+.han-date-picker__nav {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--han-color-text-secondary);
+}
+
+.han-date-picker__title {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-md);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-primary);
+}
+
+.han-date-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--han-space-1);
+}
+
+.han-date-picker__day {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+  border-radius: var(--han-radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.han-date-picker__day:hover {
+  background: var(--han-color-bg-elevated);
+}
+
+.han-date-picker__day.is-today {
+  border: var(--han-border-width) solid var(--han-color-accent-control);
+}
+
+.han-date-picker__day.is-selected {
+  background: var(--han-color-accent-control);
+  color: var(--han-color-on-accent);
+}
+
+.han-date-picker__day.is-empty {
+  visibility: hidden;
+}
+
+.han-date-picker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--han-space-1);
+  margin-bottom: var(--han-space-2);
+}
+
+.han-date-picker__weekday {
+  width: 36px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-xs);
+  color: var(--han-color-text-tertiary);
+}
+
+
+/* ========================================================
+ * 5. 中式文件上传组件
+ * ====================================================== */
+.han-upload {
+  position: relative;
+  width: 100%;
+}
+
+.han-upload__dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--han-space-4);
+  padding: var(--han-space-8) var(--han-space-6);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border-width) dashed var(--han-color-border);
+  border-radius: var(--han-radius-lg);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  text-align: center;
+}
+
+.han-upload__dropzone:hover,
+.han-upload.is-dragging .han-upload__dropzone {
+  border-color: var(--han-color-accent-control);
+  background: var(--han-color-bg-elevated);
+}
+
+.han-upload__icon {
+  width: 48px;
+  height: 48px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 8 L24 32 M14 18 L24 8 L34 18' fill='none' stroke='%23c68a2e' stroke-width='2'/%3E%3Crect x='8' y='32' width='32' height='8' rx='2' fill='none' stroke='%23c68a2e' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.han-upload__text {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-secondary);
+}
+
+.han-upload__hint {
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-tertiary);
+}
+
+.han-upload__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.han-upload__list {
+  margin-top: var(--han-space-4);
+  list-style: none;
+  padding: 0;
+}
+
+.han-upload__file {
+  display: flex;
+  align-items: center;
+  gap: var(--han-space-3);
+  padding: var(--han-space-3);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border);
+  border-radius: var(--han-radius-md);
+  margin-bottom: var(--han-space-2);
+}
+
+.han-upload__progress {
+  flex: 1;
+  height: 4px;
+  background: var(--han-color-bg-elevated);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.han-upload__progress-bar {
+  height: 100%;
+  background: var(--han-color-accent-control);
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+.han-upload__remove {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--han-color-text-tertiary);
+  cursor: pointer;
+}
+
+
+/* ========================================================
+ * 6. 中式星级评分组件
+ * ====================================================== */
+.han-rating-enhanced {
+  display: inline-flex;
+  gap: var(--han-space-1);
+  align-items: center;
+}
+
+.han-rating-enhanced__star {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.han-rating-enhanced__star:hover {
+  transform: scale(1.2);
+}
+
+.han-rating-enhanced__star svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--han-color-ink-200);
+  transition: fill var(--duration-fast) var(--ease-out);
+}
+
+.han-rating-enhanced__star.is-active svg,
+.han-rating-enhanced__star.is-hover svg {
+  fill: var(--han-color-accent-control);
+}
+
+/* 印章风格评分 */
+.han-rating-enhanced--seal .han-rating-enhanced__star svg {
+  fill: none;
+  stroke: var(--han-color-ink-300);
+  stroke-width: 1.5;
+}
+
+.han-rating-enhanced--seal .han-rating-enhanced__star.is-active svg,
+.han-rating-enhanced--seal .han-rating-enhanced__star.is-hover svg {
+  fill: var(--han-color-bg-elevated);
+  stroke: var(--han-color-accent-control);
+}
+
+
+/* ========================================================
+ * 7. 中国风空状态组件
+ * ====================================================== */
+.han-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--han-space-10) var(--han-space-5);
+  text-align: center;
+}
+
+.han-empty__icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: var(--han-space-5);
+  opacity: 0.5;
+}
+
+.han-empty__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--han-color-ink-300);
+  stroke-width: 1;
+}
+
+.han-empty__title {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-lg);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  color: var(--han-color-text-secondary);
+  margin-bottom: var(--han-space-2);
+}
+
+.han-empty__desc {
+  font-size: var(--han-fs-base);
+  color: var(--han-color-text-tertiary);
+  margin-bottom: var(--han-space-5);
+  max-width: 360px;
+}
+
+/* 空状态变体 */
+.han-empty--no-data .han-empty__icon svg {
+  stroke: var(--han-color-ink-200);
+}
+
+.han-empty--no-search .han-empty__icon svg {
+  stroke: var(--han-color-ink-200);
+}
+
+.han-empty--error .han-empty__icon svg {
+  stroke: var(--han-color-vermilion-400);
+}
+
+
+/* ========================================================
+ * 8. 水墨骨架屏组件
+ * ====================================================== */
+.han-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--han-color-bg-surface);
+  border-radius: var(--han-radius-md);
+}
+
+.han-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  animation: han-skeleton-shimmer 1.5s infinite;
+}
+
+@keyframes han-skeleton-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.han-skeleton--text {
+  height: 16px;
+  background: var(--han-color-ink-100);
+  margin-bottom: var(--han-space-3);
+}
+
+.han-skeleton--text:last-child {
+  width: 60%;
+  margin-bottom: 0;
+}
+
+.han-skeleton--title {
+  height: 24px;
+  width: 40%;
+  margin-bottom: var(--han-space-4);
+  background: var(--han-color-ink-200);
+}
+
+.han-skeleton--avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--han-color-ink-100);
+  flex-shrink: 0;
+}
+
+.han-skeleton--image {
+  aspect-ratio: 16/9;
+  background: var(--han-color-ink-100);
+  border-radius: var(--han-radius-md);
+}
+
+/* 骨架屏卡片 */
+.han-skeleton-card {
+  display: flex;
+  gap: var(--han-space-4);
+  padding: var(--han-space-5);
+  background: var(--han-color-bg-surface);
+  border: var(--han-border);
+  border-radius: var(--han-radius-lg);
+}
+
+.han-skeleton-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--han-color-ink-100);
+  flex-shrink: 0;
+}
+
+.han-skeleton-card__content {
+  flex: 1;
+}
+
+
+/* ========================================================
+ * 9. 加载指示器组件
+ * ====================================================== */
+
+/* 水墨加载 */
+.han-loader {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--han-space-3);
+}
+
+.han-loader__spinner {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.han-loader__spinner::before,
+.han-loader__spinner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.han-loader__spinner::before {
+  border-top-color: var(--han-color-ink-500);
+  animation: han-loader-spin 0.8s linear infinite;
+}
+
+.han-loader__spinner::after {
+  border-right-color: var(--han-color-vermilion-500);
+  animation: han-loader-spin 1.2s linear infinite reverse;
+  inset: 4px;
+}
+
+@keyframes han-loader-spin {
+  to { transform: rotate(360deg); }
+}
+
+.han-loader__text {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-sm);
+  color: var(--han-color-text-secondary);
+}
+
+/* 印章加载 */
+.han-loader--seal .han-loader__spinner {
+  width: 28px;
+  height: 28px;
+}
+
+.han-loader--seal .han-loader__spinner::before {
+  border-color: var(--han-color-vermilion-300);
+  border-top-color: var(--han-color-vermilion-500);
+}
+
+/* 墨迹点加载 */
+.han-loader--dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.han-loader--dots span {
+  width: 8px;
+  height: 8px;
+  background: var(--han-color-ink-400);
+  border-radius: 50%;
+  animation: han-loader-dot 1.4s ease-in-out infinite;
+}
+
+.han-loader--dots span:nth-child(1) { animation-delay: 0s; }
+.han-loader--dots span:nth-child(2) { animation-delay: 0.2s; }
+.han-loader--dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes han-loader-dot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* 全页加载遮罩 */
+.han-loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(250, 246, 234, 0.9);
+  backdrop-filter: blur(4px);
+  z-index: var(--han-z-modal);
+}
+
+.han-loading-overlay__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--han-space-5);
+}
+
+.han-loading-overlay__logo {
+  width: 64px;
+  height: 64px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='8' y='8' width='48' height='48' rx='4' fill='%23c0392b'/%3E%3Cpath d='M16 24 Q32 16 48 24 M16 40 Q32 48 48 40' fill='none' stroke='%23faf6ea' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  animation: han-loader-pulse 2s ease-in-out infinite;
+}
+
+@keyframes han-loader-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.han-loading-overlay__text {
+  font-family: var(--han-font-kai);
+  font-size: var(--han-fs-lg);
+  color: var(--han-color-text-primary);
+  letter-spacing: var(--han-ls-wider);
+}
+
+
+/* ========================================================
+ * 10. 响应式调整
+ * ====================================================== */
+@media (max-width: 768px) {
+  .han-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+
+  .han-date-picker__calendar {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .han-date-picker__day,
+  .han-date-picker__weekday {
+    width: 32px;
+    height: 32px;
+  }
+}

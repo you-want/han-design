@@ -1,0 +1,1142 @@
+/* ============================================================
+ * 汉 · 增强动效 (Enhanced Motion)
+ * 深度中国风交互动画系统 v2.0
+ *
+ * 包含：
+ *   1. 笔写路径动画 (SVG stroke-dashoffset)
+ *   2. 墨迹扩散悬停（带墨滴）
+ *   3. 滚动入场（多种中国式入场）
+ *   4. 印章盖下震动动画
+ *   5. 卷轴展开动画
+ *   6. 涟漪墨点扩散
+ *   7. 书写笔顺动画
+ *   8. 墨迹边框扩散
+ *   9. 悬停升起/缩放
+ *  10. 图片墨色渐显
+ *  11. 水墨视差/光标追踪
+ *  12. 折扇展开动画
+ *  13. 花瓣飘落动画
+ *  14. 烟雾飘渺动画
+ *  15. 灯笼摇晃动画
+ * ============================================================ */
+
+
+/* ========================================================
+ * 1. 笔写路径动画 (SVG Path Stroke)
+ * 使用 SVG stroke-dashoffset 模拟毛笔沿路径书写
+ * 需配合 SVG path 使用
+ *
+ * 用法：
+ * <svg class="han-brush-path">
+ *   <path d="..." class="han-brush-path__stroke" />
+ * </svg>
+ * ====================================================== */
+
+.han-brush-path__stroke {
+  stroke-dasharray: var(--path-length, 1000);
+  stroke-dashoffset: var(--path-length, 1000);
+  animation: han-brush-draw var(--han-duration-slower, 2s) var(--han-ease-out) forwards;
+}
+
+.han-brush-path__stroke--fast {
+  animation-duration: 0.6s;
+}
+
+.han-brush-path__stroke--slow {
+  animation-duration: 3s;
+}
+
+@keyframes han-brush-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* 笔写完成后渐隐显示填充 */
+.han-brush-path.is-done .han-brush-path__fill {
+  opacity: 1;
+  transition: opacity var(--han-duration-slow) var(--han-ease-out);
+}
+
+/* 毛笔标题路径化 - 让标题文字像用毛笔写出 */
+.han-title-brush-path {
+  display: inline-block;
+  position: relative;
+}
+
+.han-title-brush-path::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--han-color-ink-700) 10%,
+    var(--han-color-ink-500) 50%,
+    var(--han-color-ink-700) 90%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  filter: blur(0.5px);
+  transform-origin: left;
+  animation: han-brush-underline-draw 1.2s var(--han-ease-out) forwards;
+}
+
+@keyframes han-brush-underline-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+
+/* ========================================================
+ * 2. 墨迹扩散悬停效果
+ * 鼠标悬停时模拟墨迹扩散（墨滴形式）
+ * ====================================================== */
+
+.han-hover-ink {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.han-hover-ink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(42, 40, 36, 0.12) 0%,
+    rgba(42, 40, 36, 0.06) 15%,
+    rgba(42, 40, 36, 0.03) 30%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--han-duration-normal) var(--han-ease-out);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.han-hover-ink:hover::before {
+  opacity: 1;
+}
+
+/* 墨滴扩散 - 悬停时产生墨滴效果 */
+.han-hover-ink::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(42, 40, 36, 0.15) 0%,
+    rgba(42, 40, 36, 0.08) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: width var(--han-duration-slower) var(--han-ease-out),
+              height var(--han-duration-slower) var(--han-ease-out),
+              opacity var(--han-duration-normal) var(--han-ease-out);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.han-hover-ink:hover::after {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+}
+
+/* 朱红墨迹悬停 */
+.han-hover-ink--vermilion::before {
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(192, 57, 43, 0.15) 0%,
+    rgba(192, 57, 43, 0.08) 20%,
+    transparent 60%
+  );
+}
+
+.han-hover-ink--vermilion::after {
+  background: radial-gradient(
+    circle,
+    rgba(192, 57, 43, 0.2) 0%,
+    rgba(192, 57, 43, 0.1) 40%,
+    transparent 70%
+  );
+}
+
+/* 金色墨迹悬停 */
+.han-hover-ink--gold::before {
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(198, 138, 46, 0.12) 0%,
+    rgba(198, 138, 46, 0.06) 20%,
+    transparent 60%
+  );
+}
+
+.han-hover-ink--gold::after {
+  background: radial-gradient(
+    circle,
+    rgba(198, 138, 46, 0.15) 0%,
+    rgba(198, 138, 46, 0.08) 40%,
+    transparent 70%
+  );
+}
+
+
+/* ========================================================
+ * 3. 滚动触发动画
+ * 多种中国式入场效果
+ * 需要配合 JS：添加 is-visible 类
+ * ====================================================== */
+
+/* 基础滚动入场 */
+.han-reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--han-duration-slower) var(--han-ease-out),
+              transform var(--han-duration-slower) var(--han-ease-out);
+}
+
+.han-reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 从左入场 */
+.han-reveal-from-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity var(--han-duration-slower) var(--han-ease-out),
+              transform var(--han-duration-slower) var(--han-ease-out);
+}
+
+.han-reveal-from-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 从右入场 */
+.han-reveal-from-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity var(--han-duration-slower) var(--han-ease-out),
+              transform var(--han-duration-slower) var(--han-ease-out);
+}
+
+.han-reveal-from-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 缩放入场 */
+.han-reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity var(--han-duration-slower) var(--han-ease-out),
+              transform var(--han-duration-slower) var(--han-ease-out);
+}
+
+.han-reveal-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 墨迹扩散入场 - 元素如墨迹在水中显现 */
+.han-reveal-ink {
+  opacity: 0;
+  filter: blur(12px);
+  transform: scale(0.95);
+  transition: opacity var(--han-duration-slower) var(--han-ease-out),
+              filter var(--han-duration-slower) var(--han-ease-out),
+              transform var(--han-duration-slower) var(--han-ease-out);
+}
+
+.han-reveal-ink.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* 印章落下入场 - 如印章从高处落下 */
+.han-reveal-seal {
+  opacity: 0;
+  transform: scale(1.15) rotate(-3deg);
+  transition: opacity 0.4s var(--han-ease-spring),
+              transform 0.4s var(--han-ease-spring);
+}
+
+.han-reveal-seal.is-visible {
+  opacity: 1;
+  transform: scale(1) rotate(-3deg);
+}
+
+/* 卷轴展开入场 - 内容如卷轴展开般显现 */
+.han-reveal-scroll {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: opacity var(--han-duration-slower) var(--han-ease-out),
+              transform var(--han-duration-slower) var(--han-ease-out);
+}
+
+.han-reveal-scroll.is-visible {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* 毛笔书写入场 - 文字逐字显现 */
+.han-reveal-brush {
+  opacity: 0;
+  transform: translateY(6px) scaleY(0.9);
+  transform-origin: bottom center;
+  transition: opacity var(--han-duration-normal) var(--han-ease-out),
+              transform var(--han-duration-normal) var(--han-ease-out);
+}
+
+.han-reveal-brush.is-visible {
+  opacity: 1;
+  transform: translateY(0) scaleY(1);
+}
+
+/* 云烟飘入 - 如云雾飘入般显现 */
+.han-reveal-cloud {
+  opacity: 0;
+  filter: blur(20px);
+  transform: translate(-20px, 10px);
+  transition: opacity 1.5s var(--han-ease-out),
+              filter 1.5s var(--han-ease-out),
+              transform 1.5s var(--han-ease-out);
+}
+
+.han-reveal-cloud.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate(0, 0);
+}
+
+/* 错落延迟 */
+.han-reveal-delay-1 { transition-delay: 0.1s; }
+.han-reveal-delay-2 { transition-delay: 0.2s; }
+.han-reveal-delay-3 { transition-delay: 0.3s; }
+.han-reveal-delay-4 { transition-delay: 0.4s; }
+.han-reveal-delay-5 { transition-delay: 0.5s; }
+.han-reveal-delay-6 { transition-delay: 0.6s; }
+.han-reveal-delay-7 { transition-delay: 0.7s; }
+.han-reveal-delay-8 { transition-delay: 0.8s; }
+
+
+/* ========================================================
+ * 4. 印章盖下震动动画
+ * 印章按钮点击时的震动+墨印效果
+ * ====================================================== */
+
+.han-btn-seal-impact {
+  position: relative;
+  transition: transform var(--han-duration-fast) var(--han-ease-spring);
+}
+
+.han-btn-seal-impact:active {
+  transform: scale(0.95) rotate(-3deg);
+}
+
+.han-btn-seal-impact::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--han-color-vermilion-500);
+  border-radius: inherit;
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity var(--han-duration-fast) var(--han-ease-out),
+              transform var(--han-duration-fast) var(--han-ease-out);
+  pointer-events: none;
+}
+
+.han-btn-seal-impact.is-impressed::after {
+  animation: han-seal-impress 0.3s ease-out;
+}
+
+@keyframes han-seal-impress {
+  0% { opacity: 0.6; transform: scale(1.1); }
+  50% { opacity: 0.3; transform: scale(0.98); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+/* 印章震动效果 - 持续轻微震动 */
+.han-seal-shake {
+  animation: han-seal-shake 0.15s var(--han-ease-spring);
+}
+
+@keyframes han-seal-shake {
+  0% { transform: rotate(-3deg) translateX(0); }
+  25% { transform: rotate(-3deg) translateX(-2px); }
+  50% { transform: rotate(-3deg) translateX(2px); }
+  75% { transform: rotate(-3deg) translateX(-1px); }
+  100% { transform: rotate(-3deg) translateX(0); }
+}
+
+/* 印章盖下完整动画 - 落下+震动+墨印扩散 */
+.han-seal-full-anim {
+  animation: han-seal-drop-full 0.8s var(--han-ease-spring);
+}
+
+@keyframes han-seal-drop-full {
+  0% {
+    transform: scale(1.3) rotate(-5deg) translateY(-20px);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.1) rotate(-3deg) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.95) rotate(-3deg);
+  }
+  65% {
+    transform: scale(1.05) rotate(-3deg);
+  }
+  80% {
+    transform: scale(0.98) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(-3deg);
+  }
+}
+
+
+/* ========================================================
+ * 5. 卷轴展开动画
+ * 模拟卷轴从中间向两侧展开
+ *
+ * 用法：
+ * <div class="han-scroll-unroll">
+ *   <div class="han-scroll-unroll__content">内容</div>
+ * </div>
+ * ====================================================== */
+
+.han-scroll-unroll {
+  position: relative;
+  overflow: hidden;
+}
+
+.han-scroll-unroll__content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 1.2s var(--han-ease-out),
+              opacity 0.8s var(--han-ease-out) 0.2s;
+}
+
+.han-scroll-unroll.is-open .han-scroll-unroll__content {
+  max-height: 3000px;
+  opacity: 1;
+}
+
+/* 卷轴头动画 - 两端卷轴滚动 */
+.han-scroll-unroll::before,
+.han-scroll-unroll::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  background: linear-gradient(90deg, var(--han-color-ink-700), #3a3833, #4a4842, var(--han-color-ink-700));
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+              inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 1s var(--han-ease-out),
+              opacity 0.3s var(--han-ease-out);
+  z-index: 2;
+}
+
+.han-scroll-unroll::before {
+  left: 0;
+}
+
+.han-scroll-unroll::after {
+  right: 0;
+}
+
+.han-scroll-unroll.is-open::before {
+  transform: translateX(-20px);
+}
+
+.han-scroll-unroll.is-open::after {
+  transform: translateX(20px);
+}
+
+
+/* ========================================================
+ * 6. 涟漪墨点扩散
+ * 墨滴落下产生的涟漪扩散效果
+ * 可用于按钮点击、列表项等
+ * ====================================================== */
+
+.han-ripple-ink {
+  position: relative;
+  overflow: hidden;
+}
+
+.han-ripple-ink::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(42, 40, 36, 0.2) 0%,
+    rgba(42, 40, 36, 0.1) 30%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.han-ripple-ink.is-rippling::before {
+  animation: han-ripple-expand 0.8s var(--han-ease-out);
+}
+
+@keyframes han-ripple-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+  }
+}
+
+/* 朱红涟漪 */
+.han-ripple-ink--vermilion::before {
+  background: radial-gradient(
+    circle,
+    rgba(192, 57, 43, 0.25) 0%,
+    rgba(192, 57, 43, 0.12) 30%,
+    transparent 70%
+  );
+}
+
+/* 多点涟漪（更真实的墨滴） */
+.han-ripple-multi::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(42, 40, 36, 0.15) 0%,
+    transparent 60%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.han-ripple-multi.is-rippling::after {
+  animation: han-ripple-expand 1s var(--han-ease-out) 0.15s;
+}
+
+
+/* ========================================================
+ * 7. 书写笔顺动画
+ * 汉字笔画逐一显现
+ * 通过 JS 控制每个笔画的显隐
+ *
+ * 用法：
+ * <div class="han-stroke-writer">
+ *   <span class="han-stroke">丿</span>
+ *   <span class="han-stroke">一</span>
+ * </div>
+ * ====================================================== */
+
+.han-stroke-writer {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.han-stroke-writer--horizontal {
+  flex-direction: row;
+}
+
+.han-stroke {
+  opacity: 0;
+  transform: scale(0.5);
+  filter: blur(4px);
+  transition: opacity 0.3s var(--han-ease-out),
+              transform 0.3s var(--han-ease-out),
+              filter 0.3s var(--han-ease-out);
+}
+
+.han-stroke.is-written {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+/* 自动笔顺 - CSS 驱动 */
+.han-stroke-writer--auto .han-stroke:nth-child(1) { animation: han-stroke-appear 0.4s var(--han-ease-out) 0s forwards; }
+.han-stroke-writer--auto .han-stroke:nth-child(2) { animation: han-stroke-appear 0.4s var(--han-ease-out) 0.2s forwards; }
+.han-stroke-writer--auto .han-stroke:nth-child(3) { animation: han-stroke-appear 0.4s var(--han-ease-out) 0.4s forwards; }
+.han-stroke-writer--auto .han-stroke:nth-child(4) { animation: han-stroke-appear 0.4s var(--han-ease-out) 0.6s forwards; }
+.han-stroke-writer--auto .han-stroke:nth-child(5) { animation: han-stroke-appear 0.4s var(--han-ease-out) 0.8s forwards; }
+
+@keyframes han-stroke-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+
+/* ========================================================
+ * 8. 墨迹边框扩散
+ * 元素边框如墨迹扩散般显现
+ * ====================================================== */
+
+.han-border-ink {
+  position: relative;
+}
+
+.han-border-ink::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: var(--han-color-ink-700);
+  opacity: 0;
+  transition: opacity var(--han-duration-normal) var(--han-ease-out);
+  z-index: -1;
+  filter: blur(6px);
+}
+
+.han-border-ink:hover::before {
+  opacity: 0.15;
+}
+
+/* 朱红边框扩散 */
+.han-border-ink--vermilion::before {
+  background: var(--han-color-vermilion-500);
+}
+
+
+/* ========================================================
+ * 9. 悬停升起效果
+ * 卡片悬停时模拟卷轴展开升起
+ * ====================================================== */
+
+.han-hover-lift {
+  transition: transform var(--han-duration-slow) var(--han-ease-out),
+              box-shadow var(--han-duration-slow) var(--han-ease-out);
+}
+
+.han-hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--han-shadow-xl);
+}
+
+/* 带旋转升起 */
+.han-hover-lift--tilt:hover {
+  transform: translateY(-6px) rotate(-1deg);
+}
+
+/* 印章升起 - 如印章被拿起 */
+.han-hover-lift--seal:hover {
+  transform: translateY(-4px) rotate(-5deg) scale(1.05);
+  box-shadow: 4px 8px 20px rgba(192, 57, 43, 0.35);
+}
+
+
+/* ========================================================
+ * 10. 图片缩放/墨色渐显
+ * ====================================================== */
+
+.han-image-zoom {
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.han-image-zoom img {
+  transition: transform var(--han-duration-slower) var(--han-ease-out);
+}
+
+.han-image-zoom:hover img {
+  transform: scale(1.08);
+}
+
+/* 墨色渐显 */
+.han-image-fade {
+  position: relative;
+  overflow: hidden;
+}
+
+.han-image-fade img {
+  transition: filter var(--han-duration-slow) var(--han-ease-out);
+}
+
+.han-image-fade:hover img {
+  filter: brightness(1.05) contrast(1.05);
+}
+
+.han-image-fade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    rgba(42, 40, 36, 0.7) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--han-duration-normal) var(--han-ease-out);
+  pointer-events: none;
+}
+
+.han-image-fade:hover::after {
+  opacity: 1;
+}
+
+
+/* ========================================================
+ * 11. 水墨视差/光标追踪
+ * ====================================================== */
+
+.han-parallax {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.han-parallax--subtle {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.8);
+}
+
+.han-parallax--ink {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(0.5) brightness(1.1);
+}
+
+/* 光标追踪 */
+.han-cursor-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.han-cursor-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity var(--han-duration-normal) var(--han-ease-out);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.han-cursor-glow:hover::before {
+  opacity: 1;
+}
+
+.han-cursor-glow > * {
+  position: relative;
+  z-index: 2;
+}
+
+.han-cursor-glow--vermilion::before {
+  background: radial-gradient(
+    circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(192, 57, 43, 0.12) 0%,
+    transparent 40%
+  );
+}
+
+
+/* ========================================================
+ * 12. 折扇展开动画
+ * 模拟折扇打开的展开效果
+ *
+ * 用法：
+ * <div class="han-fan-expand">
+ *   <div class="han-fan-expand__item" style="--fan-angle: -30deg">...</div>
+ *   <div class="han-fan-expand__item" style="--fan-angle: -10deg">...</div>
+ * </div>
+ * ====================================================== */
+
+.han-fan-expand {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.han-fan-expand__item {
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.6s var(--han-ease-spring),
+              opacity 0.4s var(--han-ease-out);
+}
+
+.han-fan-expand.is-open .han-fan-expand__item {
+  transform: rotate(var(--fan-angle, 0deg)) scaleY(1);
+  opacity: 1;
+}
+
+.han-fan-expand__item:nth-child(1) { transition-delay: 0.0s; }
+.han-fan-expand__item:nth-child(2) { transition-delay: 0.05s; }
+.han-fan-expand__item:nth-child(3) { transition-delay: 0.1s; }
+.han-fan-expand__item:nth-child(4) { transition-delay: 0.15s; }
+.han-fan-expand__item:nth-child(5) { transition-delay: 0.2s; }
+.han-fan-expand__item:nth-child(6) { transition-delay: 0.25s; }
+.han-fan-expand__item:nth-child(7) { transition-delay: 0.3s; }
+
+
+/* ========================================================
+ * 13. 花瓣飘落动画
+ * 模拟花瓣从上方飘落
+ *
+ * 用法：
+ * <div class="han-petal-fall" style="--duration: 5s; --delay: 0s">
+ *   <span class="han-petal-fall__petal"></span>
+ * </div>
+ * ====================================================== */
+
+.han-petal-fall {
+  position: absolute;
+  pointer-events: none;
+}
+
+.han-petal-fall__petal {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 1 Q10 4 8 8 Q6 11 4 8 Q2 4 6 1' fill='%23f5c6bb' opacity='0.8'/%3E%3C/svg%3E") no-repeat center/contain;
+  animation: han-petal-fall var(--duration, 5s) linear var(--delay, 0s) infinite;
+}
+
+@keyframes han-petal-fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(30px);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) translateX(-20px);
+    opacity: 0;
+  }
+}
+
+/* 花瓣容器 */
+.han-petal-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+
+/* ========================================================
+ * 14. 烟雾飘渺动画
+ * 模拟香烟/蚊香的烟雾上升效果
+ *
+ * 用法：
+ * <div class="han-smoke">
+ *   <span class="han-smoke__puff"></span>
+ * </div>
+ * ====================================================== */
+
+.han-smoke {
+  position: relative;
+  display: inline-block;
+}
+
+.han-smoke__puff {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(
+    circle,
+    rgba(200, 195, 185, 0.4) 0%,
+    rgba(200, 195, 185, 0.2) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: han-smoke-rise 3s ease-out infinite;
+  filter: blur(4px);
+}
+
+.han-smoke__puff:nth-child(2) { animation-delay: 0.5s; }
+.han-smoke__puff:nth-child(3) { animation-delay: 1s; }
+.han-smoke__puff:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes han-smoke-rise {
+  0% {
+    transform: translateX(-50%) translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-60px) scale(2);
+    opacity: 0;
+  }
+}
+
+
+/* ========================================================
+ * 15. 灯笼摇晃动画
+ * 模拟灯笼被风吹动的摇晃效果
+ *
+ * 用法：
+ * <div class="han-lantern-sway">灯笼</div>
+ * ====================================================== */
+
+.han-lantern-sway {
+  animation: han-lantern-sway 4s var(--han-ease-inout) infinite;
+  transform-origin: top center;
+}
+
+@keyframes han-lantern-sway {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+/* 灯笼慢摇 */
+.han-lantern-sway--slow {
+  animation-duration: 6s;
+}
+
+/* 灯笼快摇 */
+.han-lantern-sway--fast {
+  animation-duration: 2s;
+}
+
+
+/* ========================================================
+ * 16. 毛笔笔画路径（SVG stroke-dasharray 驱动）
+ * 为 SVG 元素添加书写动画类
+ * ====================================================== */
+
+.han-animate-draw {
+  stroke-dasharray: var(--path-length, 500);
+  stroke-dashoffset: var(--path-length, 500);
+  animation: han-draw 2s var(--han-ease-out) forwards;
+}
+
+.han-animate-draw--fast {
+  animation-duration: 0.8s;
+}
+
+.han-animate-draw--slow {
+  animation-duration: 4s;
+}
+
+@keyframes han-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* 填充动画 - 笔画写好后填充 */
+.han-animate-fill {
+  animation: han-fill 0.5s var(--han-ease-out) forwards;
+  animation-delay: var(--fill-delay, 2s);
+  opacity: 0;
+}
+
+@keyframes han-fill {
+  to { opacity: 1; }
+}
+
+
+/* ========================================================
+ * 17. 过度动画控制工具类
+ * ====================================================== */
+
+/* 立即显示（跳过动画） */
+.han-no-animation {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* 动画延迟 */
+.han-delay-100 { animation-delay: 100ms; }
+.han-delay-200 { animation-delay: 200ms; }
+.han-delay-300 { animation-delay: 300ms; }
+.han-delay-500 { animation-delay: 500ms; }
+.han-delay-700 { animation-delay: 700ms; }
+.han-delay-1000 { animation-delay: 1000ms; }
+
+/* 循环动画 */
+.han-animate-infinite {
+  animation-iteration-count: infinite;
+}
+
+/* 慢速动画 */
+.han-animate-slow {
+  animation-duration: 2s;
+}
+
+/* 快速动画 */
+.han-animate-fast {
+  animation-duration: 0.15s;
+}
+
+
+/* ========================================================
+ * 18. 减少动画偏好
+ * 尊重用户的 reduced-motion 设置
+ * ====================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .han-hover-ink::before,
+  .han-hover-ink::after,
+  .han-cursor-glow::before,
+  .han-border-ink::before,
+  .han-ripple-ink::before,
+  .han-ripple-multi::after {
+    display: none;
+  }
+
+  .han-reveal-on-scroll,
+  .han-reveal-from-left,
+  .han-reveal-from-right,
+  .han-reveal-scale,
+  .han-reveal-ink,
+  .han-reveal-seal,
+  .han-reveal-scroll,
+  .han-reveal-brush,
+  .han-reveal-cloud,
+  .han-brush-write__underline,
+  .han-scroll-unroll__content,
+  .han-fan-expand__item {
+    transition: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    max-height: none;
+  }
+
+  .han-brush-path__stroke,
+  .han-animate-draw {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .han-seal-full-anim,
+  .han-seal-shake,
+  .han-lantern-sway,
+  .han-smoke__puff,
+  .han-petal-fall__petal {
+    animation: none;
+  }
+}
+
+
+/* ========================================================
+ * 19. 关键帧动画（补充）
+ * ====================================================== */
+
+/* 墨迹浮现 - 文字如墨迹从水中浮现 */
+@keyframes han-ink-emerge {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* 印章弹跳落下 */
+@keyframes han-seal-bounce {
+  0% { transform: scale(1.2) rotate(-5deg); }
+  40% { transform: scale(0.9) rotate(-3deg); }
+  60% { transform: scale(1.08) rotate(-3deg); }
+  80% { transform: scale(0.97) rotate(-3deg); }
+  100% { transform: scale(1) rotate(-3deg); }
+}
+
+/* 水墨晕开扩散 */
+@keyframes han-ink-bloom {
+  0% {
+    opacity: 0.8;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+/* 毛笔书写 - 线性路径 */
+@keyframes han-brush-stroke {
+  from { stroke-dashoffset: var(--path-length, 300); }
+  to { stroke-dashoffset: 0; }
+}
+
+/* 纸张翻页 */
+@keyframes han-page-turn {
+  0% { transform: rotateY(0); }
+  100% { transform: rotateY(-180deg); }
+}
+
+/* 墨滴汇聚 */
+@keyframes han-ink-gather {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
