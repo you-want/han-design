@@ -7,23 +7,23 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/examples/landing-page.html"
+      "destination": "/examples/landing-page"
     },
     {
       "source": "/showcase",
-      "destination": "/examples/showcase.html"
+      "destination": "/examples/showcase"
     },
     {
       "source": "/showcase/",
-      "destination": "/examples/showcase.html"
+      "destination": "/examples/showcase"
     },
     {
       "source": "/themes",
-      "destination": "/examples/theme-showcase.html"
+      "destination": "/examples/theme-showcase"
     },
     {
       "source": "/quick-start",
-      "destination": "/examples/quick-start.html"
+      "destination": "/examples/quick-start"
     },
     {
       "source": "/components/:path*",
