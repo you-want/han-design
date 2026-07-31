@@ -1323,6 +1323,36 @@
     </ul>
   </div>
   <script>
+    // 滚动显现动画
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-on-scroll').forEach(el => fadeObserver.observe(el));
+
+    // 主题切换
+    document.querySelectorAll('[data-theme-btn]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.documentElement.setAttribute('data-theme', btn.dataset.themeBtn);
+        document.querySelectorAll('[data-theme-btn]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // 印章点击震动
+    document.querySelectorAll('.han-stamp, .han-btn-seal').forEach(el => {
+      el.addEventListener('click', () => {
+        el.classList.remove('han-seal-shake');
+        void el.offsetWidth;
+        el.classList.add('han-seal-shake');
+      });
+    });
+  </script>
+  <script>
     const pageNavButton = document.querySelector('.han-nav-fab');
     const pageNavPanel = document.getElementById('hanNavPanel');
     const setPageNavOpen = (open) => {
