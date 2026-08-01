@@ -50,6 +50,14 @@
       "destination": "/examples/quick-start"
     },
     {
+      "source": "/mac-han",
+      "destination": "/examples/mac-han"
+    },
+    {
+      "source": "/mac-han.html",
+      "destination": "/examples/mac-han"
+    },
+    {
       "source": "/components/:path*",
       "destination": "/examples/components/:path*"
     }

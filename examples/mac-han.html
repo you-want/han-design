@@ -1599,5 +1599,63 @@
       }
     })();
   </script>
+
+  <!-- 示例页面浮动导航 -->
+  <style>
+    .han-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--han-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--han-font-kai,KaiTi,serif)!important;}
+    .han-nav-fab:hover{transform:scale(1.1)!important;}
+    .han-nav-panel{position:fixed!important;right:16px!important;top:72px!important;z-index:99998!important;width:220px!important;max-height:70vh!important;overflow-y:auto!important;background:var(--han-color-paper-100,#faf6ea)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.15)!important;border:1px solid var(--han-color-border,#e0dcd4)!important;padding:16px!important;display:none!important;}
+    .han-nav-panel.is-open{display:block!important;}
+    .han-nav-panel h4{margin:0 0 8px!important;font-family:var(--han-font-kai,KaiTi,serif)!important;font-size:13px!important;color:var(--han-color-ink-700,#2a2824)!important;}
+    .han-nav-panel ul{list-style:none!important;margin:0 0 10px!important;padding:0!important;}
+    .han-nav-panel li{margin:0!important;}
+    .han-nav-panel a{display:block!important;padding:5px 10px!important;border-radius:6px!important;font-size:12px!important;color:var(--han-color-text-secondary,#555)!important;text-decoration:none!important;transition:all .15s!important;}
+    .han-nav-panel a:hover{background:var(--han-color-vermilion-500,#c0392b)!important;color:#fff!important;}
+    .han-nav-panel a[aria-current="page"]{background:color-mix(in srgb,var(--han-color-celadon) 22%,transparent)!important;color:var(--han-color-ink-900,#2a2824)!important;font-weight:600!important;}
+    .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
+    @media(max-width:768px){.han-nav-panel{width:180px!important;}}
+  </style>
+  <button type="button" class="han-nav-fab" aria-expanded="false" aria-controls="hanNavPanel" aria-label="打开示例页面导航">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel">
+    <h4>示例页面</h4>
+    <ul>
+      <li><a href="/landing-page">落地页</a></li>
+      <li><a href="/quick-start">快速上手</a></li>
+      <li><a href="/theme-showcase">主题展示</a></li>
+      <li><a href="/showcase">完整组件展示</a></li>
+      <li><a href="/mac-han" aria-current="page">Mac · 东方产品志</a></li>
+    </ul>
+    <hr>
+    <h4>组件示例</h4>
+    <ul>
+      <li><a href="/components/button-seal">印章按钮</a></li>
+      <li><a href="/components/card-scroll">卷轴卡片</a></li>
+      <li><a href="/components/divider-ink">水墨分割线</a></li>
+      <li><a href="/components/frame-window">窗花边框</a></li>
+      <li><a href="/components/navbar-ink">水墨导航</a></li>
+      <li><a href="/components/stamp">印章</a></li>
+    </ul>
+  </div>
+  <script>
+    const pageNavButton = document.querySelector('.han-nav-fab');
+    const pageNavPanel = document.getElementById('hanNavPanel');
+    const setPageNavOpen = (open) => {
+      pageNavPanel.classList.toggle('is-open', open);
+      pageNavButton.setAttribute('aria-expanded', String(open));
+      pageNavButton.setAttribute('aria-label', open ? '关闭示例页面导航' : '打开示例页面导航');
+    };
+    pageNavButton.addEventListener('click', () => {
+      setPageNavOpen(pageNavButton.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('click', (event) => {
+      if (!pageNavPanel.contains(event.target) && event.target !== pageNavButton) setPageNavOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setPageNavOpen(false);
+        pageNavButton.focus();
+      }
+    });
+  </script>
 </body>
 </html>
