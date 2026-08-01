@@ -5,6 +5,8 @@
  */
 @import url("./tokens.css");
 @import url("./base.css");
+@import url("./utilities.css");
+@import url("./accessibility.css");
 @import url("./themes.css");
 @import url("./icons.css");
 @import url("./patterns.css");

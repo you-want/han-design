@@ -10,7 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  validate:
+  validate-core:
+    name: Validate Skill and Plugin core
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -19,5 +20,49 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Validate skill and assets
+          cache: npm
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install validation dependencies
+        run: |
+          npm ci
+          python -m pip install -r requirements-dev.txt
+          npx playwright install --with-deps chromium
+      - name: Verify generated scoped stylesheets are current
+        run: |
+          node scripts/generate-scoped-css.mjs
+          git diff --exit-code -- skills/han-design/assets/tokens-scoped.css skills/han-design/assets/themes-scoped.css skills/han-design/assets/accessibility-scoped.css
+      - name: Validate Skill, assets, references, evals, and Plugin manifest
         run: node scripts/validate.mjs
+      - name: Run canonical Skill and Plugin contract validators
+        run: |
+          python scripts/vendor/codex/quick_validate.py skills/han-design
+          python scripts/vendor/codex/validate_plugin.py .
+      - name: Validate eval runner contract
+        run: node scripts/run-evals.mjs --validate-only
+      - name: Run browser accessibility and isolation tests
+        run: |
+          npm run test:browser
+          npm run check:browser-output -- --strict tests/fixtures/scoped-host.html
+      - name: Build clean Plugin package
+        run: node scripts/package-plugin.mjs
+      - name: Validate generated Plugin package
+        run: |
+          python scripts/vendor/codex/quick_validate.py dist/han-design-plugin/skills/han-design
+          python scripts/vendor/codex/validate_plugin.py dist/han-design-plugin
+
+  validate-site:
+    name: Validate demo website
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate README links and examples
+        run: node scripts/validate-examples.mjs

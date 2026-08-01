@@ -1,0 +1,193 @@
+/* Han prefixed typography and layout utilities. Safe for scoped applications. */
+
+.han-prose p,
+.han-article p {
+  text-indent: 2em;
+}
+
+.han-poem p,
+.han-classical p {
+  text-indent: 0;
+  line-height: var(--han-lh-loose);
+  letter-spacing: var(--han-ls-wide);
+  text-align: justify;
+}
+
+.han-prose ul,
+.han-prose ol,
+.han-article ul,
+.han-article ol,
+.han-list {
+  padding: 0;
+  list-style: none;
+}
+
+.han-prose li,
+.han-article li,
+.han-list > li {
+  position: relative;
+  padding-left: var(--han-space-6);
+  margin-bottom: var(--han-space-3);
+  line-height: var(--han-lh-relaxed);
+}
+
+.han-prose ul > li::before,
+.han-article ul > li::before,
+.han-list > li::before {
+  position: absolute;
+  top: 0.7em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  content: "";
+  background: var(--han-color-ink-400);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.han-prose ol,
+.han-article ol {
+  counter-reset: han-counter;
+}
+
+.han-prose ol > li,
+.han-article ol > li {
+  counter-increment: han-counter;
+}
+
+.han-prose ol > li::before,
+.han-article ol > li::before {
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: var(--han-fs-xs);
+  font-weight: var(--han-fw-bold);
+  color: var(--han-color-on-accent);
+  content: counter(han-counter);
+  background: var(--han-color-accent-control);
+  border-radius: var(--han-radius-sm);
+}
+
+.han-container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--han-content-max-width, var(--han-container-lg));
+  padding: 0 var(--han-space-6);
+  margin: 0 auto;
+}
+
+.han-container-sm { max-width: var(--han-container-sm); }
+.han-container-md { max-width: var(--han-container-md); }
+.han-container-xl { max-width: var(--han-container-xl); }
+
+.han-section {
+  position: relative;
+  padding: var(--han-section-gap, var(--han-space-16)) 0;
+}
+
+.han-calligraphy {
+  font-family: var(--han-font-kai);
+  font-weight: var(--han-title-weight, var(--han-fw-bold));
+  line-height: var(--han-lh-tight);
+  letter-spacing: var(--han-title-spacing, var(--han-ls-wider));
+}
+
+.han-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: var(--han-space-3);
+}
+
+.han-layout-painting,
+.han-layout-golden,
+.han-layout-couplet,
+.han-balance-left,
+.han-balance-right {
+  display: grid;
+  gap: var(--han-space-6);
+}
+
+.han-layout-painting {
+  grid-template-columns: 7fr 3fr;
+  gap: var(--han-space-7);
+  align-items: start;
+}
+
+.han-layout-golden { grid-template-columns: 6.18fr 3.82fr; }
+
+.han-layout-couplet {
+  grid-template-columns: 1fr 1fr;
+  gap: var(--han-space-8);
+  text-align: center;
+}
+
+.han-balance-left { grid-template-columns: 2fr 1fr; }
+.han-balance-right { grid-template-columns: 1fr 2fr; }
+
+.han-void {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--han-space-16);
+}
+
+.han-alternating {
+  display: flex;
+  flex-direction: column;
+  gap: var(--han-space-9);
+}
+
+.han-alternating > *:nth-child(even) {
+  max-width: 75%;
+  padding-left: 15%;
+}
+
+.han-alternating > *:nth-child(odd) {
+  max-width: 75%;
+  padding-right: 15%;
+  margin-left: auto;
+}
+
+.han-layout-sparse { gap: var(--han-space-9); }
+.han-layout-dense { gap: var(--han-space-3); }
+.han-layout-varied > *:nth-child(odd) { margin-bottom: var(--han-space-9); }
+.han-layout-varied > *:nth-child(even) { margin-bottom: var(--han-space-4); }
+
+.han-layout-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: var(--han-space-7);
+  max-width: var(--han-container-md);
+  padding: var(--han-space-7) var(--han-space-6);
+  margin: 0 auto;
+  writing-mode: horizontal-tb;
+}
+
+@media (max-width: 768px) {
+  .han-container { padding: 0 var(--han-space-4); }
+  .han-section { padding: var(--han-space-8) 0; }
+
+  .han-layout-painting,
+  .han-layout-golden,
+  .han-layout-couplet,
+  .han-balance-left,
+  .han-balance-right {
+    grid-template-columns: 1fr;
+  }
+
+  .han-alternating > *:nth-child(even),
+  .han-alternating > *:nth-child(odd) {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .han-container { padding: 0 var(--han-space-3); }
+}

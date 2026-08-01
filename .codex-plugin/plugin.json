@@ -1,0 +1,36 @@
+{
+  "name": "han-design",
+  "version": "0.1.0-preview.0",
+  "description": "Create accessible, culturally contextual Chinese-inspired web interfaces with the Han design skill and CSS assets.",
+  "author": {
+    "name": "you-want",
+    "url": "https://github.com/you-want"
+  },
+  "homepage": "https://github.com/you-want/han-design",
+  "repository": "https://github.com/you-want/han-design",
+  "license": "MIT",
+  "keywords": [
+    "chinese-design",
+    "web-design",
+    "accessibility",
+    "design-system",
+    "agent-skill"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Han Design",
+    "shortDescription": "Accessible Chinese-inspired web interface design",
+    "longDescription": "Build or restyle web interfaces with restrained Chinese-inspired visual language, reusable Han CSS assets, cultural-context guidance, and accessibility checks.",
+    "developerName": "you-want",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use Han Design to restyle this page with a restrained Song-inspired direction.",
+      "Use Han Design to create an accessible Chinese-inspired landing page.",
+      "Use Han Design to add a scoped Chinese-inspired theme to this dashboard."
+    ],
+    "brandColor": "#9B2C2C"
+  }
+}

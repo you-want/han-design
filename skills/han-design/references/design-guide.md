@@ -323,7 +323,7 @@ Hero 书法标题: --han-fs-5xl (64px) + --han-ls-wider (0.3em) + --han-lh-tight
 
 ## 七、代码引用
 
-### 7.1 最小引入
+### 7.1 独立页面最小引入
 
 ```html
 <head>
@@ -334,11 +334,23 @@ Hero 书法标题: --han-fs-5xl (64px) + --han-ls-wider (0.3em) + --han-lh-tight
 </head>
 ```
 
-### 7.2 最小页面模板
+### 7.2 已有应用局部引入
+
+已有应用、Dashboard 或设计系统使用不含全局 reset 的入口。宿主项目继续负责 `body`、标题、段落、表单控件、媒体元素与布局基础：
+
+```html
+<link rel="stylesheet" href="/han/han-scoped.css">
+
+<section data-han-scope data-theme="song" class="han-zone">
+  <button type="button" class="han-btn-seal">确认</button>
+</section>
+```
+
+### 7.3 最小页面模板
 
 ```html
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="song">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -412,4 +424,4 @@ Hero 书法标题: --han-fs-5xl (64px) + --han-ls-wider (0.3em) + --han-lh-tight
 - [ ] 动画是否克制（时长 ≤ 600ms）
 - [ ] 是否支持响应式（移动端适配）
 
-配合 assets/han.css 使用；仅在允许外部字体请求时额外加载 assets/fonts.css。
+独立页面配合 `assets/han.css` 使用；已有应用配合 `assets/han-scoped.css` 使用。仅在允许外部字体请求时额外加载 `assets/fonts.css`。

@@ -1,6 +1,6 @@
 ---
 name: han-design
-description: "Create or restyle accessible web interfaces with a restrained, culturally contextual Chinese aesthetic using Han CSS tokens, themes, components, and reusable HTML snippets. Use when users request 中国风、国风、东方美学、朝代启发、宋韵、唐风、水墨、书法、印章、卷轴、窗棂 or other Chinese-inspired websites, landing pages, dashboards, components, exhibitions, brands, or visual systems."
+description: "Create or restyle accessible web interfaces with a restrained, culturally contextual Chinese aesthetic using Han CSS tokens, themes, components, and reusable HTML snippets. Use for 中国风、国风、东方美学、朝代启发、宋韵、唐风、水墨、书法、印章、卷轴、窗棂 and other Chinese-inspired websites, landing pages, dashboards, web exhibitions, brand sites, components, or UI visual systems. Do not use for standalone raster image generation, logo-only work, print-only layouts, prose writing, or cultural research that does not require a web interface."
 ---
 
 # Han
@@ -10,7 +10,7 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
 ## Scope
 
 - Treat Han as a design Skill and reusable visual asset bundle, not as a general-purpose UI component library.
-- Keep `assets/han.css` as the single complete stylesheet entry point for consumers. Internal CSS files exist for maintenance and targeted inspection.
+- Use `assets/han.css` as the complete standalone-page entry point. Use `assets/han-scoped.css` inside an existing product or design system to avoid Han's global reset. Internal CSS files exist for maintenance and targeted inspection.
 - Do not create npm packaging, framework-specific Han component packages, adapters, or a new runtime unless the user explicitly requests that separate project.
 - Adapt Han snippets to the target project's existing framework and components without expanding Han itself into another framework library.
 - Measure success by the quality, cultural context, usability, and consistency of generated interfaces, not by the number of bundled components.
@@ -31,13 +31,14 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
    - Read [references/task-recipes.md](references/task-recipes.md) for museums, brands, applications, festivals, tea or craft, and entertainment tasks.
 
 3. Integrate the assets.
-   - Use `assets/han.css` as the complete local stylesheet entry point.
+   - Use `assets/han.css` for a standalone page that should adopt Han's full base styles.
+   - Use `assets/han-scoped.css` for an existing application. It omits the global `base.css`, retains Han's prefixed utilities and accessibility helpers, and keeps tokens inside `data-han-scope`.
    - Load `assets/fonts.css` separately only when remote web fonts are acceptable. The system fonts in the tokens remain the fallback.
    - Copy the required assets into the target project or import them through its bundler. Do not assume the installed skill directory is publicly served.
    - Use files under `assets/snippets/` as starting points. Replace placeholders and adapt paths, semantics, and framework syntax.
 
 4. Build the interface.
-   - Set `data-theme` on the document root or a scoped container.
+   - For `han.css`, set `data-theme` on the document root. For `han-scoped.css`, set `data-han-scope` and `data-theme` on the same container.
    - Use `--han-*` tokens instead of duplicating colors, spacing, radii, shadows, and motion values.
    - Use `--han-color-accent-text`, `--han-color-accent-control`, `--han-color-on-accent`, and `--han-focus-ring` for functional UI. Reserve `--han-color-accent-decorative` for non-text decoration.
    - Prefer semantic HTML and existing application components.
@@ -49,7 +50,8 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
    - Verify keyboard navigation, visible focus, contrast, semantic headings, labels, and reduced-motion behavior.
    - Check that every referenced asset is copied or resolvable in the final project.
    - Read [references/output-evaluation.md](references/output-evaluation.md) and score the result when the task is substantial or culturally sensitive.
-   - For standalone HTML, run `node scripts/check-output.mjs <output.html>` when Node.js is available.
+   - Resolve `<skill-root>` as the directory containing this `SKILL.md`. Run `node <skill-root>/scripts/check-output.mjs --strict <output.html>` as a dependency-free static preflight.
+   - When Playwright and axe are available in the host project, also run `node <skill-root>/scripts/check-browser-output.mjs --strict --root <project-root> <output.html>` for computed accessibility, focus, overflow, runtime errors, and reduced-motion checks.
    - Inspect specific CSS files with search tools only when extending or debugging a class; do not load every stylesheet into context.
 
 ## Cultural reference routing
@@ -113,7 +115,7 @@ Use `data-color-mode="dark"` only when the user requests dark mode or the surrou
 
 - For standalone HTML, start from `assets/snippets/page-shell.html` and replace `{asset_base}`.
 - In an existing framework project, translate snippets into that project's native component syntax instead of embedding raw HTML strings. This is output adaptation, not a Han framework package.
-- For an existing design system, consume Han tokens through a scoped theme layer and avoid global resets unless explicitly requested.
+- For an existing design system, import `assets/han-scoped.css`, add `data-han-scope` and `data-theme` to the Han container, and keep the host reset.
 - Keep content editable and separate from decorative markup when practical.
 
 ## Final checklist
@@ -128,3 +130,4 @@ Use `data-color-mode="dark"` only when the user requests dark mode or the surrou
 - [ ] Animation respects `prefers-reduced-motion`.
 - [ ] Decorative accents remain restrained.
 - [ ] No undefined `--han-*` variables or nonexistent component classes are introduced.
+- [ ] Scoped integrations do not expose Han tokens or generic element rules outside `data-han-scope`.

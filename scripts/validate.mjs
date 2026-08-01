@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildScopedCss } from "./generate-scoped-css.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const skillDir = path.join(root, "skills", "han-design");
@@ -26,11 +27,33 @@ function relative(file) {
 }
 
 const requiredFiles = [
+  ".codex-plugin/plugin.json",
+  "evals/cases.json",
+  "package.json",
+  "package-lock.json",
+  "playwright.config.mjs",
+  "requirements-dev.txt",
+  "scripts/package-plugin.mjs",
+  "scripts/generate-scoped-css.mjs",
+  "scripts/run-evals.mjs",
+  "scripts/eval-adapters/agent-command.mjs",
+  "scripts/serve-tests.mjs",
+  "scripts/vendor/codex/quick_validate.py",
+  "scripts/vendor/codex/validate_plugin.py",
+  "tests/browser/core.spec.mjs",
+  "tests/fixtures/scoped-host.html",
   "skills/han-design/SKILL.md",
   "skills/han-design/LICENSE",
   "skills/han-design/agents/openai.yaml",
   "skills/han-design/scripts/check-output.mjs",
+  "skills/han-design/scripts/check-browser-output.mjs",
   "skills/han-design/assets/han.css",
+  "skills/han-design/assets/han-scoped.css",
+  "skills/han-design/assets/tokens-scoped.css",
+  "skills/han-design/assets/themes-scoped.css",
+  "skills/han-design/assets/accessibility-scoped.css",
+  "skills/han-design/assets/utilities.css",
+  "skills/han-design/assets/accessibility.css",
   "skills/han-design/references/design-guide.md",
   "skills/han-design/references/component-catalog.md",
   "skills/han-design/references/cultural-methodology.md",
@@ -46,6 +69,40 @@ const requiredFiles = [
 for (const file of requiredFiles) {
   if (!fs.existsSync(path.join(root, file))) {
     report("Missing required file: " + file);
+  }
+}
+
+function parseJson(relativePath) {
+  try {
+    return JSON.parse(read(relativePath));
+  } catch (error) {
+    report(relativePath + " is not valid JSON: " + error.message);
+    return null;
+  }
+}
+
+const pluginManifest = fs.existsSync(path.join(root, ".codex-plugin", "plugin.json"))
+  ? parseJson(".codex-plugin/plugin.json")
+  : null;
+if (pluginManifest) {
+  if (pluginManifest.name !== "han-design") report("Plugin name must be han-design.");
+  if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/.test(pluginManifest.version ?? "")) {
+    report("Plugin version must use semantic versioning.");
+  }
+  if (!pluginManifest.description) report("Plugin description is required.");
+  if (!pluginManifest.author?.name) report("Plugin author.name is required.");
+  if (pluginManifest.skills !== "./skills/") report("Plugin skills path must be ./skills/.");
+  for (const field of ["displayName", "shortDescription", "longDescription", "developerName", "category"]) {
+    if (!pluginManifest.interface?.[field]) report("Plugin interface." + field + " is required.");
+  }
+  const defaultPrompts = pluginManifest.interface?.defaultPrompt;
+  if (!Array.isArray(defaultPrompts) || defaultPrompts.length === 0 || defaultPrompts.length > 3) {
+    report("Plugin interface.defaultPrompt must contain 1–3 prompts.");
+  } else if (defaultPrompts.some((prompt) => typeof prompt !== "string" || prompt.length > 128)) {
+    report("Plugin default prompts must be strings no longer than 128 characters.");
+  }
+  for (const unsupported of ["hooks"]) {
+    if (unsupported in pluginManifest) report("Plugin manifest contains unsupported field: " + unsupported);
   }
 }
 
@@ -76,6 +133,9 @@ if (fs.existsSync(skillPath)) {
     if (!description) {
       report("SKILL.md description is required.");
     }
+    if (description && !description.includes("Do not use")) {
+      report("SKILL.md description must include explicit non-trigger boundaries.");
+    }
     if (unexpected.length > 0) {
       report("SKILL.md frontmatter has unsupported keys: " + unexpected.join(", "));
     }
@@ -105,7 +165,6 @@ function checkMarkdownLinks(file) {
 }
 
 const markdownFiles = [
-  path.join(root, "README.md"),
   ...walk(skillDir).filter((file) => file.endsWith(".md")),
 ];
 for (const file of markdownFiles) {
@@ -132,10 +191,9 @@ function checkHtmlReferences(file) {
   }
 }
 
-const htmlFiles = [
-  ...walk(path.join(root, "examples")).filter((file) => file.endsWith(".html")),
-  ...walk(path.join(skillDir, "assets", "snippets")).filter((file) => file.endsWith(".html")),
-];
+const htmlFiles = walk(path.join(skillDir, "assets", "snippets")).filter((file) =>
+  file.endsWith(".html"),
+);
 for (const file of htmlFiles) {
   checkHtmlReferences(file);
   const source = fs.readFileSync(file, "utf8");
@@ -339,6 +397,8 @@ const entrypoint = read("skills/han-design/assets/han.css");
 const expectedImports = [
   "tokens.css",
   "base.css",
+  "utilities.css",
+  "accessibility.css",
   "themes.css",
   "icons.css",
   "patterns.css",
@@ -355,16 +415,136 @@ for (const imported of expectedImports) {
   }
 }
 
+const scopedEntrypoint = read("skills/han-design/assets/han-scoped.css");
+if (/@import\s+url\(["']\.\/base\.css["']\)/.test(scopedEntrypoint)) {
+  report("han-scoped.css must not import base.css.");
+}
+const expectedScopedImports = [
+  "tokens-scoped.css",
+  "themes-scoped.css",
+  "utilities.css",
+  "accessibility-scoped.css",
+  "icons.css",
+  "patterns.css",
+  "typography.css",
+  "components.css",
+  "iconic.css",
+  "structure.css",
+  "enhanced.css",
+  "motion.css",
+];
+for (const imported of expectedScopedImports) {
+  if (!scopedEntrypoint.includes(imported)) {
+    report("han-scoped.css does not import " + imported);
+  }
+}
+if (!scopedEntrypoint.includes("data-han-scope")) {
+  report("han-scoped.css must document the data-han-scope contract.");
+}
+
+for (const [name, expectedSource] of Object.entries(buildScopedCss())) {
+  const relativePath = "skills/han-design/assets/" + name;
+  if (fs.existsSync(path.join(root, relativePath)) && read(relativePath) !== expectedSource) {
+    report(relativePath + " is stale; run node scripts/generate-scoped-css.mjs");
+  }
+  if (expectedSource.includes(":root")) {
+    report(relativePath + " unexpectedly contains a :root token selector.");
+  }
+}
+
+const darkMatch = themeSource.match(/\[data-color-mode=['"]dark['"]\]\s*\{([\s\S]*?)\n\}/);
+if (!darkMatch) {
+  report("Missing dark color-mode definition.");
+} else {
+  const darkValues = new Map(
+    [...darkMatch[1].matchAll(/(--han-[\w-]+)\s*:\s*(#[0-9a-f]{6})\s*!important\s*;/gi)].map(
+      (match) => [match[1], match[2]],
+    ),
+  );
+  for (const token of [
+    "--han-color-bg",
+    "--han-color-bg-surface",
+    "--han-color-text-primary",
+    "--han-color-text-secondary",
+    "--han-color-accent-text",
+    "--han-color-accent-control",
+    "--han-color-on-accent",
+    "--han-focus-ring",
+  ]) {
+    if (!darkValues.has(token)) report("Dark color mode is missing " + token);
+  }
+  for (const background of [darkValues.get("--han-color-bg"), darkValues.get("--han-color-bg-surface")]) {
+    for (const textToken of [
+      "--han-color-text-primary",
+      "--han-color-text-secondary",
+      "--han-color-accent-text",
+    ]) {
+      const ratio = contrastRatio(darkValues.get(textToken), background);
+      if (ratio !== null && ratio < 4.5) {
+        report("Dark mode " + textToken + " contrast is " + ratio.toFixed(2) + ":1; expected 4.5:1.");
+      }
+    }
+    const focusRatio = contrastRatio(darkValues.get("--han-focus-ring"), background);
+    if (focusRatio !== null && focusRatio < 3) {
+      report("Dark mode focus ring contrast is " + focusRatio.toFixed(2) + ":1; expected 3:1.");
+    }
+  }
+  const onAccentRatio = contrastRatio(
+    darkValues.get("--han-color-on-accent"),
+    darkValues.get("--han-color-accent-control"),
+  );
+  if (onAccentRatio !== null && onAccentRatio < 4.5) {
+    report("Dark mode on-accent contrast is " + onAccentRatio.toFixed(2) + ":1; expected 4.5:1.");
+  }
+}
+
+const evalSuite = fs.existsSync(path.join(root, "evals", "cases.json"))
+  ? parseJson("evals/cases.json")
+  : null;
+if (evalSuite) {
+  const cases = evalSuite.cases;
+  if (!Array.isArray(cases) || cases.length < 8) {
+    report("evals/cases.json must contain at least 8 cases.");
+  } else {
+    const ids = cases.map((item) => item.id);
+    if (new Set(ids).size !== ids.length) report("Eval case ids must be unique.");
+    const positive = cases.filter((item) => item.shouldTrigger === true);
+    const negative = cases.filter((item) => item.shouldTrigger === false);
+    if (positive.length < 3 || negative.length < 3) {
+      report("Eval suite must contain at least 3 positive and 3 negative trigger cases.");
+    }
+    for (const item of cases) {
+      if (!item.id || !item.prompt || typeof item.shouldTrigger !== "boolean") {
+        report("Every eval case requires id, prompt, and boolean shouldTrigger.");
+        continue;
+      }
+      if (item.shouldTrigger) {
+        if (!Array.isArray(item.expectedReferences) || item.expectedReferences.length === 0) {
+          report("Positive eval " + item.id + " requires expectedReferences.");
+        } else {
+          for (const reference of item.expectedReferences) {
+            if (!fs.existsSync(path.join(skillDir, reference))) {
+              report("Eval " + item.id + " references missing skill path: " + reference);
+            }
+          }
+        }
+        if (!item.expectedAssetEntry || !fs.existsSync(path.join(skillDir, item.expectedAssetEntry))) {
+          report("Positive eval " + item.id + " has a missing expectedAssetEntry.");
+        }
+      } else if (!item.reason) {
+        report("Negative eval " + item.id + " requires a reason.");
+      }
+    }
+  }
+}
+
 const repositoryText = [
-  read("README.md"),
   ...walk(skillDir)
     .filter((file) => /\.(?:md|html|css|yaml)$/.test(file))
     .map((file) => fs.readFileSync(file, "utf8")),
 ].join("\n");
 
 const brandFiles = [
-  path.join(root, "README.md"),
-  ...walk(path.join(root, "examples")),
   ...walk(skillDir),
 ].filter((file) => /\.(?:md|html|css|yaml|yml)$/.test(file));
 

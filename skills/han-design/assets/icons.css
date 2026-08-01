@@ -390,18 +390,13 @@
  * 根据当前主题自动调整图标颜色
  * ====================================================== */
 
-:root {
-  --han-icon-color: var(--han-color-ink-500);
-  --han-icon-color-active: var(--han-color-text-primary);
-}
-
 /* 深色主题图标调整 */
-[data-color-mode='dark'] .han-icon {
+:where(:root[data-color-mode='dark'], [data-han-scope][data-color-mode='dark'], [data-han-scope] [data-color-mode='dark']) .han-icon {
   opacity: 0.9;
 }
 
 /* 主题特定图标颜色 */
-[data-theme='wuxia'] .han-icon,
-[data-theme='qinhan'] .han-icon {
+:where(:root[data-theme='wuxia'], [data-han-scope][data-theme='wuxia'], [data-han-scope] [data-theme='wuxia']) .han-icon,
+:where(:root[data-theme='qinhan'], [data-han-scope][data-theme='qinhan'], [data-han-scope] [data-theme='qinhan']) .han-icon {
   opacity: 0.85;
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Han scoped host isolation fixture</title>
+  <link rel="stylesheet" href="/skills/han-design/assets/han-scoped.css">
+  <style>
+    body { margin: 17px; font-family: sans-serif; background: rgb(255, 255, 255); }
+    .host-button { color: white; background: rgb(91, 33, 182); border: 5px solid rgb(15, 23, 42); }
+  </style>
+</head>
+<body>
+  <header><h1>Scoped integration fixture</h1></header>
+  <main>
+    <section id="host-theme" data-theme="song" aria-labelledby="host-heading">
+      <h2 id="host-heading">Host theme namespace</h2>
+      <button class="host-button" type="button">Host action</button>
+    </section>
+
+    <section id="han-zone" data-han-scope data-theme="song" class="han-section" aria-labelledby="han-heading">
+      <div class="han-container">
+        <h2 id="han-heading" class="han-calligraphy">Han zone</h2>
+        <button class="han-btn-seal" type="button">Han action</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

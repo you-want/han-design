@@ -52,6 +52,21 @@ lerna-debug.log*
 # TypeScript cache
 *.tsbuildinfo
 
+# Python tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# Coverage output
+coverage/
+htmlcov/
+.coverage
+.nyc_output/
+*.lcov
+
 # Temporary files
 tmp
 temp

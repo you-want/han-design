@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +19,7 @@
   </style>
 </head>
 <body>
+  <main id="main-content">
 
   <!-- 导航示例 -->
   <nav class="han-navbar" data-han-navbar aria-label="主导航">
@@ -34,7 +35,7 @@
         <li class="han-navbar__item"><a href="#story">故事</a></li>
         <li class="han-navbar__item"><a href="#about">关于</a></li>
       </ul>
-      <button class="han-btn-seal han-btn-seal--sm">体验</button>
+      <button type="button" class="han-btn-seal han-btn-seal--sm">体验</button>
     </div>
   </nav>
 
@@ -155,8 +156,8 @@
     .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
     @media(max-width:768px){.han-nav-panel{width:180px!important;}}
   </style>
-  <button class="han-nav-fab" onclick="document.getElementById('hanNavPanel').classList.toggle('is-open')">☰</button>
-  <div class="han-nav-panel" id="hanNavPanel" onclick="event.stopPropagation()">
+  <button type="button" class="han-nav-fab" aria-expanded="false" aria-controls="hanNavPanel" aria-label="打开示例导航">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel">
     <h4>示例页面</h4>
     <ul>
       <li><a href="/landing-page">落地页</a></li>
@@ -176,7 +177,8 @@
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>document.addEventListener("click",function(e){var p=document.getElementById("hanNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("han-nav-fab"))p.classList.remove("is-open");});</script>
+  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);});})();</script>
 
+  </main>
 </body>
 </html>

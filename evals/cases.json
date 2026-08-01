@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "tea-brand-landing",
+      "prompt": "使用 han-design，为一个年轻茶品牌制作移动优先的当代青瓷风落地页。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/design-guide.md",
+        "references/task-recipes.md"
+      ],
+      "expectedAssetEntry": "assets/han.css"
+    },
+    {
+      "id": "song-museum-exhibition",
+      "prompt": "使用 han-design，为北宋书画专题展设计一个有来源说明的展览网页。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/cultural-methodology.md",
+        "references/dynasty-contexts.md",
+        "references/cultural-sources.md"
+      ],
+      "expectedAssetEntry": "assets/han.css"
+    },
+    {
+      "id": "scoped-dashboard",
+      "prompt": "把现有 React Dashboard 改成克制的水墨风，只改视觉层，不改交互和全局 reset。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/design-guide.md",
+        "references/component-catalog.md"
+      ],
+      "expectedAssetEntry": "assets/han-scoped.css"
+    },
+    {
+      "id": "festival-form",
+      "prompt": "制作一个朱砂色春节活动报名网页，包含表单状态和移动端布局。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/design-guide.md",
+        "references/motif-semantics.md",
+        "references/task-recipes.md"
+      ],
+      "expectedAssetEntry": "assets/han.css"
+    },
+    {
+      "id": "wuxia-game-site",
+      "prompt": "为架空武侠游戏制作一个玄墨风 Vue 宣传首页，保留现有路由和按钮行为。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/design-guide.md",
+        "references/task-recipes.md"
+      ],
+      "expectedAssetEntry": "assets/han-scoped.css"
+    },
+    {
+      "id": "raster-poster",
+      "prompt": "生成一张国风电影海报图片。",
+      "shouldTrigger": false,
+      "reason": "Standalone raster image generation belongs to an image-generation workflow."
+    },
+    {
+      "id": "logo-only",
+      "prompt": "帮我设计一个茶品牌 Logo，不需要网站。",
+      "shouldTrigger": false,
+      "reason": "Logo-only work is outside the web-interface scope."
+    },
+    {
+      "id": "history-research",
+      "prompt": "研究一下宋代瓷器的发展历史。",
+      "shouldTrigger": false,
+      "reason": "Research without a web-interface deliverable should use a research workflow."
+    },
+    {
+      "id": "article-writing",
+      "prompt": "写一篇关于中国书法的公众号文章。",
+      "shouldTrigger": false,
+      "reason": "Prose writing is outside the skill scope."
+    },
+    {
+      "id": "generic-dashboard",
+      "prompt": "优化这个 SaaS Dashboard 的信息架构和加载性能。",
+      "shouldTrigger": false,
+      "reason": "No Chinese-inspired visual direction is requested."
+    }
+  ]
+}

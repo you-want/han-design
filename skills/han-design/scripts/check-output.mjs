@@ -50,15 +50,20 @@ if (files.length === 0) {
 
 let errorCount = 0;
 let warningCount = 0;
+let noteCount = 0;
 
 function checkFile(file) {
   const source = fs.readFileSync(file, "utf8");
   const errors = [];
   const warnings = [];
+  const notes = [];
   const fullDocument = /<!doctype\s+html/i.test(source) || /<html\b/i.test(source);
+  const staticReference = /<html\b[^>]*\bdata-han-static-reference=["']true["']/i.test(source);
 
   const error = (message) => errors.push(message);
   const warn = (message) => warnings.push(message);
+  const behaviorIssue = (message) =>
+    staticReference ? notes.push("static visual reference: " + message) : error(message);
 
   if (fullDocument) {
     const htmlTag = openingTags(source, "html")[0] || "";
@@ -67,10 +72,12 @@ function checkFile(file) {
       error("missing viewport meta tag");
     }
     if (!/<title>[^<]+<\/title>/i.test(source)) error("missing non-empty title");
-    if (!/<main\b/i.test(source)) error("missing main landmark");
+    if (!/<main\b/i.test(source)) {
+      staticReference ? warn("static visual reference has no main landmark") : error("missing main landmark");
+    }
     if (!/<h1\b/i.test(source)) error("missing h1");
     if (!/data-theme=["'][^"']+["']/i.test(source)) warn("no Han data-theme found");
-    const hasCompleteEntry = /(?:href|src)=["'][^"']*han\.css(?:[?#][^"']*)?["']/i.test(source);
+    const hasCompleteEntry = /(?:href|src)=["'][^"']*han(?:-scoped)?\.css(?:[?#][^"']*)?["']/i.test(source);
     const hasCoreImports = /(?:href|src)=["'][^"']*(?:tokens|base)\.css(?:[?#][^"']*)?["']/i.test(source);
     if (!hasCompleteEntry && !hasCoreImports) {
       warn("Han CSS entry point is not referenced");
@@ -105,47 +112,51 @@ function checkFile(file) {
   if (/class=["'][^"']*han-modal(?:\s|["'])/i.test(source)) {
     const modalTag = openingTags(source, "div").find((tag) => /class=["'][^"']*han-modal(?:\s|["'])/i.test(tag));
     if (!modalTag || !hasAttribute(modalTag, "role", "dialog") || !hasAttribute(modalTag, "aria-modal", "true")) {
-      error("han-modal requires role=dialog and aria-modal=true on the dialog container");
+      behaviorIssue("han-modal requires role=dialog and aria-modal=true on the dialog container");
     }
   }
 
   if (/class=["'][^"']*han-tabs(?:\s|["'])/i.test(source)) {
     if (!/role=["']tablist["']/i.test(source) || !/role=["']tab["']/i.test(source)) {
-      error("han-tabs requires tablist and tab roles");
+      behaviorIssue("han-tabs requires tablist and tab roles");
     }
     if (!/role=["']tabpanel["']/i.test(source) || !/aria-selected=/i.test(source)) {
-      error("han-tabs requires tabpanel and aria-selected state");
+      behaviorIssue("han-tabs requires tabpanel and aria-selected state");
     }
   }
 
   if (/class=["'][^"']*han-select(?:\s|["'])/i.test(source) && !/<select\b/i.test(source)) {
     if (!/role=["']combobox["']/i.test(source) || !/role=["']listbox["']/i.test(source)) {
-      error("custom han-select requires combobox and listbox semantics");
+      behaviorIssue("custom han-select requires combobox and listbox semantics");
     }
   }
 
   if (/class=["'][^"']*han-accordion(?:\s|["'])/i.test(source) && !/aria-expanded=/i.test(source)) {
-    error("han-accordion triggers require aria-expanded state");
+    behaviorIssue("han-accordion triggers require aria-expanded state");
   }
 
   if (/class=["'][^"']*han-tree(?:\s|["'])/i.test(source) && !/role=["']tree["']/i.test(source)) {
-    error("han-tree requires tree semantics");
+    behaviorIssue("han-tree requires tree semantics");
   }
 
   if (/class=["'][^"']*han-upload(?:\s|["'])/i.test(source) && !/<input\b[^>]*type=["']file["']/i.test(source)) {
-    error("han-upload requires a real file input");
+    behaviorIssue("han-upload requires a real file input");
   }
 
   console.log(`\n${path.relative(process.cwd(), file)}`);
   for (const message of errors) console.log("  ERROR: " + message);
   for (const message of warnings) console.log("  WARN:  " + message);
+  for (const message of notes) console.log("  NOTE:  " + message);
   if (errors.length === 0 && warnings.length === 0) console.log("  OK");
 
   errorCount += errors.length;
   warningCount += warnings.length;
+  noteCount += notes.length;
 }
 
 for (const file of files) checkFile(file);
 
-console.log(`\nChecked ${files.length} HTML file(s): ${errorCount} error(s), ${warningCount} warning(s).`);
+console.log(
+  `\nChecked ${files.length} HTML file(s): ${errorCount} error(s), ${warningCount} warning(s), ${noteCount} note(s).`,
+);
 if (errorCount > 0 || (strict && warningCount > 0)) process.exit(1);

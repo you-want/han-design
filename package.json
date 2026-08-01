@@ -1,0 +1,19 @@
+{
+  "name": "han-design-repository",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:scoped": "node scripts/generate-scoped-css.mjs",
+    "validate": "node scripts/validate.mjs",
+    "validate:examples": "node scripts/validate-examples.mjs",
+    "eval:check": "node scripts/run-evals.mjs --validate-only",
+    "test:browser": "playwright test",
+    "check:browser-output": "node skills/han-design/scripts/check-browser-output.mjs",
+    "package:plugin": "node scripts/package-plugin.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.61.0",
+    "axe-core": "^4.12.1"
+  }
+}

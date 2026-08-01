@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="song">
+<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,6 +56,7 @@
   </style>
 </head>
 <body>
+  <main id="main-content">
 
 <!-- ============ NAVBAR ============ -->
 <nav class="han-navbar han-navbar--plaque han-navbar--plaque--gold">
@@ -70,12 +71,12 @@
     </ul>
     <div class="theme-switcher">
       <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">主题：</span>
-      <button class="theme-btn active" data-theme-btn="song">宋</button>
-      <button class="theme-btn" data-theme-btn="tang">唐</button>
-      <button class="theme-btn" data-theme-btn="ming">明</button>
-      <button class="theme-btn" data-theme-btn="qing">清</button>
-      <button class="theme-btn" data-theme-btn="han">水墨</button>
-      <button class="theme-btn" data-theme-btn="porcelain">青花</button>
+      <button type="button" class="theme-btn active" data-theme-btn="song">宋</button>
+      <button type="button" class="theme-btn" data-theme-btn="tang">唐</button>
+      <button type="button" class="theme-btn" data-theme-btn="ming">明</button>
+      <button type="button" class="theme-btn" data-theme-btn="qing">清</button>
+      <button type="button" class="theme-btn" data-theme-btn="han">水墨</button>
+      <button type="button" class="theme-btn" data-theme-btn="porcelain">青花</button>
     </div>
   </div>
 </nav>
@@ -98,9 +99,9 @@
         让千年中华文化在网页上优雅绽放
       </p>
       <div class="han-hero__actions" style="justify-content: center;">
-        <button class="han-btn-seal han-btn-seal--lg han-animate-seal-drop">立即体验</button>
-        <button class="han-btn-seal han-btn-seal--lg han-btn-seal--circle">印</button>
-        <button class="han-btn han-btn--ghost">查看文档</button>
+        <button type="button" class="han-btn-seal han-btn-seal--lg han-animate-seal-drop">立即体验</button>
+        <button type="button" class="han-btn-seal han-btn-seal--lg han-btn-seal--circle">印</button>
+        <button type="button" class="han-btn han-btn--ghost">查看文档</button>
       </div>
     </div>
     <div class="hero-seal-wrap">
@@ -314,35 +315,35 @@
       <div class="demo-item">
         <div class="demo-label">印章按钮变体</div>
         <div class="btn-row">
-          <button class="han-btn-seal">默认</button>
-          <button class="han-btn-seal han-btn-seal--lg">大型</button>
-          <button class="han-btn-seal han-btn-seal--sm">小型</button>
-          <button class="han-btn-seal han-btn-seal--circle">圆印</button>
+          <button type="button" class="han-btn-seal">默认</button>
+          <button type="button" class="han-btn-seal han-btn-seal--lg">大型</button>
+          <button type="button" class="han-btn-seal han-btn-seal--sm">小型</button>
+          <button type="button" class="han-btn-seal han-btn-seal--circle">圆印</button>
         </div>
       </div>
       <div class="demo-item">
         <div class="demo-label">动画印章 / 涟漪效果</div>
         <div class="btn-row">
-          <button class="han-btn-seal han-animate-seal-drop">盖 下</button>
-          <button class="han-btn-seal han-btn-seal--drop">墨 滴</button>
-          <button class="han-btn-seal han-btn-seal-impact">冲 击</button>
-          <button class="han-btn-seal han-ripple-ink">涟 漪</button>
+          <button type="button" class="han-btn-seal han-animate-seal-drop">盖 下</button>
+          <button type="button" class="han-btn-seal han-btn-seal--drop">墨 滴</button>
+          <button type="button" class="han-btn-seal han-btn-seal-impact">冲 击</button>
+          <button type="button" class="han-btn-seal han-ripple-ink">涟 漪</button>
         </div>
       </div>
       <div class="demo-item">
         <div class="demo-label">水墨 / 次要 / 通用</div>
         <div class="btn-row">
-          <button class="han-btn-ink">水 墨 按 钮</button>
-          <button class="han-btn-secondary">次 要</button>
-          <button class="han-btn han-btn--ghost">幽 灵</button>
+          <button type="button" class="han-btn-ink">水 墨 按 钮</button>
+          <button type="button" class="han-btn-secondary">次 要</button>
+          <button type="button" class="han-btn han-btn--ghost">幽 灵</button>
         </div>
       </div>
       <div class="demo-item">
         <div class="demo-label">按钮组 · han-btn-group</div>
         <div class="han-btn-group" role="group">
-          <button class="han-btn-secondary">上 一 步</button>
-          <button class="han-btn-seal">确 认</button>
-          <button class="han-btn-secondary">下 一 步</button>
+          <button type="button" class="han-btn-secondary">上 一 步</button>
+          <button type="button" class="han-btn-seal">确 认</button>
+          <button type="button" class="han-btn-secondary">下 一 步</button>
         </div>
       </div>
     </div>
@@ -394,9 +395,9 @@
           <input type="text" class="han-date-picker__input" placeholder="选 择 日 期" readonly>
           <div class="han-date-picker__calendar" style="display: block; position: relative; margin-top: var(--han-space-2);">
             <div class="han-date-picker__header">
-              <button class="han-date-picker__nav">‹</button>
+              <button type="button" class="han-date-picker__nav">‹</button>
               <span class="han-date-picker__title">2026年 7月</span>
-              <button class="han-date-picker__nav">›</button>
+              <button type="button" class="han-date-picker__nav">›</button>
             </div>
             <div class="han-date-picker__weekdays">
               <span class="han-date-picker__weekday">日</span>
@@ -842,18 +843,18 @@
       <div class="demo-item">
         <div class="demo-label">分页器 · 印章 & 增强</div>
         <div class="han-pagination">
-          <button class="han-pagination__item">‹</button>
-          <button class="han-pagination__item is-active">1</button>
-          <button class="han-pagination__item">2</button>
-          <button class="han-pagination__item">3</button>
+          <button type="button" class="han-pagination__item">‹</button>
+          <button type="button" class="han-pagination__item is-active">1</button>
+          <button type="button" class="han-pagination__item">2</button>
+          <button type="button" class="han-pagination__item">3</button>
           <span class="han-pagination__dots">...</span>
-          <button class="han-pagination__item">10</button>
-          <button class="han-pagination__item">›</button>
+          <button type="button" class="han-pagination__item">10</button>
+          <button type="button" class="han-pagination__item">›</button>
         </div>
         <div class="han-pagination-enhanced">
-          <button class="han-pagination-enhanced__btn">‹</button>
-          <button class="han-pagination-enhanced__btn is-active">2</button>
-          <button class="han-pagination-enhanced__btn">3</button>
+          <button type="button" class="han-pagination-enhanced__btn">‹</button>
+          <button type="button" class="han-pagination-enhanced__btn is-active">2</button>
+          <button type="button" class="han-pagination-enhanced__btn">3</button>
           <span class="han-pagination-enhanced__info">共 128 条</span>
         </div>
       </div>
@@ -908,9 +909,9 @@
         <div class="demo-label">水墨标签页 · han-tabs</div>
         <div class="han-tabs">
           <div class="han-tabs__nav">
-            <button class="han-tabs__item is-active">总 览</button>
-            <button class="han-tabs__item">组 件</button>
-            <button class="han-tabs__item">主 题</button>
+            <button type="button" class="han-tabs__item is-active">总 览</button>
+            <button type="button" class="han-tabs__item">组 件</button>
+            <button type="button" class="han-tabs__item">主 题</button>
           </div>
           <div class="han-tabs__content" style="font-size: var(--han-fs-sm); color: var(--han-color-text-secondary);">
             这 里 是 总 览 内 容 区 域，使 用 水 墨 触 笔 风 格 的 指 示 器。
@@ -921,14 +922,14 @@
         <div class="demo-label">手风琴 · han-accordion</div>
         <div class="han-accordion">
           <div class="han-accordion__item is-open">
-            <button class="han-accordion__trigger">第 一 项 · 展 开 中 <span class="han-accordion__icon"></span></button>
+            <button type="button" class="han-accordion__trigger">第 一 项 · 展 开 中 <span class="han-accordion__icon"></span></button>
             <div class="han-accordion__panel"><div class="han-accordion__content">这 是 第 一 项 内 容，使 用 卷 轴 动 画 展 开。</div></div>
           </div>
           <div class="han-accordion__item">
-            <button class="han-accordion__trigger">第 二 项 <span class="han-accordion__icon"></span></button>
+            <button type="button" class="han-accordion__trigger">第 二 项 <span class="han-accordion__icon"></span></button>
           </div>
           <div class="han-accordion__item">
-            <button class="han-accordion__trigger">第 三 项 <span class="han-accordion__icon"></span></button>
+            <button type="button" class="han-accordion__trigger">第 三 项 <span class="han-accordion__icon"></span></button>
           </div>
         </div>
       </div>
@@ -981,14 +982,14 @@
           <div class="han-modal__dialog" style="transform: none;">
             <div class="han-modal__header">
               <div class="han-modal__title">墨 成 斋 提 示</div>
-              <button class="han-modal__close">×</button>
+              <button type="button" class="han-modal__close">×</button>
             </div>
             <div class="han-modal__body">
               感 谢 您 使 用 汉，本 系 统 致 力 于 将 中 国 传 统 美 学 现 代 化。
             </div>
             <div class="han-modal__footer">
-              <button class="han-btn-secondary">取 消</button>
-              <button class="han-btn-seal">确 认</button>
+              <button type="button" class="han-btn-secondary">取 消</button>
+              <button type="button" class="han-btn-seal">确 认</button>
             </div>
           </div>
         </div>
@@ -1572,8 +1573,8 @@
       <div class="demo-item">
         <div class="demo-label">印章冲击 & 涟漪扩散</div>
         <div style="display: flex; flex-direction: column; gap: var(--han-space-3);">
-          <button class="han-btn-seal han-btn-seal-impact" style="width: 100%;">冲 击 盖 章</button>
-          <button class="han-btn-seal han-btn-seal--drop" style="width: 100%;">墨 滴 扩 散</button>
+          <button type="button" class="han-btn-seal han-btn-seal-impact" style="width: 100%;">冲 击 盖 章</button>
+          <button type="button" class="han-btn-seal han-btn-seal--drop" style="width: 100%;">墨 滴 扩 散</button>
           <div class="han-ripple-ink" style="padding: var(--han-space-3); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border-radius: var(--han-radius-sm); border: var(--han-border-width) solid var(--han-color-border);">涟 漪 墨 纹</div>
         </div>
       </div>
@@ -1742,7 +1743,7 @@
           <aside class="han-sidebar han-sidebar--painting" style="background: var(--han-color-bg-surface); padding: var(--han-space-4); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md);">
             <h4 style="font-family: var(--han-font-kai); margin-bottom: var(--han-space-3);">目 录</h4>
             <nav style="display: flex; flex-direction: column; gap: var(--han-space-2);">
-              <a href="#" style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-accent-text);">· 卷 一 · 画 法 总 论</a>
+              <a href="#main-content" style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-accent-text);">· 卷 一 · 画 法 总 论</a>
               <a style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-secondary);">· 卷 二 · 山 水 画</a>
               <a style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-secondary);">· 卷 三 · 花 鸟 画</a>
               <a style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-secondary);">· 卷 四 · 人 物 画</a>
@@ -1831,8 +1832,8 @@
                 <h3 style="font-family: var(--han-font-kai); font-size: var(--han-fs-xl); margin-bottom: var(--han-space-2);">《 汉 风 画 谱 》</h3>
                 <p style="font-size: var(--han-fs-sm); color: var(--han-color-text-secondary);">汇 集 历 代 名 家 真 迹，以 水 墨 表 现 山 水 之 美，以 朱 印 钤 记 真 伪。</p>
                 <div style="display: flex; gap: var(--han-space-3); margin-top: var(--han-space-3);">
-                  <button class="han-btn-seal han-btn-seal--sm">立 即 浏 览</button>
-                  <button class="han-btn-ink han-btn-ink--sm">查 看 目 录</button>
+                  <button type="button" class="han-btn-seal han-btn-seal--sm">立 即 浏 览</button>
+                  <button type="button" class="han-btn-ink han-btn-ink--sm">查 看 目 录</button>
                 </div>
               </div>
               <div class="han-card-scroll">
@@ -2157,7 +2158,7 @@
         <div class="demo-label">基础导航栏 · han-navbar</div>
         <nav class="han-navbar" style="position: relative;">
           <div class="showcase-nav-wrap">
-            <a class="han-navbar__brand" href="#">汉<span>设</span></a>
+            <a class="han-navbar__brand" href="#main-content">汉<span>设</span></a>
             <ul class="han-navbar__menu">
               <li class="han-navbar__item han-navbar__item--active">首页</li>
               <li class="han-navbar__item">组件</li>
@@ -2169,7 +2170,7 @@
         <div class="demo-label">匾额导航栏 · han-navbar--plaque</div>
         <nav class="han-navbar han-navbar--plaque" style="position: relative;">
           <div class="showcase-nav-wrap">
-            <a class="han-navbar__brand" href="#">汉<span>设</span></a>
+            <a class="han-navbar__brand" href="#main-content">汉<span>设</span></a>
             <ul class="han-navbar__menu">
               <li class="han-navbar__item han-navbar__item--active">首页</li>
               <li class="han-navbar__item">组件</li>
@@ -2181,7 +2182,7 @@
         <div class="demo-label">金色匾额 · han-navbar--plaque--gold</div>
         <nav class="han-navbar han-navbar--plaque han-navbar--plaque--gold" style="position: relative;">
           <div class="showcase-nav-wrap">
-            <a class="han-navbar__brand" href="#">汉<span>设</span></a>
+            <a class="han-navbar__brand" href="#main-content">汉<span>设</span></a>
             <ul class="han-navbar__menu">
               <li class="han-navbar__item han-navbar__item--active">首页</li>
               <li class="han-navbar__item">组件</li>
@@ -2479,5 +2480,6 @@
     });
   </script>
 
+  </main>
 </body>
 </html>

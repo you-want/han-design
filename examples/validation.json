@@ -1,0 +1,18 @@
+{
+  "productionStructure": [
+    "quick-start.html",
+    "mac-han.html",
+    "scoped-integration.html"
+  ],
+  "visualReferences": [
+    "landing-page.html",
+    "showcase.html",
+    "theme-showcase.html",
+    "components/button-seal.html",
+    "components/card-scroll.html",
+    "components/divider-ink.html",
+    "components/frame-window.html",
+    "components/navbar-ink.html",
+    "components/stamp.html"
+  ]
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="在现有应用中局部使用 Han scoped CSS 的集成示例。">
+  <title>Han Scoped Integration</title>
+  <link rel="stylesheet" href="../skills/han-design/assets/han-scoped.css">
+  <style>
+    body {
+      margin: 0;
+      background: #eef1f5;
+      color: #152033;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .host-shell {
+      width: min(calc(100% - 2rem), 980px);
+      margin: 0 auto;
+      padding: 3rem 0;
+    }
+
+    .host-panel {
+      padding: 1.5rem;
+      border: 2px solid #7c8da6;
+      border-radius: 1rem;
+      background: #fff;
+    }
+
+    .host-panel h1 {
+      margin: 0 0 .75rem;
+      color: #152033;
+      font-family: inherit;
+      font-size: 1.75rem;
+      letter-spacing: 0;
+    }
+
+    .host-button {
+      margin-top: 1rem;
+      padding: .65rem 1rem;
+      border: 2px solid #315a94;
+      border-radius: .5rem;
+      background: #315a94;
+      color: #fff;
+      font: inherit;
+    }
+
+    .han-zone {
+      margin-top: 2rem;
+      padding: clamp(1.5rem, 5vw, 3rem);
+      border: 1px solid var(--han-color-border);
+      background: var(--han-color-bg);
+      color: var(--han-color-text-primary);
+    }
+
+    .han-zone h2 {
+      margin: 0 0 var(--han-space-4);
+      color: var(--han-color-text-primary);
+      font-family: var(--han-font-song);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: var(--han-ls-wide);
+    }
+
+    .han-zone p {
+      margin: 0 0 var(--han-space-5);
+      color: var(--han-color-text-secondary);
+      line-height: var(--han-lh-relaxed);
+    }
+  </style>
+</head>
+<body>
+  <main class="host-shell">
+    <section class="host-panel" aria-labelledby="host-title">
+      <h1 id="host-title">宿主应用样式保持不变</h1>
+      <p>这个区域继续使用宿主项目自己的字体、圆角、颜色和按钮。</p>
+      <button class="host-button" type="button">宿主按钮</button>
+    </section>
+
+    <section class="han-zone" data-theme="song" aria-labelledby="han-title">
+      <span class="han-tag">Scoped Han</span>
+      <h2 id="han-title">只在需要的地方，落一点墨。</h2>
+      <p>Han tokens 和组件可以进入局部区域，而不重置整个应用的基础元素。</p>
+      <button class="han-btn-seal" type="button">局部应用</button>
+    </section>
+  </main>
+</body>
+</html>

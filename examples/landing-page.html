@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -418,6 +418,7 @@
   </style>
 </head>
 <body>
+  <main id="main-content">
 
   <!-- ============ 顶部水墨导航 ============ -->
   <nav class="han-navbar">
@@ -451,8 +452,8 @@
         为你的网站注入一抹东方神韵。
       </p>
       <div class="hero__cta">
-        <button class="han-btn-seal han-btn-seal--lg han-animate-seal-drop">立即体验</button>
-        <a href="#" style="color: var(--han-color-ink-700); padding: 16px 32px; border: 1px solid var(--han-color-ink-400); border-radius: var(--han-radius-md); font-family: var(--han-font-kai);">
+        <button type="button" class="han-btn-seal han-btn-seal--lg han-animate-seal-drop">立即体验</button>
+        <a href="#main-content" style="color: var(--han-color-ink-700); padding: 16px 32px; border: 1px solid var(--han-color-ink-400); border-radius: var(--han-radius-md); font-family: var(--han-font-kai);">
           查看文档 →
         </a>
       </div>
@@ -526,7 +527,7 @@
           </div>
           <footer class="han-card-scroll__footer">
             <span>--han-color-*</span>
-            <a href="#">查看 →</a>
+            <a href="#main-content">查看 →</a>
           </footer>
         </article>
 
@@ -547,7 +548,7 @@
           </div>
           <footer class="han-card-scroll__footer">
             <span>--han-font-*</span>
-            <a href="#">查看 →</a>
+            <a href="#main-content">查看 →</a>
           </footer>
         </article>
 
@@ -567,7 +568,7 @@
           </div>
           <footer class="han-card-scroll__footer">
             <span>.han-btn-seal · .han-card-scroll · …</span>
-            <a href="#">查看 →</a>
+            <a href="#main-content">查看 →</a>
           </footer>
         </article>
 
@@ -968,9 +969,9 @@
           <div class="demo-label">中式面包屑 · han-breadcrumb</div>
           <nav class="han-breadcrumb">
             <ol class="han-breadcrumb__list">
-              <li class="han-breadcrumb__item"><a href="#">首页</a></li>
+              <li class="han-breadcrumb__item"><a href="#main-content">首页</a></li>
               <li class="han-breadcrumb__separator han-breadcrumb__separator--huiwen">◆</li>
-              <li class="han-breadcrumb__item"><a href="#">设计系统</a></li>
+              <li class="han-breadcrumb__item"><a href="#main-content">设计系统</a></li>
               <li class="han-breadcrumb__separator han-breadcrumb__separator--huiwen">◆</li>
               <li class="han-breadcrumb__item is-current">组件库</li>
             </ol>
@@ -1251,12 +1252,12 @@
 
         <div class="demo-item fade-on-scroll">
           <div class="demo-label">水墨涟漪 · han-ripple-ink</div>
-          <button class="han-btn-seal han-ripple-ink">点 击 产 生 涟 漪</button>
+          <button type="button" class="han-btn-seal han-ripple-ink">点 击 产 生 涟 漪</button>
         </div>
 
         <div class="demo-item fade-on-scroll">
           <div class="demo-label">印章冲击 · han-btn-seal-impact</div>
-          <button class="han-btn-seal han-btn-seal-impact">盖 下 印 章</button>
+          <button type="button" class="han-btn-seal han-btn-seal-impact">盖 下 印 章</button>
         </div>
 
         <div class="demo-item fade-on-scroll">
@@ -1374,5 +1375,6 @@
       }
     });
   </script>
+  </main>
 </body>
 </html>

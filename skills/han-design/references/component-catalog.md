@@ -17,11 +17,11 @@ Use this reference to choose an existing component and identify the stylesheet t
 
 | Purpose | Primary classes | Source |
 |---|---|---|
-| Container and sections | `.han-container`, `.han-section` | `assets/base.css` |
-| Painting composition | `.han-layout-painting` | `assets/base.css` |
-| Calligraphy and poetry | `.han-calligraphy`, `.han-poem`, `.han-vertical` | `assets/base.css`, `assets/typography.css` |
+| Container and sections | `.han-container`, `.han-section` | `assets/utilities.css` |
+| Painting composition | `.han-layout-painting` | `assets/utilities.css` |
+| Calligraphy and poetry | `.han-calligraphy`, `.han-poem`, `.han-vertical` | `assets/utilities.css`, `assets/typography.css` |
 | Titles, couplets, signatures | `.han-title-*`, `.han-couplet`, `.han-signature` | `assets/typography.css` |
-| Themes | `[data-theme]`, `[data-color-mode]` | `assets/themes.css` |
+| Themes | `[data-theme]`, `[data-color-mode]`; scoped host marker `[data-han-scope]` | `assets/themes.css`, generated `assets/themes-scoped.css` |
 
 ## Navigation and actions
 
