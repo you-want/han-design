@@ -104,6 +104,27 @@ function score(item, result) {
     if (result.assetEntry !== item.expectedAssetEntry) {
       failures.push(`assetEntry=${result.assetEntry ?? "null"}; expected ${item.expectedAssetEntry}`);
     }
+    if (item.expectedStarter && result.starter !== item.expectedStarter) {
+      failures.push(`starter=${result.starter ?? "null"}; expected ${item.expectedStarter}`);
+    }
+    if (item.expectedIntensity && String(result.intensity) !== item.expectedIntensity) {
+      failures.push(`intensity=${result.intensity ?? "null"}; expected ${item.expectedIntensity}`);
+    }
+    if (item.requiresDesignBrief && !(typeof result.designBrief === "string" && result.designBrief.trim())) {
+      failures.push("missing non-empty designBrief");
+    }
+    if (item.requiresRevision && result.revisionPerformed !== true) {
+      failures.push("revisionPerformed must be true");
+    }
+    if (item.requiresChecksPassed && result.checksPassed !== true) {
+      failures.push("checksPassed must be true");
+    }
+    if (Array.isArray(item.requiredViewports)) {
+      const reviewed = Array.isArray(result.reviewedViewports) ? result.reviewedViewports : [];
+      for (const viewport of item.requiredViewports) {
+        if (!reviewed.includes(viewport)) failures.push("missing reviewed viewport " + viewport);
+      }
+    }
   }
 
   if (result.outputPath) {

@@ -65,6 +65,59 @@
       "expectedAssetEntry": "assets/han.css"
     },
     {
+      "id": "autopilot-brand-polish",
+      "prompt": "使用 han-design，把当前咖啡品牌首页做得更好看。设计细节你自己决定，保留现有 Astro 路由和购买链接。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/autopilot.md",
+        "references/page-archetypes.md",
+        "references/design-guide.md",
+        "references/visual-review.md"
+      ],
+      "expectedAssetEntry": "assets/han-scoped.css",
+      "expectedStarter": "assets/starters/brand-landing.html",
+      "expectedIntensity": "1",
+      "requiresDesignBrief": true,
+      "requiresRevision": true,
+      "requiresChecksPassed": true,
+      "requiredViewports": ["desktop", "mobile"]
+    },
+    {
+      "id": "autopilot-product-site",
+      "prompt": "使用 han-design，为一个团队研究产品做完整官网。内容不全的地方你补，自行选择主题和布局，做好后看桌面和手机效果再调整。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/autopilot.md",
+        "references/page-archetypes.md",
+        "references/visual-review.md"
+      ],
+      "expectedAssetEntry": "assets/han.css",
+      "expectedStarter": "assets/starters/product-launch.html",
+      "expectedIntensity": "1",
+      "requiresDesignBrief": true,
+      "requiresRevision": true,
+      "requiresChecksPassed": true,
+      "requiredViewports": ["desktop", "mobile"]
+    },
+    {
+      "id": "autopilot-dashboard-restyle",
+      "prompt": "使用 han-design，优化这个管理后台的视觉。不要问我颜色和组件怎么选，保留表格、筛选、权限和所有交互。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/autopilot.md",
+        "references/page-archetypes.md",
+        "references/component-catalog.md",
+        "references/visual-review.md"
+      ],
+      "expectedAssetEntry": "assets/han-scoped.css",
+      "expectedStarter": "assets/starters/dashboard-shell.html",
+      "expectedIntensity": "0",
+      "requiresDesignBrief": true,
+      "requiresRevision": true,
+      "requiresChecksPassed": true,
+      "requiredViewports": ["desktop", "mobile"]
+    },
+    {
       "id": "raster-poster",
       "prompt": "生成一张国风电影海报图片。",
       "shouldTrigger": false,

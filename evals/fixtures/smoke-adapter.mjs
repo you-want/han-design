@@ -11,5 +11,11 @@ process.stdout.write(JSON.stringify({
   triggered: item.shouldTrigger,
   references: item.expectedReferences ?? [],
   assetEntry: item.expectedAssetEntry ?? null,
+  starter: item.expectedStarter ?? null,
+  intensity: item.expectedIntensity ?? null,
+  designBrief: item.requiresDesignBrief ? "Synthetic design brief for runner plumbing." : null,
+  revisionPerformed: item.requiresRevision ? true : false,
+  checksPassed: item.requiresChecksPassed ? true : false,
+  reviewedViewports: item.requiredViewports ?? [],
   notes: "Synthetic response used only to verify eval runner scoring and reporting.",
 }));

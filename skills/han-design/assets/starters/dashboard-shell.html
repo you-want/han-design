@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="song" data-han-intensity="0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目概览 · Dashboard Starter</title>
+  <link rel="stylesheet" href="../han.css">
+  <link rel="stylesheet" href="starter-base.css">
+</head>
+<body class="han-starter">
+  <a class="han-skip-link" href="#main-content">跳到主要内容</a>
+  <div class="starter-dashboard">
+    <aside class="starter-sidebar"><a class="starter-brand" href="#main-content">序<span>台</span></a><nav aria-label="应用导航"><a href="#main-content" aria-current="page">项目概览</a><a href="#work">任务中心</a><a href="#members">团队成员</a><a href="#reports">分析报告</a><a href="#settings">系统设置</a></nav></aside>
+    <main class="starter-dashboard__main" id="main-content">
+      <header class="starter-dashboard__top"><div><p class="starter-kicker">Workspace overview</p><h1>项目概览</h1></div><button type="button" class="starter-button">新建项目</button></header>
+      <section class="starter-dashboard__grid" aria-label="关键指标"><article class="starter-stat"><span>进行中的项目</span><strong>12</strong><small>较上周增加 2 个</small></article><article class="starter-stat"><span>本周待完成</span><strong>28</strong><small>其中 6 项需要关注</small></article><article class="starter-stat"><span>团队完成率</span><strong>86%</strong><small>近四周保持稳定</small></article></section>
+      <section class="starter-panel" id="work"><div class="starter-panel__head"><div><p class="starter-kicker">Recent work</p><h2>最近项目</h2></div><a class="starter-button--quiet" href="#reports">查看全部</a></div><table class="starter-table"><thead><tr><th scope="col">项目</th><th scope="col">负责人</th><th scope="col">状态</th><th scope="col">截止日期</th></tr></thead><tbody><tr><td data-label="项目">秋季品牌发布</td><td data-label="负责人">林清</td><td data-label="状态"><span class="starter-status">进行中</span></td><td data-label="截止日期">8 月 18 日</td></tr><tr><td data-label="项目">会员体系改版</td><td data-label="负责人">周雨</td><td data-label="状态"><span class="starter-status">待评审</span></td><td data-label="截止日期">8 月 22 日</td></tr><tr><td data-label="项目">移动端体验优化</td><td data-label="负责人">陈墨</td><td data-label="状态"><span class="starter-status">风险</span></td><td data-label="截止日期">8 月 12 日</td></tr><tr><td data-label="项目">第三季度研究</td><td data-label="负责人">许岚</td><td data-label="状态"><span class="starter-status">已完成</span></td><td data-label="截止日期">8 月 6 日</td></tr></tbody></table></section>
+      <section class="starter-panel" id="members"><div class="starter-panel__head"><div><p class="starter-kicker">Team focus</p><h2>本周关注</h2></div></div><div class="starter-grid"><article class="starter-card"><span class="starter-card__index">优先级高</span><h3>确认发布范围</h3><p>产品、市场和客服团队需要在周三前完成最终确认。</p></article><article class="starter-card"><span class="starter-card__index">等待输入</span><h3>补齐用户反馈</h3><p>仍有两个关键访谈未归档，需要补充结论与原始记录。</p></article><article class="starter-card"><span class="starter-card__index">进展顺利</span><h3>完成移动端验证</h3><p>主要流程已经通过测试，剩余问题集中在空状态文案。</p></article></div></section>
+      <section class="starter-panel" id="reports"><div class="starter-panel__head"><h2>报告与设置</h2></div><p>这里应接入宿主项目已有的图表、筛选器、权限和设置组件。Han 只负责低强度视觉层。</p><span id="settings"></span></section>
+    </main>
+  </div>
+</body>
+</html>

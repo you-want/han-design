@@ -9,6 +9,8 @@
 - 7 个朝代启发主题：秦汉、魏晋、唐、宋、元、明、清
 - 9 个文化主题：水墨、青绿山水、青花瓷、敦煌、宫廷金、武侠、茶道、朱砂、青瓷
 - 完整的 CSS 令牌、组件、图标、纹样和动效
+- 6 个整页 Starter，覆盖品牌、产品、Dashboard、展览、活动和长文
+- 自动驾驶设计流程，支持主题、视觉强度、内容补全和截图复盘
 - 标准 Agent Skill frontmatter 与独立可安装目录
 - 响应式、键盘焦点和 reduced-motion 基础支持
 - 无构建步骤的静态 HTML 示例
@@ -84,6 +86,12 @@ node scripts/package-plugin.mjs
 > 使用 han-design，帮我生成一个克制的宋韵产品落地页。
 
 > 用汉重构当前页面，保留现有 React 组件和交互。
+
+也可以把设计判断直接交给 Han：
+
+> 使用 han-design，把当前页面做得更好看。请检查项目后自行判断页面类型、主题和视觉强度，保留功能和技术栈，完成桌面与移动端检查并修改一轮。
+
+用户不需要知道主题 ID、组件类名或应该使用哪一个 Starter。Han 会先生成内部设计简报，再选择整页构图、主题、视觉强度和内容补全策略。
 
 更多可直接复制的调用任务见 [Skill 调用示例](examples/skill-prompts.md)。
 
@@ -195,6 +203,9 @@ Han 的核心发布物是 `skills/han-design/` Skill 包，不以 npm 组件库�
 - [地域、民族与活态文化](skills/han-design/references/regional-and-ethnic-contexts.md)
 - [文化来源索引](skills/han-design/references/cultural-sources.md)
 - [真实任务配方](skills/han-design/references/task-recipes.md)
+- [自动驾驶与设计简报](skills/han-design/references/autopilot.md)
+- [页面类型与整页 Starter](skills/han-design/references/page-archetypes.md)
+- [视觉回看与二次修改](skills/han-design/references/visual-review.md)
 - [输出质量评测](skills/han-design/references/output-evaluation.md)
 - [完整 CSS 入口](skills/han-design/assets/han.css)
 - [Scoped CSS 入口](skills/han-design/assets/han-scoped.css)
@@ -202,7 +213,9 @@ Han 的核心发布物是 `skills/han-design/` Skill 包，不以 npm 组件库�
 - [独立 HTML 输出检查](skills/han-design/scripts/check-output.mjs)
 - [浏览器输出检查](skills/han-design/scripts/check-browser-output.mjs)
 
-Skill 会按需读取 references，不会在每次任务开始前加载全部 CSS。
+Skill 会按需读取 references，不会在每次任务开始前加载全部 CSS。新建完整页面时，优先从 `skills/han-design/assets/starters/` 选择品牌、产品、Dashboard、展览、活动或长文构图，再翻译到目标框架。
+
+视觉强度分为四档：`0` 只用令牌层，适合 Dashboard；`1` 克制，适合产品和品牌页；`2` 鲜明，适合茶、工艺和文化品牌；`3` 戏剧化，适合节庆、展览和游戏活动。它是装饰预算，不是要求页面堆更多组件。
 
 ## 开发与校验
 
@@ -226,7 +239,7 @@ npm run package:plugin
 node scripts/run-evals.mjs --adapter /path/to/agent-adapter.mjs
 ```
 
-Adapter 从标准输入只接收 case id 与用户 prompt，不会看到 `shouldTrigger`、预期 reference 或预期入口；它输出 `triggered`、`references`、`assetEntry` 及可选 `outputPath`。仓库提供通用的外部 Agent command adapter：
+Adapter 从标准输入只接收 case id 与用户 prompt，不会看到 `shouldTrigger`、预期 reference 或预期入口；它输出 `triggered`、`references`、`assetEntry` 及可选的 `starter`、`intensity`、`designBrief`、`reviewedViewports`、`revisionPerformed`、`checksPassed` 和 `outputPath`。自动驾驶用例会检查 Agent 是否真的完成设计简报、桌面与移动端回看、至少一轮修改，并修复可处理的问题直到检查通过。仓库提供通用的外部 Agent command adapter：
 
 ```bash
 HAN_EVAL_AGENT=/path/to/agent \

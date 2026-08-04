@@ -134,3 +134,36 @@ test("navbar snippet supports toggle, Escape, and focus return", async ({ page }
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
   expect(results.violations.filter((item) => ["serious", "critical"].includes(item.impact))).toEqual([]);
 });
+
+test("full-page starters are responsive, complete, and accessible", async ({ page }) => {
+  const starters = [
+    "brand-landing.html",
+    "product-launch.html",
+    "dashboard-shell.html",
+    "exhibition-page.html",
+    "festival-campaign.html",
+    "editorial-page.html",
+  ];
+
+  for (const starter of starters) {
+    await page.goto(`/skills/han-design/assets/starters/${starter}`);
+    await expect(page.locator("main")).toHaveCount(1);
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator("html")).toHaveAttribute("data-han-intensity", /^[0-3]$/);
+
+    for (const width of [375, 1280]) {
+      await page.setViewportSize({ width, height: 900 });
+      const overflow = await page.evaluate(() =>
+        Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) -
+          document.documentElement.clientWidth,
+      );
+      expect(overflow, `${starter} overflows at ${width}px`).toBeLessThanOrEqual(1);
+    }
+
+    const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
+    expect(
+      results.violations.filter((item) => ["serious", "critical"].includes(item.impact)),
+      `${starter} has serious axe violations`,
+    ).toEqual([]);
+  }
+});

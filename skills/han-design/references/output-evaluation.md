@@ -44,6 +44,18 @@ Interpretation:
 - A red square containing text is not automatically traditional seal engraving.
 - A complete screenshot is not proof of working interaction.
 
+## Visual iteration evidence
+
+For substantial pages, the delivery should include evidence from [visual-review.md](visual-review.md):
+
+- a desktop render was reviewed;
+- a mobile render was reviewed;
+- at least one revision was made after rendering;
+- the weakest two craft areas were identified and addressed;
+- the selected theme and visual intensity are stated.
+
+If no browser or screenshot capability is available, say so explicitly and perform the strongest static review available instead of claiming visual verification.
+
 ## Delivery note
 
 Summarize these decisions when they materially affect the result:
@@ -51,8 +63,11 @@ Summarize these decisions when they materially affect the result:
 ```text
 Primary task:
 Interpretation mode:
+Primary theme and visual intensity:
 Cultural references used:
 Modern adaptations:
+Desktop and mobile reviewed:
+Revision made after rendering:
 Accessibility checks:
 Known limitations or specialist review needed:
 ```

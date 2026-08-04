@@ -52,6 +52,13 @@ const requiredFiles = [
   "skills/han-design/assets/tokens-scoped.css",
   "skills/han-design/assets/themes-scoped.css",
   "skills/han-design/assets/accessibility-scoped.css",
+  "skills/han-design/assets/starters/starter-base.css",
+  "skills/han-design/assets/starters/brand-landing.html",
+  "skills/han-design/assets/starters/product-launch.html",
+  "skills/han-design/assets/starters/dashboard-shell.html",
+  "skills/han-design/assets/starters/exhibition-page.html",
+  "skills/han-design/assets/starters/festival-campaign.html",
+  "skills/han-design/assets/starters/editorial-page.html",
   "skills/han-design/assets/utilities.css",
   "skills/han-design/assets/accessibility.css",
   "skills/han-design/assets/palettes.css",
@@ -65,6 +72,9 @@ const requiredFiles = [
   "skills/han-design/references/regional-and-ethnic-contexts.md",
   "skills/han-design/references/cultural-sources.md",
   "skills/han-design/references/task-recipes.md",
+  "skills/han-design/references/autopilot.md",
+  "skills/han-design/references/page-archetypes.md",
+  "skills/han-design/references/visual-review.md",
   "skills/han-design/references/output-evaluation.md",
 ];
 
@@ -193,9 +203,11 @@ function checkHtmlReferences(file) {
   }
 }
 
-const htmlFiles = walk(path.join(skillDir, "assets", "snippets")).filter((file) =>
-  file.endsWith(".html"),
-);
+const snippetDir = path.join(skillDir, "assets", "snippets");
+const starterDir = path.join(skillDir, "assets", "starters");
+const htmlFiles = [snippetDir, starterDir]
+  .flatMap((directory) => walk(directory))
+  .filter((file) => file.endsWith(".html"));
 for (const file of htmlFiles) {
   checkHtmlReferences(file);
   const source = fs.readFileSync(file, "utf8");
@@ -206,6 +218,15 @@ for (const file of htmlFiles) {
     if (/<div\b/i.test(heading[2])) {
       report(relative(file) + " contains a div nested inside a heading.");
     }
+  }
+  if (file.startsWith(starterDir)) {
+    if (!/<main\b/i.test(source)) report(relative(file) + " has no main landmark.");
+    if (!/<h1\b/i.test(source)) report(relative(file) + " has no h1.");
+    if (!/data-theme=["'][^"']+["']/i.test(source)) report(relative(file) + " has no theme.");
+    if (!/data-han-intensity=["'][0-3]["']/i.test(source)) {
+      report(relative(file) + " has no valid data-han-intensity.");
+    }
+    if (/\{[a-z_]+\}/i.test(source)) report(relative(file) + " contains unresolved placeholders.");
   }
 }
 

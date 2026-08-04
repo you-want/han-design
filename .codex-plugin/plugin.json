@@ -19,17 +19,17 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Han Design",
-    "shortDescription": "Accessible Chinese-inspired web interface design",
-    "longDescription": "Build or restyle web interfaces with restrained Chinese-inspired visual language, reusable Han CSS assets, cultural-context guidance, and accessibility checks.",
+    "shortDescription": "Autonomous Chinese-inspired web interface design",
+    "longDescription": "Inspect, design, build, render, and revise polished web interfaces with Han full-page starters, contextual Chinese-inspired visual language, realistic content, reusable CSS assets, and accessibility checks.",
     "developerName": "you-want",
     "category": "Developer Tools",
     "capabilities": [
       "Write"
     ],
     "defaultPrompt": [
-      "Use Han Design to restyle this page with a restrained Song-inspired direction.",
-      "Use Han Design to create an accessible Chinese-inspired landing page.",
-      "Use Han Design to add a scoped Chinese-inspired theme to this dashboard."
+      "Use Han Design to inspect this page, decide the visual direction, make it polished, and revise after desktop and mobile review.",
+      "Use Han Design to create a complete responsive landing page and make the design decisions for me.",
+      "Use Han Design to improve this dashboard visually while preserving its components, behavior, and information density."
     ],
     "brandColor": "#9B2C2C"
   }

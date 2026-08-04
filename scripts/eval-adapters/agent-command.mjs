@@ -23,8 +23,8 @@ const prompt = `${payload.case.prompt}
 
 Available skill directory: ${payload.skillRoot}
 Decide from the skill metadata whether it applies; do not force it for an out-of-scope request.
-After completing enough work to determine routing, return only this observation JSON:
-{"triggered":boolean,"references":["relative paths actually read"],"assetEntry":"relative path actually selected or null","outputPath":"optional repository-relative artifact path"}`;
+After completing enough work to determine routing and, when requested, the autonomous design loop, return only this observation JSON:
+{"triggered":boolean,"references":["relative paths actually read"],"assetEntry":"relative path actually selected or null","starter":"relative starter path or null","intensity":"0-3 or null","designBrief":"brief or null","reviewedViewports":["desktop","mobile"],"revisionPerformed":boolean,"checksPassed":boolean,"outputPath":"optional repository-relative artifact path"}`;
 
 const result = spawnSync(executable, agentArgs, {
   cwd: payload.repositoryRoot,
