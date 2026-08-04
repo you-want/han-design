@@ -1,0 +1,379 @@
+/* Shared presentation layer for Han examples.
+ * Keeps the examples coherent without changing the Han asset bundle itself.
+ */
+
+html[data-han-example] {
+  --example-content: 1180px;
+  --example-wide: 1280px;
+  --example-shadow: 0 18px 48px color-mix(in srgb, var(--han-color-ink-900) 10%, transparent);
+  --example-shadow-soft: 0 10px 28px color-mix(in srgb, var(--han-color-ink-900) 7%, transparent);
+  --example-line: color-mix(in srgb, var(--han-color-ink-300) 52%, transparent);
+  --example-surface: color-mix(in srgb, var(--han-color-paper-100) 88%, white);
+  scroll-behavior: smooth;
+}
+
+html[data-han-example] body {
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--han-color-celadon) 12%, transparent), transparent 24rem),
+    radial-gradient(circle at 92% 24%, color-mix(in srgb, var(--han-color-vermilion-500) 7%, transparent), transparent 22rem),
+    var(--han-color-bg);
+  color: var(--han-color-text-primary);
+}
+
+html[data-han-example] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .26;
+  background-image:
+    radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--han-color-ink-300) 14%, transparent) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 68%, color-mix(in srgb, var(--han-color-celadon) 12%, transparent) 0 1px, transparent 1.5px);
+  background-size: 31px 31px, 47px 47px;
+}
+
+html[data-han-example] a,
+html[data-han-example] button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html[data-han-example] :where(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--han-focus-ring) 82%, white);
+  outline-offset: 3px;
+}
+
+html[data-han-example] :where(.container, .demo-container, .showcase-container, .theme-container, .mac-container) {
+  width: min(calc(100% - 40px), var(--example-content));
+  margin-inline: auto;
+}
+
+html[data-han-example] :where(.demo-container, .theme-container) {
+  padding-block: clamp(48px, 7vw, 88px);
+}
+
+html[data-han-example] :where(.showcase-navbar, .navbar, .han-navbar, .site-header) {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid color-mix(in srgb, var(--han-color-border) 78%, transparent);
+  background: color-mix(in srgb, var(--han-color-paper-100) 78%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--han-color-ink-900) 4%, transparent);
+  backdrop-filter: blur(18px) saturate(1.08);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
+}
+
+html[data-han-example] :where(.showcase-navbar-inner, .navbar-inner) {
+  width: min(calc(100% - 40px), var(--example-wide));
+  margin-inline: auto;
+  min-height: 64px;
+}
+
+html[data-han-example] :where(.showcase-brand, .brand, .mac-navbar__brand) {
+  color: var(--han-color-text-primary);
+  transition: color var(--han-duration-normal), transform var(--han-duration-normal);
+}
+
+html[data-han-example] :where(.showcase-brand, .brand, .mac-navbar__brand):hover {
+  color: var(--han-color-accent-text);
+  transform: translateY(-1px);
+}
+
+html[data-han-example] :where(.showcase-nav-menu, .nav-menu, .mac-navbar__menu) {
+  gap: clamp(16px, 3vw, 34px);
+}
+
+html[data-han-example] :where(.showcase-nav-item a, .nav-item a, .mac-navbar__item a) {
+  position: relative;
+  color: var(--han-color-text-secondary);
+  transition: color var(--han-duration-normal);
+}
+
+html[data-han-example] :where(.showcase-nav-item a, .nav-item a, .mac-navbar__item a):hover,
+html[data-han-example] :where(.showcase-nav-item a, .nav-item a, .mac-navbar__item a):focus-visible {
+  color: var(--han-color-accent-text);
+}
+
+html[data-han-example] :where(.showcase-nav-item.is-active a, .mac-navbar__item.is-active a) {
+  color: var(--han-color-text-primary);
+}
+
+html[data-han-example] :where(.showcase-nav-item.is-active a, .mac-navbar__item.is-active a)::after {
+  background: linear-gradient(90deg, var(--han-color-vermilion-500), color-mix(in srgb, var(--han-color-vermilion-500) 15%, transparent));
+}
+
+/* Intro and section rhythm */
+html[data-han-example] :where(.demo-header, .theme-header) {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto clamp(40px, 6vw, 72px);
+  text-align: center;
+}
+
+html[data-han-example] :where(.demo-header, .theme-header)::after {
+  display: block;
+  width: 72px;
+  height: 1px;
+  margin: 26px auto 0;
+  background: linear-gradient(90deg, transparent, var(--han-color-vermilion-500), transparent);
+  content: "";
+}
+
+html[data-han-example] :where(.demo-header h1, .theme-header h1) {
+  margin: 0;
+  color: var(--han-color-text-primary);
+  font-family: var(--han-font-kai);
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: var(--han-fw-bold);
+  letter-spacing: .08em;
+  line-height: 1.2;
+}
+
+html[data-han-example] :where(.demo-header p, .theme-header p) {
+  max-width: 620px;
+  margin: 14px auto 0;
+  color: var(--han-color-text-secondary);
+  font-size: var(--han-fs-md);
+  line-height: 1.8;
+}
+
+html[data-han-example] :where(.demo-section, .preview-card, .theme-switcher) {
+  margin-bottom: clamp(28px, 5vw, 52px);
+}
+
+html[data-han-example] :where(.demo-section h2, .demo-section h3, .demo-title, .theme-title) {
+  color: var(--han-color-text-primary);
+  font-family: var(--han-font-kai);
+  letter-spacing: .06em;
+}
+
+html[data-han-example] :where(.demo-section h3, .theme-title) {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 22px;
+  padding: 0;
+  border: 0;
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+html[data-han-example] :where(.demo-section h3, .theme-title)::after {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--example-line), transparent);
+  content: "";
+}
+
+html[data-han-example] :where(.demo-item, .demo-box, .demo-preview, .component-card, .step-card, .preview-card, .theme-selector, .host-panel, .han-zone) {
+  border: 1px solid color-mix(in srgb, var(--han-color-border) 84%, transparent);
+  border-radius: var(--han-radius-xl);
+  background: color-mix(in srgb, var(--example-surface) 88%, transparent);
+  box-shadow: var(--example-shadow-soft);
+}
+
+html[data-han-example] :where(.demo-item, .demo-box, .demo-preview, .component-card, .step-card, .preview-card, .theme-selector) {
+  transition: transform var(--han-duration-normal), box-shadow var(--han-duration-normal), border-color var(--han-duration-normal);
+}
+
+html[data-han-example] :where(.demo-item, .component-card, .step-card, .preview-card):hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--han-color-accent-control) 60%, var(--han-color-border));
+  box-shadow: var(--example-shadow);
+}
+
+html[data-han-example] :where(.demo-grid, .component-grid, .steps-grid, .theme-grid) {
+  gap: clamp(18px, 2.4vw, 30px);
+}
+
+html[data-han-example] :where(.demo-label, .preview-label, .mac-kicker, .hero-kicker, .section-kicker) {
+  color: var(--han-color-accent-text);
+  letter-spacing: .16em;
+}
+
+html[data-han-example] :where(.code-block, .step-code) {
+  border: 1px solid color-mix(in srgb, var(--han-color-paper-200) 16%, transparent);
+  border-radius: var(--han-radius-lg);
+  background: linear-gradient(135deg, var(--han-color-ink-900), color-mix(in srgb, var(--han-color-ink-800) 82%, #111));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white 8%, transparent);
+}
+
+/* Component catalogue */
+html[data-han-example] :where(.component-demo, .demo-preview, .demo-box) {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--han-color-paper-200) 54%, transparent), transparent 52%),
+    color-mix(in srgb, var(--han-color-bg-elevated) 86%, white);
+}
+
+html[data-han-example] .component-card h3 {
+  font-size: clamp(22px, 2.3vw, 28px);
+}
+
+html[data-han-example] .component-card .component-demo {
+  min-height: 148px;
+  border: 1px solid var(--example-line);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white 55%, transparent);
+}
+
+html[data-han-example] .demo-row {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+html[data-han-example] .demo-item {
+  min-width: 120px;
+}
+
+html[data-han-example] .demo-label {
+  margin-top: 12px;
+  color: var(--han-color-text-tertiary);
+  font-size: var(--han-fs-xs);
+}
+
+/* Quick start and showcase heroes */
+html[data-han-example] :where(.hero, .showcase-hero) {
+  position: relative;
+  overflow: hidden;
+}
+
+html[data-han-example] .hero::after,
+html[data-han-example] .showcase-hero::after {
+  position: absolute;
+  right: 7%;
+  bottom: 12%;
+  width: clamp(90px, 14vw, 190px);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--han-color-vermilion-500) 32%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 18px color-mix(in srgb, var(--han-color-vermilion-500) 5%, transparent), 0 0 0 38px color-mix(in srgb, var(--han-color-vermilion-500) 3%, transparent);
+  content: "";
+  opacity: .7;
+  pointer-events: none;
+}
+
+html[data-han-example] :where(.hero h1, .hero-title) {
+  text-wrap: balance;
+}
+
+html[data-han-example] :where(.hero p, .hero-subtitle) {
+  text-wrap: pretty;
+}
+
+html[data-han-example] .hero-actions .han-btn-seal,
+html[data-han-example] .hero-actions .primary-action {
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--han-color-vermilion-500) 18%, transparent);
+}
+
+/* Product pages */
+html[data-han-example] .mac-hero {
+  background:
+    radial-gradient(circle at 50% 12%, color-mix(in srgb, var(--han-color-celadon) 16%, transparent), transparent 30rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--han-color-paper-100) 94%, white), var(--han-color-bg));
+}
+
+html[data-han-example] :where(.mac-product-card, .mac-feature-card, .mac-device-card, .mac-insight-card, .mac-banner-card, .mac-benefit-card, .mac-world-card, .mac-compare__shell) {
+  border-color: color-mix(in srgb, var(--han-color-border) 78%, transparent);
+  box-shadow: var(--example-shadow-soft);
+  transition: transform var(--han-duration-normal), box-shadow var(--han-duration-normal), border-color var(--han-duration-normal);
+}
+
+html[data-han-example] :where(.mac-product-card, .mac-feature-card, .mac-device-card, .mac-insight-card, .mac-banner-card, .mac-benefit-card, .mac-world-card):hover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--han-color-vermilion-500) 34%, var(--han-color-border));
+  box-shadow: var(--example-shadow);
+}
+
+html[data-han-example] .mac-section-heading h2 {
+  text-wrap: balance;
+}
+
+/* AI product page */
+html[data-han-example] .site-header {
+  background: transparent;
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+html[data-han-example] .site-nav {
+  border-color: color-mix(in srgb, var(--han-color-border) 72%, transparent);
+  box-shadow: var(--example-shadow-soft);
+}
+
+html[data-han-example] :where(.signal-card, .proof-item, .feature-card, .workflow-card, .final-cta) {
+  box-shadow: var(--example-shadow-soft);
+}
+
+/* Floating example directory */
+html[data-han-example] .han-nav-fab {
+  top: 20px !important;
+  right: 20px !important;
+  width: 46px !important;
+  height: 46px !important;
+  border: 1px solid color-mix(in srgb, var(--han-color-paper-100) 24%, transparent) !important;
+  background: var(--han-color-ink-800, #2a2824) !important;
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--han-color-ink-900) 22%, transparent) !important;
+  transition: transform var(--han-duration-normal), background var(--han-duration-normal) !important;
+}
+
+html[data-han-example] .han-nav-fab:hover {
+  background: var(--han-color-vermilion-500, #c0392b) !important;
+  transform: translateY(-2px) scale(1.04) !important;
+}
+
+html[data-han-example] .han-nav-panel {
+  top: 78px !important;
+  right: 20px !important;
+  border-color: color-mix(in srgb, var(--han-color-border) 75%, transparent) !important;
+  border-radius: var(--han-radius-xl) !important;
+  background: color-mix(in srgb, var(--han-color-paper-100) 92%, white) !important;
+  box-shadow: var(--example-shadow) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+html[data-han-example] .han-nav-panel a[aria-current="page"] {
+  background: color-mix(in srgb, var(--han-color-vermilion-500) 12%, transparent) !important;
+  color: var(--han-color-accent-text) !important;
+  font-weight: var(--han-fw-medium) !important;
+}
+
+@media (max-width: 760px) {
+  html[data-han-example] :where(.container, .demo-container, .showcase-container, .theme-container, .mac-container, .showcase-navbar-inner, .navbar-inner) {
+    width: min(calc(100% - 28px), var(--example-content));
+  }
+
+  html[data-han-example] :where(.showcase-nav-menu, .nav-menu, .mac-navbar__menu) {
+    display: none;
+  }
+
+  html[data-han-example] :where(.demo-header h1, .theme-header h1) {
+    font-size: clamp(32px, 11vw, 46px);
+  }
+
+  html[data-han-example] .hero::after,
+  html[data-han-example] .showcase-hero::after {
+    right: -28px;
+    bottom: 7%;
+    opacity: .35;
+  }
+
+  html[data-han-example] .han-nav-fab {
+    top: 12px !important;
+    right: 12px !important;
+  }
+
+  html[data-han-example] .han-nav-panel {
+    top: 68px !important;
+    right: 12px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-han-example] *,
+  html[data-han-example] *::before,
+  html[data-han-example] *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

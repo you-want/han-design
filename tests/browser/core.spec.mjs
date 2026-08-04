@@ -58,6 +58,39 @@ test("core scoped fixture has no serious axe violations", async ({ page }) => {
   expect(results.violations.filter((item) => ["serious", "critical"].includes(item.impact))).toEqual([]);
 });
 
+test("contemporary palette themes preserve source swatches and accessible controls", async ({ page }) => {
+  await page.goto("/tests/fixtures/contemporary-palettes.html");
+  const expected = {
+    "pine-wheat": ["#4D5B44", "#758B5D", "#A5BA8F", "#E9E2B4"],
+    "plum-blush": ["#715480", "#B487B0", "#D7C2AD", "#F0D8EE"],
+    "ocean-orchid": ["#2C5767", "#6487A3", "#BBA4B6", "#C1CFDA"],
+    "caramel-cream": ["#8D6037", "#EBB5B5", "#E8D2BA", "#724526"],
+    "mint-lavender": ["#4A7D6A", "#A8CCB0", "#D9EEE5", "#EBDCF3"],
+    "berry-butter": ["#D11946", "#DE6052", "#F8969E", "#ECE6B9"],
+  };
+
+  for (const [theme, swatches] of Object.entries(expected)) {
+    await page.locator("html").evaluate((element, name) => element.setAttribute("data-theme", name), theme);
+    const tokens = await page.locator("html").evaluate((element) => {
+      const style = getComputedStyle(element);
+      return [
+        style.getPropertyValue("--han-palette-1").trim(),
+        style.getPropertyValue("--han-palette-2").trim(),
+        style.getPropertyValue("--han-palette-3").trim(),
+        style.getPropertyValue("--han-palette-4").trim(),
+        style.getPropertyValue("--han-color-accent-text").trim(),
+        style.getPropertyValue("--han-color-accent-control").trim(),
+        style.getPropertyValue("--han-focus-ring").trim(),
+      ];
+    });
+    expect(tokens.slice(0, 4)).toEqual(swatches);
+    expect(tokens.slice(4).every(Boolean)).toBe(true);
+
+    const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
+    expect(results.violations.filter((item) => ["serious", "critical"].includes(item.impact))).toEqual([]);
+  }
+});
+
 test("navbar snippet supports toggle, Escape, and focus return", async ({ page }) => {
   await page.setViewportSize({ width: 600, height: 800 });
   const snippet = fs.readFileSync(

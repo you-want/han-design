@@ -54,6 +54,17 @@
       "expectedAssetEntry": "assets/han-scoped.css"
     },
     {
+      "id": "mint-wellness-landing",
+      "prompt": "使用 han-design 的薄荷薰衣草配色，为健康生活品牌制作一个清透、安静的移动端落地页。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/design-guide.md",
+        "references/contemporary-palettes.md",
+        "references/task-recipes.md"
+      ],
+      "expectedAssetEntry": "assets/han.css"
+    },
+    {
       "id": "raster-poster",
       "prompt": "生成一张国风电影海报图片。",
       "shouldTrigger": false,

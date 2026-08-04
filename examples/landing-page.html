@@ -1,1295 +1,1464 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
+<html lang="zh-CN" data-theme="song" data-color-mode="light" data-han-static-reference="true" data-han-example="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>汉 · 东方美学设计系统</title>
-  <meta name="description" content="汉 (Han) — 让东方美学在网页上优雅绽放">
+  <meta name="description" content="Han — 让东方美学在网页上优雅绽放。汲取千年中华文化，以当代视角诠释中国风设计系统。">
   <link rel="stylesheet" href="../skills/han-design/assets/fonts.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/tokens.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/base.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/themes.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/icons.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/patterns.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/typography.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/components.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/iconic.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/structure.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/enhanced.css">
-  <link rel="stylesheet" href="../skills/han-design/assets/motion.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/han.css">
   <style>
-    /* ============ 页面级布局 ============ */
-    .hero {
-      min-height: 88vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      padding: var(--han-space-10) var(--han-space-6);
+    /* 基于 Han 的局部增强样式 */
+    :root {
+      --mac-ink: var(--han-color-ink-800);
+      --mac-muted: var(--han-color-text-secondary);
+      --mac-paper: var(--han-color-paper-100);
+      --mac-celadon: var(--han-color-celadon);
+      --mac-line: color-mix(in srgb, var(--han-color-ink-300) 40%, transparent);
+      --mac-content: 1180px;
     }
 
-    /* Hero 背景装饰 —— 远山剪影 (SVG) */
-    .hero::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 40%;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 400' preserveAspectRatio='none'%3E%3Cpath d='M0,400 L0,280 C100,240 150,300 250,200 C350,100 400,220 500,180 C600,140 700,260 800,200 C900,140 1000,280 1100,220 C1150,190 1200,260 1200,260 L1200,400 Z' fill='%232a2824' opacity='0.08'/%3E%3Cpath d='M0,400 L0,320 C200,280 300,340 400,280 C500,220 600,300 750,250 C900,200 1000,320 1200,280 L1200,400 Z' fill='%232a2824' opacity='0.05'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      pointer-events: none;
-    }
-
-    /* Hero 圆形装饰 */
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 10%;
-      right: 10%;
-      width: 200px;
-      height: 200px;
-      border: 2px solid var(--han-color-vermilion-500);
-      border-radius: 50%;
-      opacity: 0.15;
-      pointer-events: none;
-    }
-
-    .hero__content {
-      position: relative;
-      text-align: center;
-      z-index: 1;
-      max-width: 800px;
-    }
-
-    /* 竖排文字装饰 */
-    .hero__vertical {
-      position: absolute;
-      left: var(--han-space-10);
-      top: 50%;
-      transform: translateY(-50%);
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-sm);
-      color: var(--han-color-ink-300);
-      letter-spacing: var(--han-space-3);
-      z-index: 1;
-      max-height: 70vh;
-      overflow: hidden;
-      user-select: none;
-    }
-
-    .hero__vertical-right {
-      position: absolute;
-      right: var(--han-space-10);
-      top: 50%;
-      transform: translateY(-50%);
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-sm);
-      color: var(--han-color-ink-300);
-      letter-spacing: var(--han-space-3);
-      z-index: 1;
-      max-height: 70vh;
-      overflow: hidden;
-      user-select: none;
-    }
-
-    .hero__title {
-      font-family: var(--han-font-kai);
-      font-size: clamp(48px, 8vw, 96px);
-      font-weight: var(--han-fw-bold);
-      color: var(--han-color-text-primary);
-      letter-spacing: var(--han-ls-wider);
-      line-height: var(--han-lh-tight);
-      margin-bottom: var(--han-space-4);
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero__title-seal {
-      position: absolute;
-      top: -20px;
-      right: -80px;
-      transform: rotate(-8deg);
-    }
-
-    .hero__subtitle {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-lg);
-      color: var(--han-color-text-secondary);
-      letter-spacing: var(--han-ls-wider);
-      margin-bottom: var(--han-space-6);
-      line-height: var(--han-lh-relaxed);
-    }
-
-    .hero__desc {
-      font-size: var(--han-fs-md);
-      color: var(--han-color-text-tertiary);
-      max-width: 540px;
-      margin: 0 auto var(--han-space-7);
-      line-height: var(--han-lh-relaxed);
-    }
-
-    .hero__cta {
-      display: inline-flex;
-      gap: var(--han-space-4);
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* ============ 产品展示 ============ */
-    .products {
+    /* 页面基础布局 */
+    body {
       background: var(--han-color-bg);
+      color: var(--mac-ink);
+      font-family: var(--han-font-song);
+      scroll-behavior: smooth;
     }
 
-    .products__grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--han-space-8);
-      margin-top: var(--han-space-8);
+    /* 导航固定高度 */
+    :where(section[id]) {
+      scroll-margin-top: calc(var(--han-nav-height) + 4rem);
     }
 
-    /* ============ 品牌故事 ============ */
-    .story {
-      text-align: center;
-    }
-
-    .story__quote {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-3xl);
-      color: var(--han-color-text-primary);
-      line-height: var(--han-lh-loose);
-      letter-spacing: var(--han-ls-wide);
-      max-width: 720px;
-      margin: 0 auto var(--han-space-6);
-      font-weight: var(--han-fw-bold);
-    }
-
-    .story__author {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-md);
-      color: var(--han-color-text-tertiary);
-      letter-spacing: var(--han-ls-wide);
-    }
-
-    /* ============ 底部 ============ */
-    .footer {
-      background: var(--han-color-bg-dark);
-      color: var(--han-color-paper-200);
-      padding: var(--han-space-10) var(--han-space-6) var(--han-space-6);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .footer::before {
+    /* 水墨背景装饰 */
+    body::before {
       content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--han-color-gold-500) 0,
-        var(--han-color-gold-500) 12px,
-        transparent 12px,
-        transparent 24px
-      );
-      opacity: 0.6;
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.03;
+      background-image:
+        radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--han-color-ink-300) 25%, transparent) 0 2px, transparent 2px),
+        radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--han-color-celadon) 15%, transparent) 0 2px, transparent 2px);
+      background-size: 30px 30px, 50px 50px;
     }
 
-    .footer__inner {
-      max-width: var(--han-container-lg);
+    .mac-container {
+      width: min(calc(100% - 3rem), var(--mac-content));
       margin: 0 auto;
     }
 
-    .footer__grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: var(--han-space-8);
-      margin-bottom: var(--han-space-8);
+    /* 跳过分项 */
+    .han-skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
 
-    .footer__brand {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-2xl);
-      color: var(--han-color-paper-50);
-      margin-bottom: var(--han-space-3);
+    .han-skip-link:focus {
+      position: static;
+      width: auto;
+      height: auto;
+      padding: 0.75rem 1rem;
+      background: var(--han-color-vermilion-500);
+      color: #fff;
+      z-index: 10000;
+      text-decoration: none;
+      border-radius: 0;
     }
 
-    .footer__brand span { color: var(--han-color-vermilion-400); }
-    .footer__desc { color: var(--han-color-paper-300); font-size: var(--han-fs-sm); line-height: var(--han-lh-relaxed); }
-    .footer__title {
+    /* ============================ 导航栏 ============================ */
+    .mac-navbar__brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      text-decoration: none;
       font-family: var(--han-font-kai);
-      font-size: var(--han-fs-md);
-      color: var(--han-color-gold-400);
-      margin-bottom: var(--han-space-4);
-      letter-spacing: var(--han-ls-wide);
+      font-size: var(--han-fs-xl);
+      color: var(--mac-ink);
     }
-    .footer__link {
-      display: block;
-      color: var(--han-color-paper-300);
+
+    .mac-navbar__brand small {
+      color: var(--mac-muted);
+      font-family: var(--han-font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      vertical-align: middle;
+    }
+
+    .mac-navbar__menu { margin: 0; display: flex; gap: var(--han-space-5); list-style: none; }
+
+    .mac-navbar__item { position: relative; }
+
+    .mac-navbar__item a {
+      color: var(--mac-muted);
+      text-decoration: none;
       font-size: var(--han-fs-sm);
-      padding: var(--han-space-1) 0;
+      padding: 0.5rem 0.75rem;
       transition: color var(--han-duration-normal);
     }
-    .footer__link:hover { color: var(--han-color-gold-400); border-bottom: none; }
 
-    .footer__bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: var(--han-space-5);
-      text-align: center;
-      font-size: var(--han-fs-xs);
-      color: var(--han-color-paper-400);
-      letter-spacing: var(--han-ls-wide);
+    .mac-navbar__item a:hover,
+    .mac-navbar__item a:focus-visible { color: var(--han-color-accent-text); }
+
+    .mac-navbar__item.is-active a { color: var(--mac-ink); font-weight: var(--han-fw-medium); }
+
+    .mac-navbar__item.is-active a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
     }
 
-    /* ============ 通用 Demo 样式 ============ */
-    .demo-section-label {
-      display: inline-block;
-      font-family: var(--han-font-kai);
+    .mac-navbar__action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--han-color-accent-text);
+      font-size: var(--han-fs-sm);
+      font-weight: var(--han-fw-medium);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .mac-navbar__action::after {
+      content: "→";
+      font-size: 0.85em;
+      transition: transform var(--han-duration-normal);
+    }
+
+    .mac-navbar__action:hover::after { transform: translateX(0.25rem); }
+
+    .mac-navbar__toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mac-navbar__toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--mac-muted);
+      margin: 4px 0;
+      transition: background var(--han-duration-normal);
+    }
+
+    .mac-navbar--open .mac-navbar__toggle span:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 4px);
+    }
+
+    .mac-navbar--open .mac-navbar__toggle span:nth-child(2) { opacity: 0; }
+
+    .mac-navbar--open .mac-navbar__toggle span:nth-child(3) {
+      transform: rotate(-45deg) translate(4px, -4px);
+    }
+
+    @media (max-width: 768px) {
+      .mac-navbar__toggle { display: block; }
+      .mac-navbar__menu {
+        position: fixed;
+        top: var(--han-nav-height);
+        right: 0;
+        width: 100%;
+        max-height: calc(100vh - var(--han-nav-height));
+        background: var(--han-color-paper-100);
+        flex-direction: column;
+        padding: var(--han-space-6) var(--han-space-5);
+        gap: var(--han-space-3);
+        overflow-y: auto;
+        box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+      }
+      .mac-navbar__menu > .mac-navbar__item { width: 100%; text-align: center; }
+      .mac-navbar__menu a { display: block; padding: 0.75rem; }
+    }
+
+    /* ============================ Hero 区域 ============================ */
+    .mac-hero {
+      min-height: min(800px, calc(100vh - var(--han-nav-height)));
+      display: grid;
+      place-items: center;
+      position: relative;
+      padding: clamp(4rem, 8vw, 8rem) 0 clamp(5rem, 10vw, 10rem);
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .mac-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--han-color-celadon) 12%, transparent), transparent 35%),
+        linear-gradient(135deg, transparent 49%, color-mix(in srgb, var(--han-color-ink-200) 10%, transparent) 50%, transparent 51%);
+    }
+
+    .mac-hero__content {
+      width: min(calc(100% - 3rem), 900px);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      grid-column: 1 / -1;
+    }
+
+    .mac-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--han-color-accent-text);
       font-size: var(--han-fs-xs);
-      color: var(--han-color-text-tertiary);
       letter-spacing: var(--han-ls-widest);
-      margin-bottom: var(--han-space-3);
-      padding: var(--han-space-1) var(--han-space-3);
-      border: var(--han-border-width) dashed var(--han-color-border);
-      border-radius: var(--han-radius-sm);
+      text-transform: uppercase;
     }
 
-    .demo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--han-space-5);
+    .mac-kicker::before {
+      content: "";
+      width: 2rem;
+      height: 1px;
+      background: currentColor;
     }
 
-    .demo-item {
-      background: var(--han-color-bg-surface);
-      border: var(--han-border-width) solid var(--han-color-border);
-      border-radius: var(--han-radius-md);
-      padding: var(--han-space-5);
-      transition: all var(--han-duration-normal) var(--han-ease-out);
+    .mac-hero__title {
+      font-family: var(--han-font-song);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: var(--han-fw-bold);
+      letter-spacing: 0.05em;
+      line-height: 1.0;
+      margin: 1rem 0 2rem;
+      color: var(--mac-ink);
     }
 
-    .demo-item:hover {
-      border-color: var(--han-color-accent-control);
-      box-shadow: var(--han-shadow-md);
+    .mac-hero__title em {
+      color: var(--han-color-vermilion-500);
+      font-style: normal;
+      display: block;
+      margin-top: 0.5em;
     }
 
-    .demo-label {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-xs);
-      color: var(--han-color-text-tertiary);
-      letter-spacing: var(--han-ls-wide);
-      margin-bottom: var(--han-space-3);
-      padding-bottom: var(--han-space-2);
-      border-bottom: var(--han-border-width) solid var(--han-color-border);
+    .mac-hero__subtitle {
+      max-width: 540px;
+      margin: 0 auto var(--han-space-8);
+      color: var(--mac-muted);
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      line-height: var(--han-lh-relaxed);
     }
 
-    .intro-block {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-      padding: var(--han-space-6);
-    }
-
-    .icon-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-      gap: var(--han-space-3);
-    }
-
-    .icon-cell {
+    .mac-hero__actions {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--han-space-2);
-      padding: var(--han-space-3);
-      border: var(--han-border-width) solid var(--han-color-border);
-      border-radius: var(--han-radius-sm);
-      background: var(--han-color-bg-surface);
-      transition: all var(--han-duration-fast) var(--han-ease-out);
-    }
-
-    .icon-cell:hover {
-      border-color: var(--han-color-accent-control);
-      transform: translateY(-2px);
-    }
-
-    .icon-cell span {
-      font-size: 11px;
-      font-family: var(--han-font-kai);
-      color: var(--han-color-text-tertiary);
-    }
-
-    .pattern-demo {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: var(--han-space-3);
-    }
-
-    .pattern-demo > div {
-      height: 100px;
-      display: flex;
-      align-items: center;
       justify-content: center;
+      gap: var(--han-space-6);
+      flex-wrap: wrap;
+      margin-top: var(--han-space-6);
+    }
+
+    .mac-text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--han-color-accent-text);
+      font-size: var(--han-fs-md);
+      font-weight: var(--han-fw-medium);
+      text-decoration: none;
+    }
+
+    .mac-text-link::after { content: "→"; transition: transform var(--han-duration-normal); }
+    .mac-text-link:hover::after { transform: translateX(0.25rem); }
+
+    .mac-hero__vertical {
+      position: absolute;
+      left: clamp(1rem, 5vw, 3rem);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--han-color-ink-300);
       font-family: var(--han-font-kai);
       font-size: var(--han-fs-sm);
-      color: var(--han-color-text-secondary);
-      border: var(--han-border-width) solid var(--han-color-border);
-      border-radius: var(--han-radius-md);
-      background-color: var(--han-color-bg-surface);
+      writing-mode: vertical-rl;
+      letter-spacing: 0.32em;
+      line-height: 2;
+      opacity: 0.6;
+      pointer-events: none;
     }
 
-    .gradient-demo {
+    /* ============================ 章法布局展示 ============================ */
+    .mac-chapter-nav {
+      position: sticky;
+      top: var(--han-nav-height);
+      z-index: 100;
+      border-block: 1px solid var(--mac-line);
+      background: color-mix(in srgb, var(--han-color-paper-50) 80%, transparent);
+      backdrop-filter: blur(12px) saturate(1.1);
+      -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    }
+
+    .mac-chapter-nav__inner {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: var(--han-space-3);
+      grid-template-columns: repeat(8, 1fr);
+      gap: 0;
+      background: var(--mac-line);
     }
 
-    .gradient-demo > div {
-      height: 80px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: var(--han-space-2);
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-xs);
-      color: var(--han-color-text-primary);
-      border-radius: var(--han-radius-md);
-    }
-
-    .btn-row {
-      display: flex;
-      gap: var(--han-space-3);
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .form-demo {
+    .mac-chapter-link {
+      min-height: 5rem;
       display: flex;
       flex-direction: column;
-      gap: var(--han-space-3);
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 0.5rem 0.25rem;
+      background: var(--han-color-paper-100);
+      color: var(--mac-muted);
+      text-align: center;
+      transition: all var(--han-duration-normal) var(--han-ease-out);
+      cursor: default;
+      font-family: var(--han-font-song);
     }
 
-    .center-text { text-align: center; }
+    .mac-chapter-link strong {
+      font-size: var(--han-fs-xs);
+      letter-spacing: 0.04em;
+      color: var(--mac-ink);
+    }
 
-    /* ============ 响应式 ============ */
+    .mac-chapter-link span {
+      font-size: 1.5rem;
+      color: var(--han-color-vermilion-500);
+      line-height: 1;
+    }
+
+    .mac-chapter-link small {
+      font-size: 0.6rem;
+      color: var(--mac-muted);
+      writing-mode: horizontal-tb;
+    }
+
+    .mac-chapter-link:hover,
+    .mac-chapter-link:focus-visible {
+      background: var(--han-color-celadon);
+      color: var(--han-color-ink-900);
+    }
+
+    .mac-chapter-link.is-active strong {
+      color: var(--han-color-vermilion-500);
+    }
+
+    .mac-chapter-link.is-active span { color: var(--han-color-vermilion-500); }
+
     @media (max-width: 1024px) {
-      .hero__vertical { left: var(--han-space-7); font-size: var(--han-fs-xs); letter-spacing: var(--han-space-2); }
-      .hero__vertical-right { right: var(--han-space-7); font-size: var(--han-fs-xs); letter-spacing: var(--han-space-2); }
-    }
-    @media (max-width: 768px) {
-      .hero { min-height: 70vh; padding: var(--han-space-8) var(--han-space-5); }
-      .hero__vertical, .hero__vertical-right { display: none; }
-      .hero__title-seal { position: static; margin: var(--han-space-3) auto; transform: rotate(-8deg); }
-      .hero__title { font-size: clamp(36px, 10vw, 56px); }
-      .footer__grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .footer__grid { grid-template-columns: 1fr; }
-      .story__quote { font-size: var(--han-fs-2xl); }
-      .hero__desc { font-size: var(--han-fs-sm); }
+      .mac-chapter-nav__inner { grid-template-columns: repeat(4, 1fr); }
+      .mac-chapter-link span { font-size: 1.2rem; }
+      .mac-chapter-link small { font-size: 0.5rem; }
     }
 
-    /* ============ 滚动显现动画 ============ */
-    .fade-on-scroll {
+    @media (max-width: 768px) {
+      .mac-chapter-nav__inner { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ============================ 内容节 ============================ */
+    .mac-section {
+      padding: clamp(5rem, 10vw, 10rem) 0;
+    }
+
+    .mac-section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: var(--han-space-8);
+      align-items: end;
+      margin-bottom: var(--han-space-10);
+    }
+
+    .mac-section-heading h2 {
+      font-family: var(--han-font-song);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: var(--han-fw-bold);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin: 0;
+      color: var(--mac-ink);
+    }
+
+    .mac-section-heading h2::after {
+      content: "";
+      display: block;
+      width: 4rem;
+      height: 2px;
+      margin-top: var(--han-space-4);
+      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
+    }
+
+    .mac-section-heading p {
+      max-width: 36rem;
+      margin: 0;
+      color: var(--mac-muted);
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: var(--han-lh-relaxed);
+    }
+
+    .mac-reveal {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.8s var(--han-ease-out), transform 0.8s var(--han-ease-out);
     }
-    .fade-on-scroll.is-visible {
+
+    .mac-reveal.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* ============ 花瓣飘落容器 ============ */
-    .petal-container {
+    /* ============================ 产品卡片网格 ============================ */
+    .mac-product-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(1rem, 2vw, 1.5rem);
+      margin-top: var(--han-space-10);
+    }
+
+    .mac-product-card {
+      position: relative;
+      background: color-mix(in srgb, var(--han-color-paper-50) 80%, transparent);
+      border: 1px solid var(--mac-line);
+      border-radius: 0;
+      overflow: hidden;
+      transition: all var(--han-duration-normal) var(--han-ease-out);
+    }
+
+    .mac-product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 1.5rem 3.5rem rgba(0,0,0,0.08);
+      border-color: var(--han-color-celadon);
+    }
+
+    .mac-product-card--wide { grid-column: span 6; }
+    .mac-product-card--extra { grid-column: span 8; }
+
+    .mac-product-card__visual {
+      aspect-ratio: 1.6;
+      background: linear-gradient(135deg, var(--han-color-celadon) 10%, transparent 40%);
       position: relative;
       overflow: hidden;
-      min-height: 300px;
+    }
+
+    .mac-product-card__visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background:
+        radial-gradient(circle at 60% 40%, color-mix(in srgb, var(--han-color-ink-300) 20%, transparent), transparent 50%),
+        linear-gradient(145deg, rgba(255,255,255,0.5), transparent 55%);
+    }
+
+    .mac-product-card__visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      mix-blend-mode: multiply;
+      transition: transform var(--han-duration-slow) var(--han-ease-out);
+    }
+
+    .mac-product-card:hover .mac-product-card__visual img { transform: scale(1.05); }
+
+    .mac-product-card__name {
+      font-family: var(--han-font-song);
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      margin: 1.25rem 0 0.75rem;
+      letter-spacing: 0.02em;
+      color: var(--mac-ink);
+    }
+
+    .mac-product-card__description {
+      color: var(--mac-muted);
+      font-size: var(--han-fs-sm);
+      line-height: var(--han-lh-relaxed);
+      margin: 0 0 1.5rem;
+    }
+
+    .mac-product-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--han-color-accent-text);
+      font-size: var(--han-fs-sm);
+      font-weight: var(--han-fw-medium);
+      text-decoration: none;
+    }
+
+    .mac-product-card__link::after { content: "→"; }
+    .mac-product-card__link:hover::after { transform: translateX(0.25rem); }
+
+    /* 产品编号 */
+    .mac-product-card::before {
+      content: counter(mac-product, decimal-leading-zero);
+      counter-increment: mac-product;
+      position: absolute;
+      top: 0.875rem;
+      right: 0.875rem;
+      color: var(--han-color-text-tertiary);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      font-family: var(--han-font-kai);
+    }
+
+    /* ============================ 比较面板 ============================ */
+    .mac-compare {
+      background: color-mix(in srgb, var(--mac-dark-soft) 30%, var(--han-color-bg));
+    }
+
+    .mac-compare__shell {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: var(--han-space-10);
+      margin-top: var(--han-space-10);
+    }
+
+    .mac-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mac-tab {
+      background: transparent;
+      border: 1px solid var(--mac-line);
+      border-radius: 0;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-family: var(--han-font-song);
+      font-size: var(--han-fs-sm);
+      color: var(--mac-muted);
+      cursor: pointer;
+      transition: all var(--han-duration-normal) var(--han-ease-out);
+      position: relative;
+    }
+
+    .mac-tab:hover,
+    .mac-tab:focus-visible {
+      border-color: var(--han-color-celadon);
+      background: color-mix(in srgb, var(--han-color-celadon) 10%, transparent);
+      color: var(--mac-ink);
+    }
+
+    .mac-tab[aria-selected="true"] {
+      border-color: var(--han-color-vermilion-500);
+      background: color-mix(in srgb, var(--han-color-vermilion-500) 5%, transparent);
+      color: var(--mac-ink);
+      font-weight: var(--han-fw-medium);
+    }
+
+    .mac-tab::after {
+      content: "→";
+      position: absolute;
+      right: 1rem;
+      opacity: 0.5;
+      font-size: 0.8rem;
+    }
+
+    .mac-tab[aria-selected="true"]::after { opacity: 1; }
+
+    .mac-compare__panel {
+      background: color-mix(in srgb, var(--han-color-celadon) 10%, transparent);
+      border: 1px solid var(--mac-line);
+      padding: clamp(1.5rem, 3vw, 2rem);
+      border-radius: 0;
+      min-height: 20rem;
+    }
+
+    .mac-compare__panel h3 {
+      font-family: var(--han-font-song);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      margin: 0 0 1rem 0;
+      color: var(--mac-ink);
+    }
+
+    .mac-compare__panel p {
+      color: var(--mac-muted);
+      line-height: var(--han-lh-relaxed);
+      margin: 0 0 1.5rem 0;
+    }
+
+    .mac-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--han-space-4);
+      margin-top: var(--han-space-8);
+    }
+
+    .mac-metric {
+      padding-top: var(--han-space-3);
+      border-top: 1px solid var(--mac-line);
+    }
+
+    .mac-metric strong {
+      display: block;
+      color: var(--han-color-gold-500);
+      font-family: var(--han-font-song);
+      font-size: var(--han-fs-xl);
+      margin-bottom: 0.25rem;
+    }
+
+    .mac-metric span {
+      display: block;
+      color: var(--mac-muted);
+      font-size: var(--han-fs-xs);
+    }
+
+    /* ============================ 特性卡片 ============================ */
+    .mac-feature-band {
+      background: color-mix(in srgb, var(--mac-dark-soft) 40%, transparent);
+      color: var(--han-color-paper-50);
+    }
+
+    .mac-feature-band .mac-section-heading p {
+      color: color-mix(in srgb, var(--han-color-paper-50) 60%, transparent);
+    }
+
+    .mac-feature-band .mac-kicker { color: var(--han-color-gold-400); }
+
+    .mac-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--han-space-8);
+      margin-top: var(--han-space-10);
+    }
+
+    .mac-feature-card {
+      position: relative;
+      background: var(--mac-dark-soft);
+      border: 1px solid var(--mac-line);
+      border-radius: 0;
+      min-height: 30rem;
+      overflow: hidden;
+      transition: all var(--han-duration-normal) var(--han-ease-out);
+    }
+
+    .mac-feature-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, transparent 20%, rgba(0,0,0,0.3) 100%);
+    }
+
+    .mac-feature-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      transition: transform var(--han-duration-slower) var(--han-ease-out);
+    }
+
+    .mac-feature-card:hover img { transform: scale(1.05); }
+
+    .mac-feature-card__copy {
+      position: relative;
+      z-index: 1;
+      padding: clamp(1.5rem, 4vw, 2rem);
+      color: var(--han-color-paper-50);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mac-feature-card__copy h3 {
+      font-family: var(--han-font-song);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin: 0 0 1rem 0;
+      line-height: 1.2;
+    }
+
+    .mac-feature-card__copy p {
+      flex: 1;
+      margin: 0 0 1.5rem 0;
+      line-height: var(--han-lh-relaxed);
+      opacity: 0.9;
+    }
+
+    .mac-feature-card__copy a {
+      color: var(--han-color-gold-400);
+      text-decoration: none;
+      font-size: var(--han-fs-sm);
+      font-weight: var(--han-fw-medium);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .mac-feature-card__copy a::after { content: "→"; }
+
+    /* ============================ 设备网格 ============================ */
+    .mac-device-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--han-space-8);
+      margin-top: var(--han-space-10);
+    }
+
+    .mac-device-card {
+      background: color-mix(in srgb, var(--han-color-paper-50) 70%, transparent);
+      border: 1px solid var(--mac-line);
+      border-radius: 0;
+      overflow: hidden;
+      transition: transform var(--han-duration-normal);
+    }
+
+    .mac-device-card:hover { transform: translateY(-4px); }
+
+    .mac-device-card img { width: 100%; height: 14rem; object-fit: cover; }
+
+    .mac-device-card__copy { padding: var(--han-space-5); }
+
+    .mac-device-card h3 {
+      font-family: var(--han-font-song);
+      font-size: var(--han-fs-xl);
+      margin: 0 0 0.5rem 0;
+      color: var(--mac-ink);
+    }
+
+    .mac-device-card p {
+      font-size: var(--han-fs-sm);
+      color: var(--mac-muted);
+      line-height: var(--han-lh-relaxed);
+      margin: 0;
+    }
+
+    /* ============================ 洞察网格 ============================ */
+    .mac-insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--han-space-8);
+      margin-top: var(--han-space-10);
+    }
+
+    .mac-insight-card {
+      background: var(--han-color-paper-100);
+      border: 1px solid var(--mac-line);
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .mac-insight-card img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+    }
+
+    .mac-insight-card__copy { padding: var(--han-space-5); }
+
+    .mac-insight-card h3 {
+      font-family: var(--han-font-song);
+      font-size: var(--han-fs-xl);
+      margin: 0 0 0.75rem 0;
+      color: var(--mac-ink);
+    }
+
+    .mac-insight-card p {
+      font-size: var(--han-fs-sm);
+      color: var(--mac-muted);
+      line-height: var(--han-lh-relaxed);
+      margin: 0 0 1rem 0;
+    }
+
+    .mac-insight-card a {
+      color: var(--han-color-accent-text);
+      text-decoration: none;
+      font-size: var(--han-fs-sm);
+      font-weight: var(--han-fw-medium);
+    }
+
+    .mac-insight-card a::after { content: "→"; }
+
+    /* ============================ 优势网格 ============================ */
+    .mac-benefits {
+      background: color-mix(in srgb, var(--han-color-paper-100) 70%, var(--han-color-bg));
+    }
+
+    .mac-benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--han-space-6);
+      margin-top: var(--han-space-10);
+    }
+
+    .mac-benefit-card {
+      background: var(--han-color-bg-elevated);
+      border: 1px solid var(--mac-line);
+      border-radius: 0;
+      min-height: 22rem;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform var(--han-duration-normal), border-color var(--han-duration-normal);
+    }
+
+    .mac-benefit-card:hover { transform: translateY(-4px); border-color: var(--han-color-vermilion-400); }
+
+    .mac-benefit-card img {
+      width: 100%;
+      height: 9rem;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    .mac-benefit-card__copy { padding: var(--han-space-5); flex: 1; display: flex; flex-direction: column; }
+
+    .mac-benefit-card h3 {
+      font-family: var(--han-font-song);
+      font-size: var(--han-fs-xl);
+      margin: 0 0 0.75rem 0;
+      color: var(--mac-ink);
+    }
+
+    .mac-benefit-card p {
+      font-size: var(--han-fs-sm);
+      color: var(--mac-muted);
+      line-height: var(--han-lh-relaxed);
+      margin: 0 0 1.5rem 0;
+      flex: 1;
+    }
+
+    .mac-benefit-card a {
+      color: var(--han-color-accent-text);
+      text-decoration: none;
+      font-size: var(--han-fs-xs);
+      font-weight: var(--han-fw-medium);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .mac-benefit-card a::after { content: "→"; }
+
+    /* ============================ 世界探索 ============================ */
+    .mac-world {
+      background: var(--mac-dark);
+      color: var(--han-color-paper-50);
+    }
+
+    .mac-world .mac-section-heading p { color: color-mix(in srgb, var(--han-color-paper-50) 60%, transparent); }
+
+    .mac-world .mac-kicker { color: var(--han-color-gold-400); }
+
+    .mac-world-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--han-space-8);
+      margin-top: var(--han-space-10);
+    }
+
+    .mac-world-card {
+      position: relative;
+      border: 1px solid color-mix(in srgb, var(--han-color-paper-200) 20%, transparent);
+      border-radius: 0;
+      overflow: hidden;
+      min-height: 22rem;
+    }
+
+    .mac-world-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+    }
+
+    .mac-world-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(180deg, transparent 20%, rgba(0,0,0,0.8) 100%);
+    }
+
+    .mac-world-card__copy {
+      position: relative;
+      z-index: 2;
+      padding: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .mac-world-card h3 {
+      font-family: var(--han-font-song);
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      margin: 0 0 0.75rem 0;
+      line-height: 1.2;
+    }
+
+    .mac-world-card p {
+      font-size: var(--han-fs-sm);
+      line-height: var(--han-lh-relaxed);
+      margin: 0 0 1.5rem 0;
+      opacity: 0.95;
+    }
+
+    .mac-world-card a {
+      color: var(--han-color-gold-400);
+      text-decoration: none;
+      font-size: var(--han-fs-sm);
+      font-weight: var(--han-fw-medium);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .mac-world-card a::after { content: "→"; }
+
+    /* ============================ 最终 CTA ============================ */
+    .mac-final {
+      background: color-mix(in srgb, var(--han-color-paper-100) 80%, var(--han-color-bg));
+      text-align: center;
+      padding: clamp(5rem, 10vw, 12rem) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mac-final::before {
+      content: "器";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: color-mix(in srgb, var(--han-color-celadon) 15%, transparent);
+      font-family: var(--han-font-kai);
+      font-size: clamp(30rem, 60vw, 100rem);
+      line-height: 1;
+      pointer-events: none;
+      opacity: 0.05;
+      z-index: 0;
+    }
+
+    .mac-final__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 50rem;
+      margin: 0 auto;
+    }
+
+    .mac-final h2 {
+      font-family: var(--han-font-song);
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin: 0 0 1.5rem 0;
+      line-height: 1.1;
+    }
+
+    .mac-final p {
+      color: var(--mac-muted);
+      font-size: var(--han-fs-md);
+      line-height: var(--han-lh-relaxed);
+      margin: 0 0 2rem 0;
+    }
+
+    .mac-btn-seal {
+      background: var(--han-color-vermilion-500);
+      color: var(--han-color-paper-100);
+      border: 2px solid var(--han-color-vermilion-600);
+      padding: 1rem 2rem;
+      font-family: var(--han-font-song);
+      font-size: var(--han-fs-md);
+      letter-spacing: 0.05em;
+      border-radius: var(--han-radius-lg);
+      cursor: pointer;
+      transition: all var(--han-duration-normal) var(--han-ease-out);
+    }
+
+    .mac-btn-seal:hover {
+      background: var(--han-color-vermilion-600);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(192, 57, 43, 0.2);
+    }
+
+    /* ============================ 页脚 ============================ */
+    .mac-footer {
+      background: var(--mac-dark);
+      color: var(--han-color-paper-50);
+      padding: var(--han-space-10) 0 var(--han-space-8);
+    }
+
+    .mac-footer__top {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--han-space-8);
+      margin-bottom: var(--han-space-8);
+      flex-wrap: wrap;
+    }
+
+    .mac-footer__brand {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      letter-spacing: 0.1em;
+    }
+
+    .mac-footer__brand span {
+      color: var(--han-color-vermilion-400);
+    }
+
+    .mac-footer__note {
+      max-width: 40rem;
+      font-size: var(--han-fs-xs);
+      color: color-mix(in srgb, var(--han-color-paper-50) 50%, transparent);
+      line-height: var(--han-lh-relaxed);
+      text-align: right;
+    }
+
+    .mac-footer__directory {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--han-space-6);
+      margin-top: var(--han-space-8);
+    }
+
+    .mac-footer__column h3 {
+      font-family: var(--han-font-song);
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-gold-400);
+      margin: 0 0 var(--han-space-3) 0;
+      letter-spacing: 0.05em;
+    }
+
+    .mac-footer__column a {
+      display: block;
+      color: color-mix(in srgb, var(--han-color-paper-50) 60%, transparent);
+      font-size: var(--han-fs-xs);
+      text-decoration: none;
+      padding: 0.25rem 0;
+      transition: color var(--han-duration-normal);
+    }
+
+    .mac-footer__column a:hover,
+    .mac-footer__column a:focus-visible { color: var(--han-color-paper-50); }
+
+    .mac-footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--han-space-6);
+      padding-top: var(--han-space-6);
+      border-top: 1px solid color-mix(in srgb, var(--han-color-paper-200) 15%, transparent);
+      font-size: var(--han-fs-xs);
+      color: color-mix(in srgb, var(--han-color-paper-50) 40%, transparent);
+      flex-wrap: wrap;
+    }
+
+    /* ============================ 响应式 ============================ */
+    @media (max-width: 1200px) {
+      .mac-product-grid { grid-template-columns: repeat(6, 1fr); }
+      .mac-product-card--wide { grid-column: span 3; }
+      .mac-product-card--extra { grid-column: span 4; }
+    }
+
+    @media (max-width: 900px) {
+      .mac-product-grid { grid-template-columns: repeat(4, 1fr); }
+      .mac-product-card--wide { grid-column: span 2; }
+      .mac-product-card--extra { grid-column: span 3; }
+      .mac-feature-grid { grid-template-columns: 1fr; }
+      .mac-device-grid { grid-template-columns: 1fr; }
+      .mac-insight-grid { grid-template-columns: 1fr; }
+      .mac-benefit-grid { grid-template-columns: repeat(2, 1fr); }
+      .mac-world-grid { grid-template-columns: 1fr; }
+      .mac-compare__shell { grid-template-columns: 1fr; }
+      .mac-chapter-nav__inner { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .mac-section-heading { grid-template-columns: 1fr; gap: var(--han-space-5); }
+      .mac-section-heading h2 { max-width: 20ch; }
+      .mac-section-heading p { max-width: 100%; }
+      .mac-product-grid { grid-template-columns: repeat(2, 1fr); }
+      .mac-product-card--wide, .mac-product-card--extra { grid-column: span 1; }
+      .mac-benefit-grid { grid-template-columns: 1fr; }
+      .mac-chapter-nav__inner { grid-template-columns: 1fr; }
+      .mac-footer__top { flex-direction: column; gap: var(--han-space-4); }
+      .mac-footer__note { text-align: left; }
+      .mac-footer__directory { grid-template-columns: 1fr; }
+      .mac-footer__bottom { flex-direction: column; gap: var(--han-space-2); text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
+  <link rel="stylesheet" href="examples.css">
 </head>
 <body>
+  <a class="han-skip-link" href="#main-content">跳到主要内容</a>
+
+  <header class="han-navbar" id="top">
+    <div class="mac-container mac-navbar__inner">
+      <a class="mac-navbar__brand" href="#top">
+        Mac<span>·</span><small>东方产品志</small>
+      </a>
+      <nav aria-label="主导航">
+        <ul class="mac-navbar__menu" id="main-menu">
+          <li class="mac-navbar__item is-active"><a href="#products">全系 Mac</a></li>
+          <li class="mac-navbar__item"><a href="#compare">选择 Mac</a></li>
+          <li class="mac-navbar__item"><a href="#capabilities">性能与 AI</a></li>
+          <li class="mac-navbar__item"><a href="#ecosystem">生态协同</a></li>
+          <li class="mac-navbar__item"><a href="#service">服务</a></li>
+        </ul>
+      </nav>
+      <a class="mac-navbar__action" href="#final-cta">找到你的 Mac</a>
+      <button class="mac-navbar__toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="打开导航菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
   <main id="main-content">
+    <!-- Hero 区域 -->
+    <section class="mac-hero" id="hero" aria-labelledby="hero-title">
+      <div class="mac-hero__vertical" aria-hidden="true">轻盈入世 · 自成一境</div>
+      <div class="mac-container mac-hero__content">
+        <div class="mac-kicker">MAC · CONTEMPORARY CHINESE INTERPRETATION</div>
+        <h1 class="mac-hero__title" id="hero-title">让计算，<em>回归从容</em></h1>
+        <p class="mac-hero__subtitle">一台 Mac，是日常的器物，也是创造发生的空间。以清晰的性能，回应每一种工作与生活。</p>
+        <div class="mac-hero__actions">
+          <button type="button" class="han-btn-seal han-btn-seal--lg han-btn-seal--drop" id="scroll-to-products">探索全系 Mac</button>
+          <a class="mac-text-link" href="#compare">按你的方式选择</a>
+        </div>
+        <div class="mac-hero__meta" aria-label="页面设计特征" style="display: flex; justify-content: center; gap: var(--han-space-8); margin-top: var(--han-space-8); font-family: var(--han-font-song); font-size: var(--han-fs-xs); letter-spacing: 0.08em; color: var(--mac-muted);">
+          <div><strong>轻</strong><span>Portable</span></div>
+          <div><strong>静</strong><span>Focused</span></div>
+          <div><strong>久</strong><span>Enduring</span></div>
+        </div>
+      </div>
+    </section>
 
-  <!-- ============ 顶部水墨导航 ============ -->
-  <nav class="han-navbar">
-    <div class="han-navbar__inner">
-      <div class="han-navbar__brand">汉<span>之</span></div>
-      <ul class="han-navbar__menu">
-        <li class="han-navbar__item han-navbar__item--active"><a href="/landing-page" aria-current="page">首页</a></li>
-        <li class="han-navbar__item"><a href="/quick-start">快速上手</a></li>
-        <li class="han-navbar__item"><a href="/theme-showcase">主题展示</a></li>
-        <li class="han-navbar__item"><a href="/showcase">完整组件</a></li>
-      </ul>
-      <a class="han-btn-seal han-btn-seal--sm" href="/components/button-seal">单组件</a>
+    <!-- 章节导航 -->
+    <nav class="mac-chapter-nav" aria-label="Mac 内容导航">
+      <div class="mac-container mac-chapter-nav__inner">
+        <a class="mac-chapter-link is-active" href="#products"><span>一</span><strong>全系产品</strong><small>Mac 全系</small></a>
+        <a class="mac-chapter-link" href="#capabilities"><span>二</span><strong>用 Mac 显身手</strong><small>性能与 AI</small></a>
+        <a class="mac-chapter-link" href="#ecosystem"><span>三</span><strong>Mac 左膀右臂</strong><small>设备协同</small></a>
+        <a class="mac-chapter-link" href="#insights"><span>四</span><strong>来了解一下 Mac</strong><small>安全与耐用</small></a>
+        <a class="mac-chapter-link" href="#switch-mac"><span>五</span><strong>换成 Mac</strong><small>轻松迁移</small></a>
+        <a class="mac-chapter-link" href="#benefits"><span>六</span><strong>购买 Mac</strong><small>服务与支持</small></a>
+        <a class="mac-chapter-link" href="#world"><span>七</span><strong>解锁 Apple 世界</strong><small>macOS 与 iPhone</small></a>
+        <a class="mac-chapter-link" href="#final-cta"><span>八</span><strong>选购 Mac</strong><small>找到你的 Mac</small></a>
+      </div>
+    </nav>
+
+    <!-- 全系产品 -->
+    <section class="mac-section mac-products" id="products" aria-labelledby="products-title">
+      <div class="mac-container">
+        <div class="mac-section-heading mac-reveal">
+          <div><span class="mac-kicker">全系 Mac</span><h2 id="products-title">全系产品<br>细细看。</h2></div>
+          <p>从随身创作到桌面工作室，Mac 将复杂的计算收进清晰的形态里。选择一台与自己的节奏相合的 Mac。</p>
+        </div>
+        <div class="mac-product-grid" aria-label="Mac 产品系列">
+          <article class="mac-product-card mac-product-card--wide mac-reveal">
+            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/macbook-neo.jpg" alt="MacBook Neo 产品图" loading="lazy" decoding="async"></div>
+            <h3 class="mac-product-card__name">MacBook Neo</h3>
+            <p class="mac-product-card__description">简洁、轻巧，把日常工作带到更轻盈的地方。</p>
+            <a class="mac-product-card__link" href="#compare">了解 Neo</a>
+          </article>
+          <article class="mac-product-card mac-product-card--wide mac-reveal">
+            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/macbook-air.jpg" alt="MacBook Air 产品图" loading="lazy" decoding="async"></div>
+            <h3 class="mac-product-card__name">MacBook Air</h3>
+            <p class="mac-product-card__description">轻盈、安静、随时展开。适合学习、工作与日常创作。</p>
+            <a class="mac-product-card__link" href="#compare">了解 Air</a>
+          </article>
+          <article class="mac-product-card mac-reveal">
+            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/macbook-pro.jpg" alt="MacBook Pro 产品图" loading="lazy" decoding="async"></div>
+            <h3 class="mac-product-card__name">MacBook Pro</h3>
+            <p class="mac-product-card__description">为专业工作流准备的性能与显示体验。</p>
+            <a class="mac-product-card__link" href="#compare">了解 Pro</a>
+          </article>
+          <article class="mac-product-card mac-reveal">
+            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/mac-mini.jpg" alt="Mac mini 产品图" loading="lazy" decoding="async"></div>
+            <h3 class="mac-product-card__name">Mac mini</h3>
+            <p class="mac-product-card__description">小巧桌面主机，把空间留给你的工作。</p>
+            <a class="mac-product-card__link" href="#compare了解 mini</a>
+          </article>
+          <article class="mac-product-card mac-product-card--wide mac-reveal">
+            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/imac.jpg" alt="iMac 产品图" loading="lazy" decoding="async"></div>
+            <h3 class="mac-product-card__name">iMac</h3>
+            <p class="mac-product-card__description">一体成形的桌面体验，让创作、沟通与娱乐在一处自然发生。</p>
+            <a class="mac-product-card__link" href="#compare">了解 iMac</a>
+          </article>
+          <article class="mac-product-card mac-reveal">
+            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/mac-studio.jpg" alt="Mac Studio 产品图" loading="lazy" decoding="async"></div>
+            <h3 class="mac-product-card__name">Mac Studio</h3>
+            <p class="mac-product-card__description">为高强度创作准备的桌面性能。</p>
+            <a class="mac-product-card__link" href="#compare">了解 Studio</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 风格分隔线 -->
+    <div class="han-divider-ink han-divider-ink--seal" role="separator" aria-label="产品与选择之间的分隔"><span class="han-divider-dot han-stamp han-stamp--sm" aria-hidden="true">器</span></div>
+
+    <!-- 选择 Mac -->
+    <section class="mac-section mac-compare" id="compare" aria-labelledby="compare-title">
+      <div class="mac-container">
+        <div class="mac-section-heading mac-reveal">
+          <div><span class="mac-kicker">选择 Mac</span><h2 id="compare-title">从你的<br>使用方式出发。</h2></div>
+          <p>不必先记住参数。先想想你要把 Mac 带到哪里，再让合适的性能自然浮现。</p>
+        </div>
+        <div class="mac-compare__shell">
+          <div class="mac-tabs" role="tablist" aria-label="使用场景选择">
+            <button class="mac-tab" type="button" role="tab" id="tab-mobile" aria-selected="true" aria-controls="panel-mobile" tabindex="0" data-panel="mobile">随身创作</button>
+            <button class="mac-tab" type="button" role="tab" id="tab-pro" aria-selected="false" aria-controls="panel-pro" tabindex="-1" data-panel="pro">专业工作</button>
+            <button class="mac-tab" type="button" role="tab" id="tab-desktop" aria-selected="false" aria-controls="panel-desktop" tabindex="-1" data-panel="desktop">桌面效率</button>
+            <button class="mac-tab" type="button" role="tab" id="tab-studio" aria-selected="false" aria-controls="panel-studio" tabindex="-1" data-panel="studio">影音创作</button>
+          </div>
+          <div class="mac-compare__panel mac-reveal" id="panel-mobile" role="tabpanel" aria-labelledby="tab-mobile" data-panel-content="mobile">
+            <span class="mac-kicker">推荐方向</span>
+            <h3>MacBook Air</h3>
+            <p>轻盈是它的第一印象，安静与续航则让它适合成为每天都会打开的那台电脑。</p>
+            <div class="mac-metrics"><div class="mac-metric"><strong>轻</strong><span>适合随身携带</span></div><div class="mac-metric"><strong>静</strong><span>专注而不打扰</span></div><div class="mac-metric"><strong>久</strong><span>从早到晚保持节奏</span></div></div>
+          </div>
+          <div class="mac-compare__panel" id="panel-pro" role="tabpanel" aria-labelledby="tab-pro" data-panel-content="pro" hidden>
+            <span class="mac-kicker">推荐方向</span><h3>MacBook Pro</h3><p>当工作流变得复杂，稳定的性能与更大的创作余量，让每一次输出都更从容。</p><div class="mac-metrics"><div class="mac-metric"><strong>快</strong><span>多任务依然流畅</span></div><div class="mac-metric"><strong>准</strong><span>显示与声音更有把握</span></div><div class="mac-metric"><strong>稳</strong><span>长时间工作也有余量</span></div></div>
+          </div>
+          <div class="mac-compare__panel" id="panel-desktop" role="tabpanel" aria-labelledby="tab-desktop" data-panel-content="desktop" hidden>
+            <span class="mac-kicker">推荐方向</span><h3>iMac / Mac mini</h3><p>把桌面留给真正重要的事：清晰的画面、稳定的连接，以及更有秩序的工作空间。</p><div class="mac-metrics"><div class="mac-metric"><strong>整</strong><span>桌面一体成形</span></div><div class="mac-metric"><strong>省</strong><span>少占空间</span></div><div class="mac-metric"><strong>顺</strong><span>连接与协作自然发生</span></div></div>
+          </div>
+          <div class="mac-compare__panel" id="panel-studio" role="tabpanel" aria-labelledby="tab-studio" data-panel-content="studio" hidden>
+            <span class="mac-kicker">推荐方向</span><h3>Mac Studio</h3><p>对于高强度影像、三维与音频工作，桌面性能为创作保留更大的纵深。</p><div class="mac-metrics"><div class="mac-metric"><strong>强</strong><span>应对专业任务</span></div><div class="mac-metric"><strong>扩</strong><span>连接更多设备</span></div><div class="mac-metric"><strong>深</strong><span>为工作室保留空间</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 性能与 AI -->
+    <section class="mac-section mac-feature-band" id="capabilities" aria-labelledby="capabilities-title">
+      <div class="mac-container">
+        <div class="mac-section-heading mac-reveal">
+          <div><span class="mac-kicker">东方译义</span><h2 id="capabilities-title">用 Mac<br>显身手。</h2></div>
+          <p>Mac 把性能、智能、系统和应用放进同一个工作空间。强大不是为了炫耀，而是为了让复杂的任务变得顺手。</p>
+        </div>
+        <div class="mac-feature-grid">
+          <article class="mac-feature-card mac-reveal">
+            <img src="/examples/assets/apple-mac/features/feature-performance.jpg" alt="Mac 产品与性能视觉" loading="lazy" decoding="async">
+            <div class="mac-feature-card__copy"><span class="mac-kicker">性能和电池续航</span><h3>跑得快，跑得久。</h3><p>性能强端口多，为专业人士而来。无论是工作、创作还是日常使用，都有余量应对下一步。</p><a href="#compare">查看适合你的性能</a></div>
+          </article>
+          <article class="mac-feature-card mac-reveal">
+            <img src="/examples/assets/apple-mac/features/feature-intelligence.jpg" alt="Apple Intelligence 视觉" loading="lazy" decoding="async">
+            <div class="mac-feature-card__copy"><span class="mac-kicker">Apple Intelligence</span><h3>为 AI 精心构建。</h3><p>智能又安全，全在设备端。让日常工作更高效，也让你的信息始终掌握在自己手中。</p><a href="#insights">进一步了解</a></div>
+          </article>
+          <article class="mac-feature-card mac-reveal">
+            <img src="/examples/assets/apple-mac/features/feature-macos.jpg" alt="macOS 系统视觉" loading="lazy" decoding="async">
+            <div class="mac-feature-card__copy"><span class="mac-kicker">macOS</span><h3>简简单单，用起来就喜欢。</h3><p>熟悉的界面、顺滑的操作和清晰的层级，让每一天都更容易进入状态。</p><a href="#world">探索 macOS</a></div>
+          </article>
+          <article class="mac-feature-card mac-reveal">
+            <img src="/examples/assets/apple-mac/features/feature-compatibility.jpg" alt="Mac 应用兼容性视觉" loading="lazy" decoding="async">
+            <div class="mac-feature-card__copy"><span class="mac-kicker">兼容性</span><h3>常用 App，Mac 都能跑。</h3><p>从学习到专业创作，熟悉的工具可以继续使用，切换设备不必重新建立工作流。</p><a href="#world">查看兼容性</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 生态协同 -->
+    <section class="mac-section mac-devices" id="ecosystem" aria-labelledby="ecosystem-title">
+      <div class="mac-container">
+        <div class="mac-section-heading mac-reveal">
+          <div><span class="mac-kicker">东方译义</span><h2 id="ecosystem-title">Mac<br>左膀右臂。</h2></div>
+          <p>Mac 不只是一台电脑。它与 iPhone、iPad 和 Apple Watch 共同组成你的工作流，让文件、灵感和沟通顺着你的节奏移动。</p>
+        </div>
+        <div class="mac-device-grid">
+          <article class="mac-device-card mac-reveal">
+            <img src="/examples/assets/apple-mac/features/ecosystem-iphone.jpg" alt="Mac 与 iPhone 协同使用" loading="lazy" decoding="async">
+            <div class="mac-device-card__copy"><span class="mac-kicker">Mac + iPhone</span><h3>接力，从此无缝。</h3><p>来电、信息、照片和文件自然来到 Mac 上，工作不必被设备打断。</p></div>
+          </article>
+          <article class="mac-device-card mac-reveal">
+            <img src="/examples/assets/apple-mac/features/ecosystem-ipad.jpg" alt="Mac 与 iPad 协同使用" loading="lazy" decoding="async">
+            <div class="mac-device-card__copy"><span class="mac-kicker">Mac + iPad</span><h3>合力出奇迹。</h3><p>在 iPad 上的手绘，当即就能在 Mac 上显现；也可将 iPad 当作第二块显示屏。</p></div>
+          </article>
+          <article class="mac-device-card mac-reveal" id="service">
+            <img src="/examples/assets/apple-mac/features/ecosystem-watch.jpg" alt="Mac 与 Apple Watch 协同使用" loading="lazy" decoding="async">
+            <div class="mac-device-card__copy"><span class="mac-kicker">Mac + Apple Watch</span><h3>一戴，即开。</h3><p>戴着 Apple Watch 并启用自动解锁时，可自动登录 Mac，无需再输入密码。</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 安全与耐用 -->
+    <section class="mac-section" id="insights" aria-labelledby="insights-title">
+      <div class="mac-container">
+        <div class="mac-section-heading mac-reveal">
+          <div><span class="mac-kicker">东方译义</span><h2 id="insights-title">来了解一下<br>Mac。</h2></div>
+          <p>从安全、兼容到耐用，Mac 的体验不只在第一次打开时惊艳，也在每天使用时持续可靠。</p>
+        </div>
+        <div class="mac-insight-grid">
+          <article class="mac-insight-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-security.jpg" alt="Mac 隐私和安全视觉" loading="lazy" decoding="async"><div class="mac-insight-card__copy"><span class="mac-kicker">隐私和安全</span><h3>你的私事，只关你的事。</h3><p>智能又安全，全在设备端。让个人信息留在应该在的地方。</p><a href="#capabilities">进一步了解</a></div></article>
+          <article class="mac-insight-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-compatibility.jpg" alt="Mac 兼容性视觉" loading="lazy" decoding="async"><div class="mac-insight-card__copy"><span class="mac-kicker">兼容性</span><h3>各种常用 App，Mac 都能跑。</h3><p>熟悉的工具、文件和工作方式，都可以顺畅延续。</p><a href="#capabilities">查看兼容性</a></div></article>
+          <article class="mac-insight-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-planet.jpg" alt="Mac 环境责任视觉" loading="lazy" decoding="async"><div class="mac-insight-card__copy"><span class="mac-kicker">耐用性与价值观</span><h3>经得起时间考验。</h3><p>精心打造，也把环境责任、辅助功能和长期使用放进产品考量。</p><a href="#benefits">了解 Apple 价值观</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 迁移 -->
+    <section class="mac-section mac-switch" id="switch-mac" aria-labelledby="switch-title">
+      <div class="mac-container">
+        <div class="mac-section-heading mac-reveal">
+          <div><span class="mac-kicker">东方译义</span><h2 id="switch-title">换成<br>Mac。</h2></div>
+          <p>无论你来自 PC，还是正在开始新的学习与工作阶段，Mac 都提供清楚、友好的过渡路径。</p>
+        </div>
+        <div class="mac-banner-grid">
+          <article class="mac-banner-card mac-reveal"><img src="/examples/assets/apple-mac/features/banner-students.jpg" alt="学生使用 Mac 学习" loading="lazy" decoding="async"><div class="mac-banner-card__copy"><span class="mac-kicker">教育</span><h3>学什么专业，Mac 都专业。</h3><p>高校学生和教职员工在 Apple Store 选购，可享教育优惠。</p><a href="#benefits">了解高校学生优惠 →</a></div></article>
+          <article class="mac-banner-card mac-reveal"><img src="/examples/assets/apple-mac/features/banner-business.jpg" alt="商务团队使用 Mac" loading="lazy" decoding="async"><div class="mac-banner-card__copy"><span class="mac-kicker">商务</span><h3>做生意，Mac 也是好帮手。</h3><p>从小型团队到专业企业，为工作提供稳定、灵活的设备选择。</p><a href="#benefits">了解 Mac 商务应用 →</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 购买支持 -->
+    <section class="mac-section mac-benefits" id="benefits" aria-labelledby="benefits-title">
+      <div class="mac-container">
+        <div class="mac-section-heading mac-reveal">
+          <div><span class="mac-kicker">东方译义</span><h2 id="benefits-title">在 Apple 购买 Mac<br>好处多多。</h2></div>
+          <p>从个性化配置、付款方式，到换购、配送和设置辅导，把选购 Mac 的每一步都安排得更清楚。</p>
+        </div>
+        <div class="mac-benefit-grid">
+          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-customize.jpg" alt="Mac 个性化配置" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">Mac 定制</span><h3>专属于你的配置</h3><p>选择你想要的芯片、内存、存储容量，以及外观颜色。</p><a href="#products">进一步了解 Mac 定制</a></div></article>
+          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-financing.jpg" alt="Mac 灵活付款方案" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">购买支持</span><h3>灵活的付款方案</h3><p>多种免息分期可选，购买 Apple 产品最长可享 24 个月免息分期。</p><a href="#final-cta">了解付款方案</a></div></article>
+          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-tradein.png" alt="Apple Trade In 换购计划" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">Apple Trade In</span><h3>辞旧迎新，还能省一笔。</h3><p>通过换购计划折抵现有设备；不符合条件的设备也可免费回收。</p><a href="#final-cta">查看设备折抵金额</a></div></article>
+          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-display.png" alt="Mac 配件" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">Mac 配件</span><h3>Mac 的好搭档</h3><p>来看看键盘、鼠标、显示器等各种精彩配件。</p><a href="#products">选购 Mac 配件</a></div></article>
+          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-setup.jpg" alt="Mac 个人设置辅导" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">个人设置辅导</span><h3>个人设置辅导</h3><p>引导你转移数据，了解各种新功能，并提供更多帮助。</p><a href="#final-cta">进一步了解你的新 Mac</a></div></article>
+          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-delivery.jpg" alt="Mac 送货和取货服务" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">购买支持</span><h3>送货和取货</h3><p>所有订单均可享免费送货，部分订单支持快送或到店取货。</p><a href="#final-cta">了解送货和取货</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Apple 世界 -->
+    <section class="mac-section mac-world" id="world" aria-labelledby="world-title">
+      <div class="mac-container">
+        <div class="mac-section-heading mac-reveal">
+          <div><span class="mac-kicker">东方译义</span><h2 id="world-title">解锁 Apple<br>世界。</h2></div>
+          <p>从 macOS 的日常体验，到 Mac 与 iPhone 的默契配合，技术成为空间，而不是负担。</p>
+        </div>
+        <div class="mac-world-grid">
+          <article class="mac-world-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-macos.jpg" alt="macOS 操作系统视觉" loading="lazy" decoding="async"><div class="mac-world-card__copy"><span class="mac-kicker">macOS</span><h3>简简单单，用起来就喜欢。</h3><p>熟悉、顺滑、稳定，把每天的工作和创作都安排在自然的节奏里。</p><a href="#capabilities">探索 macOS</a></div></article>
+          <article class="mac-world-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-iphone.jpg" alt="Mac 与 iPhone 协同视觉" loading="lazy" decoding="async"><div class="mac-world-card__copy"><span class="mac-kicker">Mac + iPhone</span><h3>配合 iPhone，更好用。</h3><p>照片、信息、来电和接续，把设备之间的距离收进一个连续的体验。</p><a href="#ecosystem">了解各款 Apple 设备如何更默契地配合</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最终 CTA -->
+    <section class="mac-final" id="final-cta" aria-labelledby="final-title">
+      <div class="mac-container mac-final__inner">
+        <span class="mac-kicker">找到适合你的那一台</span>
+        <h2 id="final-title">从容，<br>就是一种性能。</h2>
+        <p>选择你的使用方式，了解适合你的 Mac。这里是一个当代中国风产品体验概念页，并非 Apple 官方页面。</p>
+        <button type="button" class="han-btn-seal han-btn-seal--lg" id="final-cta-button">开始选择</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mac-footer">
+    <div class="mac-container">
+      <div class="mac-footer__top">
+        <div class="mac-footer__brand">Mac<span>·</span>东方产品志</div>
+        <p class="mac-footer__note">当代中国风视觉概念，由 Han design skill 构建。本地开发版使用 Apple 官方页面产品图，仅供非官方概念演示；产品名称与品牌归其各自所有者所有。</p>
+      </div>
+      <nav class="mac-footer__directory" aria-label="页脚导航">
+        <div class="mac-footer__column"><h3>探索 Mac</h3><a href="#products">MacBook Neo</a><a href="#products">MacBook Air</a><a href="#products">MacBook Pro</a><a href="#products">iMac</a><a href="#products">Mac mini</a><a href="#products">Mac Studio</a><a href="#compare">机型比较</a></div>
+        <div class="mac-footer__column"><h3>Mac 相关</h3><a href="#capabilities">性能和电池续航</a><a href="#capabilities">Apple Intelligence</a><a href="#world">macOS</a><a href="#ecosystem">配合 iPhone 更好用</a><a href="#insights">兼容性</a><a href="#insights">隐私和安全</a><a href="#insights">耐用性</a></div>
+        <div class="mac-footer__column"><h3>购买与支持</h3><a href="#benefits">选购 Mac</a><a href="#benefits">Mac 配件</a><a href="#benefits">Mac 定制</a><a href="#benefits">Apple Trade In 换购计划</a><a href="#benefits">分期付款</a><a href="#benefits">个人设置辅导</a><a href="#benefits">送货和取货</a></div>
+        <div class="mac-footer__column"><h3>更多内容</h3><a href="#switch-mac">教育</a><a href="#switch-mac">商务应用</a><a href="#benefits">辅助功能</a><a href="#insights">环境责任</a><a href="#final-cta">隐私</a><a href="#final-cta">使用条款</a><a href="#final-cta">网站地图</a></div>
+      </nav>
+      <div class="mac-footer__bottom"><span>© 2026 Han Design Concept</span><span>Song-inspired · Accessible · Responsive</span></div>
     </div>
-  </nav>
-
-  <!-- ============ Hero 区 ============ -->
-  <section class="hero">
-    <!-- 竖排文字装饰 -->
-    <div class="hero__vertical">汉不语 · 笔墨传心</div>
-    <div class="hero__vertical-right">东方美学 · 网页绽放</div>
-
-    <div class="hero__content">
-      <div class="han-plaque han-plaque--shine" style="margin: 0 auto var(--han-space-5); padding: var(--han-space-2) var(--han-space-5); font-size: var(--han-fs-sm); letter-spacing: var(--han-ls-wider);">东 方 美 学</div>
-      <h1 class="hero__title">
-        汉
-        <span class="han-stamp han-stamp--lg han-stamp--border hero__title-seal">之印</span>
-      </h1>
-      <p class="hero__subtitle">让东方美学在网页上优雅绽放</p>
-      <p class="hero__desc">
-        一个汲取千年中华文化的设计系统 —— 朱红印章、水墨笔触、宣纸质感，
-        为你的网站注入一抹东方神韵。
-      </p>
-      <div class="hero__cta">
-        <button type="button" class="han-btn-seal han-btn-seal--lg han-animate-seal-drop">立即体验</button>
-        <a href="#main-content" style="color: var(--han-color-ink-700); padding: 16px 32px; border: 1px solid var(--han-color-ink-400); border-radius: var(--han-radius-md); font-family: var(--han-font-kai);">
-          查看文档 →
-        </a>
-      </div>
-
-      <!-- 快速展示图标 -->
-      <div style="display: flex; gap: var(--han-space-5); justify-content: center; margin-top: var(--han-space-8); flex-wrap: wrap;">
-        <div style="text-align: center;">
-          <div class="han-icon han-icon-seal han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
-          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">印章</span>
-        </div>
-        <div style="text-align: center;">
-          <div class="han-icon han-icon-brush han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
-          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">毛笔</span>
-        </div>
-        <div style="text-align: center;">
-          <div class="han-icon han-icon-lotus han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
-          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">莲花</span>
-        </div>
-        <div style="text-align: center;">
-          <div class="han-icon han-icon-mountain han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
-          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">山水</span>
-        </div>
-        <div style="text-align: center;">
-          <div class="han-icon han-icon-lantern han-icon--xl" style="margin: 0 auto var(--han-space-2);"></div>
-          <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary);">灯笼</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 水墨分割线 ============ -->
-  <div class="han-container">
-    <!-- 印章分割线 -->
-    <div style="position:relative; margin: var(--han-space-6) 0;">
-      <div style="position:absolute; top:50%; left:0; right:0; height:2px;
-        background: linear-gradient(90deg, transparent 5%, var(--han-color-ink-400) 20%, var(--han-color-ink-400) 80%, transparent 95%);
-        transform: translateY(-50%); filter: blur(0.5px);"></div>
-      <div style="display:flex; justify-content:center; position:relative;">
-        <div class="han-stamp han-stamp--sm">汉</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ 设计令牌区 ============ -->
-  <section class="han-section products">
-    <div class="han-container">
-      <div class="intro-block fade-on-scroll">
-        <div class="demo-section-label">· 设计令牌 ·</div>
-        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">设 计 令 牌</h2>
-        <p>从中国画的色彩、书法的章法中提炼，形成可复用的设计令牌体系。</p>
-      </div>
-
-      <div class="products__grid">
-
-        <!-- 卷轴卡片 1：色彩 -->
-        <article class="han-card-scroll fade-on-scroll">
-          <span class="han-rivet han-rivet--tl"></span>
-          <span class="han-rivet han-rivet--tr"></span>
-          <span class="han-rivet han-rivet--bl"></span>
-          <span class="han-rivet han-rivet--br"></span>
-          <header class="han-card-scroll__header">色彩体系</header>
-          <div class="han-card-scroll__body">
-            <p>朱红、靛蓝、金色、墨色、宣纸白 —— 五大主色取自传统书画颜料。</p>
-            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
-              <span class="han-tag han-tag--vermilion">朱红 · 500</span>
-              <span class="han-tag">靛蓝 · 500</span>
-              <span class="han-tag han-tag--gold">金色 · 500</span>
-              <span class="han-tag">墨色 · 700</span>
-              <span class="han-tag">宣纸 · 100</span>
-            </div>
-          </div>
-          <footer class="han-card-scroll__footer">
-            <span>--han-color-*</span>
-            <a href="#main-content">查看 →</a>
-          </footer>
-        </article>
-
-        <!-- 卷轴卡片 2：字体 -->
-        <article class="han-card-scroll fade-on-scroll">
-          <span class="han-rivet han-rivet--tl"></span>
-          <span class="han-rivet han-rivet--tr"></span>
-          <span class="han-rivet han-rivet--bl"></span>
-          <span class="han-rivet han-rivet--br"></span>
-          <header class="han-card-scroll__header">字体排版</header>
-          <div class="han-card-scroll__body">
-            <p>楷体做标题、宋体做正文、思源黑体做界面 —— 三级字体各司其职。</p>
-            <div style="margin-top:16px; display:flex; flex-direction:column; gap:4px;">
-              <div style="font-family: var(--han-font-kai); font-size: 20px; font-weight:bold; color: var(--han-color-ink-700);">楷体标题</div>
-              <div style="font-family: var(--han-font-song); font-size: 14px; color: var(--han-color-ink-500);">宋体正文</div>
-              <div style="font-family: var(--han-font-sans); font-size: 12px; color: var(--han-color-ink-400);">Sans 界面</div>
-            </div>
-          </div>
-          <footer class="han-card-scroll__footer">
-            <span>--han-font-*</span>
-            <a href="#main-content">查看 →</a>
-          </footer>
-        </article>
-
-        <!-- 卷轴卡片 3：组件 -->
-        <article class="han-card-scroll fade-on-scroll">
-          <span class="han-rivet han-rivet--tl"></span>
-          <span class="han-rivet han-rivet--tr"></span>
-          <span class="han-rivet han-rivet--bl"></span>
-          <span class="han-rivet han-rivet--br"></span>
-          <header class="han-card-scroll__header">核心组件</header>
-          <div class="han-card-scroll__body">
-            <p>印章按钮、水墨导航、卷轴卡片、窗花边框、水墨分割线、印章 —— 六大组件开箱即用。</p>
-            <div style="display:flex; gap:12px; margin-top:16px; align-items:center;">
-              <div class="han-stamp han-stamp--sm">用</div>
-              <div style="font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary);">点击体验印章落下动画</div>
-            </div>
-          </div>
-          <footer class="han-card-scroll__footer">
-            <span>.han-btn-seal · .han-card-scroll · …</span>
-            <a href="#main-content">查看 →</a>
-          </footer>
-        </article>
-
-      </div>
-
-      <!-- ============ 装饰图案系统 ============ -->
-      <div class="fade-on-scroll" style="margin-top: var(--han-space-9);">
-        <div class="intro-block">
-          <div class="demo-section-label">· 装饰图案 ·</div>
-          <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">中 国 传 统 图 案</h2>
-          <p>回纹、万字纹、云纹、冰裂纹、缠枝纹 —— 东方装饰之美</p>
-        </div>
-        <div class="pattern-demo">
-          <div class="han-pattern-cloud-bg" style="color: var(--han-color-text-secondary);">云 纹</div>
-          <div class="han-pattern-huiwen-bg" style="color: var(--han-color-text-secondary);">回 纹</div>
-          <div class="han-pattern-binglie-bg" style="color: var(--han-color-text-secondary);">冰 裂 纹</div>
-          <div class="han-pattern-cloud" style="color: var(--han-color-text-secondary);">云 纹 装 饰</div>
-          <div class="han-pattern-huiwen" style="color: var(--han-color-text-secondary);">回 纹 装 饰</div>
-          <div class="han-pattern-chanzhi" style="color: var(--han-color-text-secondary);">缠 枝 纹</div>
-          <div class="han-pattern-wanzi" style="color: var(--han-color-text-secondary);">万 字 纹</div>
-          <div style="color: var(--han-color-text-secondary); background: var(--han-color-bg-surface);">冰 裂 纹</div>
-        </div>
-
-        <!-- 装饰条带 & 角花 -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--han-space-5); margin-top: var(--han-space-5);">
-          <div class="han-band-cloud" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); color: var(--han-color-text-secondary); letter-spacing: var(--han-ls-wider);">
-            云 纹 条 带 · han-band-cloud
-          </div>
-          <div class="han-band-huiwen" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); color: var(--han-color-text-secondary); letter-spacing: var(--han-ls-wider);">
-            回 纹 条 带 · han-band-huiwen
-          </div>
-          <div class="han-corner-cloud" style="padding: var(--han-space-5); text-align: center; font-family: var(--han-font-kai); color: var(--han-color-text-secondary); border-radius: var(--han-radius-md);">
-            云 纹 角 花 · han-corner-cloud
-          </div>
-        </div>
-      </div>
-
-      <!-- ============ 渐变背景系统 ============ -->
-      <div class="fade-on-scroll" style="margin-top: var(--han-space-9);">
-        <div class="intro-block">
-          <div class="demo-section-label">· 渐变系统 ·</div>
-          <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">中 国 风 渐 变</h2>
-          <p>墨色、天青、朱砂、金辉、宣纸 —— 取自传统书画的七种渐变</p>
-        </div>
-        <div class="gradient-demo">
-          <div class="han-bg-gradient-ink" style="color: #fff;">墨 色</div>
-          <div class="han-bg-gradient-sky">天 青</div>
-          <div class="han-bg-gradient-vermilion" style="color: #fff;">朱 砂</div>
-          <div class="han-bg-gradient-gold" style="color: #fff;">金 辉</div>
-          <div class="han-bg-gradient-paper">宣 纸</div>
-          <div class="han-bg-gradient-celadon">青 瓷</div>
-          <div class="han-bg-gradient-indigo" style="color: #fff;">靛 蓝</div>
-        </div>
-
-        <!-- 混合背景 -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--han-space-5); margin-top: var(--han-space-5);">
-          <div class="han-bg-mix-sky-cloud" style="height: 100px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); color: var(--han-color-text-primary); border-radius: var(--han-radius-md);">天 青 + 云 纹</div>
-          <div class="han-bg-mix-ink-ice" style="height: 100px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); color: #fff; border-radius: var(--han-radius-md);">墨 色 + 冰 裂</div>
-          <div class="han-bg-mix-gold-chanzhi" style="height: 100px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); color: #fff; border-radius: var(--han-radius-md);">金 辉 + 缠 枝</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ 标志性组件展示条 ============ -->
-  <section class="han-section" style="background: var(--han-gradient-paper);">
-    <div class="han-container">
-      <div class="intro-block fade-on-scroll">
-        <div class="demo-section-label">· 标志性组件 ·</div>
-        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">千 年 符 号 · 当 代 演 绎</h2>
-        <p>卷轴 · 匾额 · 折扇 · 屏风 · 灯笼 · 册页 · 封面 — 全标志性组件</p>
-      </div>
-
-      <div class="demo-grid">
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">卷轴 · han-scroll</div>
-          <div class="han-scroll" style="padding: var(--han-space-4);">
-            <div class="han-scroll-head han-scroll-head--left"></div>
-            <div class="han-scroll-head han-scroll-head--right"></div>
-            <div class="han-scroll__content" style="font-family: var(--han-font-kai); text-align: center;">卷轴内容</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">纸质卷轴 · han-scroll--paper</div>
-          <div class="han-scroll han-scroll--paper" style="padding: var(--han-space-4);">
-            <div class="han-scroll-head han-scroll-head--left"></div>
-            <div class="han-scroll-head han-scroll-head--right"></div>
-            <div class="han-scroll__content" style="font-family: var(--han-font-kai); text-align: center;">纸质纹理</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">竖卷轴 · han-scroll--vertical</div>
-          <div class="han-scroll han-scroll--vertical" style="height: 180px; width: 80px; padding: var(--han-space-4); text-align: center;">
-            <div style="writing-mode: vertical-rl; font-family: var(--han-font-kai); margin: 0 auto;">汉 风 画 谱</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">匾额变体</div>
-          <div style="display: flex; flex-direction: column; gap: var(--han-space-3); align-items: center;">
-            <div class="han-plaque han-plaque--sm">品 名</div>
-            <div class="han-plaque han-plaque--gold" style="padding: var(--han-space-2) var(--han-space-4); font-size: var(--han-fs-sm);">金 匾</div>
-            <div class="han-plaque han-plaque--redwood" style="padding: var(--han-space-2) var(--han-space-4); font-size: var(--han-fs-sm);">雅 斋</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">折扇 · han-fan--spread</div>
-          <div class="han-fan han-fan--spread" style="width: 220px; height: 150px;">
-            <div class="han-fan__surface">
-              <div class="han-fan__painting">
-                <div class="han-fan__painting-title">山水</div>
-                <p style="font-size: var(--han-fs-xs); margin: 2px 0;">扇 面 书 画</p>
-              </div>
-            </div>
-            <div class="han-fan__ribs"></div>
-            <div class="han-fan__handle"></div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">屏风 · han-screen</div>
-          <div class="han-screen" style="min-height: 180px;">
-            <div class="han-screen__panel han-screen__panel--side"><h4 style="font-family: var(--han-font-kai);">左 屏</h4><p style="font-size: var(--han-fs-sm);">侧 栏 内 容</p></div>
-            <div class="han-screen__panel han-screen__panel--center" style="min-height: 140px;"><h4 style="font-family: var(--han-font-kai); text-align: center;">中 间 主 屏</h4><p style="font-size: var(--han-fs-sm); text-align: center;">主 内 容 展 示</p></div>
-            <div class="han-screen__panel han-screen__panel--side"><h4 style="font-family: var(--han-font-kai);">右 屏</h4><p style="font-size: var(--han-fs-sm);">侧 栏 内 容</p></div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">灯笼组 · han-lantern-group</div>
-          <div class="han-lantern-group" style="gap: var(--han-space-6);">
-            <div class="han-lantern"><div class="han-lantern__cap"></div><div class="han-lantern__body">福</div><div class="han-lantern__tassel"></div></div>
-            <div class="han-lantern"><div class="han-lantern__cap"></div><div class="han-lantern__body">禄</div><div class="han-lantern__tassel"></div></div>
-            <div class="han-lantern"><div class="han-lantern__cap"></div><div class="han-lantern__body">寿</div><div class="han-lantern__tassel"></div></div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">册页 · han-album</div>
-          <div class="han-album" style="padding: var(--han-space-4);">
-            <div class="han-album__title" style="font-size: var(--han-fs-lg);">文 集</div>
-            <div class="han-album__body" style="font-size: var(--han-fs-sm);">古籍风格封面</div>
-            <div class="han-album__seal" style="width: 24px; height: 24px; font-size: var(--han-fs-xs);">珍</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">装布册页 · han-album--cloth</div>
-          <div class="han-album han-album--cloth" style="padding: var(--han-space-4);">
-            <div class="han-album__title" style="font-size: var(--han-fs-lg);">画 谱</div>
-            <div class="han-album__body" style="font-size: var(--han-fs-sm);">布 面 封 装</div>
-            <div class="han-album__seal" style="width: 24px; height: 24px; font-size: var(--han-fs-xs);">藏</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
-          <div class="demo-label">中式封面 · han-cover</div>
-          <div style="display: flex; gap: var(--han-space-4); flex-wrap: wrap; justify-content: center;">
-            <div class="han-cover" style="width: 200px; height: 260px;">
-              <div class="han-cover__header"><div class="han-cover__title">书 名</div><div class="han-cover__author">作 者</div></div>
-              <div class="han-cover__illustration"><div class="han-icon han-icon-mountain" style="width:48px;height:48px;"></div></div>
-              <div class="han-cover__footer"><div class="han-cover__seal">印</div></div>
-            </div>
-            <div class="han-cover han-cover--blue" style="width: 200px; height: 260px;">
-              <div class="han-cover__header"><div class="han-cover__title">史 集</div><div class="han-cover__author">佚 名</div></div>
-              <div class="han-cover__illustration"><div class="han-icon han-icon-cloud" style="width:48px;height:48px;"></div></div>
-              <div class="han-cover__footer"><div class="han-cover__seal">藏</div></div>
-            </div>
-            <div class="han-cover han-cover--red" style="width: 200px; height: 260px;">
-              <div class="han-cover__header"><div class="han-cover__title">文 选</div><div class="han-cover__author">古 人</div></div>
-              <div class="han-cover__illustration"><div class="han-icon han-icon-lotus" style="width:48px;height:48px;"></div></div>
-              <div class="han-cover__footer"><div class="han-cover__seal">珍</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 中国风 SVG 图标展示 ============ -->
-  <section class="han-section">
-    <div class="han-container">
-      <div class="intro-block fade-on-scroll">
-        <div class="demo-section-label">· 中式图标 ·</div>
-        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">中 国 风 SVG 图 标</h2>
-        <p>印章、毛笔、莲花、祥云、山水、四君子 —— 30+ 中国风 SVG 图标</p>
-      </div>
-
-      <!-- 文化图标 -->
-      <div class="fade-on-scroll">
-        <div style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary); margin-bottom: var(--han-space-3); text-align: center;">文化图标</div>
-        <div class="icon-grid">
-          <div class="icon-cell"><div class="han-icon han-icon-seal han-icon--lg"></div><span>印章</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-seal-round han-icon--lg"></div><span>圆印</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-seal-imperial han-icon--lg"></div><span>御印</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-brush han-icon--lg"></div><span>毛笔</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-ink-stick han-icon--lg"></div><span>墨条</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-inkstone han-icon--lg"></div><span>砚台</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-paper han-icon--lg"></div><span>宣纸</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-brush-rack han-icon--lg"></div><span>笔架</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-lotus han-icon--lg"></div><span>莲花</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-cloud han-icon--lg"></div><span>祥云</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-mountain han-icon--lg"></div><span>山水</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-pine han-icon--lg"></div><span>松树</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-bamboo han-icon--lg"></div><span>竹子</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-plum han-icon--lg"></div><span>梅花</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-chrysanthemum han-icon--lg"></div><span>菊花</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-lantern han-icon--lg"></div><span>灯笼</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-fan han-icon--lg"></div><span>扇子</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-teapot han-icon--lg"></div><span>茶壶</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-go han-icon--lg"></div><span>围棋</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-guqin han-icon--lg"></div><span>古琴</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-bamboo-scroll han-icon--lg"></div><span>竹简</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-pagoda han-icon--lg"></div><span>宝塔</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-wanzi han-icon--lg"></div><span>万字</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-huiwen han-icon--lg"></div><span>回纹</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-taiji han-icon--lg"></div><span>太极</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-coin han-icon--lg"></div><span>铜钱</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-dot-deco han-icon--lg"></div><span>圆点</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-deco-line han-icon--lg"></div><span>装饰线</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-seal-mark han-icon--lg"></div><span>印章标记</span></div>
-        </div>
-      </div>
-
-      <!-- 通用 UI 图标 -->
-      <div class="fade-on-scroll" style="margin-top: var(--han-space-6);">
-        <div style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary); margin-bottom: var(--han-space-3); text-align: center;">通用 UI 图标</div>
-        <div class="icon-grid">
-          <div class="icon-cell"><div class="han-icon han-icon-menu han-icon--lg"></div><span>菜单</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-close han-icon--lg"></div><span>关闭</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-search han-icon--lg"></div><span>搜索</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-arrow-right han-icon--lg"></div><span>箭头</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-chevron-down han-icon--lg"></div><span>下拉</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-chevron-up han-icon--lg"></div><span>上拉</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-chevron-left han-icon--lg"></div><span>左拉</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-chevron-right han-icon--lg"></div><span>右拉</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-user han-icon--lg"></div><span>用户</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-cart han-icon--lg"></div><span>购物车</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-heart han-icon--lg"></div><span>收藏</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-share han-icon--lg"></div><span>分享</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-mail han-icon--lg"></div><span>邮件</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-phone han-icon--lg"></div><span>电话</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-location han-icon--lg"></div><span>定位</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-calendar han-icon--lg"></div><span>日历</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-success han-icon--lg"></div><span>成功</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-warning han-icon--lg"></div><span>警告</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-error han-icon--lg"></div><span>错误</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-info han-icon--lg"></div><span>信息</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-help han-icon--lg"></div><span>帮助</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-loading-ink han-icon--lg"></div><span>水墨加载</span></div>
-          <div class="icon-cell"><div class="han-icon han-icon-loading-seal han-icon--lg"></div><span>印章加载</span></div>
-        </div>
-      </div>
-
-      <!-- 图标变体 -->
-      <div class="fade-on-scroll" style="margin-top: var(--han-space-6);">
-        <div style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary); margin-bottom: var(--han-space-3); text-align: center;">图标变体</div>
-        <div style="display: flex; gap: var(--han-space-5); justify-content: center; flex-wrap: wrap;">
-          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md);">
-            <div class="han-icon han-icon-seal han-icon--xl han-icon--ink" style="margin-bottom: var(--han-space-2);"></div>
-            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">水墨风格</span>
-          </div>
-          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md);">
-            <div class="han-icon han-icon-seal han-icon--xl han-icon--vermilion" style="margin-bottom: var(--han-space-2);"></div>
-            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">朱红风格</span>
-          </div>
-          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md);">
-            <div class="han-icon han-icon-seal han-icon--xl han-icon--gold" style="margin-bottom: var(--han-space-2);"></div>
-            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">金色风格</span>
-          </div>
-          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md);">
-            <div class="han-icon han-icon-seal han-icon--xl han-icon--light" style="margin-bottom: var(--han-space-2);"></div>
-            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">浅色风格</span>
-          </div>
-          <div style="text-align: center; padding: var(--han-space-3); border: var(--han-border-width) solid var(--han-color-border); border-radius: var(--han-radius-md); background: var(--han-color-ink-700);">
-            <div class="han-icon han-icon-mountain han-icon--xl han-icon--light" style="margin-bottom: var(--han-space-2);"></div>
-            <span style="font-family: var(--han-font-kai); font-size: var(--han-fs-xs); color: #fff;">深色背景</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 文字装饰系统 ============ -->
-  <section class="han-section" style="background: var(--han-color-bg);">
-    <div class="han-container">
-      <div class="intro-block fade-on-scroll">
-        <div class="demo-section-label">· 文字装饰 ·</div>
-        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">书 法 章 法</h2>
-        <p>书法笔触标题、印章标记、对联双行、毛笔签名、诗词竖排</p>
-      </div>
-
-      <div class="demo-grid">
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">书法笔触标题 · han-title-brush</div>
-          <h3 class="han-title-brush" style="font-size: var(--han-fs-xl);">墨 落 宣 纸</h3>
-          <p style="font-size: var(--han-fs-sm); color: var(--han-color-text-secondary); margin-top: var(--han-space-3);">笔触自然，意境深远</p>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">标题+印章 · han-title-with-seal</div>
-          <div class="han-title-with-seal">
-            <h3 class="han-title-brush" style="font-size: var(--han-fs-xl);">题 款 之 处</h3>
-            <div class="han-stamp han-stamp--sm">印</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">印章文字 · han-seal-text</div>
-          <div style="display: flex; gap: var(--han-space-3); align-items: center; flex-wrap: wrap;">
-            <div class="han-seal-text">珍 品</div>
-            <div class="han-seal-text han-seal-text--gold">雅 集</div>
-            <div class="han-seal-text han-seal-text--ink">藏 印</div>
-            <div class="han-seal-text han-seal-text--circle">圆</div>
-            <div class="han-seal-text han-seal-text--lg">大 字</div>
-            <div class="han-seal-text han-seal-text--aged">古 旧</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">对联 · han-couplet</div>
-          <div class="han-couplet han-couplet--sm">
-            <div class="han-couplet__top">山 水 有 情 皆 入 画</div>
-            <div class="han-couplet__center"><div class="han-stamp han-stamp--sm">印</div></div>
-            <div class="han-couplet__bottom">风 云 无 意 亦 成 诗</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">毛笔签名 · han-signature</div>
-          <div class="han-signature">
-            <div class="han-signature__text">李 白</div>
-            <div class="han-stamp han-stamp--sm" style="position: static;">青 莲</div>
-          </div>
-          <div style="margin-top: var(--han-space-4);">
-            <div class="han-signature han-signature--lg">
-              <div class="han-signature__text">苏 东 坡</div>
-              <div class="han-stamp han-stamp--sm" style="position: static;">雪 堂</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">古典引文 · han-classical-quote</div>
-          <div class="han-classical-quote">
-            <p>春江潮水连海平，海上明月共潮生。</p>
-            <p>滟滟随波千万里，何处春江无月明！</p>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">诗词居中 · han-poem-centered</div>
-          <div class="han-poem-centered">
-            <p>床 前 明 月 光，</p>
-            <p>疑 是 地 上 霜。</p>
-            <p>举 头 望 明 月，</p>
-            <p>低 头 思 故 乡。</p>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">标题组 · han-title-group</div>
-          <div class="han-title-group">
-            <div class="han-title-group__main">论 语</div>
-            <div class="han-title-group__subtitle">学而时习之，不亦说乎</div>
-            <div class="han-title-group__en" style="font-size: var(--han-fs-xs);">The Analects</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">墨块 · han-ink-block</div>
-          <div style="display: flex; gap: var(--han-space-3); flex-wrap: wrap;">
-            <div class="han-ink-block" style="padding: var(--han-space-3); color: #fff; font-family: var(--han-font-kai); font-size: var(--han-fs-sm);">墨 色 块</div>
-            <div class="han-ink-block han-ink-block--gradient" style="padding: var(--han-space-3); color: #fff; font-family: var(--han-font-kai); font-size: var(--han-fs-sm);">渐 变 墨</div>
-            <div class="han-gold-block" style="padding: var(--han-space-3); color: #fff; font-family: var(--han-font-kai); font-size: var(--han-fs-sm);">金 块</div>
-            <div class="han-vermilion-block" style="padding: var(--han-space-3); color: #fff; font-family: var(--han-font-kai); font-size: var(--han-fs-sm);">朱 块</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 结构组件：面包屑/步骤条/时间线/树形 ============ -->
-  <section class="han-section">
-    <div class="han-container">
-      <div class="intro-block fade-on-scroll">
-        <div class="demo-section-label">· 结构组件 ·</div>
-        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">内 容 结 构</h2>
-        <p>中式面包屑、步骤条、时间线、树形目录、增强分页器</p>
-      </div>
-
-      <div class="demo-grid">
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">中式面包屑 · han-breadcrumb</div>
-          <nav class="han-breadcrumb">
-            <ol class="han-breadcrumb__list">
-              <li class="han-breadcrumb__item"><a href="#main-content">首页</a></li>
-              <li class="han-breadcrumb__separator han-breadcrumb__separator--huiwen">◆</li>
-              <li class="han-breadcrumb__item"><a href="#main-content">设计系统</a></li>
-              <li class="han-breadcrumb__separator han-breadcrumb__separator--huiwen">◆</li>
-              <li class="han-breadcrumb__item is-current">组件库</li>
-            </ol>
-          </nav>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">步骤条 · han-steps</div>
-          <ol class="han-steps">
-            <li class="han-steps__item is-completed">
-              <div class="han-steps__node">1</div>
-              <div class="han-steps__title">选 择 主 题</div>
-              <div class="han-steps__connector"></div>
-            </li>
-            <li class="han-steps__item is-active">
-              <div class="han-steps__node">2</div>
-              <div class="han-steps__title">配 置 组 件</div>
-              <div class="han-steps__connector"></div>
-            </li>
-            <li class="han-steps__item">
-              <div class="han-steps__node">3</div>
-              <div class="han-steps__title">生 成 页 面</div>
-            </li>
-          </ol>
-        </div>
-
-        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
-          <div class="demo-label">时间线 · han-timeline</div>
-          <div class="han-timeline">
-            <div class="han-timeline__item is-completed">
-              <div class="han-timeline__date">2026-01</div>
-              <div class="han-timeline__node"></div>
-              <div class="han-timeline__title">汉诞生</div>
-              <div class="han-timeline__content">首版发布，包含 6 个核心组件和 5 种主题色。</div>
-            </div>
-            <div class="han-timeline__item is-current">
-              <div class="han-timeline__date">2026-03</div>
-              <div class="han-timeline__node"></div>
-              <div class="han-timeline__title">组件库扩展至 20+</div>
-              <div class="han-timeline__content">新增表单、模态框、标签页、表格等核心组件，融入水墨、印章等中国风元素。</div>
-            </div>
-            <div class="han-timeline__item">
-              <div class="han-timeline__date">2026-06</div>
-              <div class="han-timeline__node"></div>
-              <div class="han-timeline__title">AI Skill 发布</div>
-              <div class="han-timeline__content">正式发布为标准 AI Skill，用户可直接在 AI 助手中使用生成中国风页面。</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">树形目录 · han-tree</div>
-          <div class="han-tree">
-            <div class="han-tree__node is-open">
-              <div class="han-tree__content"><span class="han-tree__arrow">▼</span><span class="han-tree__text">设 计 系 统</span></div>
-              <div class="han-tree__children">
-                <div class="han-tree__node is-active">
-                  <div class="han-tree__content"><span class="han-tree__arrow">▶</span><span class="han-tree__text">色 彩 体 系</span></div>
-                </div>
-                <div class="han-tree__node">
-                  <div class="han-tree__content"><span class="han-tree__arrow">▶</span><span class="han-tree__text">字 体 排 版</span></div>
-                </div>
-                <div class="han-tree__node">
-                  <div class="han-tree__content"><span class="han-tree__arrow">▶</span><span class="han-tree__text">组 件 库</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
-          <div class="demo-label">增强分页器 · han-pagination-enhanced</div>
-          <div class="han-pagination-enhanced">
-            <div class="han-pagination-enhanced__info">共 128 条 · 每页 10 条</div>
-            <div class="han-pagination-enhanced__btn is-disabled">‹</div>
-            <div class="han-pagination-enhanced__btn is-active">1</div>
-            <div class="han-pagination-enhanced__btn">2</div>
-            <div class="han-pagination-enhanced__btn">3</div>
-            <div class="han-pagination-enhanced__btn">4</div>
-            <div class="han-pagination-enhanced__btn">5</div>
-            <div class="han-pagination-enhanced__btn">›</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 增强组件：画廊/相框/滤镜/评分 ============ -->
-  <section class="han-section" style="background: var(--han-color-bg);">
-    <div class="han-container">
-      <div class="intro-block fade-on-scroll">
-        <div class="demo-section-label">· 增强组件 ·</div>
-        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">画 廊 · 相 框 · 评 分</h2>
-        <p>水墨画廊、印章相框、图片滤镜、印章评分、空状态、骨架屏</p>
-      </div>
-
-      <div class="demo-grid">
-        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
-          <div class="demo-label">水墨画廊 · han-gallery</div>
-          <div class="han-gallery">
-            <div class="han-gallery__item han-filter-ink" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">山 水 画</div></div>
-            <div class="han-gallery__item han-filter-sepia" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">人 物 画</div></div>
-            <div class="han-gallery__item han-filter-sung" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">花 鸟 画</div></div>
-            <div class="han-gallery__item han-filter-ink" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">书 法</div></div>
-            <div class="han-gallery__item han-filter-sepia" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">扇 面</div></div>
-            <div class="han-gallery__item han-filter-sung" style="background: var(--han-gradient-paper);"><div style="padding: var(--han-space-4); font-family: var(--han-font-kai); text-align: center;">卷 轴</div></div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">相框变体</div>
-          <div style="display: flex; gap: var(--han-space-3); flex-wrap: wrap;">
-            <div class="han-frame-seal" style="width: 120px;">
-              <div class="han-corner"></div>
-              <div class="han-corner--br"></div>
-              <div style="background: var(--han-gradient-paper); height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">印章框</div>
-            </div>
-            <div class="han-frame-gold" style="width: 120px;">
-              <div style="background: var(--han-gradient-paper); height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">金框</div>
-            </div>
-            <div class="han-frame-paper" style="width: 120px;">
-              <div style="background: var(--han-gradient-paper); height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">纸框</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">图片滤镜</div>
-          <div style="display: flex; gap: var(--han-space-3); flex-wrap: wrap;">
-            <div style="text-align: center;">
-              <div class="han-filter-ink" style="width: 140px; height: 80px; background: var(--han-gradient-paper); display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">墨 色</div>
-            </div>
-            <div style="text-align: center;">
-              <div class="han-filter-sepia" style="width: 140px; height: 80px; background: var(--han-gradient-paper); display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">复 古</div>
-            </div>
-            <div style="text-align: center;">
-              <div class="han-filter-sung" style="width: 140px; height: 80px; background: var(--han-gradient-paper); display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-xs);">宋 风</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">印章评分 · han-rating-enhanced</div>
-          <div class="han-rating-enhanced">
-            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-            <div class="han-rating-enhanced__star"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-          </div>
-          <p style="font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary); margin-top: var(--han-space-2);">普 通 评 分</p>
-          <div class="han-rating-enhanced han-rating-enhanced--seal" style="margin-top: var(--han-space-3);">
-            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-            <div class="han-rating-enhanced__star is-active"><svg viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9 L17 14 L19 22 L12 18 L5 22 L7 14 L2 9 L9 9 Z"/></svg></div>
-          </div>
-          <p style="font-size: var(--han-fs-xs); color: var(--han-color-text-tertiary); margin-top: var(--han-space-2);">印 章 评 分</p>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">空状态 · han-empty</div>
-          <div class="han-empty">
-            <div class="han-empty__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5-2 4-2 4 2 4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-            </div>
-            <div class="han-empty__title">暂无数据</div>
-            <div class="han-empty__desc">当 前 没 有 可 显 示 的 内 容</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">骨架屏 · han-skeleton-card</div>
-          <div class="han-skeleton-card">
-            <div class="han-skeleton-card__avatar han-skeleton han-skeleton--avatar"></div>
-            <div class="han-skeleton-card__content">
-              <div class="han-skeleton han-skeleton--title"></div>
-              <div class="han-skeleton han-skeleton--text"></div>
-              <div class="han-skeleton han-skeleton--text"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">水墨加载 · han-loader</div>
-          <div class="han-loader">
-            <div class="han-loader__spinner"></div>
-            <div class="han-loader__text">墨 砚 研 磨 中 …</div>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll" style="grid-column: 1 / -1;">
-          <div class="demo-label">增强表单 · han-select / han-date-picker / han-upload</div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--han-space-5);">
-            <div>
-              <div class="han-select">
-                <div class="han-select__trigger"><span>选 择 一 项</span><span class="han-select__arrow">▼</span></div>
-                <div class="han-select__menu" style="display: block;">
-                  <div class="han-select__item">选 项 一</div>
-                  <div class="han-select__item is-selected">✓ 选 项 二</div>
-                  <div class="han-select__item">选 项 三</div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="han-date-picker">
-                <input type="text" class="han-date-picker__input" placeholder="选 择 日 期" readonly>
-              </div>
-            </div>
-            <div>
-              <div class="han-upload">
-                <div class="han-upload__dropzone">
-                  <div class="han-upload__icon"></div>
-                  <div class="han-upload__text">拖 入 上 传</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 环境动效 & 交互效果 ============ -->
-  <section class="han-section" style="background: var(--han-gradient-paper);">
-    <div class="han-container">
-      <div class="intro-block fade-on-scroll">
-        <div class="demo-section-label">· 环境动效 ·</div>
-        <h2 class="han-calligraphy" style="font-size: var(--han-fs-3xl);">东 方 意 境 动 效</h2>
-        <p>花瓣飘落、烟雾飘渺、墨迹扩散、笔写入场 —— 营造东方意境</p>
-      </div>
-
-      <!-- 花瓣飘落 -->
-      <div class="petal-container fade-on-scroll" style="background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-lg); margin-bottom: var(--han-space-6);">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 1;">
-          <div class="han-lantern" style="transform: scale(1.2);"><div class="han-lantern__cap"></div><div class="han-lantern__body">夜</div><div class="han-lantern__tassel"></div></div>
-          <p style="font-family: var(--han-font-kai); font-size: var(--han-fs-sm); color: var(--han-color-text-secondary); margin-top: var(--han-space-3);">花 瓣 飘 落 · 灯 火 摇 曳</p>
-        </div>
-        <div class="han-petal-fall" style="position: absolute; top: 0; left: 20%;">
-          <div class="han-petal-fall__petal" style="--duration: 6s; --delay: 0s;"></div>
-        </div>
-        <div class="han-petal-fall" style="position: absolute; top: 0; left: 40%;">
-          <div class="han-petal-fall__petal" style="--duration: 5s; --delay: 1s;"></div>
-        </div>
-        <div class="han-petal-fall" style="position: absolute; top: 0; left: 60%;">
-          <div class="han-petal-fall__petal" style="--duration: 7s; --delay: 2s;"></div>
-        </div>
-        <div class="han-petal-fall" style="position: absolute; top: 0; left: 80%;">
-          <div class="han-petal-fall__petal" style="--duration: 5.5s; --delay: 0.5s;"></div>
-        </div>
-        <!-- 烟雾效果 -->
-        <div class="han-smoke" style="position: absolute; bottom: 20px; left: 30%; opacity: 0.4;"></div>
-        <div class="han-smoke" style="position: absolute; bottom: 10px; right: 30%; opacity: 0.3;"></div>
-      </div>
-
-      <div class="demo-grid">
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">墨迹扩散悬停 · han-hover-ink</div>
-          <div class="han-hover-ink" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-md); cursor: pointer;">
-            悬 停 体 验 墨 迹 扩 散
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">朱砂墨迹悬停 · han-hover-ink--vermilion</div>
-          <div class="han-hover-ink han-hover-ink--vermilion" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-md); cursor: pointer;">
-            朱 砂 墨 迹 扩 散
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">金色墨迹悬停 · han-hover-ink--gold</div>
-          <div class="han-hover-ink han-hover-ink--gold" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-md); cursor: pointer;">
-            金 色 墨 迹 扩 散
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">水墨涟漪 · han-ripple-ink</div>
-          <button type="button" class="han-btn-seal han-ripple-ink">点 击 产 生 涟 漪</button>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">印章冲击 · han-btn-seal-impact</div>
-          <button type="button" class="han-btn-seal han-btn-seal-impact">盖 下 印 章</button>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">笔写入场 · han-brush-path</div>
-          <div class="han-brush-path" style="height: 80px; display: flex; align-items: center; justify-content: center; font-family: var(--han-font-kai); font-size: var(--han-fs-lg); color: var(--han-color-ink-700);">
-            <span class="han-brush-path__stroke han-brush-path__stroke--slow">笔 墨 入 场</span>
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">悬停提升 · han-hover-lift</div>
-          <div class="han-hover-lift" style="padding: var(--han-space-5); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border: var(--han-border); border-radius: var(--han-radius-md); cursor: pointer;">
-            悬 停 提 升 效 果
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">墨迹边框 · han-border-ink</div>
-          <div class="han-border-ink" style="padding: var(--han-space-4); text-align: center; font-family: var(--han-font-kai); background: var(--han-color-bg-surface); border-radius: var(--han-radius-md); cursor: pointer;">
-            悬 停 显 示 墨 迹 边 框
-          </div>
-        </div>
-
-        <div class="demo-item fade-on-scroll">
-          <div class="demo-label">灯笼摇晃 · han-lantern-sway</div>
-          <div class="han-lantern han-lantern-sway" style="margin: 0 auto; transform: scale(0.9);"><div class="han-lantern__cap"></div><div class="han-lantern__body">福</div><div class="han-lantern__tassel"></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 页面导航 -->
+  </footer>
+
+  <script>
+    (() => {
+      const nav = document.querySelector('.mac-navbar');
+      const toggle = document.querySelector('.mac-navbar__toggle');
+      const menu = document.getElementById('main-menu');
+      const revealItems = document.querySelectorAll('.mac-reveal');
+      const chapterLinks = document.querySelectorAll('.mac-chapter-link');
+
+      // 滚动指示导航
+      const setScrolled = () => nav?.classList.toggle('is-scrolled', window.scrollY > 12);
+      setScrolled();
+      window.addEventListener('scroll', setScrolled, { passive: true });
+
+      // 移动端菜单
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        toggle.setAttribute('aria-label', isOpen ? '打开导航菜单' : '关闭导航菜单');
+        nav?.classList.toggle('mac-navbar--open', !isOpen);
+      });
+
+      // 点击菜单项关闭移动端菜单
+      menu?.addEventListener('click', (event) => {
+        if (event.target.closest('a')) {
+          toggle?.setAttribute('aria-expanded', 'false');
+          toggle?.setAttribute('aria-label', '打开导航菜单');
+          nav?.classList.remove('mac-navbar--open');
+        }
+      });
+
+      // 章节导航激活
+      const chapterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = document.querySelector(`.mac-chapter-link[href="#${entry.target.id}"]`);
+          if (link) {
+            link.classList.toggle('is-active', entry.isIntersecting);
+          }
+        });
+      }, { rootMargin: '-20% 0px -50% 0px', threshold: 0 });
+
+      document.querySelectorAll('section[id]').forEach(target => chapterObserver.observe(target));
+
+      // 滚动到产品
+      document.getElementById('scroll-to-products')?.addEventListener('click', () => {
+        document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // 标签切换功能
+      const tabs = [...document.querySelectorAll('.mac-tab')];
+      const panels = [...document.querySelectorAll('[data-panel-content]')];
+
+      const activateTab = (tab) => {
+        const target = tab.dataset.panel;
+        tabs.forEach(item => {
+          const active = item === tab;
+          item.setAttribute('aria-selected', String(active));
+          item.tabIndex = active ? 0 : -1;
+        });
+        panels.forEach(panel => {
+          panel.hidden = panel.dataset.panelContent !== target;
+        });
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activateTab(tab));
+        tab.addEventListener('keydown', (event) => {
+          const direction = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? -1 : 0;
+          if (!direction) return;
+          event.preventDefault();
+          const next = tabs[(index + direction + tabs.length) % tabs.length];
+          activateTab(next);
+          next.focus();
+        });
+      });
+
+      // 滚动显现动画
+      const revealObserver = new IntersectionObserver((entries, instance) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            instance.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealItems.forEach(item => revealObserver.observe(item));
+    })();
+  </script>
+
+  <!-- 页面导航（复用自示例） -->
   <style>
     .han-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--han-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--han-font-kai,KaiTi,serif)!important;}
     .han-nav-fab:hover{transform:scale(1.1)!important;}
@@ -1307,11 +1476,10 @@
   <div class="han-nav-panel" id="hanNavPanel">
     <h4>示例页面</h4>
     <ul>
-      <li><a href="/landing-page">落地页</a></li>
+      <li><a href="/landing-page" aria-current="page">Mac · 东方产品志</a></li>
       <li><a href="/quick-start">快速上手</a></li>
       <li><a href="/theme-showcase">主题展示</a></li>
-      <li><a href="/showcase">完整组件展示</a></li>
-      <li><a href="/mac-han">Mac · 东方产品志</a></li>
+      <li><a href="/showcase">完整组件</a></li>
     </ul>
     <hr>
     <h4>组件示例</h4>
@@ -1324,57 +1492,6 @@
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>
-    // 滚动显现动画
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.fade-on-scroll').forEach(el => fadeObserver.observe(el));
-
-    // 主题切换
-    document.querySelectorAll('[data-theme-btn]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.documentElement.setAttribute('data-theme', btn.dataset.themeBtn);
-        document.querySelectorAll('[data-theme-btn]').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-
-    // 印章点击震动
-    document.querySelectorAll('.han-stamp, .han-btn-seal').forEach(el => {
-      el.addEventListener('click', () => {
-        el.classList.remove('han-seal-shake');
-        void el.offsetWidth;
-        el.classList.add('han-seal-shake');
-      });
-    });
-  </script>
-  <script>
-    const pageNavButton = document.querySelector('.han-nav-fab');
-    const pageNavPanel = document.getElementById('hanNavPanel');
-    const setPageNavOpen = (open) => {
-      pageNavPanel.classList.toggle('is-open', open);
-      pageNavButton.setAttribute('aria-expanded', String(open));
-      pageNavButton.setAttribute('aria-label', open ? '关闭示例页面导航' : '打开示例页面导航');
-    };
-    pageNavButton.addEventListener('click', () => {
-      setPageNavOpen(pageNavButton.getAttribute('aria-expanded') !== 'true');
-    });
-    document.addEventListener('click', (event) => {
-      if (!pageNavPanel.contains(event.target) && event.target !== pageNavButton) setPageNavOpen(false);
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        setPageNavOpen(false);
-        pageNavButton.focus();
-      }
-    });
-  </script>
-  </main>
+  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例页面导航":"打开示例页面导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&event.target!==b)setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);b.focus();})();})();</script>
 </body>
 </html>

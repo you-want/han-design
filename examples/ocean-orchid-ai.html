@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="ocean-orchid" data-han-static-reference="true" data-han-example="true">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="澄见 AI：把复杂模型协作转化为可解释的业务判断。">
+    <title>澄见 AI · 让判断更清晰</title>
+    <link rel="stylesheet" href="../skills/han-design/assets/han.css">
+    <style>
+      :root {
+        --ai-max-width: 1180px;
+        --ai-line: color-mix(in srgb, var(--han-color-border) 78%, transparent);
+        --ai-shadow: 0 24px 64px color-mix(in srgb, var(--han-palette-1) 12%, transparent);
+      }
+
+      body {
+        min-width: 320px;
+        color: var(--han-color-text-primary);
+        background:
+          radial-gradient(circle at 84% 10%, color-mix(in srgb, var(--han-palette-3) 68%, transparent) 0, transparent 24rem),
+          radial-gradient(circle at 6% 38%, color-mix(in srgb, var(--han-palette-4) 80%, transparent) 0, transparent 24rem),
+          var(--han-color-bg);
+        font-family: var(--han-font-sans);
+      }
+
+      a { color: inherit; }
+
+      .page-shell { overflow: clip; }
+
+      .container {
+        width: min(calc(100% - 48px), var(--ai-max-width));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        padding: 20px 0;
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--han-space-5);
+        min-height: 52px;
+        padding: 0 18px;
+        border: 1px solid var(--ai-line);
+        border-radius: var(--han-radius-xl);
+        background: color-mix(in srgb, var(--han-color-bg-surface) 82%, transparent);
+        box-shadow: 0 8px 30px color-mix(in srgb, var(--han-palette-1) 5%, transparent);
+        backdrop-filter: blur(18px);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--han-color-text-primary);
+        font-family: var(--han-font-serif);
+        font-size: 18px;
+        font-weight: var(--han-fw-bold);
+        letter-spacing: .08em;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 28px;
+        height: 28px;
+        place-items: center;
+        border: 1px solid var(--han-color-accent-control);
+        border-radius: 50%;
+        color: var(--han-color-accent-text);
+        font-family: var(--han-font-serif);
+        font-size: 14px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--han-color-text-secondary);
+        font-size: var(--han-fs-sm);
+        text-decoration: none;
+      }
+
+      .nav-links a:hover { color: var(--han-color-accent-text); }
+
+      .nav-action {
+        display: inline-flex;
+        min-height: 34px;
+        align-items: center;
+        padding: 0 13px;
+        border: 1px solid var(--han-color-accent-control);
+        border-radius: var(--han-radius-pill);
+        color: var(--han-color-accent-text);
+        font-size: var(--han-fs-sm);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .nav-action:hover {
+        background: var(--han-color-accent-control);
+        color: var(--han-color-on-accent);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(380px, .98fr);
+        align-items: center;
+        gap: clamp(48px, 8vw, 116px);
+        min-height: 650px;
+        padding: 78px 0 96px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 var(--han-space-5);
+        color: var(--han-color-accent-text);
+        font-size: 12px;
+        font-weight: var(--han-fw-medium);
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 24px;
+        height: 1px;
+        background: currentColor;
+        content: "";
+      }
+
+      .hero h1 {
+        max-width: 630px;
+        margin: 0;
+        color: var(--han-color-text-primary);
+        font-family: var(--han-font-serif);
+        font-size: clamp(48px, 7vw, 82px);
+        font-weight: var(--han-fw-regular);
+        letter-spacing: -.075em;
+        line-height: 1.08;
+      }
+
+      .hero h1 em {
+        color: var(--han-color-accent-text);
+        font-style: normal;
+      }
+
+      .hero-copy {
+        max-width: 515px;
+        margin: var(--han-space-5) 0 0;
+        color: var(--han-color-text-secondary);
+        font-size: 17px;
+        line-height: 1.9;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--han-space-4);
+        margin-top: var(--han-space-6);
+      }
+
+      .primary-action,
+      .secondary-action {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 21px;
+        border-radius: var(--han-radius-pill);
+        font-size: var(--han-fs-sm);
+        font-weight: var(--han-fw-medium);
+        text-decoration: none;
+      }
+
+      .primary-action {
+        border: 1px solid var(--han-color-accent-control);
+        background: var(--han-color-accent-control);
+        color: var(--han-color-on-accent);
+        box-shadow: 0 12px 24px color-mix(in srgb, var(--han-palette-1) 20%, transparent);
+      }
+
+      .primary-action:hover { background: var(--han-color-text-primary); }
+
+      .secondary-action {
+        border: 1px solid var(--han-color-border);
+        color: var(--han-color-accent-text);
+      }
+
+      .secondary-action:hover {
+        border-color: var(--han-color-accent-control);
+        background: var(--han-color-bg-surface);
+      }
+
+      .quiet-note {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: var(--han-space-5) 0 0;
+        color: var(--han-color-text-tertiary);
+        font-size: 12px;
+      }
+
+      .quiet-note::before {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--han-palette-2);
+        box-shadow: 0 0 0 5px color-mix(in srgb, var(--han-palette-2) 20%, transparent);
+        content: "";
+      }
+
+      .signal-card {
+        position: relative;
+        min-height: 462px;
+        padding: 18px;
+        border: 1px solid color-mix(in srgb, var(--han-color-border) 88%, white);
+        border-radius: 30px;
+        background: color-mix(in srgb, var(--han-color-bg-surface) 86%, white);
+        box-shadow: var(--ai-shadow);
+        isolation: isolate;
+      }
+
+      .signal-card::before,
+      .signal-card::after {
+        position: absolute;
+        z-index: -1;
+        border-radius: 50%;
+        content: "";
+        filter: blur(1px);
+      }
+
+      .signal-card::before {
+        top: -52px;
+        right: -38px;
+        width: 180px;
+        height: 180px;
+        background: color-mix(in srgb, var(--han-palette-3) 48%, transparent);
+      }
+
+      .signal-card::after {
+        bottom: -42px;
+        left: -46px;
+        width: 148px;
+        height: 148px;
+        background: color-mix(in srgb, var(--han-palette-4) 72%, transparent);
+      }
+
+      .signal-window {
+        height: 100%;
+        padding: 22px;
+        border: 1px solid var(--ai-line);
+        border-radius: 20px;
+        background: color-mix(in srgb, var(--han-color-bg-surface) 92%, white);
+      }
+
+      .window-bar,
+      .window-title,
+      .signal-item,
+      .metric-row,
+      .feature-card,
+      .brief-card {
+        display: flex;
+        align-items: center;
+      }
+
+      .window-bar {
+        justify-content: space-between;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--ai-line);
+      }
+
+      .window-title {
+        gap: 9px;
+        color: var(--han-color-text-primary);
+        font-size: 13px;
+        font-weight: var(--han-fw-medium);
+      }
+
+      .window-orbit {
+        width: 9px;
+        height: 9px;
+        border: 2px solid var(--han-color-accent-control);
+        border-radius: 50%;
+      }
+
+      .window-state {
+        padding: 5px 9px;
+        border-radius: var(--han-radius-pill);
+        background: color-mix(in srgb, var(--han-palette-2) 28%, transparent);
+        color: var(--han-color-accent-text);
+        font-size: 11px;
+      }
+
+      .signal-heading {
+        margin: 32px 0 8px;
+        color: var(--han-color-text-primary);
+        font-family: var(--han-font-serif);
+        font-size: 28px;
+        font-weight: var(--han-fw-regular);
+        letter-spacing: -.04em;
+      }
+
+      .signal-subtitle {
+        margin: 0;
+        color: var(--han-color-text-secondary);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .signal-graph {
+        position: relative;
+        height: 150px;
+        margin: 28px 0 24px;
+        overflow: hidden;
+        border-radius: 14px;
+        background:
+          linear-gradient(var(--ai-line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--ai-line) 1px, transparent 1px),
+          color-mix(in srgb, var(--han-palette-4) 27%, transparent);
+        background-size: 100% 33.333%, 20% 100%, auto;
+      }
+
+      .signal-graph svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .signal-graph path {
+        fill: none;
+        stroke: var(--han-color-accent-control);
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3;
+      }
+
+      .signal-graph .area {
+        fill: color-mix(in srgb, var(--han-palette-2) 28%, transparent);
+        stroke: none;
+      }
+
+      .signal-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .signal-item {
+        justify-content: space-between;
+        padding: 10px 0;
+        border-top: 1px solid var(--ai-line);
+        color: var(--han-color-text-secondary);
+        font-size: 12px;
+      }
+
+      .signal-item strong {
+        color: var(--han-color-text-primary);
+        font-weight: var(--han-fw-medium);
+      }
+
+      .signal-item b {
+        color: var(--han-color-accent-text);
+        font-weight: var(--han-fw-medium);
+      }
+
+      .proof-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        border-top: 1px solid var(--ai-line);
+        border-bottom: 1px solid var(--ai-line);
+        background: var(--ai-line);
+      }
+
+      .proof-item {
+        padding: 22px 24px;
+        background: color-mix(in srgb, var(--han-color-bg-surface) 72%, transparent);
+        color: var(--han-color-text-secondary);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      .proof-item strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--han-color-text-primary);
+        font-family: var(--han-font-serif);
+        font-size: 19px;
+        font-weight: var(--han-fw-regular);
+      }
+
+      .section {
+        padding: 112px 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, .9fr) minmax(280px, .72fr);
+        gap: var(--han-space-8);
+        align-items: end;
+        margin-bottom: 44px;
+      }
+
+      .section-kicker {
+        margin: 0 0 var(--han-space-3);
+        color: var(--han-color-accent-text);
+        font-size: 12px;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      .section h2 {
+        max-width: 640px;
+        margin: 0;
+        color: var(--han-color-text-primary);
+        font-family: var(--han-font-serif);
+        font-size: clamp(34px, 4vw, 52px);
+        font-weight: var(--han-fw-regular);
+        letter-spacing: -.06em;
+        line-height: 1.16;
+      }
+
+      .section-intro {
+        margin: 0;
+        color: var(--han-color-text-secondary);
+        font-size: 15px;
+        line-height: 1.85;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .feature-card {
+        min-height: 250px;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 28px;
+        border: 1px solid var(--ai-line);
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--han-color-bg-surface) 78%, white);
+      }
+
+      .feature-index {
+        color: var(--han-color-accent-text);
+        font-family: var(--han-font-serif);
+        font-size: 13px;
+        letter-spacing: .1em;
+      }
+
+      .feature-card h3 {
+        margin: auto 0 10px;
+        color: var(--han-color-text-primary);
+        font-family: var(--han-font-serif);
+        font-size: 27px;
+        font-weight: var(--han-fw-regular);
+        letter-spacing: -.04em;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--han-color-text-secondary);
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .brief {
+        display: grid;
+        grid-template-columns: minmax(0, .9fr) minmax(360px, .8fr);
+        gap: clamp(36px, 8vw, 104px);
+        align-items: center;
+        padding: 40px;
+        border: 1px solid var(--ai-line);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 88% 10%, color-mix(in srgb, var(--han-palette-3) 46%, transparent), transparent 20rem),
+          color-mix(in srgb, var(--han-color-bg-surface) 78%, white);
+      }
+
+      .brief h2 { max-width: 520px; }
+
+      .brief-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        padding: 24px;
+        border: 1px solid var(--ai-line);
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--han-color-bg-surface) 88%, white);
+        box-shadow: 0 14px 34px color-mix(in srgb, var(--han-palette-1) 7%, transparent);
+      }
+
+      .metric-row {
+        justify-content: space-between;
+        gap: var(--han-space-4);
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--ai-line);
+      }
+
+      .metric-row:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .metric-label { color: var(--han-color-text-secondary); font-size: 13px; }
+      .metric-value { color: var(--han-color-text-primary); font-size: 14px; font-weight: var(--han-fw-medium); }
+      .metric-value::before { display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: var(--han-palette-2); content: ""; }
+
+      .final-cta {
+        padding: 112px 0;
+        text-align: center;
+      }
+
+      .final-cta h2 {
+        max-width: 720px;
+        margin: 0 auto;
+        color: var(--han-color-text-primary);
+        font-family: var(--han-font-serif);
+        font-size: clamp(38px, 5vw, 64px);
+        font-weight: var(--han-fw-regular);
+        letter-spacing: -.07em;
+        line-height: 1.12;
+      }
+
+      .final-cta p {
+        margin: var(--han-space-5) auto 0;
+        color: var(--han-color-text-secondary);
+      }
+
+      .final-cta .primary-action { margin-top: var(--han-space-6); }
+
+      .site-footer {
+        padding: 28px 0 38px;
+        border-top: 1px solid var(--ai-line);
+        color: var(--han-color-text-tertiary);
+        font-size: 12px;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--han-space-4);
+      }
+
+      .primary-action:focus-visible,
+      .secondary-action:focus-visible,
+      .nav-action:focus-visible,
+      .nav-links a:focus-visible,
+      .brand:focus-visible {
+        outline: 3px solid var(--han-focus-ring);
+        outline-offset: 4px;
+      }
+
+      @media (max-width: 860px) {
+        .hero,
+        .section-head,
+        .brief { grid-template-columns: 1fr; }
+        .hero { min-height: auto; padding: 70px 0 82px; }
+        .signal-card { max-width: 580px; width: 100%; margin: 0 auto; }
+        .section-head { gap: var(--han-space-5); }
+        .feature-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 640px) {
+        .container { width: min(calc(100% - 32px), var(--ai-max-width)); }
+        .site-header { padding-top: 12px; }
+        .site-nav { align-items: flex-start; flex-wrap: wrap; padding: 13px 14px; }
+        .nav-links { order: 3; width: 100%; justify-content: space-between; gap: 10px; }
+        .nav-links a { font-size: 12px; }
+        .nav-action { margin-left: auto; }
+        .hero h1 { font-size: clamp(45px, 13vw, 64px); }
+        .hero-copy { font-size: 16px; }
+        .signal-card { min-height: 420px; padding: 10px; border-radius: 22px; }
+        .signal-window { padding: 17px; }
+        .proof-strip { grid-template-columns: 1fr; }
+        .proof-item { padding: 16px; }
+        .section { padding: 78px 0; }
+        .brief { padding: 25px; border-radius: 22px; }
+        .final-cta { padding: 82px 0; }
+        .footer-inner { flex-direction: column; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto; transition-duration: 0.01ms; }
+      }
+    </style>
+    <link rel="stylesheet" href="examples.css">
+  </head>
+  <body>
+    <a class="han-skip-link" href="#main-content">跳到主要内容</a>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="container">
+          <nav class="site-nav" aria-label="主导航">
+            <a class="brand" href="#top" aria-label="澄见 AI 首页"><span class="brand-mark" aria-hidden="true">澄</span>澄见 AI</a>
+            <ul class="nav-links">
+              <li><a href="#capabilities">能力</a></li>
+              <li><a href="#workflow">工作流</a></li>
+              <li><a href="#contact">联系</a></li>
+            </ul>
+            <a class="nav-action" href="#contact">预约演示</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <section class="hero container" id="top" aria-labelledby="hero-title">
+          <div>
+            <p class="eyebrow">Clarity, at scale</p>
+            <h1 id="hero-title">让每一次<br><em>判断</em>，更清晰。</h1>
+            <p class="hero-copy">澄见 AI 将模型协作、业务上下文与可解释流程收束在同一个工作台，让复杂问题不再只得到答案，而是得到可以被采用的判断。</p>
+            <div class="hero-actions">
+              <a class="primary-action" href="#contact">预约一次演示</a>
+              <a class="secondary-action" href="#capabilities">浏览能力</a>
+            </div>
+            <p class="quiet-note">面向需要严谨判断的产品、运营与研究团队</p>
+          </div>
+
+          <div class="signal-card" aria-label="澄见 AI 信号工作台示意">
+            <div class="signal-window">
+              <div class="window-bar">
+                <div class="window-title"><span class="window-orbit" aria-hidden="true"></span>Signal Room</div>
+                <span class="window-state">正在归纳</span>
+              </div>
+              <h2 class="signal-heading">本周产品信号</h2>
+              <p class="signal-subtitle">模型结论经由业务规则与来源线索校正后，生成可讨论的行动优先级。</p>
+              <div class="signal-graph" aria-hidden="true">
+                <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+                  <path class="area" d="M0,130 C60,120 88,94 138,100 C190,107 210,44 267,65 C324,87 350,36 402,42 C444,47 466,18 500,24 L500,150 L0,150 Z"></path>
+                  <path d="M0,130 C60,120 88,94 138,100 C190,107 210,44 267,65 C324,87 350,36 402,42 C444,47 466,18 500,24"></path>
+                </svg>
+              </div>
+              <div class="signal-list">
+                <div class="signal-item"><span>用户反馈聚类</span><strong>12 条新线索</strong></div>
+                <div class="signal-item"><span>优先级建议</span><b>聚焦激活阶段</b></div>
+                <div class="signal-item"><span>判断依据</span><strong>来源可回溯</strong></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="proof-strip" aria-label="产品原则">
+          <div class="proof-item"><strong>可解释</strong>结论保留推理线索</div>
+          <div class="proof-item"><strong>可协作</strong>让团队共享上下文</div>
+          <div class="proof-item"><strong>可落地</strong>将答案变成下一步行动</div>
+        </section>
+
+        <section class="section container" id="capabilities" aria-labelledby="capabilities-title">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Core capabilities</p>
+              <h2 id="capabilities-title">不是更响亮的答案，而是更可靠的下一步。</h2>
+            </div>
+            <p class="section-intro">用低饱和的海兰色把信息从噪声中分层：事实、假设、判断和行动各自可见，团队也能在同一张图上做决定。</p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-index">01</span>
+              <h3>汇集</h3>
+              <p>把研究、访谈、数据摘要和已有知识收进同一个可追溯上下文。</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-index">02</span>
+              <h3>辨析</h3>
+              <p>识别相互印证与彼此冲突的信号，为关键判断保留必要的不确定性。</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-index">03</span>
+              <h3>推进</h3>
+              <p>将讨论沉淀为清晰的优先级、责任人和下一次复盘需要验证的问题。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="container" id="workflow" aria-labelledby="workflow-title">
+          <div class="brief">
+            <div>
+              <p class="section-kicker">Decision workflow</p>
+              <h2 id="workflow-title">让智能成为团队的一种安静能力。</h2>
+              <p class="section-intro" style="margin-top: var(--han-space-5);">澄见不替你制造结论。它先帮你看清已有的信息，再把最值得讨论的部分推到桌面上。</p>
+              <a class="secondary-action" style="margin-top: var(--han-space-6);" href="#contact">查看工作方式</a>
+            </div>
+            <div class="brief-card" aria-label="AI 协作工作流">
+              <div class="metric-row"><span class="metric-label">收集上下文</span><span class="metric-value">持续同步</span></div>
+              <div class="metric-row"><span class="metric-label">生成候选判断</span><span class="metric-value">保留依据</span></div>
+              <div class="metric-row"><span class="metric-label">团队确认行动</span><span class="metric-value">形成闭环</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="final-cta container" id="contact" aria-labelledby="contact-title">
+          <p class="section-kicker">Start with a question</p>
+          <h2 id="contact-title">把下一个复杂问题，交给更清晰的协作方式。</h2>
+          <p>从一次真实业务问题开始，看看澄见如何帮助团队建立判断的共同语言。</p>
+          <a class="primary-action" href="mailto:hello@clear-signal.example">联系澄见 AI</a>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <span>澄见 AI · Clarity for complex work</span>
+          <span>示例页面 · Ocean Orchid</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

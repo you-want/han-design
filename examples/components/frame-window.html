@@ -1,100 +1,277 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
+<html lang="zh-CN" data-theme="song" data-han-static-reference="true" data-han-example="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>窗花边框 · 汉</title>
-  <link rel="stylesheet" href="../../skills/han-design/assets/tokens.css">
-  <link rel="stylesheet" href="../../skills/han-design/assets/base.css">
-  <link rel="stylesheet" href="../../skills/han-design/assets/components.css">
+  <title>窗花边框 · Han 组件示例</title>
+  <link rel="stylesheet" href="../../skills/han-design/assets/han.css">
   <style>
-    body { padding: 60px 24px; }
-    .demo-section { margin-bottom: 48px; }
-    .demo-section h3 { margin-bottom: 20px; color: var(--han-color-text-secondary); }
-    .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+    body {
+      background: var(--han-color-bg);
+      color: var(--han-color-text-primary);
+      font-family: var(--han-font-song);
+      margin: 0;
+      padding: 0;
+    }
+
+    .demo-container {
+      max-width: var(--han-container-lg);
+      margin: 0 auto;
+      padding: var(--han-space-8) var(--han-space-6);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: var(--han-space-10);
+    }
+
+    .demo-header h1 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-3xl);
+      margin: 0 0 var(--han-space-2) 0;
+      color: var(--han-color-text-primary);
+    }
+
+    .demo-header p {
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-text-secondary);
+      margin: 0;
+    }
+
+    .demo-section {
+      margin-bottom: var(--han-space-8);
+    }
+
+    .demo-section h3 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      color: var(--han-color-text-primary);
+      margin-bottom: var(--han-space-4);
+      padding-bottom: var(--han-space-2);
+      border-bottom: 2px solid var(--han-color-border);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--han-space-6);
+      margin-top: var(--han-space-4);
+    }
+
+    .demo-item {
+      background: var(--han-color-bg-surface);
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-md);
+      padding: var(--han-space-5);
+    }
+
+    .demo-label {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-tertiary);
+      letter-spacing: var(--han-ls-wide);
+      margin-bottom: var(--han-space-3);
+      padding-bottom: var(--han-space-2);
+      border-bottom: var(--han-border-width) solid var(--han-color-border);
+    }
+
+    .code-block {
+      background: var(--han-color-ink-900);
+      color: var(--han-color-paper-200);
+      padding: var(--han-space-4);
+      border-radius: var(--han-radius-md);
+      font-family: var(--han-font-mono, monospace);
+      font-size: var(--han-fs-sm);
+      overflow-x: auto;
+      margin-top: var(--han-space-4);
+      white-space: pre;
+    }
+
+    /* 页面导航 */
+    .showcase-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: color-mix(in srgb, var(--han-color-paper-100) 90%, transparent);
+      backdrop-filter: blur(12px) saturate(1.1);
+      -webkit-backdrop-filter: blur(12px) saturate(1.1);
+      border-bottom: 1px solid var(--han-color-border);
+    }
+
+    .showcase-navbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--han-space-4) 0;
+      max-width: var(--han-container-lg);
+      margin: 0 auto;
+    }
+
+    .showcase-brand {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      font-weight: var(--han-fw-bold);
+      color: var(--han-color-text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--han-space-2);
+    }
+
+    .showcase-brand span {
+      color: var(--han-color-vermilion-500);
+    }
+
+    .showcase-nav-menu {
+      display: flex;
+      gap: var(--han-space-6);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .showcase-nav-item a {
+      color: var(--han-color-text-secondary);
+      text-decoration: none;
+      font-size: var(--han-fs-sm);
+      transition: color var(--han-duration-normal);
+      position: relative;
+      padding: var(--han-space-1) 0;
+    }
+
+    .showcase-nav-item a:hover,
+    .showcase-nav-item a:focus-visible {
+      color: var(--han-color-accent-text);
+    }
+
+    .showcase-nav-item.is-active a {
+      color: var(--han-color-text-primary);
+      font-weight: var(--han-fw-medium);
+    }
+
+    .showcase-nav-item.is-active a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
+    }
+
+    @media (max-width: 768px) {
+      .showcase-nav-menu { display: none; }
+    }
   </style>
+  <link rel="stylesheet" href="../examples.css">
 </head>
 <body>
-  <main id="main-content">
-  <div class="han-container">
-    <h1 style="text-align:center; margin-bottom:8px;">窗花边框</h1>
-    <p style="text-align:center; color:var(--han-color-text-secondary); margin-bottom:48px;">
-      传统中式窗花纹样边框装饰，四角有精致纹样
-    </p>
+  <!-- 顶部导航 -->
+  <nav class="han-navbar showcase-navbar" aria-label="主导航">
+    <div class="showcase-navbar-inner">
+      <a href="#components" class="showcase-brand">
+        汉<span>设</span>
+      </a>
+      <ul class="showcase-nav-menu">
+        <li class="showcase-nav-item"><a href="/landing-page">首页</a></li>
+        <li class="showcase-nav-item"><a href="/quick-start">快速上手</a></li>
+        <li class="showcase-nav-item"><a href="/theme-showcase">主题展示</a></li>
+        <li class="showcase-nav-item is-active"><a href="/showcase" aria-current="page">完整组件</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <div class="demo-section">
+  <main class="demo-container">
+    <!-- 页面标题 -->
+    <header class="demo-header">
+      <h1>窗花边框</h1>
+      <p>传统中式窗花纹样边框装饰，四角有精致纹样</p>
+    </header>
+
+    <!-- 基础用法 -->
+    <section class="demo-section">
       <h3>基础用法</h3>
       <div class="demo-grid">
-
         <!-- 基础窗花 -->
-        <div class="han-frame-window">
-          <span class="han-corner-tr"></span>
-          <span class="han-corner-bl"></span>
-          <h4 style="text-align:center; margin-bottom:16px;">梅兰竹菊</h4>
-          <p style="text-align:center; text-indent:0;">
-            梅傲寒霜、兰幽空谷、竹节挺拔、菊傲秋风。
-            四君子各有风骨，代表中国文人的品格追求。
-          </p>
+        <div class="demo-item">
+          <div class="demo-label">基础窗花</div>
+          <div class="han-frame-window">
+            <span class="han-corner-tr"></span>
+            <span class="han-corner-bl"></span>
+            <h4 style="text-align:center; margin-bottom:16px;">梅兰竹菊</h4>
+            <p style="text-align:center; text-indent:0; font-size: var(--han-fs-sm);">
+              梅傲寒霜、兰幽空谷、竹节挺拔、菊傲秋风。
+            </p>
+            <p style="text-align:center; text-indent:0; font-size: var(--han-fs-sm);">
+              四君子各有风骨，代表中国文人的品格追求。
+            </p>
+          </div>
         </div>
 
         <!-- 金色版 -->
-        <div class="han-frame-window han-frame-window--gold">
-          <span class="han-corner-tr"></span>
-          <span class="han-corner-bl"></span>
-          <h4 style="text-align:center; margin-bottom:16px; color:var(--han-color-gold-700);">文房四宝</h4>
-          <p style="text-align:center; text-indent:0;">
-            笔、墨、纸、砚，是中国文人书画创作的必备工具，
-            承载了千年的文化积淀与艺术精神。
-          </p>
+        <div class="demo-item">
+          <div class="demo-label">金色版</div>
+          <div class="han-frame-window han-frame-window--gold">
+            <span class="han-corner-tr"></span>
+            <span class="han-corner-bl"></span>
+            <h4 style="text-align:center; margin-bottom:16px; color:var(--han-color-gold-700);">文房四宝</h4>
+            <p style="text-align:center; text-indent:0; font-size: var(--han-fs-sm);">
+              笔、墨、纸、砚，是中国文人书画创作的必备工具，
+              承载了千年的文化积淀与艺术精神。
+            </p>
+          </div>
         </div>
 
         <!-- 带纹样版 -->
-        <div class="han-frame-window han-frame-window--pattern">
-          <span class="han-corner-tr"></span>
-          <span class="han-corner-bl"></span>
-          <h4 style="text-align:center; margin-bottom:16px;">诗词雅韵</h4>
-          <p style="text-align:center; text-indent:0;">
-            春江潮水连海平，海上明月共潮生。
-            滟滟随波千万里，何处春江无月明。
-          </p>
+        <div class="demo-item">
+          <div class="demo-label">带纹样版</div>
+          <div class="han-frame-window han-frame-window--pattern">
+            <span class="han-corner-tr"></span>
+            <span class="han-corner-bl"></span>
+            <h4 style="text-align:center; margin-bottom:16px;">诗词雅韵</h4>
+            <p style="text-align:center; text-indent:0; font-size: var(--han-fs-sm);">
+              春江潮水连海平，海上明月共潮生。
+            </p>
+            <p style="text-align:center; text-indent:0; font-size: var(--han-fs-sm);">
+              滟滟随波千万里，何处春江无月明。
+            </p>
+          </div>
         </div>
-
       </div>
-    </div>
+    </section>
 
     <!-- 使用说明 -->
-    <div class="demo-section">
+    <section class="demo-section">
       <h3>HTML 结构</h3>
-      <pre><code><!-- 基础窗花 -->
-<div class="han-frame-window">
-  <span class="han-corner-tr"></span>  <!-- 右上角装饰 -->
-  <span class="han-corner-bl"></span>  <!-- 左下角装饰 -->
-  <!-- 内容 -->
-</div>
+      <pre class="code-block"><code><!-- 基础窗花 -->
+&lt;div class="han-frame-window"&gt;
+  &lt;span class="han-corner-tr"&gt;&lt;/span&gt;  &lt;!-- 右上角装饰 --&gt;
+  &lt;span class="han-corner-bl"&gt;&lt;/span&gt;  &lt;!-- 左下角装饰 --&gt;
+  &lt;!-- 内容 --&gt;
+&lt;/div&gt;
 
-<!-- 金色版 -->
-<div class="han-frame-window han-frame-window--gold">
+&lt;!-- 金色版 --&gt;
+&lt;div class="han-frame-window han-frame-window--gold"&gt;
   …
-</div>
+&lt;/div&gt;
 
-<!-- 带窗格纹样 -->
-<div class="han-frame-window han-frame-window--pattern">
+&lt;!-- 带窗格纹样 --&gt;
+&lt;div class="han-frame-window han-frame-window--pattern"&gt;
   …
-</div></code></pre>
-    </div>
+&lt;/div&gt;</code></pre>
+    </section>
 
     <!-- 使用场景 -->
-    <div class="demo-section">
+    <section class="demo-section">
       <h3>使用场景</h3>
-      <ul>
-        <li>重要区域的视觉框定</li>
-        <li>名言警句、诗词展示</li>
-        <li>产品规格说明、参数展示</li>
-        <li>认证信息、联系方式等</li>
-        <li>--gold 变体适合高端定制场景</li>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="padding: var(--han-space-2) 0; border-bottom: 1px solid var(--han-color-text-tertiary);">重要区域的视觉框定</li>
+        <li style="padding: var(--han-space-2) 0; border-bottom: 1px solid var(--han-color-text-tertiary);">名言警句、诗词展示</li>
+        <li style="padding: var(--han-space-2) 0; border-bottom: 1px solid var(--han-color-text-tertiary);">产品规格说明、参数展示</li>
+        <li style="padding: var(--han-space-2) 0;">认证信息、联系方式等</li>
       </ul>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <!-- 页面导航 -->
   <style>
@@ -117,7 +294,7 @@
       <li><a href="/landing-page">落地页</a></li>
       <li><a href="/quick-start">快速上手</a></li>
       <li><a href="/theme-showcase">主题展示</a></li>
-      <li><a href="/showcase">完整组件展示</a></li>
+      <li><a href="/showcase">完整组件</a></li>
       <li><a href="/mac-han">Mac · 东方产品志</a></li>
     </ul>
     <hr>
@@ -126,13 +303,11 @@
       <li><a href="/components/button-seal">印章按钮</a></li>
       <li><a href="/components/card-scroll">卷轴卡片</a></li>
       <li><a href="/components/divider-ink">水墨分割线</a></li>
-      <li><a href="/components/frame-window">窗花边框</a></li>
+      <li><a href="/components/frame-window" aria-current="page">窗花边框</a></li>
       <li><a href="/components/navbar-ink">水墨导航</a></li>
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);});})();</script>
-
-  </main>
+  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);b.focus();})();})();</script>
 </body>
 </html>

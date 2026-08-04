@@ -1,32 +1,214 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
+<html lang="zh-CN" data-theme="song" data-han-static-reference="true" data-han-example="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>印章按钮 · 汉</title>
-  <link rel="stylesheet" href="../../skills/han-design/assets/tokens.css">
-  <link rel="stylesheet" href="../../skills/han-design/assets/base.css">
-  <link rel="stylesheet" href="../../skills/han-design/assets/components.css">
+  <title>印章按钮 · Han 组件示例</title>
+  <link rel="stylesheet" href="../../skills/han-design/assets/han.css">
   <style>
-    body { padding: 60px 24px; }
-    .demo-section { margin-bottom: 48px; }
-    .demo-section h3 { margin-bottom: 20px; color: var(--han-color-text-secondary); }
-    .demo-row { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
-    .demo-label { font-size: 14px; color: var(--han-color-text-tertiary); margin-top: 8px; text-align: center; }
-    .demo-item { display: flex; flex-direction: column; align-items: center; }
-    code.inline { background: var(--han-color-ink-100); padding: 2px 8px; border-radius: 4px; }
+    body {
+      background: var(--han-color-bg);
+      color: var(--han-color-text-primary);
+      font-family: var(--han-font-song);
+      margin: 0;
+      padding: 0;
+    }
+
+    .demo-container {
+      max-width: var(--han-container-lg);
+      margin: 0 auto;
+      padding: var(--han-space-8) var(--han-space-6);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: var(--han-space-10);
+    }
+
+    .demo-header h1 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-3xl);
+      margin: 0 0 var(--han-space-2) 0;
+      color: var(--han-color-text-primary);
+    }
+
+    .demo-header p {
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-text-secondary);
+      margin: 0;
+    }
+
+    .demo-section {
+      margin-bottom: var(--han-space-8);
+    }
+
+    .demo-section h3 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      color: var(--han-color-text-primary);
+      margin-bottom: var(--han-space-4);
+      padding-bottom: var(--han-space-2);
+      border-bottom: 2px solid var(--han-color-border);
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--han-space-4);
+      align-items: center;
+    }
+
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .demo-label {
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-tertiary);
+      margin-top: var(--han-space-2);
+      text-align: center;
+    }
+
+    .code-block {
+      background: var(--han-color-ink-900);
+      color: var(--han-color-paper-200);
+      padding: var(--han-space-4);
+      border-radius: var(--han-radius-md);
+      font-family: var(--han-font-mono, monospace);
+      font-size: var(--han-fs-sm);
+      overflow-x: auto;
+      margin-top: var(--han-space-4);
+      white-space: pre;
+    }
+
+    .usage-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .usage-list li {
+      padding: var(--han-space-2) 0;
+      border-bottom: 1px solid var(--han-color-border);
+    }
+
+    .usage-list li:last-child {
+      border-bottom: none;
+    }
+
+    .custom-colors {
+      display: flex;
+      gap: var(--han-space-4);
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: var(--han-space-4);
+    }
+
+    /* 页面导航 */
+    .showcase-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: color-mix(in srgb, var(--han-color-paper-100) 90%, transparent);
+      backdrop-filter: blur(12px) saturate(1.1);
+      -webkit-backdrop-filter: blur(12px) saturate(1.1);
+      border-bottom: 1px solid var(--han-color-border);
+    }
+
+    .showcase-navbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--han-space-4) 0;
+      max-width: var(--han-container-lg);
+      margin: 0 auto;
+    }
+
+    .showcase-brand {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      font-weight: var(--han-fw-bold);
+      color: var(--han-color-text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--han-space-2);
+    }
+
+    .showcase-brand span {
+      color: var(--han-color-vermilion-500);
+    }
+
+    .showcase-nav-menu {
+      display: flex;
+      gap: var(--han-space-6);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .showcase-nav-item a {
+      color: var(--han-color-text-secondary);
+      text-decoration: none;
+      font-size: var(--han-fs-sm);
+      transition: color var(--han-duration-normal);
+      position: relative;
+      padding: var(--han-space-1) 0;
+    }
+
+    .showcase-nav-item a:hover,
+    .showcase-nav-item a:focus-visible {
+      color: var(--han-color-accent-text);
+    }
+
+    .showcase-nav-item.is-active a {
+      color: var(--han-color-text-primary);
+      font-weight: var(--han-fw-medium);
+    }
+
+    .showcase-nav-item.is-active a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
+    }
+
+    @media (max-width: 768px) {
+      .showcase-nav-menu { display: none; }
+    }
   </style>
+  <link rel="stylesheet" href="../examples.css">
 </head>
 <body>
-  <main id="main-content">
-  <div class="han-container">
-    <h1 style="text-align:center; margin-bottom:8px;">印章按钮</h1>
-    <p style="text-align:center; color:var(--han-color-text-secondary); margin-bottom:48px;">
-      红色方形印章风格按钮，模拟印章盖下的视觉感
-    </p>
+  <!-- 顶部导航 -->
+  <nav class="han-navbar showcase-navbar" aria-label="主导航">
+    <div class="showcase-navbar-inner">
+      <a href="#components" class="showcase-brand">
+        汉<span>设</span>
+      </a>
+      <ul class="showcase-nav-menu">
+        <li class="showcase-nav-item"><a href="/landing-page">首页</a></li>
+        <li class="showcase-nav-item"><a href="/quick-start">快速上手</a></li>
+        <li class="showcase-nav-item"><a href="/theme-showcase">主题展示</a></li>
+        <li class="showcase-nav-item is-active"><a href="/showcase" aria-current="page">完整组件</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="demo-container">
+    <!-- 页面标题 -->
+    <header class="demo-header">
+      <h1>印章按钮</h1>
+      <p>红色方形印章风格按钮，模拟印章盖下的视觉感</p>
+    </header>
 
     <!-- 基础用法 -->
-    <div class="demo-section">
+    <section class="demo-section">
       <h3>基础用法</h3>
       <div class="demo-row">
         <div class="demo-item">
@@ -50,36 +232,36 @@
           <div class="demo-label">盖章动画</div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- 代码示例 -->
-    <div class="demo-section">
+    <section class="demo-section">
       <h3>使用说明</h3>
-      <pre><code><!-- 基础印章按钮 -->
-<button type="button" class="han-btn-seal">确认</button>
+      <pre class="code-block"><code><!-- 基础印章按钮 -->
+&lt;button type="button" class="han-btn-seal"&gt;确认&lt;/button&gt;
 
 <!-- 大号 -->
-<button type="button" class="han-btn-seal han-btn-seal--lg">提交</button>
+&lt;button type="button" class="han-btn-seal han-btn-seal--lg"&gt;提交&lt;/button&gt;
 
 <!-- 带盖章动画 -->
-<button type="button" class="han-btn-seal han-btn-seal--drop">汉</button></code></pre>
-    </div>
+&lt;button type="button" class="han-btn-seal han-btn-seal--drop"&gt;汉&lt;/button&gt;</code></pre>
+    </section>
 
     <!-- 使用场景 -->
-    <div class="demo-section">
+    <section class="demo-section">
       <h3>使用场景</h3>
-      <ul>
+      <ul class="usage-list">
         <li>关键 CTA 按钮，如"立即下单"、"确认提交"</li>
         <li>表单提交、用户确认等重要操作</li>
         <li>品牌落款、认证标记</li>
         <li>建议占比 ≤ 5%，避免视觉疲劳</li>
       </ul>
-    </div>
+    </section>
 
     <!-- 自定义颜色 -->
-    <div class="demo-section">
+    <section class="demo-section">
       <h3>自定义色调（通过 CSS 变量）</h3>
-      <div class="demo-row">
+      <div class="custom-colors">
         <div class="demo-item">
           <button type="button" class="han-btn-seal" style="--han-seal-bg: var(--han-color-indigo-500); --han-seal-bg-hover: var(--han-color-indigo-600); --han-seal-border: var(--han-color-gold-400);">靛蓝</button>
           <div class="demo-label">靛蓝</div>
@@ -93,8 +275,8 @@
           <div class="demo-label">墨色</div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <!-- 页面导航 -->
   <style>
@@ -117,13 +299,13 @@
       <li><a href="/landing-page">落地页</a></li>
       <li><a href="/quick-start">快速上手</a></li>
       <li><a href="/theme-showcase">主题展示</a></li>
-      <li><a href="/showcase">完整组件展示</a></li>
+      <li><a href="/showcase">完整组件</a></li>
       <li><a href="/mac-han">Mac · 东方产品志</a></li>
     </ul>
     <hr>
     <h4>组件示例</h4>
     <ul>
-      <li><a href="/components/button-seal">印章按钮</a></li>
+      <li><a href="/components/button-seal" aria-current="page">印章按钮</a></li>
       <li><a href="/components/card-scroll">卷轴卡片</a></li>
       <li><a href="/components/divider-ink">水墨分割线</a></li>
       <li><a href="/components/frame-window">窗花边框</a></li>
@@ -131,8 +313,6 @@
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);});})();</script>
-
-  </main>
+  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);b.focus();})();})();</script>
 </body>
 </html>

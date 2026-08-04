@@ -1,146 +1,242 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
+<html lang="zh-CN" data-theme="song" data-han-static-reference="true" data-han-example="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>水墨导航 · 汉</title>
-  <link rel="stylesheet" href="../../skills/han-design/assets/tokens.css">
-  <link rel="stylesheet" href="../../skills/han-design/assets/base.css">
-  <link rel="stylesheet" href="../../skills/han-design/assets/components.css">
+  <title>水墨导航 · Han 组件示例</title>
+  <link rel="stylesheet" href="../../skills/han-design/assets/han.css">
   <style>
-    body { padding: 0; }
-    .demo-page { padding: 80px 24px; }
-    .demo-section { margin-bottom: 48px; }
-    .demo-section h3 { margin-bottom: 20px; color: var(--han-color-text-secondary); }
-    .demo-preview { background: var(--han-color-bg-surface); border-radius: 8px; overflow: hidden; }
-    .demo-preview .han-navbar { position: relative; }
-    .demo-text { padding: 40px; text-align: center; color: var(--han-color-text-secondary); }
-    .code-block { margin-top: 20px; }
+    body {
+      background: var(--han-color-bg);
+      color: var(--han-color-text-primary);
+      font-family: var(--han-font-song);
+      margin: 0;
+      padding: 0;
+    }
+
+    .demo-container {
+      max-width: var(--han-container-lg);
+      margin: 0 auto;
+      padding: var(--han-space-8) var(--han-space-6);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: var(--han-space-10);
+    }
+
+    .demo-header h1 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-3xl);
+      margin: 0 0 var(--han-space-2) 0;
+      color: var(--han-color-text-primary);
+    }
+
+    .demo-header p {
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-text-secondary);
+      margin: 0;
+    }
+
+    .demo-section {
+      margin-bottom: var(--han-space-8);
+    }
+
+    .demo-section h3 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      color: var(--han-color-text-primary);
+      margin-bottom: var(--han-space-4);
+      padding-bottom: var(--han-space-2);
+      border-bottom: 2px solid var(--han-color-border);
+    }
+
+    .demo-preview {
+      background: var(--han-color-bg-surface);
+      border-radius: var(--han-radius-lg);
+      padding: var(--han-space-6);
+      margin-top: var(--han-space-4);
+    }
+
+    .demo-text {
+      padding: var(--han-space-6);
+      text-align: center;
+      color: var(--han-color-text-secondary);
+      font-family: var(--han-font-song);
+    }
+
+    .code-block {
+      background: var(--han-color-ink-900);
+      color: var(--han-color-paper-200);
+      padding: var(--han-space-4);
+      border-radius: var(--han-radius-md);
+      font-family: var(--han-font-mono, monospace);
+      font-size: var(--han-fs-sm);
+      overflow-x: auto;
+      margin-top: var(--han-space-4);
+      white-space: pre;
+    }
+
+    /* 页面导航 */
+    .showcase-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: color-mix(in srgb, var(--han-color-paper-100) 90%, transparent);
+      backdrop-filter: blur(12px) saturate(1.1);
+      -webkit-backdrop-filter: blur(12px) saturate(1.1);
+      border-bottom: 1px solid var(--han-color-border);
+    }
+
+    .showcase-navbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--han-space-4) 0;
+      max-width: var(--han-container-lg);
+      margin: 0 auto;
+    }
+
+    .showcase-brand {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      font-weight: var(--han-fw-bold);
+      color: var(--han-color-text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--han-space-2);
+    }
+
+    .showcase-brand span {
+      color: var(--han-color-vermilion-500);
+    }
+
+    .showcase-nav-menu {
+      display: flex;
+      gap: var(--han-space-6);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .showcase-nav-item a {
+      color: var(--han-color-text-secondary);
+      text-decoration: none;
+      font-size: var(--han-fs-sm);
+      transition: color var(--han-duration-normal);
+      position: relative;
+      padding: var(--han-space-1) 0;
+    }
+
+    .showcase-nav-item a:hover,
+    .showcase-nav-item a:focus-visible {
+      color: var(--han-color-accent-text);
+    }
+
+    .showcase-nav-item.is-active a {
+      color: var(--han-color-text-primary);
+      font-weight: var(--han-fw-medium);
+    }
+
+    .showcase-nav-item.is-active a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
+    }
+
+    @media (max-width: 768px) {
+      .showcase-nav-menu { display: none; }
+    }
   </style>
+  <link rel="stylesheet" href="../examples.css">
 </head>
 <body>
-  <main id="main-content">
-
-  <!-- 导航示例 -->
-  <nav class="han-navbar" data-han-navbar aria-label="主导航">
-    <div class="han-navbar__inner">
-      <a class="han-navbar__brand" href="/quick-start">汉<span>设</span></a>
-      <button class="han-navbar__toggle" type="button" aria-expanded="false" aria-controls="demo-primary-nav" aria-label="打开导航菜单">
-        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
-      </button>
-      <ul class="han-navbar__menu" id="demo-primary-nav">
-        <li class="han-navbar__item han-navbar__item--active"><a href="#home" aria-current="page">首页</a></li>
-        <li class="han-navbar__item"><a href="#works">作品</a></li>
-        <li class="han-navbar__item"><a href="#craft">技法</a></li>
-        <li class="han-navbar__item"><a href="#story">故事</a></li>
-        <li class="han-navbar__item"><a href="#about">关于</a></li>
+  <!-- 顶部导航 -->
+  <nav class="han-navbar showcase-navbar" aria-label="主导航">
+    <div class="showcase-navbar-inner">
+      <a href="#components" class="showcase-brand">
+        汉<span>设</span>
+      </a>
+      <ul class="showcase-nav-menu">
+        <li class="showcase-nav-item"><a href="/landing-page">首页</a></li>
+        <li class="showcase-nav-item"><a href="/quick-start">快速上手</a></li>
+        <li class="showcase-nav-item"><a href="/theme-showcase">主题展示</a></li>
+        <li class="showcase-nav-item is-active"><a href="/showcase" aria-current="page">完整组件</a></li>
       </ul>
-      <button type="button" class="han-btn-seal han-btn-seal--sm">体验</button>
     </div>
   </nav>
 
-  <div class="demo-page">
-    <div class="han-container">
-      <h1 style="text-align:center; margin-bottom:8px;">水墨导航</h1>
-      <p style="text-align:center; color:var(--han-color-text-secondary); margin-bottom:48px;">
-        底部毛笔下划线 + 墨迹扩散悬停效果
-      </p>
+  <main class="demo-container">
+    <!-- 页面标题 -->
+    <header class="demo-header">
+      <h1>水墨导航</h1>
+      <p>底部毛笔下划线 + 墨迹扩散悬停效果的导航组件</p>
+    </header>
 
-      <!-- 交互演示说明 -->
-      <div class="demo-section">
-        <h3>交互说明</h3>
-        <p>将鼠标悬停在导航菜单上，可以看到：</p>
-        <ul>
-          <li>文字颜色由浅墨变浓墨</li>
-          <li>底部墨迹线条由中心向两侧晕开（scaleX 动画）</li>
-          <li>当前激活项（首页）保持浓墨色 + 墨迹线常驻</li>
-        </ul>
+    <!-- 导航演示 -->
+    <section class="demo-section">
+      <h3>导航示例</h3>
+      <div class="demo-preview">
+        <nav class="han-navbar" data-han-navbar aria-label="主导航">
+          <div class="han-navbar__inner">
+            <a class="han-navbar__brand" href="/quick-start">汉<span>设</span></a>
+            <button class="han-navbar__toggle" type="button" aria-expanded="false" aria-controls="demo-primary-nav" aria-label="打开导航菜单">
+              <span aria-hidden=""></span><span aria-hidden=""></span><span aria-hidden=""></span>
+            </button>
+            <ul class="han-navbar__menu" id="demo-primary-nav">
+              <li class="han-navbar__item han-navbar__item--active"><a href="#home" aria-current="page">首页</a></li>
+              <li class="han-navbar__item"><a href="#works">作品</a></li>
+              <li class="han-navbar__item"><a href="#craft">技法</a></li>
+              <li class="han-navbar__item"><a href="#story">故事</a></li>
+              <li class="han-navbar__item"><a href="#about">关于</a></li>
+            </ul>
+            <button type="button" class="han-btn-seal han-btn-seal--sm">体验</button>
+          </div>
+        </nav>
       </div>
+      <div class="demo-text">
+        将鼠标悬停在导航菜单上，可以看到文字颜色由浅墨变浓墨，底部墨迹线条由中心向两侧晕开。
+      </div>
+    </section>
 
-      <!-- 代码示例 -->
-      <div class="demo-section">
-        <h3>HTML 结构</h3>
-        <div class="code-block">
-          <pre><code>&lt;!-- 顶部导航 --&gt;
+    <!-- 代码示例 -->
+    <section class="demo-section">
+      <h3>HTML 结构</h3>
+      <pre class="code-block"><code>&lt;!-- 顶部导航 --&gt;
 &lt;nav class="han-navbar" data-han-navbar aria-label="主导航"&gt;
   &lt;div class="han-navbar__inner"&gt;
     &lt;a class="han-navbar__brand" href="/"&gt;汉&lt;span&gt;设&lt;/span&gt;&lt;/a&gt;
-    &lt;button class="han-navbar__toggle" type="button"
-      aria-expanded="false" aria-controls="primary-nav" aria-label="打开导航菜单"&gt;
-      &lt;span aria-hidden="true"&gt;&lt;/span&gt;
-      &lt;span aria-hidden="true"&gt;&lt;/span&gt;
-      &lt;span aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;button class="han-navbar__toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="打开导航菜单"&gt;
+      &lt;span aria-hidden=""/&gt;
+      &lt;span aria-hidden=""/&gt;
+      &lt;span aria-hidden=""/&gt;
     &lt;/button&gt;
     &lt;ul class="han-navbar__menu" id="primary-nav"&gt;
-      &lt;li class="han-navbar__item han-navbar__item--active"&gt;
-        &lt;a href="/" aria-current="page"&gt;首页&lt;/a&gt;
-      &lt;/li&gt;
+      &lt;li class="han-navbar__item han-navbar__item--active"&gt;&lt;a href="/" aria-current="page"&gt;首页&lt;/a&gt;&lt;/li&gt;
       &lt;li class="han-navbar__item"&gt;&lt;a href="/works"&gt;作品&lt;/a&gt;&lt;/li&gt;
       &lt;li class="han-navbar__item"&gt;&lt;a href="/craft"&gt;技法&lt;/a&gt;&lt;/li&gt;
       &lt;li class="han-navbar__item"&gt;&lt;a href="/story"&gt;故事&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/div&gt;
 &lt;/nav&gt;</code></pre>
-        </div>
-      </div>
+    </section>
 
-      <!-- 使用场景 -->
-      <div class="demo-section">
-        <h3>使用场景</h3>
-        <ul>
-          <li>品牌官网顶部导航</li>
-          <li>文章目录、侧边菜单</li>
-          <li>标签页/选项卡导航</li>
-          <li>支持 sticky 粘性定位和毛玻璃背景</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const navbar = document.querySelector('[data-han-navbar]');
-    const toggle = navbar?.querySelector('.han-navbar__toggle');
-    const menu = navbar?.querySelector('.han-navbar__menu');
-
-    const setMenuOpen = (open) => {
-      if (!navbar || !toggle) return;
-      navbar.classList.toggle('han-navbar--open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? '关闭导航菜单' : '打开导航菜单');
-    };
-
-    toggle?.addEventListener('click', () => {
-      setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true');
-    });
-
-    navbar?.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
-        setMenuOpen(false);
-        toggle.focus();
-      }
-    });
-
-    menu?.addEventListener('click', (event) => {
-      const link = event.target.closest('a');
-      if (!link) return;
-      menu.querySelectorAll('.han-navbar__item').forEach((item) => item.classList.remove('han-navbar__item--active'));
-      menu.querySelectorAll('[aria-current]').forEach((item) => item.removeAttribute('aria-current'));
-      link.closest('.han-navbar__item')?.classList.add('han-navbar__item--active');
-      link.setAttribute('aria-current', 'page');
-      setMenuOpen(false);
-    });
-
-    // 导航栏滚动阴影
-    if (navbar) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 0) {
-          navbar.classList.add('is-scrolled');
-        } else {
-          navbar.classList.remove('is-scrolled');
-        }
-      }, { passive: true });
-    }
-  </script>
+    <!-- 使用场景 -->
+    <section class="demo-section">
+      <h3>使用场景</h3>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="padding: var(--han-space-2) 0; border-bottom: 1px solid var(--han-color-text-tertiary);">品牌官网顶部导航</li>
+        <li style="padding: var(--han-space-2) 0; border-bottom: 1px solid var(--han-color-text-tertiary);">文章目录、侧边菜单</li>
+        <li style="padding: var(--han-space-2) 0; border-bottom: 1px solid var(--han-color-text-tertiary);">标签页/选项卡导航</li>
+        <li style="padding: var(--han-space-2) 0;">支持 sticky 粘性定位和毛玻璃背景</li>
+      </ul>
+    </section>
+  </main>
 
   <!-- 页面导航 -->
   <style>
@@ -163,7 +259,7 @@
       <li><a href="/landing-page">落地页</a></li>
       <li><a href="/quick-start">快速上手</a></li>
       <li><a href="/theme-showcase">主题展示</a></li>
-      <li><a href="/showcase">完整组件展示</a></li>
+      <li><a href="/showcase">完整组件</a></li>
       <li><a href="/mac-han">Mac · 东方产品志</a></li>
     </ul>
     <hr>
@@ -173,12 +269,10 @@
       <li><a href="/components/card-scroll">卷轴卡片</a></li>
       <li><a href="/components/divider-ink">水墨分割线</a></li>
       <li><a href="/components/frame-window">窗花边框</a></li>
-      <li><a href="/components/navbar-ink">水墨导航</a></li>
+      <li><a href="/components/navbar-ink" aria-current="page">水墨导航</a></li>
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);});})();</script>
-
-  </main>
+  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);b.focus();})();})();</script>
 </body>
 </html>

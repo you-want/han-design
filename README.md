@@ -155,6 +155,19 @@ Han 的核心发布物是 `skills/han-design/` Skill 包，不以 npm 组件库�
 | 朱砂喜庆 | `vermilion` |
 | 青瓷 | `celadon` |
 
+### 当代配色主题
+
+这些主题由项目内参考图的色卡转译而来，是面向现代网页的配色系统，不是任何官方货币色彩规范。
+
+| 主题 | `data-theme` | 气质 |
+|---|---|---|
+| 松麦 | `pine-wheat` | 自然、清新、安静 |
+| 藤紫 | `plum-blush` | 柔和、浪漫、轻奢 |
+| 海兰 | `ocean-orchid` | 冷静、清透、优雅 |
+| 焦糖 | `caramel-cream` | 温暖、复古、高级 |
+| 薄荷 | `mint-lavender` | 清透、自然、轻盈 |
+| 莓果 | `berry-butter` | 明快、时尚、有活力 |
+
 ## 示例
 
 - [快速开始](examples/quick-start.html) — 完整结构示例
@@ -173,6 +186,7 @@ Han 的核心发布物是 `skills/han-design/` Skill 包，不以 npm 组件库�
 
 - [Skill 指令](skills/han-design/SKILL.md)
 - [详细设计规范](skills/han-design/references/design-guide.md)
+- [当代配色主题](skills/han-design/references/contemporary-palettes.md)
 - [组件目录](skills/han-design/references/component-catalog.md)
 - [文化方法](skills/han-design/references/cultural-methodology.md)
 - [朝代主题边界](skills/han-design/references/dynasty-contexts.md)

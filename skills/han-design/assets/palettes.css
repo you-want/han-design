@@ -1,0 +1,222 @@
+/* ============================================================
+ * 当代配色主题 (Contemporary Palette Themes)
+ *
+ * 六套主题从 examples/ 中的用户参考图色卡干净区域取样而来。
+ * 这些是当代 UI 配色转译，不是人民币官方色彩规范或历史复原。
+ * ============================================================ */
+
+/* 松麦：松针绿、雾芽绿、山丘绿、麦乳白 */
+[data-theme='pine-wheat'] {
+  --han-palette-1: #4D5B44;
+  --han-palette-2: #758B5D;
+  --han-palette-3: #A5BA8F;
+  --han-palette-4: #E9E2B4;
+
+  --han-color-bg:              #E9E2B4;
+  --han-color-bg-surface:      #F8F5DF;
+  --han-color-bg-elevated:     #DCE2C1;
+  --han-color-text-primary:    #273126;
+  --han-color-text-secondary:  #4D5B44;
+  --han-color-text-tertiary:   #718060;
+  --han-color-border:          #B4C49E;
+  --han-color-accent:          #4D5B44;
+  --han-color-accent-decorative: #A5BA8F;
+  --han-color-accent-text:       #4D5B44;
+  --han-color-accent-control:    #4D5B44;
+  --han-color-on-accent:         #FFFFFF;
+  --han-focus-ring:              #4D5B44;
+
+  --han-seal-bg:               #4D5B44;
+  --han-seal-bg-hover:         #394632;
+  --han-seal-text:             #FFFFFF;
+  --han-seal-border:           #A5BA8F;
+  --han-stamp-bg:              #4D5B44;
+  --han-stamp-text:            #FFFFFF;
+  --han-scroll-roller:         #4D5B44;
+  --han-scroll-rivet:          #A5BA8F;
+  --han-nav-bg:                rgba(233, 226, 180, 0.92);
+  --han-nav-text:              #4D5B44;
+  --han-nav-text-hover:        #273126;
+  --han-nav-ink-color:         #273126;
+  --han-color-gold-500:        #E9E2B4;
+}
+
+/* 藤紫：葡萄夜、丝绒李、杏仁奶、樱花粉 */
+[data-theme='plum-blush'] {
+  --han-palette-1: #715480;
+  --han-palette-2: #B487B0;
+  --han-palette-3: #D7C2AD;
+  --han-palette-4: #F0D8EE;
+
+  --han-color-bg:              #F0D8EE;
+  --han-color-bg-surface:      #FFF5FC;
+  --han-color-bg-elevated:     #E5CDE2;
+  --han-color-text-primary:    #332337;
+  --han-color-text-secondary:  #715480;
+  --han-color-text-tertiary:   #9B7E9C;
+  --han-color-border:          #D9BFD7;
+  --han-color-accent:          #715480;
+  --han-color-accent-decorative: #B487B0;
+  --han-color-accent-text:       #715480;
+  --han-color-accent-control:    #715480;
+  --han-color-on-accent:         #FFFFFF;
+  --han-focus-ring:              #715480;
+
+  --han-seal-bg:               #715480;
+  --han-seal-bg-hover:         #5C416A;
+  --han-seal-text:             #FFFFFF;
+  --han-seal-border:           #D7C2AD;
+  --han-stamp-bg:              #715480;
+  --han-stamp-text:            #FFFFFF;
+  --han-scroll-roller:         #B487B0;
+  --han-scroll-rivet:          #D7C2AD;
+  --han-nav-bg:                rgba(240, 216, 238, 0.92);
+  --han-nav-text:              #715480;
+  --han-nav-text-hover:        #332337;
+  --han-nav-ink-color:         #332337;
+  --han-color-gold-500:        #D7C2AD;
+}
+
+/* 海兰：深湖蓝、海港蓝、雾兰紫、冰雾蓝 */
+[data-theme='ocean-orchid'] {
+  --han-palette-1: #2C5767;
+  --han-palette-2: #6487A3;
+  --han-palette-3: #BBA4B6;
+  --han-palette-4: #C1CFDA;
+
+  --han-color-bg:              #C1CFDA;
+  --han-color-bg-surface:      #F5F8FA;
+  --han-color-bg-elevated:     #DDE7EE;
+  --han-color-text-primary:    #223D49;
+  --han-color-text-secondary:  #2C5767;
+  --han-color-text-tertiary:   #638091;
+  --han-color-border:          #AABDC9;
+  --han-color-accent:          #2C5767;
+  --han-color-accent-decorative: #BBA4B6;
+  --han-color-accent-text:       #2C5767;
+  --han-color-accent-control:    #2C5767;
+  --han-color-on-accent:         #FFFFFF;
+  --han-focus-ring:              #2C5767;
+
+  --han-seal-bg:               #2C5767;
+  --han-seal-bg-hover:         #1F4351;
+  --han-seal-text:             #FFFFFF;
+  --han-seal-border:           #BBA4B6;
+  --han-stamp-bg:              #2C5767;
+  --han-stamp-text:            #FFFFFF;
+  --han-scroll-roller:         #6487A3;
+  --han-scroll-rivet:          #BBA4B6;
+  --han-nav-bg:                rgba(193, 207, 218, 0.92);
+  --han-nav-text:              #2C5767;
+  --han-nav-text-hover:        #223D49;
+  --han-nav-ink-color:         #223D49;
+  --han-color-gold-500:        #BBA4B6;
+}
+
+/* 焦糖：焦糖棕、樱雾粉、奶咖白、胡桃棕 */
+[data-theme='caramel-cream'] {
+  --han-palette-1: #8D6037;
+  --han-palette-2: #EBB5B5;
+  --han-palette-3: #E8D2BA;
+  --han-palette-4: #724526;
+
+  --han-color-bg:              #E8D2BA;
+  --han-color-bg-surface:      #FFF6E8;
+  --han-color-bg-elevated:     #F1DCC6;
+  --han-color-text-primary:    #724526;
+  --han-color-text-secondary:  #8D6037;
+  --han-color-text-tertiary:   #AB8261;
+  --han-color-border:          #D8B99C;
+  --han-color-accent:          #724526;
+  --han-color-accent-decorative: #EBB5B5;
+  --han-color-accent-text:       #724526;
+  --han-color-accent-control:    #724526;
+  --han-color-on-accent:         #FFFFFF;
+  --han-focus-ring:              #724526;
+
+  --han-seal-bg:               #724526;
+  --han-seal-bg-hover:         #56331C;
+  --han-seal-text:             #FFFFFF;
+  --han-seal-border:           #EBB5B5;
+  --han-stamp-bg:              #8D6037;
+  --han-stamp-text:            #FFFFFF;
+  --han-scroll-roller:         #8D6037;
+  --han-scroll-rivet:          #EBB5B5;
+  --han-nav-bg:                rgba(232, 210, 186, 0.94);
+  --han-nav-text:              #8D6037;
+  --han-nav-text-hover:        #724526;
+  --han-nav-ink-color:         #724526;
+  --han-color-gold-500:        #EBB5B5;
+}
+
+/* 薄荷：湖杉绿、薄荷绿、浅薄荷、薰衣草雾 */
+[data-theme='mint-lavender'] {
+  --han-palette-1: #4A7D6A;
+  --han-palette-2: #A8CCB0;
+  --han-palette-3: #D9EEE5;
+  --han-palette-4: #EBDCF3;
+
+  --han-color-bg:              #D9EEE5;
+  --han-color-bg-surface:      #F8FCF9;
+  --han-color-bg-elevated:     #EBDCF3;
+  --han-color-text-primary:    #1D4033;
+  --han-color-text-secondary:  #376655;
+  --han-color-text-tertiary:   #6E9C85;
+  --han-color-border:          #B9DAC5;
+  --han-color-accent:          #4A7D6A;
+  --han-color-accent-decorative: #A8CCB0;
+  --han-color-accent-text:       #376655;
+  --han-color-accent-control:    #4A7D6A;
+  --han-color-on-accent:         #FFFFFF;
+  --han-focus-ring:              #376655;
+
+  --han-seal-bg:               #4A7D6A;
+  --han-seal-bg-hover:         #376655;
+  --han-seal-text:             #FFFFFF;
+  --han-seal-border:           #EBDCF3;
+  --han-stamp-bg:              #4A7D6A;
+  --han-stamp-text:            #FFFFFF;
+  --han-scroll-roller:         #4A7D6A;
+  --han-scroll-rivet:          #EBDCF3;
+  --han-nav-bg:                rgba(217, 238, 229, 0.92);
+  --han-nav-text:              #376655;
+  --han-nav-text-hover:        #1D4033;
+  --han-nav-ink-color:         #1D4033;
+  --han-color-gold-500:        #EBDCF3;
+}
+
+/* 莓果：莓果红、珊瑚粉、草莓粉、奶油黄 */
+[data-theme='berry-butter'] {
+  --han-palette-1: #D11946;
+  --han-palette-2: #DE6052;
+  --han-palette-3: #F8969E;
+  --han-palette-4: #ECE6B9;
+
+  --han-color-bg:              #ECE6B9;
+  --han-color-bg-surface:      #FFFDF1;
+  --han-color-bg-elevated:     #F8DFDF;
+  --han-color-text-primary:    #651027;
+  --han-color-text-secondary:  #A70E31;
+  --han-color-text-tertiary:   #B85D70;
+  --han-color-border:          #E6B6AE;
+  --han-color-accent:          #D11946;
+  --han-color-accent-decorative: #F8969E;
+  --han-color-accent-text:       #A70E31;
+  --han-color-accent-control:    #D11946;
+  --han-color-on-accent:         #FFFFFF;
+  --han-focus-ring:              #A70E31;
+
+  --han-seal-bg:               #D11946;
+  --han-seal-bg-hover:         #A70E31;
+  --han-seal-text:             #FFFFFF;
+  --han-seal-border:           #ECE6B9;
+  --han-stamp-bg:              #D11946;
+  --han-stamp-text:            #FFFFFF;
+  --han-scroll-roller:         #DE6052;
+  --han-scroll-rivet:          #ECE6B9;
+  --han-nav-bg:                rgba(236, 230, 185, 0.94);
+  --han-nav-text:              #A70E31;
+  --han-nav-text-hover:        #651027;
+  --han-nav-ink-color:         #651027;
+  --han-color-gold-500:        #ECE6B9;
+}

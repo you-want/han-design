@@ -27,6 +27,7 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
    - Choose one primary theme as a starting point, not as a claim that one palette represents an entire dynasty or culture.
    - Read [references/cultural-methodology.md](references/cultural-methodology.md) for museums, education, heritage, religion, regional culture, ethnic culture, or historically specific work.
    - Read [references/design-guide.md](references/design-guide.md) when selecting colors, typography, spacing, or composition.
+   - Read [references/contemporary-palettes.md](references/contemporary-palettes.md) when the user asks for 松麦绿、藤紫、海兰、焦糖、薄荷薰衣草、莓果奶油，或希望采用本 Skill 的当代色卡主题。
    - Read [references/component-catalog.md](references/component-catalog.md) only when choosing components or locating the relevant CSS file.
    - Read [references/task-recipes.md](references/task-recipes.md) for museums, brands, applications, festivals, tea or craft, and entertainment tasks.
 
@@ -79,6 +80,12 @@ All bundled themes are contemporary interpretations. Use them as visual starting
 | Porcelain, refined craft | `qing`, `porcelain`, or `celadon` |
 | Landscape, tea, meditation | `landscape` or `tea` |
 | Mural-inspired warm ornament | `dunhuang` |
+| Calm botanical and wheat tones | `pine-wheat` |
+| Soft plum, blush, and cream | `plum-blush` |
+| Cool ocean blue and orchid mist | `ocean-orchid` |
+| Warm caramel, walnut, and cream | `caramel-cream` |
+| Fresh mint with lavender mist | `mint-lavender` |
+| Bright berry, coral, and butter cream | `berry-butter` |
 
 Example:
 

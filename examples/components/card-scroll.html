@@ -1,32 +1,193 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
+<html lang="zh-CN" data-theme="song" data-han-static-reference="true" data-han-example="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>卷轴卡片 · 汉</title>
-  <link rel="stylesheet" href="../../skills/han-design/assets/tokens.css">
-  <link rel="stylesheet" href="../../skills/han-design/assets/base.css">
-  <link rel="stylesheet" href="../../skills/han-design/assets/components.css">
+  <title>卷轴卡片 · Han 组件示例</title>
+  <link rel="stylesheet" href="../../skills/han-design/assets/han.css">
   <style>
-    body { padding: 60px 24px; }
-    .demo-section { margin-bottom: 48px; }
-    .demo-section h3 { margin-bottom: 20px; color: var(--han-color-text-secondary); }
-    .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
+    body {
+      background: var(--han-color-bg);
+      color: var(--han-color-text-primary);
+      font-family: var(--han-font-song);
+      margin: 0;
+      padding: 0;
+    }
+
+    .demo-container {
+      max-width: var(--han-container-lg);
+      margin: 0 auto;
+      padding: var(--han-space-8) var(--han-space-6);
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: var(--han-space-10);
+    }
+
+    .demo-header h1 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-3xl);
+      margin: 0 0 var(--han-space-2) 0;
+      color: var(--han-color-text-primary);
+    }
+
+    .demo-header p {
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-text-secondary);
+      margin: 0;
+    }
+
+    .demo-section {
+      margin-bottom: var(--han-space-8);
+    }
+
+    .demo-section h3 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      color: var(--han-color-text-primary);
+      margin-bottom: var(--han-space-4);
+      padding-bottom: var(--han-space-2);
+      border-bottom: 2px solid var(--han-color-border);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--han-space-6);
+      margin-top: var(--han-space-4);
+    }
+
+    .demo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .demo-label {
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-tertiary);
+      margin-top: var(--han-space-2);
+      text-align: center;
+    }
+
+    .code-block {
+      background: var(--han-color-ink-900);
+      color: var(--han-color-paper-200);
+      padding: var(--han-space-4);
+      border-radius: var(--han-radius-md);
+      font-family: var(--han-font-mono, monospace);
+      font-size: var(--han-fs-sm);
+      overflow-x: auto;
+      margin-top: var(--han-space-4);
+      white-space: pre;
+    }
+
+    /* 页面导航 */
+    .showcase-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: color-mix(in srgb, var(--han-color-paper-100) 90%, transparent);
+      backdrop-filter: blur(12px) saturate(1.1);
+      -webkit-backdrop-filter: blur(12px) saturate(1.1);
+      border-bottom: 1px solid var(--han-color-border);
+    }
+
+    .showcase-navbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--han-space-4) 0;
+      max-width: var(--han-container-lg);
+      margin: 0 auto;
+    }
+
+    .showcase-brand {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      font-weight: var(--han-fw-bold);
+      color: var(--han-color-text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--han-space-2);
+    }
+
+    .showcase-brand span {
+      color: var(--han-color-vermilion-500);
+    }
+
+    .showcase-nav-menu {
+      display: flex;
+      gap: var(--han-space-6);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .showcase-nav-item a {
+      color: var(--han-color-text-secondary);
+      text-decoration: none;
+      font-size: var(--han-fs-sm);
+      transition: color var(--han-duration-normal);
+      position: relative;
+      padding: var(--han-space-1) 0;
+    }
+
+    .showcase-nav-item a:hover,
+    .showcase-nav-item a:focus-visible {
+      color: var(--han-color-accent-text);
+    }
+
+    .showcase-nav-item.is-active a {
+      color: var(--han-color-text-primary);
+      font-weight: var(--han-fw-medium);
+    }
+
+    .showcase-nav-item.is-active a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
+    }
+
+    @media (max-width: 768px) {
+      .showcase-nav-menu { display: none; }
+    }
   </style>
+  <link rel="stylesheet" href="../examples.css">
 </head>
 <body>
-  <main id="main-content">
-  <div class="han-container">
-    <h1 style="text-align:center; margin-bottom:8px;">卷轴卡片</h1>
-    <p style="text-align:center; color:var(--han-color-text-secondary); margin-bottom:48px;">
-      模拟中国传统卷轴形态，左右两端有卷轴头
-    </p>
+  <!-- 顶部导航 -->
+  <nav class="han-navbar showcase-navbar" aria-label="主导航">
+    <div class="showcase-navbar-inner">
+      <a href="#components" class="showcase-brand">
+        汉<span>设</span>
+      </a>
+      <ul class="showcase-nav-menu">
+        <li class="showcase-nav-item"><a href="/landing-page">首页</a></li>
+        <li class="showcase-nav-item"><a href="/quick-start">快速上手</a></li>
+        <li class="showcase-nav-item"><a href="/theme-showcase">主题展示</a></li>
+        <li class="showcase-nav-item is-active"><a href="/showcase" aria-current="page">完整组件</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <div class="demo-section">
+  <main class="demo-container">
+    <!-- 页面标题 -->
+    <header class="demo-header">
+      <h1>卷轴卡片</h1>
+      <p>模拟中国传统卷轴形态，左右两端有卷轴头</p>
+    </header>
+
+    <!-- 产品展示 -->
+    <section class="demo-section">
       <h3>产品展示</h3>
       <div class="demo-grid">
-
-        <!-- 卡片 1 -->
         <article class="han-card-scroll">
           <span class="han-rivet han-rivet--tl"></span>
           <span class="han-rivet han-rivet--tr"></span>
@@ -47,7 +208,6 @@
           </footer>
         </article>
 
-        <!-- 卡片 2 -->
         <article class="han-card-scroll">
           <span class="han-rivet han-rivet--tl"></span>
           <span class="han-rivet han-rivet--tr"></span>
@@ -68,21 +228,19 @@
           </footer>
         </article>
 
-        <!-- 卡片 3：迷你版 -->
         <article class="han-card-scroll han-card-scroll--sm">
           <header class="han-card-scroll__header">富春山居图</header>
           <div class="han-card-scroll__body">
             <p>元代黄公望所作，以浙江富春江为背景，描绘了秀丽的山水风光。</p>
           </div>
         </article>
-
       </div>
-    </div>
+    </section>
 
     <!-- 使用说明 -->
-    <div class="demo-section">
-      <h3>HTML 结构</h3>
-      <pre><code><article class="han-card-scroll">
+    <section class="demo-section">
+      <h3>使用说明</h3>
+      <pre class="code-block"><code><article class="han-card-scroll">
   <!-- 可选四角铆钉装饰 -->
   <span class="han-rivet han-rivet--tl"></span>
   <span class="han-rivet han-rivet--tr"></span>
@@ -92,24 +250,24 @@
   <header class="han-card-scroll__header">标题</header>
   <div class="han-card-scroll__body">
     <p>内容…</p>
-  </div>
+  </main>
   <footer class="han-card-scroll__footer">
     <span>元信息</span>
     <a href="#main-content">链接</a>
   </footer>
 </article></code></pre>
-    </div>
+    </section>
 
     <!-- 使用场景 -->
-    <div class="demo-section">
+    <section class="demo-section">
       <h3>使用场景</h3>
-      <ul>
-        <li>产品展示卡片、文章列表</li>
-        <li>特色内容推荐、专题板块</li>
-        <li>个人简介、作品展示</li>
-        <li>hover 时轻微上浮 + 阴影加深</li>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li style="padding: var(--han-space-2) 0; border-bottom: 1px solid var(--han-color-text-tertiary);">产品展示卡片、文章列表</li>
+        <li style="padding: var(--han-space-2) 0; border-bottom: 1px solid var(--han-color-text-tertiary);">特色内容推荐、专题板块</li>
+        <li style="padding: var(--han-space-2) 0;">个人简介、作品展示</li>
+        <li style="padding: var(--han-space-2) 0;">hover 时轻微上浮 + 阴影加深</li>
       </ul>
-    </div>
+    </section>
   </div>
 
   <!-- 页面导航 -->
@@ -133,22 +291,20 @@
       <li><a href="/landing-page">落地页</a></li>
       <li><a href="/quick-start">快速上手</a></li>
       <li><a href="/theme-showcase">主题展示</a></li>
-      <li><a href="/showcase">完整组件展示</a></li>
+      <li><a href="/showcase">完整组件</a></li>
       <li><a href="/mac-han">Mac · 东方产品志</a></li>
     </ul>
     <hr>
     <h4>组件示例</h4>
     <ul>
       <li><a href="/components/button-seal">印章按钮</a></li>
-      <li><a href="/components/card-scroll">卷轴卡片</a></li>
+      <li><a href="/components/card-scroll" aria-current="page">卷轴卡片</a></li>
       <li><a href="/components/divider-ink">水墨分割线</a></li>
       <li><a href="/components/frame-window">窗花边框</a></li>
       <li><a href="/components/navbar-ink">水墨导航</a></li>
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);});})();</script>
-
-  </main>
+  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);b.focus();})();})();</script>
 </body>
 </html>

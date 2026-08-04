@@ -1,87 +1,213 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="song" data-han-example="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="在现有应用中局部使用 Han scoped CSS 的集成示例。">
-  <title>Han Scoped Integration</title>
+  <title>Han Scoped Integration — 局部集成示例</title>
+  <meta name="description" content="在现有应用中局部使用 Han scoped CSS 的集成示例">
   <link rel="stylesheet" href="../skills/han-design/assets/han-scoped.css">
   <style>
-    body {
-      margin: 0;
-      background: #eef1f5;
-      color: #152033;
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    :root {
+      --mac-ink: var(--han-color-ink-800);
+      --mac-muted: var(--han-color-text-secondary);
+      --mac-paper: var(--han-color-paper-100);
+      --mac-celadon: var(--han-color-celadon);
+      --mac-line: color-mix(in srgb, var(--han-color-ink-300) 40%, transparent);
+      --mac-dark: #1f2828;
     }
 
+    body {
+      background: color-mix(in srgb, var(--han-color-paper-100) 85%, transparent);
+      color: var(--mac-ink);
+      font-family: var(--han-font-song);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: var(--han-container-lg);
+      margin: 0 auto;
+      padding: var(--han-space-8) var(--han-space-6);
+    }
+
+    /* 宿主应用样式 - 保持现代简约风格 */
     .host-shell {
       width: min(calc(100% - 2rem), 980px);
       margin: 0 auto;
-      padding: 3rem 0;
+      padding: var(--han-space-10) 0;
     }
 
     .host-panel {
-      padding: 1.5rem;
-      border: 2px solid #7c8da6;
-      border-radius: 1rem;
+      padding: var(--han-space-6);
+      border: 2px solid var(--han-color-border);
+      border-radius: var(--han-radius-md);
       background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .host-panel h1 {
-      margin: 0 0 .75rem;
-      color: #152033;
+      margin: 0 0 var(--han-space-4) 0;
+      color: var(--mac-ink);
       font-family: inherit;
-      font-size: 1.75rem;
-      letter-spacing: 0;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: var(--han-fw-bold);
+      letter-spacing: 0.02em;
+    }
+
+    .host-panel p {
+      color: var(--mac-muted);
+      font-size: var(--han-fs-md);
+      line-height: var(--han-lh-relaxed);
+      margin: 0 0 var(--han-space-4) 0;
     }
 
     .host-button {
-      margin-top: 1rem;
-      padding: .65rem 1rem;
-      border: 2px solid #315a94;
-      border-radius: .5rem;
+      margin-top: var(--han-space-4);
+      padding: var(--han-space-3) var(--han-space-5);
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-md);
       background: #315a94;
       color: #fff;
       font: inherit;
+      cursor: pointer;
+      transition: all var(--han-duration-normal);
     }
 
+    .host-button:hover {
+      background: #2a4877;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(49, 90, 148, 0.3);
+    }
+
+    /* Han scoped 区域 - 使用 Han 主题样式 */
     .han-zone {
-      margin-top: 2rem;
-      padding: clamp(1.5rem, 5vw, 3rem);
+      margin-top: var(--han-space-12);
+      padding: clamp(2rem, 5vw, 3rem);
       border: 1px solid var(--han-color-border);
       background: var(--han-color-bg);
       color: var(--han-color-text-primary);
+      border-radius: var(--han-radius-xl);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .han-zone .han-tag {
+      position: absolute;
+      top: var(--han-space-3);
+      right: var(--han-space-3);
+      background: var(--han-color-vermilion-500);
+      color: var(--han-color-paper-100);
+      font-size: var(--han-fs-xs);
+      padding: var(--han-space-1) var(--han-space-2);
+      border-radius: var(--han-radius-sm);
+      font-family: var(--han-font-kai);
+      letter-spacing: 0.05em;
     }
 
     .han-zone h2 {
-      margin: 0 0 var(--han-space-4);
+      margin: 0 0 var(--han-space-6) 0;
       color: var(--han-color-text-primary);
       font-family: var(--han-font-song);
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
       letter-spacing: var(--han-ls-wide);
+      line-height: 1.2;
+      text-align: center;
     }
 
     .han-zone p {
-      margin: 0 0 var(--han-space-5);
+      margin: 0 0 var(--han-space-6) 0;
       color: var(--han-color-text-secondary);
       line-height: var(--han-lh-relaxed);
+      text-align: center;
+      font-size: var(--han-fs-md);
+    }
+
+    /* Hero 装饰元素 */
+    .hero-decoration {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 2px solid var(--han-color-vermilion-500);
+      border-radius: 50%;
+      opacity: 0.15;
+      pointer-events: none;
+      top: -100px;
+      right: -100px;
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: var(--han-space-4); }
+      .host-panel, .han-zone { padding: var(--han-space-6); }
     }
   </style>
+  <link rel="stylesheet" href="examples.css">
 </head>
 <body>
-  <main class="host-shell">
-    <section class="host-panel" aria-labelledby="host-title">
-      <h1 id="host-title">宿主应用样式保持不变</h1>
-      <p>这个区域继续使用宿主项目自己的字体、圆角、颜色和按钮。</p>
-      <button class="host-button" type="button">宿主按钮</button>
-    </section>
+  <a class="han-skip-link" href="#main-content">跳到主要内容</a>
 
-    <section class="han-zone" data-theme="song" aria-labelledby="han-title">
-      <span class="han-tag">Scoped Han</span>
-      <h2 id="han-title">只在需要的地方，落一点墨。</h2>
-      <p>Han tokens 和组件可以进入局部区域，而不重置整个应用的基础元素。</p>
-      <button class="han-btn-seal" type="button">局部应用</button>
+  <div class="container">
+    <!-- 宿主应用区域 -->
+    <main class="host-shell" id="main-content">
+      <section class="host-panel" aria-labelledby="host-title">
+        <h1 id="host-title">宿主应用样式保持不变</h1>
+        <p>这个区域继续使用宿主项目自己的字体、圆角、颜色和按钮。Han 的 scoped 模式不会覆盖全局样式。</p>
+        <button class="host-button" type="button">宿主按钮</button>
+      </section>
+
+      <!-- Han Scoped 集成区域 -->
+      <section class="han-zone" data-theme="song" aria-labelledby="han-title">
+        <span class="han-tag han-tag--vermilion">Scoped Han</span>
+        <h2 id="han-title">只在需要的地方，落一点墨。</h2>
+        <p>Han tokens 和组件可以进入局部区域，而不重置整个应用的基础元素。</p>
+        <button type="button" class="han-btn-seal han-btn-seal--lg" style="display: block; margin: 0 auto;">局部应用</button>
+      </section>
+    </main>
+
+    <!-- 使用说明 -->
+    <section class="demo-section" style="margin-top: var(--han-space-12); padding-top: var(--han-space-8); border-top: 1px solid var(--han-color-border);">
+      <h3 style="font-family: var(--han-font-kai); font-size: var(--han-fs-xl); color: var(--han-color-text-primary); margin-bottom: var(--han-space-4); text-align: center;">使用说明</h3>
+      <p style="text-align: center; color: var(--han-color-text-secondary); max-width: var(--han-container-md); margin: 0 auto;">
+        此示例展示如何在现有应用中局部使用 Han scoped CSS。<br>
+        通过引入 <code>han-scoped.css</code> 并设置 <code>data-han-scope</code>（或在容器上使用 Han 类），
+        可以在不影响全局样式的前提下引入 Han 的设计令牌和组件。
+      </p>
     </section>
-  </main>
+  </div>
+
+  <!-- 页面导航 -->
+  <style>
+    .han-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--han-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--han-font-kai,KaiTi,serif)!important;}
+    .han-nav-fab:hover{transform:scale(1.1)!important;}
+    .han-nav-panel{position:fixed!important;right:16px!important;top:72px!important;z-index:99998!important;width:220px!important;max-height:70vh!important;overflow-y:auto!important;background:var(--han-color-paper-100,#faf6ea)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.15)!important;border:1px solid var(--han-color-border,#e0dcd4)!important;padding:16px!important;display:none!important;}
+    .han-nav-panel.is-open{display:block!important;}
+    .han-nav-panel h4{margin:0 0 8px!important;font-family:var(--han-font-kai,KaiTi,serif)!important;font-size:13px!important;color:var(--han-color-ink-700,#2a2824)!important;}
+    .han-nav-panel ul{list-style:none!important;margin:0 0 10px!important;padding:0!important;}
+    .han-nav-panel li{margin:0!important;}
+    .han-nav-panel a{display:block!important;padding:5px 10px!important;border-radius:6px!important;font-size:12px!important;color:var(--han-color-text-secondary,#555)!important;text-decoration:none!important;transition:all .15s!important;}
+    .han-nav-panel a:hover{background:var(--han-color-vermilion-500,#c0392b)!important;color:#fff!important;}
+    .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
+    @media(max-width:768px){.han-nav-panel{width:180px!important;}}
+  </style>
+  <button type="button" class="han-nav-fab" aria-expanded="false" aria-controls="hanNavPanel" aria-label="打开示例导航">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel">
+    <h4>示例页面</h4>
+    <ul>
+      <li><a href="/landing-page">落地页</a></li>
+      <li><a href="/quick-start">快速上手</a></li>
+      <li><a href="/theme-showcase">主题展示</a></li>
+      <li><a href="/showcase">完整组件</a></li>
+      <li><a href="/mac-han">Mac · 东方产品志</a></li>
+    </ul>
+    <hr>
+    <h4>组件示例</h4>
+    <ul>
+      <li><a href="/components/button-seal">印章按钮</a></li>
+      <li><a href="/components/card-scroll">卷轴卡片</a></li>
+      <li><a href="/components/divider-ink">水墨分割线</a></li>
+      <li><a href="/components/frame-window">窗花边框</a></li>
+      <li><a href="/components/navbar-ink">水墨导航</a></li>
+      <li><a href="/components/stamp">印章</a></li>
+    </ul>
+  </div>
+  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);b.focus();})();})();</script>
 </body>
 </html>

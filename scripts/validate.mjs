@@ -54,7 +54,9 @@ const requiredFiles = [
   "skills/han-design/assets/accessibility-scoped.css",
   "skills/han-design/assets/utilities.css",
   "skills/han-design/assets/accessibility.css",
+  "skills/han-design/assets/palettes.css",
   "skills/han-design/references/design-guide.md",
+  "skills/han-design/references/contemporary-palettes.md",
   "skills/han-design/references/component-catalog.md",
   "skills/han-design/references/cultural-methodology.md",
   "skills/han-design/references/dynasty-contexts.md",
@@ -282,7 +284,10 @@ function contrastRatio(foreground, background) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-const themeSource = read("skills/han-design/assets/themes.css").replace(/\/\*[\s\S]*?\*\//g, "");
+const themeSource = ["themes.css", "palettes.css"]
+  .map((file) => read("skills/han-design/assets/" + file))
+  .join("\n")
+  .replace(/\/\*[\s\S]*?\*\//g, "");
 const themeMatches = [...themeSource.matchAll(/\[data-theme=['"]([^'"]+)['"]\]\s*\{([\s\S]*?)\n\}/g)];
 const expectedThemes = [
   "ink",
@@ -301,6 +306,12 @@ const expectedThemes = [
   "yuan",
   "ming",
   "qing",
+  "pine-wheat",
+  "plum-blush",
+  "ocean-orchid",
+  "caramel-cream",
+  "mint-lavender",
+  "berry-butter",
 ];
 const parsedThemes = new Map(themeMatches.map((match) => [match[1], match[2]]));
 
@@ -400,6 +411,7 @@ const expectedImports = [
   "utilities.css",
   "accessibility.css",
   "themes.css",
+  "palettes.css",
   "icons.css",
   "patterns.css",
   "typography.css",

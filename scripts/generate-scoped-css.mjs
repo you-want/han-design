@@ -25,7 +25,9 @@ function scopeDataSelectors(source) {
 
 export function buildScopedCss() {
   const tokens = scopeDataSelectors(read("tokens.css")).replace(/^:root\s*\{/m, "[data-han-scope] {");
-  const themes = scopeDataSelectors(read("themes.css"));
+  const themes = ["themes.css", "palettes.css"]
+    .map((name) => scopeDataSelectors(read(name)))
+    .join("\n\n");
   const accessibility = read("accessibility.css").replaceAll(
     ":where([data-theme])",
     ":where([data-han-scope])",
