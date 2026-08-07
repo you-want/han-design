@@ -1,488 +1,384 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="song" data-han-static-reference="true" data-han-example="true">
+<html lang="zh-CN" data-theme="tang">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>快速上手 · 汉 — 设计系统</title>
-  <meta name="description" content="汉（Han）设计系统快速上手指南 — 5 分钟了解如何使用 Han 构建具有东方美学的网页界面。">
-  <link rel="stylesheet" href="../skills/han-design/assets/han.css">
-  <style>
-    /* 页面样式 */
-    body {
-      background: var(--han-color-bg);
-      color: var(--han-color-text-primary);
-      font-family: var(--han-font-song);
-      line-height: var(--han-lh-relaxed);
-    }
+  <title>快速上手测试 · 汉</title>
+  <meta name="description" content="按照 README 快速开始方式，测试汉的使用流程">
 
-    .container {
+  <!-- 第 1 步：引入 CSS（模拟新用户使用） -->
+  <link rel="stylesheet" href="../skills/han-design/assets/fonts.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/tokens.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/base.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/themes.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/icons.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/patterns.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/typography.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/components.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/iconic.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/structure.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/enhanced.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/motion.css">
+
+  <style>
+    /* 页面布局 */
+    .demo {
       max-width: var(--han-container-lg);
       margin: 0 auto;
       padding: var(--han-space-6);
     }
 
-    /* 导航 */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: color-mix(in srgb, var(--han-color-paper-100) 90%, transparent);
-      backdrop-filter: blur(8px) saturate(1.1);
-      -webkit-backdrop-filter: blur(8px) saturate(1.1);
-      border-bottom: 1px solid var(--han-color-border);
-    }
-
-    .navbar-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--han-space-4) 0;
-    }
-
-    .brand {
+    .demo__title {
       font-family: var(--han-font-kai);
-      font-size: var(--han-fs-xl);
-      font-weight: var(--han-fw-medium);
+      font-size: var(--han-fs-3xl);
       color: var(--han-color-text-primary);
-      text-decoration: none;
+      text-align: center;
+      margin-bottom: var(--han-space-2);
+    }
+
+    .demo__desc {
+      text-align: center;
+      color: var(--han-color-text-tertiary);
+      font-size: var(--han-fs-sm);
+      margin-bottom: var(--han-space-8);
+    }
+
+    /* 主题切换栏 */
+    .theme-bar {
       display: flex;
-      align-items: center;
       gap: var(--han-space-2);
-    }
-
-    .brand span {
-      color: var(--han-color-vermilion-500);
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: var(--han-space-6);
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-item a {
-      color: var(--han-color-text-secondary);
-      text-decoration: none;
-      font-size: var(--han-fs-sm);
-      transition: color var(--han-duration-normal);
-      position: relative;
-      padding: var(--han-space-1) 0;
-    }
-
-    .nav-item a:hover,
-    .nav-item a:focus-visible {
-      color: var(--han-color-accent-text);
-    }
-
-    .nav-item a::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
-      transition: width var(--han-duration-normal);
-    }
-
-    .nav-item a:hover::after { width: 100%; }
-
-    /* Hero */
-    .hero {
-      min-height: 60vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: var(--han-space-10) 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.03;
-      background:
-        radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--han-color-vermilion-500) 20%, transparent), transparent 30%),
-        radial-gradient(circle at 70% 70%, color-mix(in srgb, var(--han-color-celadon) 15%, transparent), transparent 30%);
-      background-size: 300px 300px, 200px 200px;
-    }
-
-    .hero h1 {
-      font-family: var(--han-font-song);
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: var(--han-fw-bold);
-      letter-spacing: 0.05em;
-      margin: 0 0 var(--han-space-4) 0;
-      color: var(--han-color-text-primary);
-    }
-
-    .hero kpm {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-md);
-      color: var(--han-color-vermilion-500);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      margin-bottom: var(--han-space-6);
-      display: inline-block;
-    }
-
-    .hero p {
-      font-size: var(--han-fs-lg);
-      color: var(--han-color-text-secondary);
-      max-width: var(--han-container-md);
-      margin: 0 auto var(--han-space-8) 0;
-    }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      gap: var(--han-space-4);
       flex-wrap: wrap;
-      margin-top: var(--han-space-6);
-    }
-
-    /* 步骤卡片 */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--han-space-8);
-      margin: var(--han-space-12) 0;
-    }
-
-    .step-card {
-      background: var(--han-color-paper-100);
-      border: 1px solid var(--han-color-border);
-      border-radius: 0;
-      padding: var(--han-space-6);
-      transition: all var(--han-duration-normal);
-      position: relative;
-    }
-
-    .step-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      border-color: var(--han-color-celadon);
-    }
-
-    .step-number {
-      display: inline-flex;
-      align-items: center;
       justify-content: center;
-      width: 2.5rem;
-      height: 2.5rem;
-      background: var(--han-color-vermilion-500);
-      color: var(--han-color-paper-100);
-      border-radius: 50%;
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-lg);
-      font-weight: var(--han-fw-bold);
-      margin-bottom: var(--han-space-4);
-    }
-
-    .step-card h3 {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-xl);
-      margin: 0 0 var(--han-space-3) 0;
-      color: var(--han-color-text-primary);
-    }
-
-    .step-card p {
-      color: var(--han-color-text-secondary);
-      font-size: var(--han-fs-sm);
-      line-height: var(--han-lh-normal);
-      margin: 0 0 var(--han-space-4) 0;
-    }
-
-    .step-code {
-      background: var(--han-color-ink-900);
-      color: var(--han-color-paper-200);
-      padding: var(--han-space-3);
-      border-radius: var(--han-radius-md);
-      font-family: var(--han-font-mono, monospace);
-      font-size: var(--han-fs-xs);
-      overflow-x: auto;
-      margin-bottom: var(--han-space-3);
-    }
-
-    /* 主题选择器 */
-    .theme-selector {
-      background: var(--han-color-bg-surface);
-      border: 1px solid var(--han-color-border);
+      padding: var(--han-space-4);
+      background: var(--han-color-bg-alt);
       border-radius: var(--han-radius-lg);
-      padding: var(--han-space-6);
-      margin-top: var(--han-space-8);
-    }
-
-    .theme-title {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-xl);
-      margin-bottom: var(--han-space-4);
-      text-align: center;
-    }
-
-    .theme-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: var(--han-space-3);
+      margin-bottom: var(--han-space-8);
     }
 
     .theme-chip {
-      background: var(--han-color-bg-elevated);
-      border: 1px solid var(--han-color-border);
-      border-radius: var(--han-radius-md);
-      padding: var(--han-space-3);
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--han-duration-normal);
       font-family: var(--han-font-kai);
       font-size: var(--han-fs-sm);
+      padding: var(--han-space-2) var(--han-space-4);
+      border-radius: var(--han-radius-md);
+      cursor: pointer;
+      border: 1px solid var(--han-color-border);
+      background: var(--han-color-surface);
       color: var(--han-color-text-secondary);
+      transition: all var(--han-duration-fast) var(--han-ease-out);
     }
 
     .theme-chip:hover {
       border-color: var(--han-color-vermilion-400);
       color: var(--han-color-accent-text);
-      transform: translateY(-2px);
     }
 
-    .theme-chip.active {
+    .theme-chip.is-active {
       background: var(--han-color-vermilion-500);
       color: var(--han-color-paper-100);
-      border-color: var(--han-color-vermilion-600);
+      border-color: var(--han-color-accent-control);
     }
 
-    /* 组件展示 */
-    .component-demo {
-      background: var(--han-color-bg);
-      padding: var(--han-space-8) 0;
+    /* 组件展示区 */
+    .section {
+      margin-bottom: var(--han-space-10);
     }
 
-    .demo-section {
-      max-width: var(--han-container-lg);
-      margin: 0 auto;
-    }
-
-    .demo-title {
+    .section__title {
       font-family: var(--han-font-kai);
-      font-size: var(--han-fs-2xl);
-      margin-bottom: var(--han-space-6);
-      text-align: center;
-      position: relative;
-      padding-bottom: var(--han-space-3);
+      font-size: var(--han-fs-xl);
+      color: var(--han-color-text-primary);
+      margin-bottom: var(--han-space-4);
+      padding-bottom: var(--han-space-2);
+      border-bottom: 2px solid var(--han-color-border);
     }
 
-    .demo-title::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 4rem;
-      height: 2px;
-      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
-    }
-
-    .demo-grid {
+    /* 颜色卡片 */
+    .color-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--han-space-6);
-      margin-top: var(--han-space-6);
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: var(--han-space-3);
     }
 
-    .demo-item {
-      background: var(--han-color-paper-100);
-      border: 1px solid var(--han-color-border);
-      padding: var(--han-space-4);
-      text-align: center;
-    }
-
-    .demo-item h4 {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-sm);
-      margin: 0 0 var(--han-space-3) 0;
-      color: var(--han-color-text-secondary);
-      letter-spacing: 0.05em;
-    }
-
-    /* 页脚 */
-    .footer {
-      background: var(--han-color-bg-dark);
-      color: var(--han-color-paper-300);
-      padding: var(--han-space-8) 0 var(--han-space-6);
-      text-align: center;
-      font-size: var(--han-fs-xs);
-    }
-
-    .footer p {
-      margin: 0;
-      font-family: var(--han-font-sans);
-    }
-
-    /* 响应式 */
-    @media (max-width: 768px) {
-      .nav-menu { display: none; }
-      .hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
-      .theme-grid { grid-template-columns: repeat(2, 1fr); }
-      .demo-grid { grid-template-columns: 1fr; }
-    }
-
-    /* 隐藏元素用于 ARIA */
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
+    .color-swatch {
+      border-radius: var(--han-radius-md);
       overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+      border: 1px solid var(--han-color-border);
     }
+
+    .color-swatch__block {
+      height: 60px;
+    }
+
+    .color-swatch__info {
+      padding: var(--han-space-2);
+      font-size: var(--han-fs-xs);
+      background: var(--han-color-surface);
+    }
+
+    .color-swatch__name {
+      color: var(--han-color-text-primary);
+      font-weight: var(--han-fw-medium);
+    }
+
+    .color-swatch__token {
+      color: var(--han-color-text-tertiary);
+      font-family: monospace;
+    }
+
+    /* 组件行 */
+    .component-row {
+      display: flex;
+      gap: var(--han-space-4);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* 代码块 */
+    .code-block {
+      background: var(--han-color-ink-900);
+      color: var(--han-color-paper-200);
+      padding: var(--han-space-4);
+      border-radius: var(--han-radius-md);
+      font-family: monospace;
+      font-size: var(--han-fs-sm);
+      line-height: var(--han-lh-relaxed);
+      overflow-x: auto;
+      margin-top: var(--han-space-3);
+    }
+
+    .code-block .token { color: #c68a2e; }
+    .code-block .tag { color: #5fb3d4; }
+    .code-block .attr { color: #c39b6e; }
   </style>
-  <link rel="stylesheet" href="examples.css">
 </head>
 <body>
-  <!-- 顶部导航 -->
-  <nav class="han-navbar navbar" aria-label="主导航">
-    <div class="container navbar-inner">
-      <a href="#top" class="brand">
-        <span>汉</span><small>快速上手</small>
-      </a>
-      <ul class="nav-menu">
-        <li class="nav-item"><a href="#intro">简介</a></li>
-        <li class="nav-item"><a href="#install">安装</a></li>
-        <li class="nav-item"><a href="#theme">主题</a></li>
-        <li class="nav-item"><a href="#components">组件</a></li>
+
+  <!-- 水墨导航 -->
+  <nav class="han-navbar">
+    <div class="han-navbar__inner">
+      <div class="han-navbar__brand">汉<span>之</span></div>
+      <ul class="han-navbar__menu">
+        <li class="han-navbar__item han-navbar__item--active">快速上手</li>
+        <li class="han-navbar__item">色彩</li>
+        <li class="han-navbar__item">字体</li>
+        <li class="han-navbar__item">组件</li>
+        <li class="han-navbar__item">主题</li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero 区域 -->
-  <section class="hero" id="hero">
-    <div class="container">
-      <p>kpm</p>
-      <h1>快速上手汉设计系统</h1>
-      <p>5 分钟开始构建具有东方美学的网页界面 — 汲取千年中华文化的当代视觉语言</p>
-      <div class="hero-actions">
-        <a href="#install" class="han-btn-seal han-btn-seal--lg">开始使用</a>
-        <a href="#components" class="han-btn han-btn--ghost">查看组件</a>
-      </div>
+  <main class="han-section demo">
+    <h1 class="demo__title">汉 · 快速上手测试</h1>
+    <p class="demo__desc">按照 README 使用方式引入 CSS，测试设计令牌与组件是否正常工作</p>
+
+    <!-- 主题切换 -->
+    <div class="theme-bar" id="themeBar">
+      <button type="button" class="theme-chip is-active" data-theme="tang">唐 · 雍容</button>
+      <button type="button" class="theme-chip" data-theme="song">宋 · 清雅</button>
+      <button type="button" class="theme-chip" data-theme="qinhan">汉 · 雄浑</button>
+      <button type="button" class="theme-chip" data-theme="ink">水墨</button>
+      <button type="button" class="theme-chip" data-theme="porcelain">青花瓷</button>
+      <button type="button" class="theme-chip" data-theme="dunhuang">敦煌</button>
     </div>
-  </section>
 
-  <!-- 主要内容 -->
-  <main class="container">
-    <!-- 简介 -->
-    <section class="demo-section" id="intro">
-      <h2 class="demo-title">为什么选择 Han</h2>
-      <p style="text-align: center; color: var(--han-color-text-secondary); font-size: var(--han-fs-lg); max-width: var(--han-container-md); margin: 0 auto var(--han-space-8) 0;">
-        Han 是一个汲取千年中华文化的设计系统，以现代 CSS 变量（设计令牌）为核心，
-        提供朱红印章、水墨笔触、宣纸质感、书法章法等东方美学视觉元素，
-        让传统美学在网页上优雅绽放。
-      </p>
+    <!-- 1. 色彩令牌测试 -->
+    <section class="section">
+      <h2 class="section__title">① 色彩令牌</h2>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--han-color-vermilion-500);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">朱红 500</div>
+            <div class="color-swatch__token">--han-color-vermilion-500</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--han-color-indigo-500);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">靛蓝 500</div>
+            <div class="color-swatch__token">--han-color-indigo-500</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--han-color-gold-500);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">金色 500</div>
+            <div class="color-swatch__token">--han-color-gold-500</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--han-color-ink-700);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">浓墨 700</div>
+            <div class="color-swatch__token">--han-color-ink-700</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch__block" style="background: var(--han-color-paper-100); border-bottom: 1px solid var(--han-color-border);"></div>
+          <div class="color-swatch__info">
+            <div class="color-swatch__name">宣纸 100</div>
+            <div class="color-swatch__token">--han-color-paper-100</div>
+          </div>
+        </div>
+      </div>
+      <div class="code-block"><span class="token">/* 使用示例 */</span>
+<span class="tag">.title</span> {
+  <span class="attr">color</span>: <span class="token">var(--han-color-vermilion-500)</span>;
+  <span class="attr">background</span>: <span class="token">var(--han-color-paper-100)</span>;
+}</div>
     </section>
 
-    <!-- 快速安装步骤 -->
-    <section class="demo-section" id="install">
-      <h2 class="demo-title">三步开始使用</h2>
-      <div class="steps-grid">
-        <article class="step-card">
-          <div class="step-number">01</div>
-          <h3>引入 CSS</h3>
-          <p>在项目中引入 Han 的核心样式文件</p>
-          <div class="step-code">&lt;link rel="stylesheet" href="/han/han.css"&gt;</div>
-          <p class="step-desc">完整的 Han 样式，包含全部基础样式、组件和装饰</p>
-        </article>
-
-        <article class="step-card">
-          <div class="step-number">02</div>
-          <h3>设置主题</h3>
-          <p>在 html 标签上指定主题</p>
-          <div class="step-code">&lt;html data-theme="song"&gt;</div>
-          <p class="step-desc">支持多种主题：song、tang、qing、wen 等</p>
-        </article>
-
-        <article class="step-card">
-          <div class="step-number">03</div>
-          <h3>使用组件</h3>
-          <p>直接使用 Han 的组件类</p>
-          <div class="step-code">&lt;button class="han-btn-seal"&gt;确认&lt;/button&gt;</div>
-          <p class="step-desc">印章按钮、卷轴卡片、水墨导航等开箱即用</p>
-        </article>
+    <!-- 2. 字体令牌测试 -->
+    <section class="section">
+      <h2 class="section__title">② 字体排版</h2>
+      <div style="display:flex; flex-direction:column; gap:var(--han-space-3);">
+        <div style="font-family: var(--han-font-kai); font-size: var(--han-fs-2xl); color: var(--han-color-text-primary); font-weight: bold;">楷体标题 — 笔走龙蛇</div>
+        <div style="font-family: var(--han-font-song); font-size: var(--han-fs-md); color: var(--han-color-text-secondary);">宋体正文 — 横平竖直，结构端庄</div>
+        <div style="font-family: var(--han-font-sans); font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary);">Sans 界面文字 — 现代简洁</div>
       </div>
     </section>
 
-    <!-- 主题选择 -->
-    <section class="theme-selector">
-      <h3 class="theme-title">选择你的主题</h3>
-      <p style="text-align: center; color: var(--han-color-text-secondary); margin-bottom: var(--han-space-4);">点击切换不同主题风格</p>
-      <div class="theme-grid">
-        <div class="theme-chip active" data-theme="song">宋 · 清雅</div>
-        <div class="theme-chip" data-theme="tang">唐 · 华美</div>
-        <div class="theme-chip" data-theme="wen">文 · 简约</div>
-        <div class="theme-chip" data-theme="ink">墨 · 素雅</div>
-        <div class="theme-chip" data-theme="celadon">瓷 · 青绿</div>
-        <div class="theme-chip" data-theme="gold">金 · 尊贵</div>
-      </div>
-    </section>
-
-    <!-- 核心组件展示 -->
-    <section class="component-demo" id="components">
-      <div class="demo-section">
-        <h2 class="demo-title">核心组件</h2>
-        <div class="demo-grid">
-          <div class="demo-item">
-            <h4>印章按钮</h4>
-            <button type="button" class="han-btn-seal han-btn-seal--sm">确认</button>
-          </div>
-          <div class="demo-item">
-            <h4>印章</h4>
-            <div class="han-stamp han-stamp--sm">汉</div>
-          </div>
-          <div class="demo-item">
-            <h4>卷轴卡片</h4>
-            <article class="han-card-scroll" style="max-width: 200px; margin: 0 auto;">
-              <header>标题</header>
-              <p style="font-size: var(--han-fs-xs);">内容</p>
-            </article>
-          </div>
-          <div class="demo-item">
-            <h4>水墨导航</h4>
-            <nav class="han-navbar" style="font-size: var(--han-fs-sm);">
-              <a class="han-navbar__brand">汉<span>设</span></a>
-              <span class="han-divider-ink" style="margin: 0 var(--han-space-3);"></span>
-              <a href="#hero">首页</a>
-            </nav>
-          </div>
+    <!-- 3. 间距令牌测试 -->
+    <section class="section">
+      <h2 class="section__title">③ 间距令牌</h2>
+      <div style="display:flex; gap:var(--han-space-2); align-items:flex-end;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--han-space-1);">
+          <div style="width:var(--han-space-2); height:var(--han-space-2); background:var(--han-color-vermilion-500); border-radius:var(--han-radius-sm);"></div>
+          <span style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">space-2</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--han-space-1);">
+          <div style="width:var(--han-space-4); height:var(--han-space-4); background:var(--han-color-vermilion-400); border-radius:var(--han-radius-sm);"></div>
+          <span style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">space-4</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--han-space-1);">
+          <div style="width:var(--han-space-6); height:var(--han-space-6); background:var(--han-color-vermilion-300); border-radius:var(--han-radius-sm);"></div>
+          <span style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">space-6</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:var(--han-space-1);">
+          <div style="width:var(--han-space-8); height:var(--han-space-8); background:var(--han-color-vermilion-200); border-radius:var(--han-radius-sm);"></div>
+          <span style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">space-8</span>
         </div>
       </div>
     </section>
 
-    <!-- 设计令牌 -->
-    <section class="demo-section" style="margin-top: var(--han-space-12);">
-      <h2 class="demo-title">设计令牌系统</h2>
-      <div class="color-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: var(--han-space-4); margin-top: var(--han-space-6);">
-        <div style="background: var(--han-color-vermilion-500); height: 80px; border-radius: var(--han-radius-sm);"></div>
-        <div style="background: var(--han-color-indigo-500); height: 80px; border-radius: var(--han-radius-sm);"></div>
-        <div style="background: var(--han-color-gold-500); height: 80px; border-radius: var(--han-radius-sm);"></div>
-        <div style="background: var(--han-color-ink-700); height: 80px; border-radius: var(--han-radius-sm);"></div>
-        <div style="background: var(--han-color-paper-100); height: 80px; border: 1px solid var(--han-color-border); border-radius: var(--han-radius-sm);"></div>
+    <!-- 4. 组件测试 -->
+    <section class="section">
+      <h2 class="section__title">④ 组件使用</h2>
+
+      <!-- 印章按钮 -->
+      <div style="margin-bottom: var(--han-space-5);">
+        <h4 style="margin-bottom: var(--han-space-2);">印章按钮 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-btn-seal</code></h4>
+        <div class="component-row">
+          <button type="button" class="han-btn-seal han-btn-seal--sm">小印章</button>
+          <button type="button" class="han-btn-seal">中印章</button>
+          <button type="button" class="han-btn-seal han-btn-seal--lg han-animate-seal-drop">大印章</button>
+        </div>
       </div>
-      <p style="text-align: center; margin-top: var(--han-space-4); color: var(--han-color-text-tertiary); font-size: var(--han-fs-xs);">五大主色：朱红、靛蓝、金色、墨色、宣纸白</p>
+
+      <!-- 印章组件 -->
+      <div style="margin-bottom: var(--han-space-5);">
+        <h4 style="margin-bottom: var(--han-space-2);">印章 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-stamp</code></h4>
+        <div class="component-row">
+          <div class="han-stamp han-stamp--sm">汉</div>
+          <div class="han-stamp">印</div>
+          <div class="han-stamp han-stamp--lg">之印</div>
+        </div>
+      </div>
+
+      <!-- 卷轴卡片 -->
+      <div style="margin-bottom: var(--han-space-5);">
+        <h4 style="margin-bottom: var(--han-space-2);">卷轴卡片 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-card-scroll</code></h4>
+        <article class="han-card-scroll">
+          <span class="han-rivet han-rivet--tl"></span>
+          <span class="han-rivet han-rivet--tr"></span>
+          <span class="han-rivet han-rivet--bl"></span>
+          <span class="han-rivet han-rivet--br"></span>
+          <header class="han-card-scroll__header">测试卡片</header>
+          <div class="han-card-scroll__body">
+            <p>这是一个测试卡片，验证卷轴卡片组件是否正常渲染。</p>
+          </div>
+          <footer class="han-card-scroll__footer">
+            <span>测试通过 ✓</span>
+            <a href="#main-content">查看 →</a>
+          </footer>
+        </article>
+      </div>
+
+      <!-- 标签 -->
+      <div style="margin-bottom: var(--han-space-5);">
+        <h4 style="margin-bottom: var(--han-space-2);">标签 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-tag</code></h4>
+        <div class="component-row">
+          <span class="han-tag">默认标签</span>
+          <span class="han-tag han-tag--vermilion">朱红标签</span>
+          <span class="han-tag han-tag--gold">金色标签</span>
+        </div>
+      </div>
+
+      <!-- 窗花边框 -->
+      <div>
+        <h4 style="margin-bottom: var(--han-space-2);">窗花边框 <code style="font-size:var(--han-fs-xs); color:var(--han-color-text-tertiary);">.han-frame-window</code></h4>
+        <div class="han-frame-window han-frame-window--gold" style="padding: var(--han-space-6); max-width: 400px;">
+          <span class="han-corner-tr"></span>
+          <span class="han-corner-bl"></span>
+          <p style="font-family: var(--han-font-kai); font-size: var(--han-fs-xl); text-align: center; color: var(--han-color-text-primary);">窗花边框测试</p>
+          <p style="text-align: center; font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary);">验证四角装饰是否正常渲染</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 代码示例 -->
+    <section class="section">
+      <h2 class="section__title">⑤ 引入方式</h2>
+      <div class="code-block"><span class="token">&lt;!-- 复制 assets 后引入完整入口 --&gt;</span>
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"/han/fonts.css"</span>&gt;
+&lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="token">"stylesheet"</span> <span class="attr">href</span>=<span class="token">"/han/han.css"</span>&gt;</div>
     </section>
   </main>
 
-  <!-- 页脚 -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 Han Design System | 基于 Han Skill 构建</p>
-      <p style="margin-top: var(--han-space-2); font-family: var(--han-font-kai); letter-spacing: 0.2em;">东方美学 · 当代诠释</p>
+  <!-- 水墨分割线 -->
+  <div class="han-container">
+    <div style="position:relative; margin: var(--han-space-6) 0;">
+      <div style="position:absolute; top:50%; left:0; right:0; height:2px;
+        background: linear-gradient(90deg, transparent 5%, var(--han-color-ink-400) 20%, var(--han-color-ink-400) 80%, transparent 95%);
+        transform: translateY(-50%); filter: blur(0.5px);"></div>
+      <div style="display:flex; justify-content:center; position:relative;">
+        <div class="han-stamp han-stamp--sm">汉</div>
+      </div>
     </div>
+  </div>
+
+  <footer style="text-align:center; padding: var(--han-space-8); color: var(--han-color-text-tertiary); font-size: var(--han-fs-sm);">
+    © 2026 汉 · 快速上手测试
   </footer>
+
+  <script>
+    // 主题切换
+    const themeBar = document.getElementById('themeBar');
+    const html = document.documentElement;
+
+    themeBar.addEventListener('click', (e) => {
+      const chip = e.target.closest('.theme-chip');
+      if (!chip) return;
+
+      // 更新选中状态
+      themeBar.querySelectorAll('.theme-chip').forEach(c => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+
+      // 切换主题
+      const theme = chip.dataset.theme;
+      html.setAttribute('data-theme', theme);
+    });
+
+    // 印章按钮点击动画
+    document.querySelectorAll('.han-btn-seal').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.remove('han-animate-seal-drop');
+        void btn.offsetWidth;
+        btn.classList.add('han-animate-seal-drop');
+      });
+    });
+  </script>
+
 
   <!-- 页面导航 -->
   <style>
@@ -498,15 +394,26 @@
     .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
     @media(max-width:768px){.han-nav-panel{width:180px!important;}}
   </style>
-  <button type="button" class="han-nav-fab" aria-expanded="false" aria-controls="hanNavPanel" aria-label="打开示例导航">☰</button>
+  <button type="button" class="han-nav-fab" aria-expanded="false" aria-controls="hanNavPanel" aria-label="打开示例页面导航">☰</button>
   <div class="han-nav-panel" id="hanNavPanel">
     <h4>示例页面</h4>
     <ul>
       <li><a href="/landing-page">落地页</a></li>
-      <li><a href="/quick-start" aria-current="page">快速上手</a></li>
+      <li><a href="/quick-start">快速上手</a></li>
       <li><a href="/theme-showcase">主题展示</a></li>
-      <li><a href="/showcase">完整组件</a></li>
-      <li><a href="/mac-han">Mac 东方产品志</a></li>
+      <li><a href="/showcase">完整组件展示</a></li>
+      <li><a href="/mac-han">Mac · 东方产品志</a></li>
+      <li><a href="/contemporary-themes">当代配色主题</a></li>
+    </ul>
+    <hr>
+    <h4>当代主题示例</h4>
+    <ul>
+      <li><a href="/pine-wheat-tea">松麦 · 山间茶事</a></li>
+      <li><a href="/plum-blush-beauty">藤紫 · 花间堂</a></li>
+      <li><a href="/ocean-orchid-ai">海兰 · 澄见 AI</a></li>
+      <li><a href="/caramel-cream-coffee">焦糖 · 焦糖烘焙</a></li>
+      <li><a href="/mint-lavender-yoga">薄荷 · 薄荷空间</a></li>
+      <li><a href="/berry-butter-dessert">莓果 · 莓果季</a></li>
     </ul>
     <hr>
     <h4>组件示例</h4>
@@ -519,39 +426,27 @@
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);b.focus();})();})();</script>
-
   <script>
-    // 主题切换
-    const themeChips = document.querySelectorAll('.theme-chip');
-    themeChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        themeChips.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-        document.documentElement.setAttribute('data-theme', chip.dataset.theme);
-      });
+    const pageNavButton = document.querySelector('.han-nav-fab');
+    const pageNavPanel = document.getElementById('hanNavPanel');
+    const setPageNavOpen = (open) => {
+      pageNavPanel.classList.toggle('is-open', open);
+      pageNavButton.setAttribute('aria-expanded', String(open));
+      pageNavButton.setAttribute('aria-label', open ? '关闭示例页面导航' : '打开示例页面导航');
+    };
+    pageNavButton.addEventListener('click', () => {
+      setPageNavOpen(pageNavButton.getAttribute('aria-expanded') !== 'true');
     });
-
-    // 平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
+    document.addEventListener('click', (event) => {
+      if (!pageNavPanel.contains(event.target) && event.target !== pageNavButton) setPageNavOpen(false);
     });
-
-    // 导航滚动效果
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        nav.style.background = 'color-mix(in srgb, var(--han-color-paper-100) 95%, transparent)';
-      } else {
-        nav.style.background = 'color-mix(in srgb, var(--han-color-paper-100) 90%, transparent)';
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setPageNavOpen(false);
+        pageNavButton.focus();
       }
     });
   </script>
+
 </body>
 </html>

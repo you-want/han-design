@@ -58,6 +58,62 @@
       "destination": "/examples/mac-han"
     },
     {
+      "source": "/contemporary-themes",
+      "destination": "/examples/contemporary-themes"
+    },
+    {
+      "source": "/contemporary-themes.html",
+      "destination": "/examples/contemporary-themes"
+    },
+    {
+      "source": "/pine-wheat-tea",
+      "destination": "/examples/pine-wheat-tea"
+    },
+    {
+      "source": "/pine-wheat-tea.html",
+      "destination": "/examples/pine-wheat-tea"
+    },
+    {
+      "source": "/plum-blush-beauty",
+      "destination": "/examples/plum-blush-beauty"
+    },
+    {
+      "source": "/plum-blush-beauty.html",
+      "destination": "/examples/plum-blush-beauty"
+    },
+    {
+      "source": "/ocean-orchid-ai",
+      "destination": "/examples/ocean-orchid-ai"
+    },
+    {
+      "source": "/ocean-orchid-ai.html",
+      "destination": "/examples/ocean-orchid-ai"
+    },
+    {
+      "source": "/caramel-cream-coffee",
+      "destination": "/examples/caramel-cream-coffee"
+    },
+    {
+      "source": "/caramel-cream-coffee.html",
+      "destination": "/examples/caramel-cream-coffee"
+    },
+    {
+      "source": "/mint-lavender-yoga",
+      "destination": "/examples/mint-lavender-yoga"
+    },
+    {
+      "source": "/mint-lavender-yoga.html",
+      "destination": "/examples/mint-lavender-yoga"
+    },
+    {
+      "source": "/berry-butter-dessert",
+      "destination": "/examples/berry-butter-dessert"
+    },
+    {
+      "source": "/berry-butter-dessert.html",
+      "destination": "/examples/berry-butter-dessert"
+    },
+    {
       "source": "/components/:path*",
       "destination": "/examples/components/:path*"
     }

@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="pine-wheat" data-han-static-reference="true" data-han-example="true">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>当代配色主题 · 汉</title>
+  <link rel="stylesheet" href="../skills/han-design/assets/fonts.css">
+  <link rel="stylesheet" href="../skills/han-design/assets/han.css">
+  <style>
+    * { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+    body {
+      min-width: 320px;
+      color: var(--han-color-text-primary);
+      background: var(--han-color-bg);
+      font-family: var(--han-font-song);
+    }
+
+    .page-shell { overflow: clip; }
+
+    .container {
+      width: min(calc(100% - 48px), 1180px);
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .site-header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--han-color-border);
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--han-space-5);
+      min-height: 52px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--han-color-text-primary);
+      font-family: var(--han-font-kai);
+      font-size: 20px;
+      font-weight: var(--han-fw-bold);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      background: var(--han-color-accent-control);
+      color: var(--han-color-on-accent);
+      border-radius: var(--han-radius-md);
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--han-color-text-secondary);
+      font-size: var(--han-fs-sm);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--han-color-accent-text); }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-pill);
+      color: var(--han-color-accent-text);
+      font-size: var(--han-fs-sm);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--han-font-kai);
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: var(--han-fw-bold);
+      letter-spacing: var(--han-ls-wider);
+      color: var(--han-color-text-primary);
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-text-secondary);
+      max-width: 640px;
+      margin: 0 auto 32px;
+      line-height: var(--han-lh-relaxed);
+    }
+
+    /* Theme Switcher */
+    .theme-switcher-section {
+      padding: 32px 0;
+      border-top: 1px solid var(--han-color-border);
+      border-bottom: 1px solid var(--han-color-border);
+      background: var(--han-color-bg-surface);
+    }
+
+    .theme-switcher-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .theme-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-lg);
+      background: var(--han-color-bg);
+      color: var(--han-color-text-secondary);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-base);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--han-color-accent-control);
+      color: var(--han-color-text-primary);
+    }
+
+    .theme-btn.active {
+      background: var(--han-color-accent-control);
+      color: var(--han-color-on-accent);
+      border-color: var(--han-color-accent-control);
+    }
+
+    .theme-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--han-color-border);
+    }
+
+    .theme-info-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding: 16px 24px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-label {
+      color: var(--han-color-text-tertiary);
+      font-size: var(--han-fs-sm);
+    }
+
+    .info-value {
+      color: var(--han-color-text-primary);
+      font-size: var(--han-fs-sm);
+      font-weight: var(--han-fw-medium);
+    }
+
+    /* Palette Display */
+    .palette-section {
+      padding: 60px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-3xl);
+      color: var(--han-color-text-primary);
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      color: var(--han-color-text-secondary);
+      font-size: var(--han-fs-base);
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+    }
+
+    .palette-card {
+      text-align: center;
+    }
+
+    .palette-color {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--han-radius-lg);
+      border: 1px solid var(--han-color-border);
+      margin-bottom: 12px;
+    }
+
+    .palette-name {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .palette-value {
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-tertiary);
+      font-family: monospace;
+    }
+
+    /* Usage Guide */
+    .usage-section {
+      padding: 60px 0;
+      background: var(--han-color-bg-surface);
+      border-top: 1px solid var(--han-color-border);
+      border-bottom: 1px solid var(--han-color-border);
+    }
+
+    .usage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .usage-card {
+      padding: 32px;
+      background: var(--han-color-bg);
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-xl);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .usage-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px var(--han-color-shadow);
+    }
+
+    .usage-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      background: var(--han-color-accent-decorative);
+      border-radius: var(--han-radius-lg);
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    .usage-card h3 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      color: var(--han-color-text-primary);
+      margin-bottom: 12px;
+    }
+
+    .usage-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .usage-tag {
+      padding: 4px 12px;
+      background: var(--han-color-bg-elevated);
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-pill);
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-secondary);
+    }
+
+    .usage-card p {
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-secondary);
+      line-height: var(--han-lh-relaxed);
+    }
+
+    /* Component Demo */
+    .demo-section {
+      padding: 60px 0;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .demo-card {
+      padding: 32px;
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-xl);
+      background: var(--han-color-bg-surface);
+    }
+
+    .demo-card h4 {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-base);
+      color: var(--han-color-text-primary);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--han-color-border);
+    }
+
+    .demo-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .demo-content {
+      padding: 16px;
+      background: var(--han-color-bg);
+      border-radius: var(--han-radius-md);
+    }
+
+    .demo-content p {
+      margin: 0;
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-secondary);
+      line-height: var(--han-lh-relaxed);
+    }
+
+    .demo-content .highlight {
+      color: var(--han-color-accent-text);
+      font-weight: var(--han-fw-medium);
+    }
+
+    /* Example Preview */
+    .preview-section {
+      padding: 60px 0;
+      background: var(--han-color-bg-surface);
+      border-top: 1px solid var(--han-color-border);
+    }
+
+    .preview-card {
+      padding: 48px;
+      background: var(--han-color-bg);
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-2xl);
+      box-shadow: 0 24px 64px var(--han-color-shadow);
+    }
+
+    .preview-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--han-color-accent-decorative);
+      color: var(--han-color-accent-text);
+      border-radius: var(--han-radius-pill);
+      font-size: var(--han-fs-sm);
+      margin-bottom: 24px;
+    }
+
+    .preview-title {
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-4xl);
+      color: var(--han-color-text-primary);
+      margin-bottom: 16px;
+    }
+
+    .preview-desc {
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-text-secondary);
+      max-width: 520px;
+      margin-bottom: 32px;
+      line-height: var(--han-lh-relaxed);
+    }
+
+    .preview-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      background: var(--han-color-accent-control);
+      color: var(--han-color-on-accent);
+      border: none;
+      border-radius: var(--han-radius-pill);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-base);
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.9; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--han-color-accent-text);
+      border: 1px solid var(--han-color-accent-control);
+      border-radius: var(--han-radius-pill);
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-base);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--han-color-accent-decorative);
+    }
+
+    /* Dark Mode Toggle */
+    .dark-mode-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      padding: 8px 16px;
+      border: 1px solid var(--han-color-border);
+      border-radius: var(--han-radius-pill);
+      cursor: pointer;
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-secondary);
+      user-select: none;
+    }
+
+    .dark-mode-toggle:hover {
+      border-color: var(--han-color-accent-control);
+    }
+
+    .dark-mode-toggle input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--han-color-accent-control);
+      cursor: pointer;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--han-color-border);
+      text-align: center;
+      color: var(--han-color-text-tertiary);
+      font-size: var(--han-fs-sm);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { width: min(calc(100% - 32px), 1180px); }
+      .nav-links { display: none; }
+      .hero { padding: 48px 0 32px; }
+      .palette-section,
+      .usage-section,
+      .demo-section,
+      .preview-section { padding: 40px 0; }
+      .preview-card { padding: 32px 24px; }
+      .theme-btn { padding: 12px 16px; font-size: var(--han-fs-sm); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container">
+        <nav class="site-nav">
+          <a class="brand" href="#">
+            <span class="brand-mark">汉</span>
+            当代配色
+          </a>
+          <ul class="nav-links">
+            <li><a href="#palette">色彩</a></li>
+            <li><a href="#usage">适用场景</a></li>
+            <li><a href="#demo">组件演示</a></li>
+            <li><a href="#preview">效果预览</a></li>
+            <li><a href="#example">真实示例</a></li>
+          </ul>
+          <label class="dark-mode-toggle">
+            <input type="checkbox" id="darkToggle">
+            <span>深色</span>
+          </label>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero container">
+        <div class="hero-eyebrow">6 套当代配色 · 一键切换</div>
+        <h1 id="heroTitle">松麦</h1>
+        <p id="heroDesc">自然、清新、安静 — 这套主题适合追求生活品质的品牌</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('palette').scrollIntoView({behavior:'smooth'})">探索配色</button>
+          <button class="btn-secondary" onclick="document.getElementById('usage').scrollIntoView({behavior:'smooth'})">查看适用场景</button>
+        </div>
+      </section>
+
+      <!-- Theme Switcher -->
+      <section class="theme-switcher-section">
+        <div class="container">
+          <div class="theme-switcher-wrapper" id="themeSwitcher">
+            <!-- Theme buttons generated by JS -->
+          </div>
+          <div class="theme-info-bar">
+            <div class="info-item">
+              <span class="info-label">主题 ID:</span>
+              <span class="info-value" id="themeId">pine-wheat</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">气质:</span>
+              <span class="info-value" id="themeMood">自然、清新、安静</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Palette Display -->
+      <section class="palette-section container" id="palette">
+        <div class="section-header">
+          <h2>四色体系</h2>
+          <p>从参考图色卡提炼，构成主题的核心色彩层级</p>
+        </div>
+        <div class="palette-grid" id="paletteGrid">
+          <!-- Palette cards generated by JS -->
+        </div>
+      </section>
+
+      <!-- Usage Guide -->
+      <section class="usage-section" id="usage">
+        <div class="container">
+          <div class="section-header">
+            <h2>适用场景</h2>
+            <p>每个主题的气质适合不同类型的网站和品牌</p>
+          </div>
+          <div class="usage-grid" id="usageGrid">
+            <!-- Usage cards generated by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Component Demo -->
+      <section class="demo-section container" id="demo">
+        <div class="section-header">
+          <h2>组件演示</h2>
+          <p>查看在不同主题下，核心组件的呈现效果</p>
+        </div>
+        <div class="demo-grid">
+          <div class="demo-card">
+            <h4>按钮</h4>
+            <div class="demo-buttons">
+              <button class="han-btn-seal">印章按钮</button>
+              <button class="han-btn-seal han-btn-seal--outline">线框按钮</button>
+            </div>
+            <div class="demo-buttons">
+              <button class="han-btn-pill">胶囊按钮</button>
+              <button class="han-btn-ghost">幽灵按钮</button>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h4>印章与标记</h4>
+            <div style="display: flex; gap: 16px; align-items: center; padding: 16px; background: var(--han-color-bg); border-radius: var(--han-radius-md);">
+              <div class="han-stamp">印</div>
+              <div class="han-stamp han-stamp--2char">汉</div>
+              <span style="font-family: var(--han-font-kai); color: var(--han-color-text-primary);">品 名</span>
+            </div>
+          </div>
+          <div class="demo-card">
+            <h4>装饰元素</h4>
+            <div class="demo-content">
+              <div class="han-divider-ink" style="margin-bottom: 16px;"></div>
+              <p>水墨分割线与渐变背景营造东方意境</p>
+              <div class="han-bg-gradient-ink" style="height: 40px; border-radius: var(--han-radius-md); margin-top: 16px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Example Preview -->
+      <section class="preview-section" id="preview">
+        <div class="container">
+          <div class="section-header">
+            <h2>效果预览</h2>
+            <p>模拟一个典型页面，展示主题在实际应用中的表现</p>
+          </div>
+          <div class="preview-card">
+            <div class="preview-badge" id="previewBadge">生活方式品牌</div>
+            <h3 class="preview-title" id="previewTitle">与自然同行</h3>
+            <p class="preview-desc" id="previewDesc">简约设计，清晰信息层级，让视觉与内容完美结合。这套配色将为你的品牌带来独特的气质。</p>
+            <div class="preview-actions">
+              <button class="btn-primary">开始体验</button>
+              <button class="btn-secondary">了解更多</button>
+            </div>
+            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--han-color-border);">
+              <div class="han-card-scroll" style="max-width: 400px;">
+                <div class="han-card-scroll__header">
+                  <h4>主题特色</h4>
+                </div>
+                <div class="han-card-scroll__body">
+                  <p id="previewFeature">自然色调传达宁静感，适合生活方式、茶饮、植物等品牌。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Real Example Section -->
+      <section class="preview-section" style="background: var(--han-color-bg-surface); border-top: 1px solid var(--han-color-border);" id="example">
+        <div class="container">
+          <div class="section-header">
+            <h2>真实示例</h2>
+            <p>点击链接查看完整的品牌落地页，感受主题在真实业务场景中的应用</p>
+          </div>
+          <div class="preview-card" style="text-align: center;">
+            <div class="preview-badge" id="exampleBadge">真实网站示例</div>
+            <h3 class="preview-title" id="exampleTitle">山间茶事</h3>
+            <p class="preview-desc" id="exampleDesc">茶叶品牌 · 松麦主题</p>
+            <div class="preview-actions" style="justify-content: center;">
+              <a class="btn-primary" id="exampleLink" href="pine-wheat-tea.html" target="_blank">查看完整示例</a>
+            </div>
+            <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--han-color-border); text-align: left;">
+              <p style="font-size: var(--han-fs-sm); color: var(--han-color-text-tertiary); margin: 0;">💡 每个主题都配有一个真实的品牌示例网站，可以直接查看完整效果</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>当代配色主题示例 · 汉设计系统</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Theme data
+    const themes = {
+      'pine-wheat': {
+        name: '松麦',
+        mood: '自然、清新、安静',
+        heroTitle: '松麦',
+        heroDesc: '自然、清新、安静 — 这套主题适合追求生活品质的品牌',
+        badge: '生活方式品牌',
+        previewTitle: '与自然同行',
+        previewDesc: '简约设计，清晰信息层级，让视觉与内容完美结合。这套配色将为你的品牌带来独特的气质。',
+        feature: '自然色调传达宁静感，适合生活方式、茶饮、植物等品牌。',
+        example: 'pine-wheat-tea.html',
+        exampleTitle: '山间茶事',
+        exampleDesc: '茶叶品牌 · 松麦主题',
+        palette: [
+          { name: '松绿', token: '--han-palette-1', color: '#4D5B44' },
+          { name: '麦青', token: '--han-palette-2', color: '#758B5D' },
+          { name: '草嫩', token: '--han-palette-3', color: '#A5BA8F' },
+          { name: '麦白', token: '--han-palette-4', color: '#E9E2B4' }
+        ],
+        uses: [
+          { icon: '🍵', title: '茶饮品牌', tags: ['茶叶', '茶馆', '饮品'], desc: '自然色调传达宁静感，与茶文化完美契合' },
+          { icon: '🌿', title: '植物园艺', tags: ['园艺', '花店', '植物'], desc: '绿色系配色自然关联植物主题' },
+          { icon: '🍃', title: '生活方式', tags: ['家居', '生活', '疗愈'], desc: '低饱和度色彩营造放松氛围' }
+        ]
+      },
+      'plum-blush': {
+        name: '藤紫',
+        mood: '柔和、浪漫、轻奢',
+        heroTitle: '藤紫',
+        heroDesc: '柔和、浪漫、轻奢 — 为女性向品牌注入优雅气质',
+        badge: '美妆与女性品牌',
+        previewTitle: '优雅如初',
+        previewDesc: '柔和色调与浪漫氛围，展现品牌的独特魅力。让每一个细节都散发着精致与优雅。',
+        feature: '柔和紫色系展现女性魅力，适合美妆、服饰等轻奢品牌。',
+        example: 'plum-blush-beauty.html',
+        exampleTitle: '花间堂',
+        exampleDesc: '美妆护肤品牌 · 藤紫主题',
+        palette: [
+          { name: '藤紫', token: '--han-palette-1', color: '#715480' },
+          { name: '粉紫', token: '--han-palette-2', color: '#B487B0' },
+          { name: '奶茶', token: '--han-palette-3', color: '#D7C2AD' },
+          { name: '腮红', token: '--han-palette-4', color: '#F0D8EE' }
+        ],
+        uses: [
+          { icon: '💄', title: '美妆品牌', tags: ['化妆品', '护肤', '美妆'], desc: '粉紫色系与美妆产品完美呼应' },
+          { icon: '👗', title: '女性服饰', tags: ['女装', '配饰', '轻奢'], desc: '柔和色彩展现优雅女性气质' },
+          { icon: '✨', title: '婚庆服务', tags: ['婚礼', '甜品', '花艺'], desc: '浪漫配色营造温馨氛围' }
+        ]
+      },
+      'ocean-orchid': {
+        name: '海兰',
+        mood: '冷静、清透、优雅',
+        heroTitle: '海兰',
+        heroDesc: '冷静、清透、优雅 — 科技与设计服务的理想选择',
+        badge: '科技与设计服务',
+        previewTitle: '澄见未来',
+        previewDesc: '清透冷静的蓝色调，为科技产品和设计服务带来专业与优雅的视觉呈现。',
+        feature: '冷静蓝色传达专业感，适合科技、设计类产品。',
+        example: 'ocean-orchid-ai.html',
+        exampleTitle: '澄见 AI',
+        exampleDesc: 'AI 科技产品 · 海兰主题',
+        palette: [
+          { name: '深蓝', token: '--han-palette-1', color: '#2C5767' },
+          { name: '海蓝', token: '--han-palette-2', color: '#6487A3' },
+          { name: '兰紫', token: '--han-palette-3', color: '#BBA4B6' },
+          { name: '云白', token: '--han-palette-4', color: '#C1CFDA' }
+        ],
+        uses: [
+          { icon: '💻', title: '科技产品', tags: ['SaaS', 'AI', '工具'], desc: '蓝色系传达专业与信任，适合科技产品' },
+          { icon: '🎨', title: '设计服务', tags: ['设计', '工作室', '咨询'], desc: '冷静配色展现专业设计实力' },
+          { icon: '📊', title: '数据平台', tags: ['Dashboard', '分析', '数据'], desc: '清晰色彩层级适合数据可视化' }
+        ]
+      },
+      'caramel-cream': {
+        name: '焦糖',
+        mood: '温暖、复古、高级',
+        heroTitle: '焦糖',
+        heroDesc: '温暖、复古、高级 — 咖啡与生活品牌的完美选择',
+        badge: '咖啡与生活',
+        previewTitle: '温暖时光',
+        previewDesc: '温暖复古的焦糖色调，为咖啡、家居等品牌带来高级感与舒适氛围。',
+        feature: '温暖棕色系营造复古高级感，适合咖啡、家居品牌。',
+        example: 'caramel-cream-coffee.html',
+        exampleTitle: '焦糖烘焙',
+        exampleDesc: '精品咖啡品牌 · 焦糖主题',
+        palette: [
+          { name: '焦糖', token: '--han-palette-1', color: '#8D6037' },
+          { name: '珊瑚', token: '--han-palette-2', color: '#EBB5B5' },
+          { name: '奶油', token: '--han-palette-3', color: '#E8D2BA' },
+          { name: '深棕', token: '--han-palette-4', color: '#724526' }
+        ],
+        uses: [
+          { icon: '☕', title: '咖啡品牌', tags: ['咖啡', '烘焙', '饮品'], desc: '焦糖色系与咖啡文化完美契合' },
+          { icon: '🛋️', title: '家居品牌', tags: ['家具', '软装', '生活'], desc: '温暖色调营造舒适家居氛围' },
+          { icon: '👜', title: '皮具服饰', tags: ['皮具', '箱包', '配饰'], desc: '复古色彩展现品质感与工艺美' }
+        ]
+      },
+      'mint-lavender': {
+        name: '薄荷',
+        mood: '清透、自然、轻盈',
+        heroTitle: '薄荷',
+        heroDesc: '清透、自然、轻盈 — 适合健康与春夏生活方式',
+        badge: '健康与春夏',
+        previewTitle: '轻盈一夏',
+        previewDesc: '清新薄荷色调，带来轻盈自然的视觉体验，是春夏季节和健康品牌的理想选择。',
+        feature: '清新绿色系传递健康自然理念，适合春夏品牌。',
+        example: 'mint-lavender-yoga.html',
+        exampleTitle: '薄荷空间',
+        exampleDesc: '瑜伽健康工作室 · 薄荷主题',
+        palette: [
+          { name: '薄荷', token: '--han-palette-1', color: '#4A7D6A' },
+          { name: '嫩绿', token: '--han-palette-2', color: '#A8CCB0' },
+          { name: '乳白', token: '--han-palette-3', color: '#D9EEE5' },
+          { name: '淡紫', token: '--han-palette-4', color: '#EBDCF3' }
+        ],
+        uses: [
+          { icon: '🧘', title: '健康运动', tags: ['瑜伽', '健身', '健康'], desc: '清新配色传递健康活力' },
+          { icon: '🌱', title: '春夏时装', tags: ['春夏', '轻薄', '清爽'], desc: '嫩绿系展现春夏轻盈感' },
+          { icon: '🥗', title: '轻食餐饮', tags: ['沙拉', '素食', '健康餐'], desc: '自然色彩契合健康饮食理念' }
+        ]
+      },
+      'berry-butter': {
+        name: '莓果',
+        mood: '明快、时尚、有活力',
+        heroTitle: '莓果',
+        heroDesc: '明快、时尚、有活力 — 节庆与餐饮活动的最佳选择',
+        badge: '节庆与活动',
+        previewTitle: '缤纷时刻',
+        previewDesc: '明快活泼的莓果色调，让品牌在节庆和活动中脱颖而出，充满活力与时尚感。',
+        feature: '明亮色彩带来活力感，适合节庆和餐饮品牌。',
+        example: 'berry-butter-dessert.html',
+        exampleTitle: '莓果季',
+        exampleDesc: '甜品节活动 · 莓果主题',
+        palette: [
+          { name: '莓红', token: '--han-palette-1', color: '#D11946' },
+          { name: '珊瑚', token: '--han-palette-2', color: '#DE6052' },
+          { name: '樱粉', token: '--han-palette-3', color: '#F8969E' },
+          { name: '奶黄', token: '--han-palette-4', color: '#ECE6B9' }
+        ],
+        uses: [
+          { icon: '🎊', title: '节庆活动', tags: ['节日', '庆典', '活动'], desc: '明亮色彩营造喜庆氛围' },
+          { icon: '🍓', title: '餐饮品牌', tags: ['餐饮', '甜品', '水果'], desc: '莓果色调与美食完美搭配' },
+          { icon: '🎉', title: '营销活动', tags: ['促销', '优惠', '电商'], desc: '活力配色吸引用户注意力' }
+        ]
+      }
+    };
+
+    const html = document.documentElement;
+    const themeSwitcher = document.getElementById('themeSwitcher');
+    const darkToggle = document.getElementById('darkToggle');
+
+    function renderThemeButtons() {
+      Object.entries(themes).forEach(([key, data]) => {
+        const btn = document.createElement('button');
+        btn.className = 'theme-btn';
+        btn.dataset.theme = key;
+        btn.innerHTML = `<span class="theme-dot" style="background: ${data.palette[0].color};"></span>${data.name}`;
+        btn.addEventListener('click', () => setTheme(key));
+        themeSwitcher.appendChild(btn);
+      });
+    }
+
+    function renderPalette(themeKey) {
+      const data = themes[themeKey];
+      const grid = document.getElementById('paletteGrid');
+      grid.innerHTML = data.palette.map(item => `
+        <div class="palette-card">
+          <div class="palette-color" style="background: var(${item.token});"></div>
+          <div class="palette-name">${item.name}</div>
+          <div class="palette-value">${item.color}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderUsage(themeKey) {
+      const data = themes[themeKey];
+      const grid = document.getElementById('usageGrid');
+      grid.innerHTML = data.uses.map(item => `
+        <div class="usage-card">
+          <div class="usage-icon">${item.icon}</div>
+          <h3>${item.title}</h3>
+          <div class="usage-tags">
+            ${item.tags.map(tag => `<span class="usage-tag">${tag}</span>`).join('')}
+          </div>
+          <p>${item.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    function updatePreview(themeKey) {
+      const data = themes[themeKey];
+      document.getElementById('heroTitle').textContent = data.heroTitle;
+      document.getElementById('heroDesc').textContent = data.heroDesc;
+      document.getElementById('themeId').textContent = themeKey;
+      document.getElementById('themeMood').textContent = data.mood;
+      document.getElementById('previewBadge').textContent = data.badge;
+      document.getElementById('previewTitle').textContent = data.previewTitle;
+      document.getElementById('previewDesc').textContent = data.previewDesc;
+      document.getElementById('previewFeature').textContent = data.feature;
+      document.getElementById('exampleTitle').textContent = data.exampleTitle;
+      document.getElementById('exampleDesc').textContent = data.exampleDesc;
+      document.getElementById('exampleLink').href = data.example;
+    }
+
+    function setTheme(themeKey) {
+      html.setAttribute('data-theme', themeKey);
+
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.theme === themeKey);
+      });
+
+      renderPalette(themeKey);
+      renderUsage(themeKey);
+      updatePreview(themeKey);
+
+      localStorage.setItem('contemporary-theme', themeKey);
+    }
+
+    darkToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        html.setAttribute('data-color-mode', 'dark');
+      } else {
+        html.removeAttribute('data-color-mode');
+      }
+      localStorage.setItem('contemporary-dark', e.target.checked ? 'dark' : '');
+    });
+
+    // Initialize
+    renderThemeButtons();
+    const savedTheme = localStorage.getItem('contemporary-theme') || 'pine-wheat';
+    const savedDark = localStorage.getItem('contemporary-dark') === 'dark';
+    darkToggle.checked = savedDark;
+    if (savedDark) html.setAttribute('data-color-mode', 'dark');
+    setTheme(savedTheme);
+  </script>
+  <!-- 页面导航 -->
+  <style>
+    .han-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--han-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--han-font-kai,KaiTi,serif)!important;}
+    .han-nav-fab:hover{transform:scale(1.1)!important;}
+    .han-nav-panel{position:fixed!important;right:16px!important;top:72px!important;z-index:99998!important;width:220px!important;max-height:70vh!important;overflow-y:auto!important;background:var(--han-color-paper-100,#faf6ea)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.15)!important;border:1px solid var(--han-color-border,#e0dcd4)!important;padding:16px!important;display:none!important;}
+    .han-nav-panel.is-open{display:block!important;}
+    .han-nav-panel h4{margin:0 0 8px!important;font-family:var(--han-font-kai,KaiTi,serif)!important;font-size:13px!important;color:var(--han-color-ink-700,#2a2824)!important;}
+    .han-nav-panel ul{list-style:none!important;margin:0 0 10px!important;padding:0!important;}
+    .han-nav-panel li{margin:0!important;}
+    .han-nav-panel a{display:block!important;padding:5px 10px!important;border-radius:6px!important;font-size:12px!important;color:var(--han-color-text-secondary,#555)!important;text-decoration:none!important;transition:all .15s!important;}
+    .han-nav-panel a:hover{background:var(--han-color-vermilion-500,#c0392b)!important;color:#fff!important;}
+    .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
+    @media(max-width:768px){.han-nav-panel{width:180px!important;}}
+  </style>
+  <button type="button" class="han-nav-fab" aria-expanded="false" aria-controls="hanNavPanel" aria-label="打开示例页面导航">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel">
+    <h4>示例页面</h4>
+    <ul>
+      <li><a href="/landing-page">落地页</a></li>
+      <li><a href="/quick-start">快速上手</a></li>
+      <li><a href="/theme-showcase">主题展示</a></li>
+      <li><a href="/showcase">完整组件展示</a></li>
+      <li><a href="/mac-han">Mac · 东方产品志</a></li>
+      <li><a href="/contemporary-themes">当代配色主题</a></li>
+    </ul>
+    <hr>
+    <h4>当代主题示例</h4>
+    <ul>
+      <li><a href="/pine-wheat-tea">松麦 · 山间茶事</a></li>
+      <li><a href="/plum-blush-beauty">藤紫 · 花间堂</a></li>
+      <li><a href="/ocean-orchid-ai">海兰 · 澄见 AI</a></li>
+      <li><a href="/caramel-cream-coffee">焦糖 · 焦糖烘焙</a></li>
+      <li><a href="/mint-lavender-yoga">薄荷 · 薄荷空间</a></li>
+      <li><a href="/berry-butter-dessert">莓果 · 莓果季</a></li>
+    </ul>
+    <hr>
+    <h4>组件示例</h4>
+    <ul>
+      <li><a href="/components/button-seal">印章按钮</a></li>
+      <li><a href="/components/card-scroll">卷轴卡片</a></li>
+      <li><a href="/components/divider-ink">水墨分割线</a></li>
+      <li><a href="/components/frame-window">窗花边框</a></li>
+      <li><a href="/components/navbar-ink">水墨导航</a></li>
+      <li><a href="/components/stamp">印章</a></li>
+    </ul>
+  </div>
+  <script>
+    const pageNavButton = document.querySelector('.han-nav-fab');
+    const pageNavPanel = document.getElementById('hanNavPanel');
+    const setPageNavOpen = (open) => {
+      pageNavPanel.classList.toggle('is-open', open);
+      pageNavButton.setAttribute('aria-expanded', String(open));
+      pageNavButton.setAttribute('aria-label', open ? '关闭示例页面导航' : '打开示例页面导航');
+    };
+    pageNavButton.addEventListener('click', () => {
+      setPageNavOpen(pageNavButton.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('click', (event) => {
+      if (!pageNavPanel.contains(event.target) && event.target !== pageNavButton) setPageNavOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setPageNavOpen(false);
+        pageNavButton.focus();
+      }
+    });
+  </script>
+</body>
+</html>

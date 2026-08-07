@@ -1,198 +1,55 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="song" data-han-static-reference="true" data-han-example="true">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>水墨分割线 · Han 组件示例</title>
-  <link rel="stylesheet" href="../../skills/han-design/assets/han.css">
+  <title>水墨分割线 · 汉</title>
+  <link rel="stylesheet" href="../../skills/han-design/assets/tokens.css">
+  <link rel="stylesheet" href="../../skills/han-design/assets/base.css">
+  <link rel="stylesheet" href="../../skills/han-design/assets/components.css">
   <style>
-    body {
-      background: var(--han-color-bg);
-      color: var(--han-color-text-primary);
-      font-family: var(--han-font-song);
-      margin: 0;
-      padding: 0;
-    }
-
-    .demo-container {
-      max-width: var(--han-container-lg);
-      margin: 0 auto;
-      padding: var(--han-space-8) var(--han-space-6);
-    }
-
-    .demo-header {
-      text-align: center;
-      margin-bottom: var(--han-space-10);
-    }
-
-    .demo-header h1 {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-3xl);
-      margin: 0 0 var(--han-space-2) 0;
-      color: var(--han-color-text-primary);
-    }
-
-    .demo-header p {
-      font-size: var(--han-fs-lg);
-      color: var(--han-color-text-secondary);
-      margin: 0;
-    }
-
-    .demo-section {
-      margin-bottom: var(--han-space-8);
-    }
-
-    .demo-section h3 {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-xl);
-      color: var(--han-color-text-primary);
-      margin-bottom: var(--han-space-4);
-      padding-bottom: var(--han-space-2);
-      border-bottom: 2px solid var(--han-color-border);
-    }
-
+    body { padding: 60px 24px; }
+    .demo-section { margin-bottom: 48px; }
+    .demo-section h3 { margin-bottom: 20px; color: var(--han-color-text-secondary); }
     .demo-box {
       background: var(--han-color-bg-surface);
-      padding: var(--han-space-6);
-      border-radius: var(--han-radius-md);
-      border: 1px solid var(--han-color-border);
-      margin-top: var(--han-space-4);
-    }
-
-    .text-center {
-      text-align: center;
-      line-height: var(--han-lh-relaxed);
-    }
-
-    .code-block {
-      background: var(--han-color-ink-900);
-      color: var(--han-color-paper-200);
-      padding: var(--han-space-4);
-      border-radius: var(--han-radius-md);
-      font-family: var(--han-font-mono, monospace);
-      font-size: var(--han-fs-sm);
-      overflow-x: auto;
-      margin-top: var(--han-space-4);
-      white-space: pre;
-    }
-
-    /* 页面导航 */
-    .showcase-navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: color-mix(in srgb, var(--han-color-paper-100) 90%, transparent);
-      backdrop-filter: blur(12px) saturate(1.1);
-      -webkit-backdrop-filter: blur(12px) saturate(1.1);
-      border-bottom: 1px solid var(--han-color-border);
-    }
-
-    .showcase-navbar-inner {
+      padding: 48px 24px;
+      border-radius: 8px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--han-space-4) 0;
-      max-width: var(--han-container-lg);
-      margin: 0 auto;
-    }
-
-    .showcase-brand {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-xl);
-      font-weight: var(--han-fw-bold);
-      color: var(--han-color-text-primary);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: var(--han-space-2);
-    }
-
-    .showcase-brand span {
-      color: var(--han-color-vermilion-500);
-    }
-
-    .showcase-nav-menu {
-      display: flex;
-      gap: var(--han-space-6);
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .showcase-nav-item a {
-      color: var(--han-color-text-secondary);
-      text-decoration: none;
-      font-size: var(--han-fs-sm);
-      transition: color var(--han-duration-normal);
-      position: relative;
-      padding: var(--han-space-1) 0;
-    }
-
-    .showcase-nav-item a:hover,
-    .showcase-nav-item a:focus-visible {
-      color: var(--han-color-accent-text);
-    }
-
-    .showcase-nav-item.is-active a {
-      color: var(--han-color-text-primary);
-      font-weight: var(--han-fw-medium);
-    }
-
-    .showcase-nav-item.is-active a::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
-    }
-
-    @media (max-width: 768px) {
-      .showcase-nav-menu { display: none; }
+      flex-direction: column;
+      gap: 0;
     }
   </style>
-  <link rel="stylesheet" href="../examples.css">
 </head>
 <body>
-  <!-- 顶部导航 -->
-  <nav class="han-navbar showcase-navbar" aria-label="主导航">
-    <div class="showcase-navbar-inner">
-      <a href="#components" class="showcase-brand">
-        汉<span>设</span>
-      </a>
-      <ul class="showcase-nav-menu">
-        <li class="showcase-nav-item"><a href="/landing-page">首页</a></li>
-        <li class="showcase-nav-item"><a href="/quick-start">快速上手</a></li>
-        <li class="showcase-nav-item"><a href="/theme-showcase">主题展示</a></li>
-        <li class="showcase-nav-item is-active"><a href="/showcase" aria-current="page">完整组件</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <main class="demo-container">
-    <!-- 页面标题 -->
-    <header class="demo-header">
-      <h1>水墨分割线</h1>
-      <p>毛笔笔触效果的分割线，模拟墨迹渲染</p>
-    </header>
+  <div class="han-container">
+    <h1 style="text-align:center; margin-bottom:8px;">水墨分割线</h1>
+    <p style="text-align:center; color:var(--han-color-text-secondary); margin-bottom:48px;">
+      毛笔笔触效果的分割线，模拟墨迹渲染
+    </p>
 
     <!-- 基础分割线 -->
-    <section class="demo-section">
+    <div class="demo-section">
       <h3>基础用法</h3>
       <div class="demo-box">
-        <p class="text-center">春江潮水连海平，海上明月共潮生。</p>
-        <hr class="han-divider-ink" style="margin: var(--han-space-6) 0;">
-        <p class="text-center">滟滟随波千万里，何处春江无月明。</p>
+        <p style="text-align:center;">春江潮水连海平，海上明月共潮生。</p>
+
+        <!-- 默认分割线 -->
+        <hr class="han-divider-ink">
+        <div class="han-divider-dot" style="display:none;"></div>
+
+        <p style="text-align:center;">滟滟随波千万里，何处春江无月明。</p>
       </div>
-    </section>
+    </div>
 
     <!-- 带印章 -->
-    <section class="demo-section">
+    <div class="demo-section">
       <h3>带印章装饰</h3>
       <div class="demo-box">
-        <p class="text-center">人生得意须尽欢，莫使金樽空对月。</p>
-        <div style="position:relative; margin: var(--han-space-6) 0;">
+        <p style="text-align:center;">人生得意须尽欢，莫使金樽空对月。</p>
+
+        <!-- 印章分割线 -->
+        <div style="position:relative; margin: 24px 0;">
           <div style="position:absolute; top:50%; left:0; right:0; height:2px;
             background: linear-gradient(90deg, transparent, var(--han-color-ink-400) 15%, var(--han-color-ink-400) 85%, transparent);
             transform: translateY(-50%); filter: blur(0.5px);"></div>
@@ -200,14 +57,35 @@
             <div class="han-stamp han-stamp--sm" style="width:36px; height:36px; font-size:10px; letter-spacing:0;">之印</div>
           </div>
         </div>
-        <p class="text-center">天生我材必有用，千金散尽还复来。</p>
+
+        <p style="text-align:center;">天生我材必有用，千金散尽还复来。</p>
       </div>
-    </section>
+    </div>
+
+    <!-- 毛笔笔触 -->
+    <div class="demo-section">
+      <h3>毛笔笔触不对称</h3>
+      <div class="demo-box">
+        <p style="text-align:center;">床前明月光，疑是地上霜。</p>
+
+        <!-- 毛笔效果 -->
+        <div style="position:relative; height:32px; margin: 16px 0;">
+          <div style="position:absolute; top:50%; left:5%; right:5%; height:3px;
+            background: linear-gradient(90deg, transparent, var(--han-color-ink-700) 8%, var(--han-color-ink-600) 45%, var(--han-color-ink-700) 85%, transparent);
+            transform: translateY(-50%); border-radius: 50%; filter: blur(0.8px);"></div>
+          <div style="position:absolute; top:calc(50% + 6px); left:10%; right:10%; height:1px;
+            background: linear-gradient(90deg, transparent, var(--han-color-ink-300), transparent);
+            opacity:0.4; filter: blur(1px);"></div>
+        </div>
+
+        <p style="text-align:center;">举头望明月，低头思故乡。</p>
+      </div>
+    </div>
 
     <!-- 代码示例 -->
-    <section class="demo-section">
+    <div class="demo-section">
       <h3>HTML 结构</h3>
-      <pre class="code-block"><code><!-- 基础分割线 -->
+      <pre><code><!-- 基础分割线 -->
 <div style="position:relative; text-align:center;">
   <div style="position:absolute; top:50%; left:0; right:0; height:2px;
     background: linear-gradient(90deg, transparent, var(--han-color-ink-400) 15%, transparent);
@@ -224,9 +102,9 @@
     transform: translateY(-50%); filter: blur(0.5px);"></div>
   <div style="display:flex; justify-content:center; position:relative;">
     <span class="han-stamp">印</span>
-  </main>
+  </div>
 </div></code></pre>
-    </section>
+    </div>
   </div>
 
   <!-- 页面导航 -->
@@ -243,27 +121,39 @@
     .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
     @media(max-width:768px){.han-nav-panel{width:180px!important;}}
   </style>
-  <button type="button" class="han-nav-fab" aria-expanded="false" aria-controls="hanNavPanel" aria-label="打开示例导航">☰</button>
-  <div class="han-nav-panel" id="hanNavPanel">
+  <button class="han-nav-fab" onclick="document.getElementById('hanNavPanel').classList.toggle('is-open')">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel" onclick="event.stopPropagation()">
     <h4>示例页面</h4>
     <ul>
       <li><a href="/landing-page">落地页</a></li>
       <li><a href="/quick-start">快速上手</a></li>
       <li><a href="/theme-showcase">主题展示</a></li>
-      <li><a href="/showcase">完整组件</a></li>
+      <li><a href="/showcase">完整组件展示</a></li>
       <li><a href="/mac-han">Mac · 东方产品志</a></li>
+      <li><a href="/contemporary-themes">当代配色主题</a></li>
+    </ul>
+    <hr>
+    <h4>当代主题示例</h4>
+    <ul>
+      <li><a href="/pine-wheat-tea">松麦 · 山间茶事</a></li>
+      <li><a href="/plum-blush-beauty">藤紫 · 花间堂</a></li>
+      <li><a href="/ocean-orchid-ai">海兰 · 澄见 AI</a></li>
+      <li><a href="/caramel-cream-coffee">焦糖 · 焦糖烘焙</a></li>
+      <li><a href="/mint-lavender-yoga">薄荷 · 薄荷空间</a></li>
+      <li><a href="/berry-butter-dessert">莓果 · 莓果季</a></li>
     </ul>
     <hr>
     <h4>组件示例</h4>
     <ul>
       <li><a href="/components/button-seal">印章按钮</a></li>
       <li><a href="/components/card-scroll">卷轴卡片</a></li>
-      <li><a href="/components/divider-ink" aria-current="page">水墨分割线</a></li>
+      <li><a href="/components/divider-ink">水墨分割线</a></li>
       <li><a href="/components/frame-window">窗花边框</a></li>
       <li><a href="/components/navbar-ink">水墨导航</a></li>
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例导航":"打开示例导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&!b.contains(event.target))setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);b.focus();})();})();</script>
+  <script>document.addEventListener("click",function(e){var p=document.getElementById("hanNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("han-nav-fab"))p.classList.remove("is-open");});</script>
+
 </body>
 </html>

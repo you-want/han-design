@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="mint-lavender" data-han-static-reference="true" data-han-example="true">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="薄荷空间 · 遇见更好的自己">
+  <title>薄荷空间 · 轻盈生活</title>
+  <link rel="stylesheet" href="../skills/han-design/assets/han.css">
+  <style>
+    :root {
+      --yoga-max-width: 1180px;
+      --yoga-line: color-mix(in srgb, var(--han-color-border) 78%, transparent);
+    }
+
+    body {
+      min-width: 320px;
+      color: var(--han-color-text-primary);
+      background:
+        radial-gradient(circle at 82% 5%, color-mix(in srgb, var(--han-palette-3) 55%, transparent) 0, transparent 22rem),
+        radial-gradient(circle at 5% 38%, color-mix(in srgb, var(--han-palette-4) 65%, transparent) 0, transparent 20rem),
+        var(--han-color-bg);
+      font-family: var(--han-font-song);
+    }
+
+    a { color: inherit; }
+    .page-shell { overflow: clip; }
+
+    .container {
+      width: min(calc(100% - 48px), var(--yoga-max-width));
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .site-header { padding: 20px 0; }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--han-space-5);
+      min-height: 52px;
+      padding: 0 20px;
+      border: 1px solid var(--yoga-line);
+      border-radius: var(--han-radius-xl);
+      background: color-mix(in srgb, var(--han-color-bg-surface) 82%, transparent);
+      box-shadow: 0 8px 30px color-mix(in srgb, var(--han-palette-1) 5%, transparent);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--han-color-text-primary);
+      font-family: var(--han-font-kai);
+      font-size: 20px;
+      font-weight: var(--han-fw-bold);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      background: var(--han-color-accent-control);
+      color: var(--han-color-on-accent);
+      border-radius: var(--han-radius-full);
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--han-color-text-secondary);
+      font-size: var(--han-fs-sm);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--han-color-accent-text); }
+
+    .nav-action {
+      display: inline-flex;
+      min-height: 36px;
+      align-items: center;
+      padding: 0 18px;
+      background: var(--han-color-accent-control);
+      color: var(--han-color-on-accent);
+      border-radius: var(--han-radius-pill);
+      font-size: var(--han-fs-sm);
+      font-weight: var(--han-fw-medium);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .nav-action:hover { opacity: 0.9; }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, .9fr);
+      align-items: center;
+      gap: clamp(48px, 8vw, 96px);
+      min-height: 600px;
+      padding: 40px 0 80px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--han-color-accent-decorative);
+      color: var(--han-color-accent-text);
+      border-radius: var(--han-radius-pill);
+      font-size: var(--han-fs-sm);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      max-width: 560px;
+      margin: 0;
+      color: var(--han-color-text-primary);
+      font-family: var(--han-font-kai);
+      font-size: clamp(44px, 6vw, 72px);
+      font-weight: var(--han-fw-bold);
+      letter-spacing: var(--han-ls-wide);
+      line-height: 1.15;
+    }
+
+    .hero h1 em {
+      color: var(--han-color-accent-text);
+      font-style: normal;
+    }
+
+    .hero-copy {
+      max-width: 480px;
+      margin: var(--han-space-5) 0 0;
+      color: var(--han-color-text-secondary);
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--han-space-4);
+      margin-top: var(--han-space-6);
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      border-radius: var(--han-radius-pill);
+      font-size: var(--han-fs-sm);
+      font-weight: var(--han-fw-medium);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--han-color-accent-control);
+      color: var(--han-color-on-accent);
+      box-shadow: 0 12px 24px color-mix(in srgb, var(--han-palette-1) 15%, transparent);
+    }
+
+    .btn-primary:hover { opacity: 0.9; }
+
+    .btn-secondary {
+      border: 1px solid var(--han-color-accent-control);
+      color: var(--han-color-accent-text);
+    }
+
+    .btn-secondary:hover {
+      background: var(--han-color-accent-decorative);
+    }
+
+    /* Hero Visual - Yoga Illustration */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+    }
+
+    .yoga-scene {
+      position: relative;
+      width: 100%;
+      max-width: 340px;
+      height: 420px;
+    }
+
+    .yoga-card {
+      position: absolute;
+      padding: 28px;
+      background: color-mix(in srgb, var(--han-color-bg-surface) 90%, white);
+      border: 1px solid var(--yoga-line);
+      border-radius: var(--han-radius-2xl);
+      box-shadow: 0 30px 60px color-mix(in srgb, var(--han-palette-1) 10%, transparent);
+    }
+
+    .yoga-card.main {
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .yoga-illustration {
+      width: 100px;
+      height: 140px;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+
+    .yoga-figure {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 80px;
+    }
+
+    .figure-body {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 50px;
+      background: var(--han-palette-2);
+      border-radius: 20px 20px 10px 10px;
+    }
+
+    .figure-head {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 28px;
+      background: var(--han-palette-3);
+      border-radius: 50%;
+    }
+
+    .figure-arm {
+      position: absolute;
+      top: 30px;
+      width: 50px;
+      height: 8px;
+      background: var(--han-palette-2);
+      border-radius: 4px;
+    }
+
+    .figure-arm.left {
+      left: -20px;
+      transform: rotate(-30deg);
+    }
+
+    .figure-arm.right {
+      right: -20px;
+      transform: rotate(30deg);
+    }
+
+    .yoga-card.main h3 {
+      margin: 0 0 4px;
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-text-primary);
+    }
+
+    .yoga-card.main p {
+      margin: 0;
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-tertiary);
+    }
+
+    .yoga-card.side {
+      position: absolute;
+      padding: 16px 20px;
+      text-align: left;
+      box-shadow: 0 16px 32px color-mix(in srgb, var(--han-palette-1) 8%, transparent);
+      z-index: 3;
+    }
+
+    .yoga-card.side.top-right {
+      top: 10px;
+      right: 0;
+    }
+
+    .yoga-card.side.bottom-left {
+      bottom: 20px;
+      left: 0;
+    }
+
+    .yoga-card.side strong {
+      display: block;
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-lg);
+      color: var(--han-color-accent-text);
+    }
+
+    .yoga-card.side span {
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-tertiary);
+    }
+
+    .yoga-icon {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .yoga-icon.one {
+      top: 30px;
+      left: 10px;
+      background: color-mix(in srgb, var(--han-palette-3) 40%, transparent);
+      animation: float 4s infinite ease-in-out;
+    }
+
+    .yoga-icon.two {
+      bottom: 50px;
+      right: 30px;
+      background: color-mix(in srgb, var(--han-palette-4) 50%, transparent);
+      width: 40px;
+      height: 40px;
+      animation: float 4s infinite ease-in-out 1s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Section */
+    .section { padding: 100px 0; }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin: 0 0 var(--han-space-3);
+      color: var(--han-color-accent-text);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .section h2 {
+      max-width: 560px;
+      margin: 0 auto;
+      color: var(--han-color-text-primary);
+      font-family: var(--han-font-kai);
+      font-size: clamp(32px, 4vw, 46px);
+      font-weight: var(--han-fw-bold);
+      letter-spacing: var(--han-ls-wide);
+      line-height: 1.2;
+    }
+
+    .section-intro {
+      max-width: 520px;
+      margin: var(--han-space-4) auto 0;
+      color: var(--han-color-text-secondary);
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    /* Classes */
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .class-card {
+      padding: 32px;
+      text-align: center;
+      border: 1px solid var(--yoga-line);
+      border-radius: var(--han-radius-xl);
+      background: color-mix(in srgb, var(--han-color-bg-surface) 85%, white);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .class-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px color-mix(in srgb, var(--han-palette-1) 8%, transparent);
+    }
+
+    .class-emoji {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .class-card h3 {
+      margin: 0 0 8px;
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-xl);
+      color: var(--han-color-text-primary);
+    }
+
+    .class-desc {
+      margin: 0 0 16px;
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-secondary);
+      line-height: 1.7;
+    }
+
+    .class-info {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--yoga-line);
+      font-size: var(--han-fs-xs);
+      color: var(--han-color-text-tertiary);
+    }
+
+    .class-info strong {
+      color: var(--han-color-accent-text);
+      font-weight: var(--han-fw-medium);
+    }
+
+    /* Philosophy */
+    .philosophy-section {
+      background: var(--han-color-bg-surface);
+      border-top: 1px solid var(--yoga-line);
+      border-bottom: 1px solid var(--yoga-line);
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+    }
+
+    .philosophy-item {
+      text-align: center;
+    }
+
+    .philosophy-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      background: var(--han-color-accent-decorative);
+      border-radius: var(--han-radius-lg);
+      font-size: 26px;
+    }
+
+    .philosophy-item h4 {
+      margin: 0 0 8px;
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-base);
+      color: var(--han-color-text-primary);
+    }
+
+    .philosophy-item p {
+      margin: 0;
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-secondary);
+      line-height: 1.8;
+    }
+
+    /* Schedule */
+    .schedule-section {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .schedule-card {
+      padding: 48px;
+      background: color-mix(in srgb, var(--han-color-bg-surface) 88%, white);
+      border: 1px solid var(--yoga-line);
+      border-radius: var(--han-radius-2xl);
+    }
+
+    .schedule-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--yoga-line);
+    }
+
+    .schedule-item:last-child {
+      border-bottom: none;
+    }
+
+    .schedule-info h4 {
+      margin: 0 0 4px;
+      font-family: var(--han-font-kai);
+      font-size: var(--han-fs-base);
+      color: var(--han-color-text-primary);
+    }
+
+    .schedule-info span {
+      font-size: var(--han-fs-sm);
+      color: var(--han-color-text-tertiary);
+    }
+
+    .schedule-tag {
+      padding: 6px 14px;
+      background: var(--han-color-accent-decorative);
+      color: var(--han-color-accent-text);
+      border-radius: var(--han-radius-pill);
+      font-size: var(--han-fs-xs);
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .cta-section h2 {
+      max-width: 520px;
+      margin: 0 auto var(--han-space-5);
+    }
+
+    .cta-section p {
+      max-width: 440px;
+      margin: 0 auto var(--han-space-6);
+      color: var(--han-color-text-secondary);
+      font-size: var(--han-fs-base);
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--yoga-line);
+      color: var(--han-color-text-tertiary);
+      font-size: var(--han-fs-sm);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--han-space-4);
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(calc(100% - 32px), var(--yoga-max-width)); }
+      .nav-links { display: none; }
+      .hero h1 { font-size: clamp(36px, 11vw, 52px); }
+      .section { padding: 60px 0; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .yoga-scene { height: 350px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container">
+        <nav class="site-nav">
+          <a class="brand" href="#top">
+            <span class="brand-mark">🌿</span>
+            薄荷空间
+          </a>
+          <ul class="nav-links">
+            <li><a href="#classes">课程</a></li>
+            <li><a href="#philosophy">理念</a></li>
+            <li><a href="#schedule">课表</a></li>
+            <li><a href="#contact">预约</a></li>
+          </ul>
+          <a class="nav-action" href="#contact">预约体验</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero container" id="top">
+        <div>
+          <div class="hero-badge">🧘 春季新课上线</div>
+          <h1>轻盈生活<br><em>遇见更好的自己</em></h1>
+          <p class="hero-copy">在薄荷空间，我们相信身心的平衡是美好生活的基础。通过瑜伽、冥想和健康饮食，让每一天都充满能量。</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#classes">探索课程</a>
+            <a class="btn-secondary" href="#philosophy">我们的理念</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="yoga-scene">
+            <div class="yoga-icon one"></div>
+            <div class="yoga-icon two"></div>
+            <div class="yoga-card side top-right">
+              <strong>5000+</strong>
+              <span>会员学员</span>
+            </div>
+            <div class="yoga-card main">
+              <div class="yoga-illustration">
+                <div class="yoga-figure">
+                  <div class="figure-arm left"></div>
+                  <div class="figure-arm right"></div>
+                  <div class="figure-body"></div>
+                  <div class="figure-head"></div>
+                </div>
+              </div>
+              <h3>基础瑜伽</h3>
+              <p>适合入门 · 60 分钟</p>
+            </div>
+            <div class="yoga-card side bottom-left">
+              <strong>4.9★</strong>
+              <span>学员评分</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Classes -->
+      <section class="section container" id="classes">
+        <div class="section-head">
+          <p class="section-kicker">Our Classes</p>
+          <h2>精选课程 · 适合每一个你</h2>
+          <p class="section-intro">无论你是初学者还是资深练习者，都能找到适合的课程</p>
+        </div>
+
+        <div class="class-grid">
+          <div class="class-card">
+            <div class="class-emoji">🧘‍♀️</div>
+            <h3>基础瑜伽</h3>
+            <p class="class-desc">最适合初学者的入门课程，学习正确的体式与呼吸</p>
+            <div class="class-info">
+              <span><strong>60</strong> 分钟</span>
+              <span>初级</span>
+              <span>¥ 120</span>
+            </div>
+          </div>
+
+          <div class="class-card">
+            <div class="class-emoji">🌬️</div>
+            <h3>正念冥想</h3>
+            <p class="class-desc">通过呼吸引导，让心静下来，发现内在的平静力量</p>
+            <div class="class-info">
+              <span><strong>45</strong> 分钟</span>
+              <span>全阶</span>
+              <span>¥ 100</span>
+            </div>
+          </div>
+
+          <div class="class-card">
+            <div class="class-emoji">💪</div>
+            <h3>流瑜伽</h3>
+            <p class="class-desc">连贯的体式流动，配合呼吸，让身心充满活力</p>
+            <div class="class-info">
+              <span><strong>75</strong> 分钟</span>
+              <span>中级</span>
+              <span>¥ 150</span>
+            </div>
+          </div>
+
+          <div class="class-card">
+            <div class="class-emoji">🧘‍♂️</div>
+            <h3>阴瑜伽</h3>
+            <p class="class-desc">长时间停留的深度体式，释放筋膜紧张，深层放松</p>
+            <div class="class-info">
+              <span><strong>60</strong> 分钟</span>
+              <span>全阶</span>
+              <span>¥ 130</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Philosophy -->
+      <section class="section philosophy-section" id="philosophy">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">Our Philosophy</p>
+            <h2>我们的理念</h2>
+            <p class="section-intro">瑜伽不只是体式，更是一种生活方式</p>
+          </div>
+
+          <div class="philosophy-grid">
+            <div class="philosophy-item">
+              <div class="philosophy-icon">🌱</div>
+              <h4>身心合一</h4>
+              <p>通过练习，让身体与心灵达到和谐统一的状态</p>
+            </div>
+            <div class="philosophy-item">
+              <div class="philosophy-icon">🌿</div>
+              <h4>循序渐进</h4>
+              <p>尊重身体的节奏，不强迫、不比较，享受过程</p>
+            </div>
+            <div class="philosophy-item">
+              <div class="philosophy-icon">💚</div>
+              <h4>科学健康</h4>
+              <p>结合现代运动科学，让练习更安全、更有效</p>
+            </div>
+            <div class="philosophy-item">
+              <div class="philosophy-icon">🤝</div>
+              <h4>社群共修</h4>
+              <p>在社区中共同成长，分享经验与鼓励</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Schedule -->
+      <section class="section container" id="schedule">
+        <div class="section-head">
+          <p class="section-kicker">Class Schedule</p>
+          <h2>本周课表</h2>
+          <p class="section-intro">选择适合你的时间，开始你的练习之旅</p>
+        </div>
+
+        <div class="schedule-card">
+          <div class="schedule-item">
+            <div class="schedule-info">
+              <h4>基础瑜伽 · 周一</h4>
+              <span>09:00 - 10:00 · 张老师</span>
+            </div>
+            <span class="schedule-tag">可预约</span>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-info">
+              <h4>正念冥想 · 周二</h4>
+              <span>18:00 - 18:45 · 李老师</span>
+            </div>
+            <span class="schedule-tag">可预约</span>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-info">
+              <h4>流瑜伽 · 周三</h4>
+              <span>10:00 - 11:15 · 王老师</span>
+            </div>
+            <span class="schedule-tag">剩余 3 位</span>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-info">
+              <h4>阴瑜伽 · 周五</h4>
+              <span>19:00 - 20:00 · 陈老师</span>
+            </div>
+            <span class="schedule-tag">可预约</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section container" id="contact">
+        <p class="section-kicker">Start Your Journey</p>
+        <h2>开启你的<em style="color: var(--han-color-accent-text);">健康之旅</em></h2>
+        <p>首次体验课免费 · 限新会员</p>
+        <a class="btn-primary" href="#">立即预约</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© 2024 薄荷空间 · 薄荷主题示例</span>
+        <span>轻盈生活 · 遇见更好的自己</span>
+      </div>
+    </footer>
+  </div>
+  <!-- 页面导航 -->
+  <style>
+    .han-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--han-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--han-font-kai,KaiTi,serif)!important;}
+    .han-nav-fab:hover{transform:scale(1.1)!important;}
+    .han-nav-panel{position:fixed!important;right:16px!important;top:72px!important;z-index:99998!important;width:220px!important;max-height:70vh!important;overflow-y:auto!important;background:var(--han-color-paper-100,#faf6ea)!important;border-radius:12px!important;box-shadow:0 8px 32px rgba(0,0,0,.15)!important;border:1px solid var(--han-color-border,#e0dcd4)!important;padding:16px!important;display:none!important;}
+    .han-nav-panel.is-open{display:block!important;}
+    .han-nav-panel h4{margin:0 0 8px!important;font-family:var(--han-font-kai,KaiTi,serif)!important;font-size:13px!important;color:var(--han-color-ink-700,#2a2824)!important;}
+    .han-nav-panel ul{list-style:none!important;margin:0 0 10px!important;padding:0!important;}
+    .han-nav-panel li{margin:0!important;}
+    .han-nav-panel a{display:block!important;padding:5px 10px!important;border-radius:6px!important;font-size:12px!important;color:var(--han-color-text-secondary,#555)!important;text-decoration:none!important;transition:all .15s!important;}
+    .han-nav-panel a:hover{background:var(--han-color-vermilion-500,#c0392b)!important;color:#fff!important;}
+    .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
+    @media(max-width:768px){.han-nav-panel{width:180px!important;}}
+  </style>
+  <button type="button" class="han-nav-fab" aria-expanded="false" aria-controls="hanNavPanel" aria-label="打开示例页面导航">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel">
+    <h4>示例页面</h4>
+    <ul>
+      <li><a href="/landing-page">落地页</a></li>
+      <li><a href="/quick-start">快速上手</a></li>
+      <li><a href="/theme-showcase">主题展示</a></li>
+      <li><a href="/showcase">完整组件展示</a></li>
+      <li><a href="/mac-han">Mac · 东方产品志</a></li>
+      <li><a href="/contemporary-themes">当代配色主题</a></li>
+    </ul>
+    <hr>
+    <h4>当代主题示例</h4>
+    <ul>
+      <li><a href="/pine-wheat-tea">松麦 · 山间茶事</a></li>
+      <li><a href="/plum-blush-beauty">藤紫 · 花间堂</a></li>
+      <li><a href="/ocean-orchid-ai">海兰 · 澄见 AI</a></li>
+      <li><a href="/caramel-cream-coffee">焦糖 · 焦糖烘焙</a></li>
+      <li><a href="/mint-lavender-yoga">薄荷 · 薄荷空间</a></li>
+      <li><a href="/berry-butter-dessert">莓果 · 莓果季</a></li>
+    </ul>
+    <hr>
+    <h4>组件示例</h4>
+    <ul>
+      <li><a href="/components/button-seal">印章按钮</a></li>
+      <li><a href="/components/card-scroll">卷轴卡片</a></li>
+      <li><a href="/components/divider-ink">水墨分割线</a></li>
+      <li><a href="/components/frame-window">窗花边框</a></li>
+      <li><a href="/components/navbar-ink">水墨导航</a></li>
+      <li><a href="/components/stamp">印章</a></li>
+    </ul>
+  </div>
+  <script>
+    const pageNavButton = document.querySelector('.han-nav-fab');
+    const pageNavPanel = document.getElementById('hanNavPanel');
+    const setPageNavOpen = (open) => {
+      pageNavPanel.classList.toggle('is-open', open);
+      pageNavButton.setAttribute('aria-expanded', String(open));
+      pageNavButton.setAttribute('aria-label', open ? '关闭示例页面导航' : '打开示例页面导航');
+    };
+    pageNavButton.addEventListener('click', () => {
+      setPageNavOpen(pageNavButton.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('click', (event) => {
+      if (!pageNavPanel.contains(event.target) && event.target !== pageNavButton) setPageNavOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setPageNavOpen(false);
+        pageNavButton.focus();
+      }
+    });
+  </script>
+</body>
+</html>
