@@ -1,1464 +1,1297 @@
-<!DOCTYPE html>
-<html lang="zh-CN" data-theme="song" data-color-mode="light" data-han-static-reference="true" data-han-example="true">
+<!doctype html>
+<html lang="zh-CN" data-theme="song" data-han-intensity="1">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>汉 · 东方美学设计系统</title>
-  <meta name="description" content="Han — 让东方美学在网页上优雅绽放。汲取千年中华文化，以当代视角诠释中国风设计系统。">
-  <link rel="stylesheet" href="../skills/han-design/assets/fonts.css">
+  <meta name="description" content="Mac 产品展示页：以克制的东方美学呈现 MacBook、iMac、Mac mini 与 Mac Studio。">
+  <title>Mac · 轻若宣纸，强若笔锋</title>
   <link rel="stylesheet" href="../skills/han-design/assets/han.css">
   <style>
-    /* 基于 Han 的局部增强样式 */
     :root {
-      --mac-ink: var(--han-color-ink-800);
-      --mac-muted: var(--han-color-text-secondary);
-      --mac-paper: var(--han-color-paper-100);
-      --mac-celadon: var(--han-color-celadon);
-      --mac-line: color-mix(in srgb, var(--han-color-ink-300) 40%, transparent);
-      --mac-content: 1180px;
+      --mac-ink: #171714;
+      --mac-ink-soft: #34342f;
+      --mac-paper: #f2f3ef;
+      --mac-paper-deep: #e4e7df;
+      --mac-surface: #fbfbf8;
+      --mac-muted: #55544d;
+      --mac-line: rgba(36, 34, 28, 0.16);
+      --mac-red: #a9362a;
+      --mac-red-dark: #80261d;
+      --mac-celadon: #879b8d;
+      --mac-gold: #d0a861;
+      --mac-shell: 1240px;
+      --mac-nav-height: 68px;
+      --mac-serif: var(--han-font-song, "Songti SC", "Noto Serif SC", serif);
+      --mac-sans: var(--han-font-sans, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif);
     }
 
-    /* 页面基础布局 */
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      background: var(--han-color-bg);
+      margin: 0;
+      background: var(--mac-paper);
       color: var(--mac-ink);
-      font-family: var(--han-font-song);
-      scroll-behavior: smooth;
+      font-family: var(--mac-sans);
+      text-rendering: optimizeLegibility;
     }
 
-    /* 导航固定高度 */
-    :where(section[id]) {
-      scroll-margin-top: calc(var(--han-nav-height) + 4rem);
-    }
-
-    /* 水墨背景装饰 */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       z-index: -1;
-      opacity: 0.03;
-      background-image:
-        radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--han-color-ink-300) 25%, transparent) 0 2px, transparent 2px),
-        radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--han-color-celadon) 15%, transparent) 0 2px, transparent 2px);
-      background-size: 30px 30px, 50px 50px;
+      pointer-events: none;
+      opacity: 0.26;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
     }
 
-    .mac-container {
-      width: min(calc(100% - 3rem), var(--mac-content));
-      margin: 0 auto;
+    img { display: block; max-width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+
+    :where(a, button):focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--mac-red) 65%, white);
+      outline-offset: 4px;
     }
 
-    /* 跳过分项 */
-    .han-skip-link {
-      position: absolute;
-      left: -9999px;
-      top: auto;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
+    :where(section[id]) { scroll-margin-top: calc(var(--mac-nav-height) + 28px); }
 
-    .han-skip-link:focus {
-      position: static;
-      width: auto;
-      height: auto;
-      padding: 0.75rem 1rem;
-      background: var(--han-color-vermilion-500);
-      color: #fff;
-      z-index: 10000;
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 1000;
+      padding: 10px 14px;
+      background: var(--mac-ink);
+      color: white;
       text-decoration: none;
-      border-radius: 0;
+      transform: translateY(-160%);
+      transition: transform 160ms ease;
     }
 
-    /* ============================ 导航栏 ============================ */
-    .mac-navbar__brand {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 0.4rem;
-      text-decoration: none;
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-xl);
-      color: var(--mac-ink);
+    .skip-link:focus { transform: translateY(0); }
+
+    .shell {
+      width: min(calc(100% - 48px), var(--mac-shell));
+      margin-inline: auto;
     }
 
-    .mac-navbar__brand small {
-      color: var(--mac-muted);
-      font-family: var(--han-font-sans);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      vertical-align: middle;
-    }
-
-    .mac-navbar__menu { margin: 0; display: flex; gap: var(--han-space-5); list-style: none; }
-
-    .mac-navbar__item { position: relative; }
-
-    .mac-navbar__item a {
-      color: var(--mac-muted);
-      text-decoration: none;
-      font-size: var(--han-fs-sm);
-      padding: 0.5rem 0.75rem;
-      transition: color var(--han-duration-normal);
-    }
-
-    .mac-navbar__item a:hover,
-    .mac-navbar__item a:focus-visible { color: var(--han-color-accent-text); }
-
-    .mac-navbar__item.is-active a { color: var(--mac-ink); font-weight: var(--han-fw-medium); }
-
-    .mac-navbar__item.is-active a::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
-    }
-
-    .mac-navbar__action {
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      color: var(--han-color-accent-text);
-      font-size: var(--han-fs-sm);
-      font-weight: var(--han-fw-medium);
-      text-decoration: none;
-      white-space: nowrap;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--mac-red-dark);
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1;
     }
 
-    .mac-navbar__action::after {
-      content: "→";
-      font-size: 0.85em;
-      transition: transform var(--han-duration-normal);
-    }
-
-    .mac-navbar__action:hover::after { transform: translateX(0.25rem); }
-
-    .mac-navbar__toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    .mac-navbar__toggle span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: var(--mac-muted);
-      margin: 4px 0;
-      transition: background var(--han-duration-normal);
-    }
-
-    .mac-navbar--open .mac-navbar__toggle span:nth-child(1) {
-      transform: rotate(45deg) translate(4px, 4px);
-    }
-
-    .mac-navbar--open .mac-navbar__toggle span:nth-child(2) { opacity: 0; }
-
-    .mac-navbar--open .mac-navbar__toggle span:nth-child(3) {
-      transform: rotate(-45deg) translate(4px, -4px);
-    }
-
-    @media (max-width: 768px) {
-      .mac-navbar__toggle { display: block; }
-      .mac-navbar__menu {
-        position: fixed;
-        top: var(--han-nav-height);
-        right: 0;
-        width: 100%;
-        max-height: calc(100vh - var(--han-nav-height));
-        background: var(--han-color-paper-100);
-        flex-direction: column;
-        padding: var(--han-space-6) var(--han-space-5);
-        gap: var(--han-space-3);
-        overflow-y: auto;
-        box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
-      }
-      .mac-navbar__menu > .mac-navbar__item { width: 100%; text-align: center; }
-      .mac-navbar__menu a { display: block; padding: 0.75rem; }
-    }
-
-    /* ============================ Hero 区域 ============================ */
-    .mac-hero {
-      min-height: min(800px, calc(100vh - var(--han-nav-height)));
-      display: grid;
-      place-items: center;
-      position: relative;
-      padding: clamp(4rem, 8vw, 8rem) 0 clamp(5rem, 10vw, 10rem);
-      isolation: isolate;
-      overflow: hidden;
-    }
-
-    .mac-hero::before {
+    .eyebrow::before {
       content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--han-color-celadon) 12%, transparent), transparent 35%),
-        linear-gradient(135deg, transparent 49%, color-mix(in srgb, var(--han-color-ink-200) 10%, transparent) 50%, transparent 51%);
-    }
-
-    .mac-hero__content {
-      width: min(calc(100% - 3rem), 900px);
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      grid-column: 1 / -1;
-    }
-
-    .mac-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
-      color: var(--han-color-accent-text);
-      font-size: var(--han-fs-xs);
-      letter-spacing: var(--han-ls-widest);
-      text-transform: uppercase;
-    }
-
-    .mac-kicker::before {
-      content: "";
-      width: 2rem;
+      width: 26px;
       height: 1px;
       background: currentColor;
     }
 
-    .mac-hero__title {
-      font-family: var(--han-font-song);
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: var(--han-fw-bold);
-      letter-spacing: 0.05em;
-      line-height: 1.0;
-      margin: 1rem 0 2rem;
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(320px, 0.56fr);
+      gap: 64px;
+      align-items: end;
+      margin-bottom: clamp(38px, 5vw, 72px);
+    }
+
+    .section-heading h2 {
+      max-width: 760px;
+      margin: 0;
+      font-family: var(--mac-serif);
+      font-size: clamp(36px, 5vw, 68px);
+      font-weight: 600;
+      line-height: 1.14;
+    }
+
+    .section-heading p {
+      max-width: 480px;
+      margin: 0;
+      color: var(--mac-muted);
+      font-size: 17px;
+      line-height: 1.85;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 20px;
+      border: 1px solid var(--mac-ink);
+      background: var(--mac-ink);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); background: var(--mac-red-dark); }
+
+    .button--quiet {
+      background: transparent;
       color: var(--mac-ink);
     }
 
-    .mac-hero__title em {
-      color: var(--han-color-vermilion-500);
-      font-style: normal;
-      display: block;
-      margin-top: 0.5em;
-    }
+    .button--quiet:hover { color: #fff; }
 
-    .mac-hero__subtitle {
-      max-width: 540px;
-      margin: 0 auto var(--han-space-8);
-      color: var(--mac-muted);
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
-      line-height: var(--han-lh-relaxed);
-    }
-
-    .mac-hero__actions {
-      display: flex;
-      justify-content: center;
-      gap: var(--han-space-6);
-      flex-wrap: wrap;
-      margin-top: var(--han-space-6);
-    }
-
-    .mac-text-link {
+    .text-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      color: var(--han-color-accent-text);
-      font-size: var(--han-fs-md);
-      font-weight: var(--han-fw-medium);
+      gap: 9px;
+      color: var(--mac-red-dark);
+      font-size: 14px;
+      font-weight: 650;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+      border-bottom: 1px solid currentColor;
+    }
+
+    .text-link::after {
+      content: "→";
+      transition: transform 180ms ease;
+    }
+
+    .text-link:hover::after { transform: translateX(4px); }
+
+    /* Navigation */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--mac-nav-height);
+      border-bottom: 1px solid rgba(36, 34, 28, 0.1);
+      background: color-mix(in srgb, var(--mac-paper) 88%, transparent);
+      backdrop-filter: blur(18px) saturate(1.15);
+      -webkit-backdrop-filter: blur(18px) saturate(1.15);
+    }
+
+    .nav {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .brand {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mac-serif);
+      font-size: 22px;
+      font-weight: 650;
       text-decoration: none;
     }
 
-    .mac-text-link::after { content: "→"; transition: transform var(--han-duration-normal); }
-    .mac-text-link:hover::after { transform: translateX(0.25rem); }
-
-    .mac-hero__vertical {
-      position: absolute;
-      left: clamp(1rem, 5vw, 3rem);
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--han-color-ink-300);
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-sm);
-      writing-mode: vertical-rl;
-      letter-spacing: 0.32em;
-      line-height: 2;
-      opacity: 0.6;
-      pointer-events: none;
-    }
-
-    /* ============================ 章法布局展示 ============================ */
-    .mac-chapter-nav {
-      position: sticky;
-      top: var(--han-nav-height);
-      z-index: 100;
-      border-block: 1px solid var(--mac-line);
-      background: color-mix(in srgb, var(--han-color-paper-50) 80%, transparent);
-      backdrop-filter: blur(12px) saturate(1.1);
-      -webkit-backdrop-filter: blur(12px) saturate(1.1);
-    }
-
-    .mac-chapter-nav__inner {
+    .brand__mark {
+      width: 28px;
+      height: 28px;
       display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 0;
-      background: var(--mac-line);
-    }
-
-    .mac-chapter-link {
-      min-height: 5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.25rem;
-      padding: 0.5rem 0.25rem;
-      background: var(--han-color-paper-100);
-      color: var(--mac-muted);
-      text-align: center;
-      transition: all var(--han-duration-normal) var(--han-ease-out);
-      cursor: default;
-      font-family: var(--han-font-song);
-    }
-
-    .mac-chapter-link strong {
-      font-size: var(--han-fs-xs);
-      letter-spacing: 0.04em;
-      color: var(--mac-ink);
-    }
-
-    .mac-chapter-link span {
-      font-size: 1.5rem;
-      color: var(--han-color-vermilion-500);
+      place-items: center;
+      border: 1px solid currentColor;
+      color: var(--mac-red-dark);
+      font-family: var(--mac-serif);
+      font-size: 14px;
       line-height: 1;
     }
 
-    .mac-chapter-link small {
-      font-size: 0.6rem;
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav__links a {
       color: var(--mac-muted);
-      writing-mode: horizontal-tb;
+      font-size: 13px;
+      font-weight: 550;
+      text-decoration: none;
+      transition: color 160ms ease;
     }
 
-    .mac-chapter-link:hover,
-    .mac-chapter-link:focus-visible {
-      background: var(--han-color-celadon);
-      color: var(--han-color-ink-900);
-    }
+    .nav__links a:hover { color: var(--mac-red-dark); }
 
-    .mac-chapter-link.is-active strong {
-      color: var(--han-color-vermilion-500);
-    }
+    .nav__buy { min-height: 38px; padding-inline: 17px; font-size: 13px; }
 
-    .mac-chapter-link.is-active span { color: var(--han-color-vermilion-500); }
-
-    @media (max-width: 1024px) {
-      .mac-chapter-nav__inner { grid-template-columns: repeat(4, 1fr); }
-      .mac-chapter-link span { font-size: 1.2rem; }
-      .mac-chapter-link small { font-size: 0.5rem; }
-    }
-
-    @media (max-width: 768px) {
-      .mac-chapter-nav__inner { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    /* ============================ 内容节 ============================ */
-    .mac-section {
-      padding: clamp(5rem, 10vw, 10rem) 0;
-    }
-
-    .mac-section-heading {
-      display: grid;
-      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-      gap: var(--han-space-8);
-      align-items: end;
-      margin-bottom: var(--han-space-10);
-    }
-
-    .mac-section-heading h2 {
-      font-family: var(--han-font-song);
-      font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: var(--han-fw-bold);
-      letter-spacing: 0.04em;
-      line-height: 1.1;
-      margin: 0;
+    .nav__toggle {
+      width: 42px;
+      height: 42px;
+      display: none;
+      place-items: center;
+      margin-left: auto;
+      padding: 0;
+      border: 0;
+      background: transparent;
       color: var(--mac-ink);
+      cursor: pointer;
     }
 
-    .mac-section-heading h2::after {
-      content: "";
+    .nav__toggle-lines,
+    .nav__toggle-lines::before,
+    .nav__toggle-lines::after {
+      width: 20px;
+      height: 1.5px;
       display: block;
-      width: 4rem;
-      height: 2px;
-      margin-top: var(--han-space-4);
-      background: linear-gradient(90deg, var(--han-color-vermilion-500), transparent);
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
     }
 
-    .mac-section-heading p {
-      max-width: 36rem;
-      margin: 0;
-      color: var(--mac-muted);
-      font-size: clamp(1rem, 2vw, 1.1rem);
-      line-height: var(--han-lh-relaxed);
-    }
+    .nav__toggle-lines { position: relative; }
+    .nav__toggle-lines::before,
+    .nav__toggle-lines::after { content: ""; position: absolute; left: 0; }
+    .nav__toggle-lines::before { top: -6px; }
+    .nav__toggle-lines::after { top: 6px; }
 
-    .mac-reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s var(--han-ease-out), transform 0.8s var(--han-ease-out);
-    }
+    .site-header.is-open .nav__toggle-lines { background: transparent; }
+    .site-header.is-open .nav__toggle-lines::before { transform: translateY(6px) rotate(45deg); }
+    .site-header.is-open .nav__toggle-lines::after { transform: translateY(-6px) rotate(-45deg); }
 
-    .mac-reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ============================ 产品卡片网格 ============================ */
-    .mac-product-grid {
+    /* Hero */
+    .hero {
+      min-height: calc(100svh - var(--mac-nav-height));
+      position: relative;
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: clamp(1rem, 2vw, 1.5rem);
-      margin-top: var(--han-space-10);
-    }
-
-    .mac-product-card {
-      position: relative;
-      background: color-mix(in srgb, var(--han-color-paper-50) 80%, transparent);
-      border: 1px solid var(--mac-line);
-      border-radius: 0;
+      align-items: center;
       overflow: hidden;
-      transition: all var(--han-duration-normal) var(--han-ease-out);
+      border-bottom: 1px solid var(--mac-line);
     }
 
-    .mac-product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 1.5rem 3.5rem rgba(0,0,0,0.08);
-      border-color: var(--han-color-celadon);
-    }
-
-    .mac-product-card--wide { grid-column: span 6; }
-    .mac-product-card--extra { grid-column: span 8; }
-
-    .mac-product-card__visual {
-      aspect-ratio: 1.6;
-      background: linear-gradient(135deg, var(--han-color-celadon) 10%, transparent 40%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mac-product-card__visual::before {
+    .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0.15;
+      pointer-events: none;
       background:
-        radial-gradient(circle at 60% 40%, color-mix(in srgb, var(--han-color-ink-300) 20%, transparent), transparent 50%),
-        linear-gradient(145deg, rgba(255,255,255,0.5), transparent 55%);
+        linear-gradient(90deg, transparent 0 66%, rgba(137, 156, 143, 0.12) 66% 66.08%, transparent 66.08%),
+        linear-gradient(0deg, transparent 0 30%, rgba(36, 34, 28, 0.07) 30% 30.08%, transparent 30.08%);
     }
 
-    .mac-product-card__visual img {
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(420px, 0.82fr) minmax(540px, 1.18fr);
+      align-items: center;
+      gap: 30px;
+      padding-block: clamp(62px, 7vw, 104px) 74px;
+    }
+
+    .hero__copy { position: relative; z-index: 2; }
+
+    .hero__title {
+      margin: 0;
+      font-family: var(--mac-serif);
+      font-size: clamp(60px, 7vw, 104px);
+      font-weight: 600;
+      line-height: 0.98;
+    }
+
+    .hero__title span {
+      display: block;
+      margin-top: 18px;
+      font-size: 0.46em;
+      font-weight: 500;
+      line-height: 1.28;
+    }
+
+    .hero__lead {
+      max-width: 510px;
+      margin: 30px 0 0;
+      color: var(--mac-muted);
+      font-family: var(--mac-serif);
+      font-size: clamp(17px, 1.55vw, 21px);
+      line-height: 1.85;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .hero__visual {
+      position: relative;
+      min-width: 0;
+      isolation: isolate;
+    }
+
+    .hero__visual::before {
+      content: "";
+      position: absolute;
+      width: min(43vw, 590px);
+      aspect-ratio: 1;
+      top: 50%;
+      left: 52%;
+      z-index: -1;
+      border: 1px solid rgba(128, 38, 29, 0.24);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero__visual img {
+      width: min(780px, 62vw);
+      margin-left: -22px;
+      mix-blend-mode: multiply;
+    }
+
+    .hero__seal {
+      position: absolute;
+      right: 5%;
+      top: 2%;
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--mac-red);
+      color: var(--mac-red);
+      font-family: var(--mac-serif);
+      font-size: 14px;
+      line-height: 1.15;
+      text-align: center;
+      transform: rotate(4deg);
+    }
+
+    .hero__caption {
+      position: absolute;
+      right: 0;
+      bottom: 4%;
+      color: rgba(36, 34, 28, 0.48);
+      font-family: var(--mac-serif);
+      font-size: 12px;
+      line-height: 1.7;
+      writing-mode: vertical-rl;
+    }
+
+    .hero__meta {
+      position: absolute;
+      left: 24px;
+      bottom: 20px;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+      color: var(--mac-muted);
+      font-size: 11px;
+      list-style: none;
+    }
+
+    .hero__meta li { display: inline-flex; align-items: center; gap: 8px; }
+    .hero__meta li::before { content: ""; width: 4px; height: 4px; background: var(--mac-red); }
+
+    /* Intro */
+    .intro-band {
+      background: var(--mac-ink);
+      color: #fff;
+    }
+
+    .intro-band__inner {
+      min-height: 150px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .intro-band__item strong {
+      display: block;
+      margin-bottom: 7px;
+      font-family: var(--mac-serif);
+      font-size: 21px;
+      font-weight: 500;
+    }
+
+    .intro-band__item span { color: #bdb9af; font-size: 12px; }
+    .intro-band__divider { width: 1px; height: 42px; background: rgba(245, 241, 232, 0.18); }
+
+    /* Product lineup */
+    .lineup { padding: clamp(94px, 10vw, 150px) 0; }
+
+    .filter-list {
+      display: flex;
+      gap: 8px;
+      margin: -18px 0 34px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .filter-button {
+      min-height: 38px;
+      padding: 0 15px;
+      border: 1px solid var(--mac-line);
+      background: transparent;
+      color: var(--mac-muted);
+      font: 600 13px/1 var(--mac-sans);
+      cursor: pointer;
+      transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .filter-button:hover,
+    .filter-button[aria-pressed="true"] {
+      border-color: var(--mac-ink);
+      background: var(--mac-ink);
+      color: white;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      grid-column: span 4;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--mac-line);
+      background: rgba(251, 250, 246, 0.72);
+      overflow: hidden;
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(128, 38, 29, 0.44);
+      box-shadow: 0 22px 50px rgba(36, 34, 28, 0.09);
+    }
+
+    .product-card[hidden] { display: none; }
+
+    .product-card__visual {
+      aspect-ratio: 1.3;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      border-bottom: 1px solid var(--mac-line);
+      background: #f7f7f7;
+      overflow: hidden;
+    }
+
+    .product-card__visual img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      object-position: center;
       mix-blend-mode: multiply;
-      transition: transform var(--han-duration-slow) var(--han-ease-out);
+      transition: transform 300ms ease;
     }
 
-    .mac-product-card:hover .mac-product-card__visual img { transform: scale(1.05); }
+    .product-card:hover .product-card__visual img { transform: scale(1.035); }
 
-    .mac-product-card__name {
-      font-family: var(--han-font-song);
-      font-size: clamp(1.25rem, 2vw, 1.75rem);
-      margin: 1.25rem 0 0.75rem;
-      letter-spacing: 0.02em;
-      color: var(--mac-ink);
-    }
-
-    .mac-product-card__description {
-      color: var(--mac-muted);
-      font-size: var(--han-fs-sm);
-      line-height: var(--han-lh-relaxed);
-      margin: 0 0 1.5rem;
-    }
-
-    .mac-product-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--han-color-accent-text);
-      font-size: var(--han-fs-sm);
-      font-weight: var(--han-fw-medium);
-      text-decoration: none;
-    }
-
-    .mac-product-card__link::after { content: "→"; }
-    .mac-product-card__link:hover::after { transform: translateX(0.25rem); }
-
-    /* 产品编号 */
-    .mac-product-card::before {
-      content: counter(mac-product, decimal-leading-zero);
-      counter-increment: mac-product;
-      position: absolute;
-      top: 0.875rem;
-      right: 0.875rem;
-      color: var(--han-color-text-tertiary);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      font-family: var(--han-font-kai);
-    }
-
-    /* ============================ 比较面板 ============================ */
-    .mac-compare {
-      background: color-mix(in srgb, var(--mac-dark-soft) 30%, var(--han-color-bg));
-    }
-
-    .mac-compare__shell {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: var(--han-space-10);
-      margin-top: var(--han-space-10);
-    }
-
-    .mac-tabs {
+    .product-card__body {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      padding: 24px 25px 27px;
     }
 
-    .mac-tab {
-      background: transparent;
-      border: 1px solid var(--mac-line);
-      border-radius: 0;
-      padding: 0.75rem 1rem;
-      text-align: left;
-      font-family: var(--han-font-song);
-      font-size: var(--han-fs-sm);
+    .product-card__type {
+      margin: 0 0 9px;
+      color: var(--mac-red-dark);
+      font-size: 11px;
+      font-weight: 650;
+    }
+
+    .product-card h3 {
+      margin: 0;
+      font-family: var(--mac-serif);
+      font-size: 27px;
+      font-weight: 600;
+    }
+
+    .product-card p {
+      min-height: 50px;
+      margin: 12px 0 22px;
       color: var(--mac-muted);
-      cursor: pointer;
-      transition: all var(--han-duration-normal) var(--han-ease-out);
-      position: relative;
+      font-size: 14px;
+      line-height: 1.75;
     }
 
-    .mac-tab:hover,
-    .mac-tab:focus-visible {
-      border-color: var(--han-color-celadon);
-      background: color-mix(in srgb, var(--han-color-celadon) 10%, transparent);
-      color: var(--mac-ink);
-    }
-
-    .mac-tab[aria-selected="true"] {
-      border-color: var(--han-color-vermilion-500);
-      background: color-mix(in srgb, var(--han-color-vermilion-500) 5%, transparent);
-      color: var(--mac-ink);
-      font-weight: var(--han-fw-medium);
-    }
-
-    .mac-tab::after {
-      content: "→";
-      position: absolute;
-      right: 1rem;
-      opacity: 0.5;
-      font-size: 0.8rem;
-    }
-
-    .mac-tab[aria-selected="true"]::after { opacity: 1; }
-
-    .mac-compare__panel {
-      background: color-mix(in srgb, var(--han-color-celadon) 10%, transparent);
-      border: 1px solid var(--mac-line);
-      padding: clamp(1.5rem, 3vw, 2rem);
-      border-radius: 0;
-      min-height: 20rem;
-    }
-
-    .mac-compare__panel h3 {
-      font-family: var(--han-font-song);
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      margin: 0 0 1rem 0;
-      color: var(--mac-ink);
-    }
-
-    .mac-compare__panel p {
-      color: var(--mac-muted);
-      line-height: var(--han-lh-relaxed);
-      margin: 0 0 1.5rem 0;
-    }
-
-    .mac-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--han-space-4);
-      margin-top: var(--han-space-8);
-    }
-
-    .mac-metric {
-      padding-top: var(--han-space-3);
+    .product-card__foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: auto;
+      padding-top: 18px;
       border-top: 1px solid var(--mac-line);
     }
 
-    .mac-metric strong {
+    .product-card__best { color: var(--mac-muted); font-size: 11px; }
+
+    /* Story sections */
+    .performance {
+      padding: clamp(94px, 10vw, 150px) 0;
+      background: var(--mac-surface);
+      border-block: 1px solid var(--mac-line);
+    }
+
+    .performance-stage {
+      position: relative;
+      overflow: hidden;
+      background: #f2f2f4;
+    }
+
+    .performance-stage img { width: 100%; min-height: 420px; object-fit: cover; }
+
+    .performance-stage__note {
+      position: absolute;
+      left: 30px;
+      bottom: 28px;
+      max-width: 330px;
+      padding: 20px 22px;
+      border-left: 3px solid var(--mac-red);
+      background: rgba(23, 23, 20, 0.9);
+      color: white;
+      backdrop-filter: blur(10px);
+    }
+
+    .performance-stage__note strong {
       display: block;
-      color: var(--han-color-gold-500);
-      font-family: var(--han-font-song);
-      font-size: var(--han-fs-xl);
-      margin-bottom: 0.25rem;
+      margin-bottom: 6px;
+      font-family: var(--mac-serif);
+      font-size: 20px;
+      font-weight: 500;
     }
 
-    .mac-metric span {
-      display: block;
-      color: var(--mac-muted);
-      font-size: var(--han-fs-xs);
-    }
+    .performance-stage__note span { color: #d5d5d2; font-size: 12px; line-height: 1.7; }
 
-    /* ============================ 特性卡片 ============================ */
-    .mac-feature-band {
-      background: color-mix(in srgb, var(--mac-dark-soft) 40%, transparent);
-      color: var(--han-color-paper-50);
-    }
-
-    .mac-feature-band .mac-section-heading p {
-      color: color-mix(in srgb, var(--han-color-paper-50) 60%, transparent);
-    }
-
-    .mac-feature-band .mac-kicker { color: var(--han-color-gold-400); }
-
-    .mac-feature-grid {
+    .story-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--han-space-8);
-      margin-top: var(--han-space-10);
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
     }
 
-    .mac-feature-card {
+    .story-panel {
       position: relative;
-      background: var(--mac-dark-soft);
-      border: 1px solid var(--mac-line);
-      border-radius: 0;
-      min-height: 30rem;
+      min-height: 580px;
       overflow: hidden;
-      transition: all var(--han-duration-normal) var(--han-ease-out);
+      background: #eceef0;
     }
 
-    .mac-feature-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(180deg, transparent 20%, rgba(0,0,0,0.3) 100%);
+    .story-panel--wide { grid-column: span 7; }
+    .story-panel--narrow { grid-column: span 5; }
+
+    .story-panel--split {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1.2fr);
+      background: #eef0eb;
     }
 
-    .mac-feature-card img {
+    .story-panel img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
       position: absolute;
       inset: 0;
-      z-index: -1;
-      transition: transform var(--han-duration-slower) var(--han-ease-out);
-    }
-
-    .mac-feature-card:hover img { transform: scale(1.05); }
-
-    .mac-feature-card__copy {
-      position: relative;
-      z-index: 1;
-      padding: clamp(1.5rem, 4vw, 2rem);
-      color: var(--han-color-paper-50);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .mac-feature-card__copy h3 {
-      font-family: var(--han-font-song);
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      margin: 0 0 1rem 0;
-      line-height: 1.2;
-    }
-
-    .mac-feature-card__copy p {
-      flex: 1;
-      margin: 0 0 1.5rem 0;
-      line-height: var(--han-lh-relaxed);
-      opacity: 0.9;
-    }
-
-    .mac-feature-card__copy a {
-      color: var(--han-color-gold-400);
-      text-decoration: none;
-      font-size: var(--han-fs-sm);
-      font-weight: var(--han-fw-medium);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .mac-feature-card__copy a::after { content: "→"; }
-
-    /* ============================ 设备网格 ============================ */
-    .mac-device-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--han-space-8);
-      margin-top: var(--han-space-10);
-    }
-
-    .mac-device-card {
-      background: color-mix(in srgb, var(--han-color-paper-50) 70%, transparent);
-      border: 1px solid var(--mac-line);
-      border-radius: 0;
-      overflow: hidden;
-      transition: transform var(--han-duration-normal);
-    }
-
-    .mac-device-card:hover { transform: translateY(-4px); }
-
-    .mac-device-card img { width: 100%; height: 14rem; object-fit: cover; }
-
-    .mac-device-card__copy { padding: var(--han-space-5); }
-
-    .mac-device-card h3 {
-      font-family: var(--han-font-song);
-      font-size: var(--han-fs-xl);
-      margin: 0 0 0.5rem 0;
-      color: var(--mac-ink);
-    }
-
-    .mac-device-card p {
-      font-size: var(--han-fs-sm);
-      color: var(--mac-muted);
-      line-height: var(--han-lh-relaxed);
-      margin: 0;
-    }
-
-    /* ============================ 洞察网格 ============================ */
-    .mac-insight-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--han-space-8);
-      margin-top: var(--han-space-10);
-    }
-
-    .mac-insight-card {
-      background: var(--han-color-paper-100);
-      border: 1px solid var(--mac-line);
-      border-radius: 0;
-      overflow: hidden;
-    }
-
-    .mac-insight-card img {
-      width: 100%;
-      height: 12rem;
       object-fit: cover;
     }
 
-    .mac-insight-card__copy { padding: var(--han-space-5); }
-
-    .mac-insight-card h3 {
-      font-family: var(--han-font-song);
-      font-size: var(--han-fs-xl);
-      margin: 0 0 0.75rem 0;
-      color: var(--mac-ink);
-    }
-
-    .mac-insight-card p {
-      font-size: var(--han-fs-sm);
-      color: var(--mac-muted);
-      line-height: var(--han-lh-relaxed);
-      margin: 0 0 1rem 0;
-    }
-
-    .mac-insight-card a {
-      color: var(--han-color-accent-text);
-      text-decoration: none;
-      font-size: var(--han-fs-sm);
-      font-weight: var(--han-fw-medium);
-    }
-
-    .mac-insight-card a::after { content: "→"; }
-
-    /* ============================ 优势网格 ============================ */
-    .mac-benefits {
-      background: color-mix(in srgb, var(--han-color-paper-100) 70%, var(--han-color-bg));
-    }
-
-    .mac-benefit-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--han-space-6);
-      margin-top: var(--han-space-10);
-    }
-
-    .mac-benefit-card {
-      background: var(--han-color-bg-elevated);
-      border: 1px solid var(--mac-line);
-      border-radius: 0;
-      min-height: 22rem;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transition: transform var(--han-duration-normal), border-color var(--han-duration-normal);
-    }
-
-    .mac-benefit-card:hover { transform: translateY(-4px); border-color: var(--han-color-vermilion-400); }
-
-    .mac-benefit-card img {
-      width: 100%;
-      height: 9rem;
-      object-fit: cover;
-      opacity: 0.8;
-    }
-
-    .mac-benefit-card__copy { padding: var(--han-space-5); flex: 1; display: flex; flex-direction: column; }
-
-    .mac-benefit-card h3 {
-      font-family: var(--han-font-song);
-      font-size: var(--han-fs-xl);
-      margin: 0 0 0.75rem 0;
-      color: var(--mac-ink);
-    }
-
-    .mac-benefit-card p {
-      font-size: var(--han-fs-sm);
-      color: var(--mac-muted);
-      line-height: var(--han-lh-relaxed);
-      margin: 0 0 1.5rem 0;
-      flex: 1;
-    }
-
-    .mac-benefit-card a {
-      color: var(--han-color-accent-text);
-      text-decoration: none;
-      font-size: var(--han-fs-xs);
-      font-weight: var(--han-fw-medium);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .mac-benefit-card a::after { content: "→"; }
-
-    /* ============================ 世界探索 ============================ */
-    .mac-world {
-      background: var(--mac-dark);
-      color: var(--han-color-paper-50);
-    }
-
-    .mac-world .mac-section-heading p { color: color-mix(in srgb, var(--han-color-paper-50) 60%, transparent); }
-
-    .mac-world .mac-kicker { color: var(--han-color-gold-400); }
-
-    .mac-world-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--han-space-8);
-      margin-top: var(--han-space-10);
-    }
-
-    .mac-world-card {
-      position: relative;
-      border: 1px solid color-mix(in srgb, var(--han-color-paper-200) 20%, transparent);
-      border-radius: 0;
-      overflow: hidden;
-      min-height: 22rem;
-    }
-
-    .mac-world-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.7;
-    }
-
-    .mac-world-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background: linear-gradient(180deg, transparent 20%, rgba(0,0,0,0.8) 100%);
-    }
-
-    .mac-world-card__copy {
+    .story-panel__copy {
       position: relative;
       z-index: 2;
-      padding: clamp(1.5rem, 4vw, 2rem);
+      max-width: 430px;
+      padding: 38px;
     }
 
-    .mac-world-card h3 {
-      font-family: var(--han-font-song);
-      font-size: clamp(1.7rem, 4vw, 2.5rem);
-      margin: 0 0 0.75rem 0;
+    .story-panel__copy h3 {
+      margin: 0 0 13px;
+      font-family: var(--mac-serif);
+      font-size: clamp(30px, 3.5vw, 48px);
+      font-weight: 600;
       line-height: 1.2;
     }
 
-    .mac-world-card p {
-      font-size: var(--han-fs-sm);
-      line-height: var(--han-lh-relaxed);
-      margin: 0 0 1.5rem 0;
-      opacity: 0.95;
-    }
-
-    .mac-world-card a {
-      color: var(--han-color-gold-400);
-      text-decoration: none;
-      font-size: var(--han-fs-sm);
-      font-weight: var(--han-fw-medium);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .mac-world-card a::after { content: "→"; }
-
-    /* ============================ 最终 CTA ============================ */
-    .mac-final {
-      background: color-mix(in srgb, var(--han-color-paper-100) 80%, var(--han-color-bg));
-      text-align: center;
-      padding: clamp(5rem, 10vw, 12rem) 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mac-final::before {
-      content: "器";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: color-mix(in srgb, var(--han-color-celadon) 15%, transparent);
-      font-family: var(--han-font-kai);
-      font-size: clamp(30rem, 60vw, 100rem);
-      line-height: 1;
-      pointer-events: none;
-      opacity: 0.05;
-      z-index: 0;
-    }
-
-    .mac-final__inner {
-      position: relative;
-      z-index: 1;
-      max-width: 50rem;
-      margin: 0 auto;
-    }
-
-    .mac-final h2 {
-      font-family: var(--han-font-song);
-      font-size: clamp(2rem, 6vw, 4rem);
-      margin: 0 0 1.5rem 0;
-      line-height: 1.1;
-    }
-
-    .mac-final p {
+    .story-panel__copy p {
+      margin: 0;
       color: var(--mac-muted);
-      font-size: var(--han-fs-md);
-      line-height: var(--han-lh-relaxed);
-      margin: 0 0 2rem 0;
+      font-size: 14px;
+      line-height: 1.75;
     }
 
-    .mac-btn-seal {
-      background: var(--han-color-vermilion-500);
-      color: var(--han-color-paper-100);
-      border: 2px solid var(--han-color-vermilion-600);
-      padding: 1rem 2rem;
-      font-family: var(--han-font-song);
-      font-size: var(--han-fs-md);
-      letter-spacing: 0.05em;
-      border-radius: var(--han-radius-lg);
-      cursor: pointer;
-      transition: all var(--han-duration-normal) var(--han-ease-out);
+    .story-panel--split img {
+      position: relative;
+      grid-column: 2;
+      grid-row: 1;
+      object-position: left top;
     }
 
-    .mac-btn-seal:hover {
-      background: var(--han-color-vermilion-600);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(192, 57, 43, 0.2);
+    .story-panel--split .story-panel__copy {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      max-width: none;
+      padding: clamp(34px, 4vw, 52px);
     }
 
-    /* ============================ 页脚 ============================ */
-    .mac-footer {
-      background: var(--mac-dark);
-      color: var(--han-color-paper-50);
-      padding: var(--han-space-10) 0 var(--han-space-8);
-    }
-
-    .mac-footer__top {
-      display: flex;
-      justify-content: space-between;
-      gap: var(--han-space-8);
-      margin-bottom: var(--han-space-8);
-      flex-wrap: wrap;
-    }
-
-    .mac-footer__brand {
-      font-family: var(--han-font-kai);
-      font-size: var(--han-fs-xl);
-      letter-spacing: 0.1em;
-    }
-
-    .mac-footer__brand span {
-      color: var(--han-color-vermilion-400);
-    }
-
-    .mac-footer__note {
-      max-width: 40rem;
-      font-size: var(--han-fs-xs);
-      color: color-mix(in srgb, var(--han-color-paper-50) 50%, transparent);
-      line-height: var(--han-lh-relaxed);
-      text-align: right;
-    }
-
-    .mac-footer__directory {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--han-space-6);
-      margin-top: var(--han-space-8);
-    }
-
-    .mac-footer__column h3 {
-      font-family: var(--han-font-song);
-      font-size: var(--han-fs-sm);
-      color: var(--han-color-gold-400);
-      margin: 0 0 var(--han-space-3) 0;
-      letter-spacing: 0.05em;
-    }
-
-    .mac-footer__column a {
+    .story-panel--split .story-panel__copy::after {
+      content: "";
+      width: 44px;
+      height: 2px;
       display: block;
-      color: color-mix(in srgb, var(--han-color-paper-50) 60%, transparent);
-      font-size: var(--han-fs-xs);
-      text-decoration: none;
-      padding: 0.25rem 0;
-      transition: color var(--han-duration-normal);
+      margin-top: 26px;
+      background: var(--mac-red);
     }
 
-    .mac-footer__column a:hover,
-    .mac-footer__column a:focus-visible { color: var(--han-color-paper-50); }
+    .story-panel--dark::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 10, 10, 0.84) 0%, rgba(10, 10, 10, 0.08) 62%);
+    }
 
-    .mac-footer__bottom {
+    .story-panel--dark .story-panel__copy { color: white; }
+    .story-panel--dark .story-panel__copy h3 { color: white; }
+    .story-panel--dark .story-panel__copy p { color: #d2d2cf; }
+    .story-panel--dark .eyebrow,
+    .final-cta .eyebrow { color: #efd18f; }
+
+    /* Ecosystem */
+    .ecosystem { padding: clamp(94px, 10vw, 150px) 0; }
+
+    .ecosystem__layout {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 18px;
+    }
+
+    .ecosystem__copy {
+      min-height: 690px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(32px, 5vw, 58px);
+      background: var(--mac-ink);
+      color: #fff;
+    }
+
+    .ecosystem__copy h2 {
+      margin: 0;
+      color: white;
+      font-family: var(--mac-serif);
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 500;
+      line-height: 1.12;
+    }
+
+    .ecosystem__copy h2 span { display: block; }
+
+    .ecosystem__copy p {
+      max-width: 420px;
+      margin: 26px 0 0;
+      font-family: var(--mac-serif);
+      font-size: 17px;
+      line-height: 1.85;
+    }
+
+    .ecosystem__list { margin: 40px 0 0; padding: 0; list-style: none; }
+
+    .ecosystem__list li {
       display: flex;
       justify-content: space-between;
-      gap: var(--han-space-6);
-      padding-top: var(--han-space-6);
-      border-top: 1px solid color-mix(in srgb, var(--han-color-paper-200) 15%, transparent);
-      font-size: var(--han-fs-xs);
-      color: color-mix(in srgb, var(--han-color-paper-50) 40%, transparent);
-      flex-wrap: wrap;
+      gap: 18px;
+      padding: 18px 0;
+      border-top: 1px solid rgba(245, 241, 232, 0.16);
+      font-size: 13px;
     }
 
-    /* ============================ 响应式 ============================ */
-    @media (max-width: 1200px) {
-      .mac-product-grid { grid-template-columns: repeat(6, 1fr); }
-      .mac-product-card--wide { grid-column: span 3; }
-      .mac-product-card--extra { grid-column: span 4; }
+    .ecosystem__copy .eyebrow { color: inherit; }
+
+    .ecosystem__media {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
     }
 
-    @media (max-width: 900px) {
-      .mac-product-grid { grid-template-columns: repeat(4, 1fr); }
-      .mac-product-card--wide { grid-column: span 2; }
-      .mac-product-card--extra { grid-column: span 3; }
-      .mac-feature-grid { grid-template-columns: 1fr; }
-      .mac-device-grid { grid-template-columns: 1fr; }
-      .mac-insight-grid { grid-template-columns: 1fr; }
-      .mac-benefit-grid { grid-template-columns: repeat(2, 1fr); }
-      .mac-world-grid { grid-template-columns: 1fr; }
-      .mac-compare__shell { grid-template-columns: 1fr; }
-      .mac-chapter-nav__inner { grid-template-columns: repeat(2, 1fr); }
+    .ecosystem__media figure {
+      min-width: 0;
+      position: relative;
+      margin: 0;
+      overflow: hidden;
+      background: #f0f0f2;
     }
 
-    @media (max-width: 600px) {
-      .mac-section-heading { grid-template-columns: 1fr; gap: var(--han-space-5); }
-      .mac-section-heading h2 { max-width: 20ch; }
-      .mac-section-heading p { max-width: 100%; }
-      .mac-product-grid { grid-template-columns: repeat(2, 1fr); }
-      .mac-product-card--wide, .mac-product-card--extra { grid-column: span 1; }
-      .mac-benefit-grid { grid-template-columns: 1fr; }
-      .mac-chapter-nav__inner { grid-template-columns: 1fr; }
-      .mac-footer__top { flex-direction: column; gap: var(--han-space-4); }
-      .mac-footer__note { text-align: left; }
-      .mac-footer__directory { grid-template-columns: 1fr; }
-      .mac-footer__bottom { flex-direction: column; gap: var(--han-space-2); text-align: center; }
+    .ecosystem__media figure:first-child { grid-row: span 2; }
+
+    .ecosystem__media img {
+      width: 100%;
+      height: 100%;
+      min-height: 336px;
+      object-fit: cover;
+    }
+
+    .ecosystem__media figcaption {
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      padding: 8px 11px;
+      background: rgba(251, 250, 246, 0.88);
+      color: var(--mac-ink);
+      font-size: 11px;
+      backdrop-filter: blur(8px);
+    }
+
+    /* Compare */
+    .compare {
+      padding: clamp(94px, 10vw, 150px) 0;
+      background: var(--mac-paper-deep);
+      border-block: 1px solid var(--mac-line);
+    }
+
+    .compare-table-wrap { overflow-x: auto; border-top: 1px solid var(--mac-ink); }
+
+    .compare-table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+      table-layout: fixed;
+      text-align: left;
+    }
+
+    .compare-table th,
+    .compare-table td { padding: 24px 20px; border-bottom: 1px solid var(--mac-line); vertical-align: top; }
+
+    .compare-table th {
+      color: var(--mac-muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .compare-table th:first-child,
+    .compare-table td:first-child { width: 18%; padding-left: 0; }
+
+    .compare-table th:last-child,
+    .compare-table td:last-child { padding-right: 0; }
+
+    .compare-table td {
+      color: var(--mac-muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .compare-table td:first-child { color: var(--mac-ink); font-weight: 650; }
+
+    .compare-table .model {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--mac-ink);
+      font-family: var(--mac-serif);
+      font-size: 21px;
+      font-weight: 600;
+    }
+
+    .compare-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      margin-top: 30px;
+      color: var(--mac-muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* Final */
+    .final-cta {
+      position: relative;
+      min-height: 650px;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background: #11110f;
+      color: var(--mac-paper);
+    }
+
+    .final-cta::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #11110f 0%, rgba(17, 17, 15, 0.88) 38%, rgba(17, 17, 15, 0.06) 74%);
+    }
+
+    .final-cta__image {
+      width: 62%;
+      height: 100%;
+      position: absolute;
+      inset: 0 0 0 auto;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.92;
+    }
+
+    .final-cta__copy {
+      position: relative;
+      z-index: 2;
+      max-width: 610px;
+      padding-block: 90px;
+    }
+
+    .final-cta__copy h2 {
+      margin: 0;
+      color: white;
+      font-family: var(--mac-serif);
+      font-size: clamp(46px, 6vw, 82px);
+      font-weight: 500;
+      line-height: 1.08;
+    }
+
+    .final-cta__copy p {
+      max-width: 470px;
+      margin: 25px 0 32px;
+      color: #c5c0b5;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .final-cta .button { border-color: var(--mac-paper); background: var(--mac-paper); color: var(--mac-ink); }
+    .final-cta .button:hover { border-color: var(--mac-red); background: var(--mac-red); color: white; }
+
+    .site-footer { padding: 34px 0; background: #0c0c0b; color: #b9b5ac; }
+
+    .site-footer__inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .site-footer a { color: #eee9df; text-decoration: underline; text-underline-offset: 3px; }
+    .site-footer a:hover { color: white; }
+
+    @media (max-width: 1020px) {
+      .section-heading { grid-template-columns: 1fr; gap: 24px; }
+      .hero__inner { grid-template-columns: 0.8fr 1.2fr; }
+      .hero__visual img { width: 62vw; }
+      .product-card { grid-column: span 6; }
+      .ecosystem__layout { grid-template-columns: 1fr; }
+      .ecosystem__copy { min-height: auto; }
+      .ecosystem__media { min-height: 620px; }
+    }
+
+    @media (max-width: 760px) {
+      :root { --mac-nav-height: 60px; }
+      .shell { width: min(calc(100% - 32px), var(--mac-shell)); }
+      .section-heading h2 { font-size: clamp(34px, 11vw, 50px); }
+
+      .nav { gap: 12px; }
+      .nav__toggle { display: grid; }
+      .nav__buy { margin-left: auto; min-height: 36px; padding-inline: 14px; }
+      .nav__links {
+        position: absolute;
+        top: var(--mac-nav-height);
+        left: 0;
+        right: 0;
+        display: grid;
+        gap: 0;
+        padding: 10px 16px 18px;
+        border-bottom: 1px solid var(--mac-line);
+        background: var(--mac-paper);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity 180ms ease, visibility 180ms ease, transform 180ms ease;
+      }
+
+      .site-header.is-open .nav__links { opacity: 1; visibility: visible; transform: none; }
+      .nav__links a { display: block; padding: 14px 8px; border-bottom: 1px solid var(--mac-line); }
+
+      .hero { min-height: auto; }
+      .hero__inner { grid-template-columns: 1fr; gap: 34px; padding-block: 64px 76px; }
+      .hero__title { font-size: clamp(60px, 20vw, 82px); }
+      .hero__title span { font-size: 0.4em; }
+      .hero__lead { margin-top: 24px; font-size: 17px; }
+      .hero__visual { margin-inline: -10px; }
+      .hero__visual::before { width: 82vw; }
+      .hero__visual img { width: 122%; margin-left: -11%; }
+      .hero__seal { width: 46px; height: 46px; right: 4%; top: -4%; font-size: 12px; }
+      .hero__caption { display: none; }
+      .hero__meta { left: 16px; right: 16px; bottom: 18px; gap: 16px; justify-content: space-between; }
+
+      .intro-band__inner { grid-template-columns: 1fr; gap: 0; padding-block: 16px; }
+      .intro-band__item { padding: 19px 0; }
+      .intro-band__divider { width: 100%; height: 1px; }
+
+      .filter-list { overflow-x: auto; padding-bottom: 6px; }
+      .filter-button { white-space: nowrap; }
+      .product-grid { grid-template-columns: 1fr; }
+      .product-card {
+        grid-column: auto;
+        min-height: 242px;
+        display: grid;
+        grid-template-columns: 41% minmax(0, 59%);
+      }
+      .product-card__visual {
+        min-height: 100%;
+        aspect-ratio: auto;
+        padding: 10px;
+        border-right: 1px solid var(--mac-line);
+        border-bottom: 0;
+      }
+      .product-card__body { padding: 18px 16px; }
+      .product-card h3 { font-size: 22px; }
+      .product-card p { min-height: 0; margin: 8px 0 12px; font-size: 13px; }
+      .product-card__foot { display: grid; gap: 7px; padding-top: 11px; }
+      .product-card__best { font-size: 10px; }
+
+      .performance-stage img { min-height: 360px; object-position: center; }
+      .performance-stage__note { left: 16px; right: 16px; bottom: 16px; max-width: none; }
+
+      .story-grid { grid-template-columns: 1fr; }
+      .story-panel--wide,
+      .story-panel--narrow { grid-column: auto; }
+      .story-panel { min-height: 520px; }
+      .story-panel__copy { padding: 28px; }
+      .story-panel--split {
+        min-height: 0;
+        grid-template-columns: 1fr;
+      }
+      .story-panel--split .story-panel__copy {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 34px 28px 30px;
+      }
+      .story-panel--split img {
+        height: 390px;
+        position: relative;
+        grid-column: 1;
+        grid-row: 2;
+        object-position: center top;
+      }
+
+      .ecosystem__media { min-height: 0; grid-template-columns: 1fr 1fr; }
+      .ecosystem__media figure:first-child { grid-row: auto; grid-column: 1 / -1; min-height: 430px; }
+      .ecosystem__media figure { min-height: 280px; }
+      .ecosystem__media img { min-height: 280px; }
+      .ecosystem__media figure:first-child img { min-height: 430px; }
+
+      .compare-note { flex-direction: column; gap: 10px; }
+
+      .final-cta { min-height: 690px; align-items: end; }
+      .final-cta::after { background: linear-gradient(0deg, #11110f 0%, rgba(17, 17, 15, 0.9) 46%, rgba(17, 17, 15, 0.05) 82%); }
+      .final-cta__image { width: 100%; height: 66%; inset: 0 0 auto; object-position: center; }
+      .final-cta__copy { padding-block: 320px 58px; }
+      .final-cta__copy h2 { font-size: clamp(44px, 13vw, 62px); }
+
+      .site-footer__inner { flex-direction: column; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
     }
   </style>
-  <link rel="stylesheet" href="examples.css">
 </head>
 <body>
-  <a class="han-skip-link" href="#main-content">跳到主要内容</a>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
 
-  <header class="han-navbar" id="top">
-    <div class="mac-container mac-navbar__inner">
-      <a class="mac-navbar__brand" href="#top">
-        Mac<span>·</span><small>东方产品志</small>
+  <header class="site-header" id="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Mac 首页">
+        <span class="brand__mark" aria-hidden="true">麦</span>
+        <span>Mac</span>
       </a>
       <nav aria-label="主导航">
-        <ul class="mac-navbar__menu" id="main-menu">
-          <li class="mac-navbar__item is-active"><a href="#products">全系 Mac</a></li>
-          <li class="mac-navbar__item"><a href="#compare">选择 Mac</a></li>
-          <li class="mac-navbar__item"><a href="#capabilities">性能与 AI</a></li>
-          <li class="mac-navbar__item"><a href="#ecosystem">生态协同</a></li>
-          <li class="mac-navbar__item"><a href="#service">服务</a></li>
+        <ul class="nav__links" id="primary-navigation">
+          <li><a href="#lineup">全系产品</a></li>
+          <li><a href="#performance">为什么选 Mac</a></li>
+          <li><a href="#ecosystem">设备协同</a></li>
+          <li><a href="#compare">机型对比</a></li>
         </ul>
       </nav>
-      <a class="mac-navbar__action" href="#final-cta">找到你的 Mac</a>
-      <button class="mac-navbar__toggle" type="button" aria-expanded="false" aria-controls="main-menu" aria-label="打开导航菜单">
-        <span></span><span></span><span></span>
+      <a class="button nav__buy" href="#compare">选购 Mac</a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="打开导航菜单">
+        <span class="nav__toggle-lines" aria-hidden="true"></span>
       </button>
     </div>
   </header>
 
   <main id="main-content">
-    <!-- Hero 区域 -->
-    <section class="mac-hero" id="hero" aria-labelledby="hero-title">
-      <div class="mac-hero__vertical" aria-hidden="true">轻盈入世 · 自成一境</div>
-      <div class="mac-container mac-hero__content">
-        <div class="mac-kicker">MAC · CONTEMPORARY CHINESE INTERPRETATION</div>
-        <h1 class="mac-hero__title" id="hero-title">让计算，<em>回归从容</em></h1>
-        <p class="mac-hero__subtitle">一台 Mac，是日常的器物，也是创造发生的空间。以清晰的性能，回应每一种工作与生活。</p>
-        <div class="mac-hero__actions">
-          <button type="button" class="han-btn-seal han-btn-seal--lg han-btn-seal--drop" id="scroll-to-products">探索全系 Mac</button>
-          <a class="mac-text-link" href="#compare">按你的方式选择</a>
-        </div>
-        <div class="mac-hero__meta" aria-label="页面设计特征" style="display: flex; justify-content: center; gap: var(--han-space-8); margin-top: var(--han-space-8); font-family: var(--han-font-song); font-size: var(--han-fs-xs); letter-spacing: 0.08em; color: var(--mac-muted);">
-          <div><strong>轻</strong><span>Portable</span></div>
-          <div><strong>静</strong><span>Focused</span></div>
-          <div><strong>久</strong><span>Enduring</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 章节导航 -->
-    <nav class="mac-chapter-nav" aria-label="Mac 内容导航">
-      <div class="mac-container mac-chapter-nav__inner">
-        <a class="mac-chapter-link is-active" href="#products"><span>一</span><strong>全系产品</strong><small>Mac 全系</small></a>
-        <a class="mac-chapter-link" href="#capabilities"><span>二</span><strong>用 Mac 显身手</strong><small>性能与 AI</small></a>
-        <a class="mac-chapter-link" href="#ecosystem"><span>三</span><strong>Mac 左膀右臂</strong><small>设备协同</small></a>
-        <a class="mac-chapter-link" href="#insights"><span>四</span><strong>来了解一下 Mac</strong><small>安全与耐用</small></a>
-        <a class="mac-chapter-link" href="#switch-mac"><span>五</span><strong>换成 Mac</strong><small>轻松迁移</small></a>
-        <a class="mac-chapter-link" href="#benefits"><span>六</span><strong>购买 Mac</strong><small>服务与支持</small></a>
-        <a class="mac-chapter-link" href="#world"><span>七</span><strong>解锁 Apple 世界</strong><small>macOS 与 iPhone</small></a>
-        <a class="mac-chapter-link" href="#final-cta"><span>八</span><strong>选购 Mac</strong><small>找到你的 Mac</small></a>
-      </div>
-    </nav>
-
-    <!-- 全系产品 -->
-    <section class="mac-section mac-products" id="products" aria-labelledby="products-title">
-      <div class="mac-container">
-        <div class="mac-section-heading mac-reveal">
-          <div><span class="mac-kicker">全系 Mac</span><h2 id="products-title">全系产品<br>细细看。</h2></div>
-          <p>从随身创作到桌面工作室，Mac 将复杂的计算收进清晰的形态里。选择一台与自己的节奏相合的 Mac。</p>
-        </div>
-        <div class="mac-product-grid" aria-label="Mac 产品系列">
-          <article class="mac-product-card mac-product-card--wide mac-reveal">
-            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/macbook-neo.jpg" alt="MacBook Neo 产品图" loading="lazy" decoding="async"></div>
-            <h3 class="mac-product-card__name">MacBook Neo</h3>
-            <p class="mac-product-card__description">简洁、轻巧，把日常工作带到更轻盈的地方。</p>
-            <a class="mac-product-card__link" href="#compare">了解 Neo</a>
-          </article>
-          <article class="mac-product-card mac-product-card--wide mac-reveal">
-            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/macbook-air.jpg" alt="MacBook Air 产品图" loading="lazy" decoding="async"></div>
-            <h3 class="mac-product-card__name">MacBook Air</h3>
-            <p class="mac-product-card__description">轻盈、安静、随时展开。适合学习、工作与日常创作。</p>
-            <a class="mac-product-card__link" href="#compare">了解 Air</a>
-          </article>
-          <article class="mac-product-card mac-reveal">
-            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/macbook-pro.jpg" alt="MacBook Pro 产品图" loading="lazy" decoding="async"></div>
-            <h3 class="mac-product-card__name">MacBook Pro</h3>
-            <p class="mac-product-card__description">为专业工作流准备的性能与显示体验。</p>
-            <a class="mac-product-card__link" href="#compare">了解 Pro</a>
-          </article>
-          <article class="mac-product-card mac-reveal">
-            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/mac-mini.jpg" alt="Mac mini 产品图" loading="lazy" decoding="async"></div>
-            <h3 class="mac-product-card__name">Mac mini</h3>
-            <p class="mac-product-card__description">小巧桌面主机，把空间留给你的工作。</p>
-            <a class="mac-product-card__link" href="#compare了解 mini</a>
-          </article>
-          <article class="mac-product-card mac-product-card--wide mac-reveal">
-            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/imac.jpg" alt="iMac 产品图" loading="lazy" decoding="async"></div>
-            <h3 class="mac-product-card__name">iMac</h3>
-            <p class="mac-product-card__description">一体成形的桌面体验，让创作、沟通与娱乐在一处自然发生。</p>
-            <a class="mac-product-card__link" href="#compare">了解 iMac</a>
-          </article>
-          <article class="mac-product-card mac-reveal">
-            <div class="mac-product-card__visual"><img src="/examples/assets/apple-mac/mac-studio.jpg" alt="Mac Studio 产品图" loading="lazy" decoding="async"></div>
-            <h3 class="mac-product-card__name">Mac Studio</h3>
-            <p class="mac-product-card__description">为高强度创作准备的桌面性能。</p>
-            <a class="mac-product-card__link" href="#compare">了解 Studio</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 风格分隔线 -->
-    <div class="han-divider-ink han-divider-ink--seal" role="separator" aria-label="产品与选择之间的分隔"><span class="han-divider-dot han-stamp han-stamp--sm" aria-hidden="true">器</span></div>
-
-    <!-- 选择 Mac -->
-    <section class="mac-section mac-compare" id="compare" aria-labelledby="compare-title">
-      <div class="mac-container">
-        <div class="mac-section-heading mac-reveal">
-          <div><span class="mac-kicker">选择 Mac</span><h2 id="compare-title">从你的<br>使用方式出发。</h2></div>
-          <p>不必先记住参数。先想想你要把 Mac 带到哪里，再让合适的性能自然浮现。</p>
-        </div>
-        <div class="mac-compare__shell">
-          <div class="mac-tabs" role="tablist" aria-label="使用场景选择">
-            <button class="mac-tab" type="button" role="tab" id="tab-mobile" aria-selected="true" aria-controls="panel-mobile" tabindex="0" data-panel="mobile">随身创作</button>
-            <button class="mac-tab" type="button" role="tab" id="tab-pro" aria-selected="false" aria-controls="panel-pro" tabindex="-1" data-panel="pro">专业工作</button>
-            <button class="mac-tab" type="button" role="tab" id="tab-desktop" aria-selected="false" aria-controls="panel-desktop" tabindex="-1" data-panel="desktop">桌面效率</button>
-            <button class="mac-tab" type="button" role="tab" id="tab-studio" aria-selected="false" aria-controls="panel-studio" tabindex="-1" data-panel="studio">影音创作</button>
-          </div>
-          <div class="mac-compare__panel mac-reveal" id="panel-mobile" role="tabpanel" aria-labelledby="tab-mobile" data-panel-content="mobile">
-            <span class="mac-kicker">推荐方向</span>
-            <h3>MacBook Air</h3>
-            <p>轻盈是它的第一印象，安静与续航则让它适合成为每天都会打开的那台电脑。</p>
-            <div class="mac-metrics"><div class="mac-metric"><strong>轻</strong><span>适合随身携带</span></div><div class="mac-metric"><strong>静</strong><span>专注而不打扰</span></div><div class="mac-metric"><strong>久</strong><span>从早到晚保持节奏</span></div></div>
-          </div>
-          <div class="mac-compare__panel" id="panel-pro" role="tabpanel" aria-labelledby="tab-pro" data-panel-content="pro" hidden>
-            <span class="mac-kicker">推荐方向</span><h3>MacBook Pro</h3><p>当工作流变得复杂，稳定的性能与更大的创作余量，让每一次输出都更从容。</p><div class="mac-metrics"><div class="mac-metric"><strong>快</strong><span>多任务依然流畅</span></div><div class="mac-metric"><strong>准</strong><span>显示与声音更有把握</span></div><div class="mac-metric"><strong>稳</strong><span>长时间工作也有余量</span></div></div>
-          </div>
-          <div class="mac-compare__panel" id="panel-desktop" role="tabpanel" aria-labelledby="tab-desktop" data-panel-content="desktop" hidden>
-            <span class="mac-kicker">推荐方向</span><h3>iMac / Mac mini</h3><p>把桌面留给真正重要的事：清晰的画面、稳定的连接，以及更有秩序的工作空间。</p><div class="mac-metrics"><div class="mac-metric"><strong>整</strong><span>桌面一体成形</span></div><div class="mac-metric"><strong>省</strong><span>少占空间</span></div><div class="mac-metric"><strong>顺</strong><span>连接与协作自然发生</span></div></div>
-          </div>
-          <div class="mac-compare__panel" id="panel-studio" role="tabpanel" aria-labelledby="tab-studio" data-panel-content="studio" hidden>
-            <span class="mac-kicker">推荐方向</span><h3>Mac Studio</h3><p>对于高强度影像、三维与音频工作，桌面性能为创作保留更大的纵深。</p><div class="mac-metrics"><div class="mac-metric"><strong>强</strong><span>应对专业任务</span></div><div class="mac-metric"><strong>扩</strong><span>连接更多设备</span></div><div class="mac-metric"><strong>深</strong><span>为工作室保留空间</span></div></div>
+    <section class="hero" id="top">
+      <div class="shell hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow">MAC · 为创造而生</p>
+          <h1 class="hero__title">Mac<span>轻若宣纸，强若笔锋。</span></h1>
+          <p class="hero__lead">灵感来时，不必等。Mac 把强劲性能、持久续航与顺手的体验放进一体，让每一次创作都从容落笔。</p>
+          <div class="hero__actions">
+            <a class="button" href="#lineup">找到适合你的 Mac</a>
+            <a class="button button--quiet" href="#performance">看看它能做什么</a>
           </div>
         </div>
+        <div class="hero__visual">
+          <img src="assets/apple-mac/macbook-air.jpg" alt="两台不同尺寸的 MacBook Air 正面展示">
+          <span class="hero__seal" aria-hidden="true">轻<br>盈</span>
+          <span class="hero__caption" aria-hidden="true">器以载道 · 工欲善其事</span>
+        </div>
+      </div>
+      <ul class="hero__meta" aria-label="Mac 核心特点">
+        <li>苹果芯片</li>
+        <li>macOS</li>
+        <li>多设备协同</li>
+      </ul>
+    </section>
+
+    <section class="intro-band" aria-label="Mac 产品体验概览">
+      <div class="shell intro-band__inner">
+        <div class="intro-band__item"><strong>一开即用</strong><span>熟悉的应用与文件，迁移更轻松</span></div>
+        <span class="intro-band__divider" aria-hidden="true"></span>
+        <div class="intro-band__item"><strong>安静而强劲</strong><span>苹果芯片让性能与能效兼得</span></div>
+        <span class="intro-band__divider" aria-hidden="true"></span>
+        <div class="intro-band__item"><strong>彼此相通</strong><span>和 iPhone、iPad、Apple Watch 自然协作</span></div>
       </div>
     </section>
 
-    <!-- 性能与 AI -->
-    <section class="mac-section mac-feature-band" id="capabilities" aria-labelledby="capabilities-title">
-      <div class="mac-container">
-        <div class="mac-section-heading mac-reveal">
-          <div><span class="mac-kicker">东方译义</span><h2 id="capabilities-title">用 Mac<br>显身手。</h2></div>
-          <p>Mac 把性能、智能、系统和应用放进同一个工作空间。强大不是为了炫耀，而是为了让复杂的任务变得顺手。</p>
+    <section class="lineup" id="lineup">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">全系产品</p>
+            <h2>各有其器，皆有所长。</h2>
+          </div>
+          <p>从随身轻薄到桌面性能中心，按你的工作方式来选，不必被参数牵着走。</p>
         </div>
-        <div class="mac-feature-grid">
-          <article class="mac-feature-card mac-reveal">
-            <img src="/examples/assets/apple-mac/features/feature-performance.jpg" alt="Mac 产品与性能视觉" loading="lazy" decoding="async">
-            <div class="mac-feature-card__copy"><span class="mac-kicker">性能和电池续航</span><h3>跑得快，跑得久。</h3><p>性能强端口多，为专业人士而来。无论是工作、创作还是日常使用，都有余量应对下一步。</p><a href="#compare">查看适合你的性能</a></div>
-          </article>
-          <article class="mac-feature-card mac-reveal">
-            <img src="/examples/assets/apple-mac/features/feature-intelligence.jpg" alt="Apple Intelligence 视觉" loading="lazy" decoding="async">
-            <div class="mac-feature-card__copy"><span class="mac-kicker">Apple Intelligence</span><h3>为 AI 精心构建。</h3><p>智能又安全，全在设备端。让日常工作更高效，也让你的信息始终掌握在自己手中。</p><a href="#insights">进一步了解</a></div>
-          </article>
-          <article class="mac-feature-card mac-reveal">
-            <img src="/examples/assets/apple-mac/features/feature-macos.jpg" alt="macOS 系统视觉" loading="lazy" decoding="async">
-            <div class="mac-feature-card__copy"><span class="mac-kicker">macOS</span><h3>简简单单，用起来就喜欢。</h3><p>熟悉的界面、顺滑的操作和清晰的层级，让每一天都更容易进入状态。</p><a href="#world">探索 macOS</a></div>
-          </article>
-          <article class="mac-feature-card mac-reveal">
-            <img src="/examples/assets/apple-mac/features/feature-compatibility.jpg" alt="Mac 应用兼容性视觉" loading="lazy" decoding="async">
-            <div class="mac-feature-card__copy"><span class="mac-kicker">兼容性</span><h3>常用 App，Mac 都能跑。</h3><p>从学习到专业创作，熟悉的工具可以继续使用，切换设备不必重新建立工作流。</p><a href="#world">查看兼容性</a></div>
-          </article>
-        </div>
-      </div>
-    </section>
 
-    <!-- 生态协同 -->
-    <section class="mac-section mac-devices" id="ecosystem" aria-labelledby="ecosystem-title">
-      <div class="mac-container">
-        <div class="mac-section-heading mac-reveal">
-          <div><span class="mac-kicker">东方译义</span><h2 id="ecosystem-title">Mac<br>左膀右臂。</h2></div>
-          <p>Mac 不只是一台电脑。它与 iPhone、iPad 和 Apple Watch 共同组成你的工作流，让文件、灵感和沟通顺着你的节奏移动。</p>
-        </div>
-        <div class="mac-device-grid">
-          <article class="mac-device-card mac-reveal">
-            <img src="/examples/assets/apple-mac/features/ecosystem-iphone.jpg" alt="Mac 与 iPhone 协同使用" loading="lazy" decoding="async">
-            <div class="mac-device-card__copy"><span class="mac-kicker">Mac + iPhone</span><h3>接力，从此无缝。</h3><p>来电、信息、照片和文件自然来到 Mac 上，工作不必被设备打断。</p></div>
+        <ul class="filter-list" aria-label="按产品类型筛选">
+          <li><button class="filter-button" type="button" aria-pressed="true" data-filter="all">全部</button></li>
+          <li><button class="filter-button" type="button" aria-pressed="false" data-filter="laptop">笔记本</button></li>
+          <li><button class="filter-button" type="button" aria-pressed="false" data-filter="desktop">台式机</button></li>
+          <li><button class="filter-button" type="button" aria-pressed="false" data-filter="display">显示器</button></li>
+        </ul>
+
+        <div class="product-grid" aria-live="polite">
+          <article class="product-card" data-category="laptop">
+            <div class="product-card__visual"><img src="assets/apple-mac/macbook-air.jpg" alt="MacBook Air 产品展示"></div>
+            <div class="product-card__body">
+              <p class="product-card__type">轻薄笔记本</p>
+              <h3>MacBook Air</h3>
+              <p>轻巧随行，日常学习、办公与创作都得心应手。</p>
+              <div class="product-card__foot"><span class="product-card__best">适合：移动办公</span><a class="text-link" href="#compare">了解更多</a></div>
+            </div>
           </article>
-          <article class="mac-device-card mac-reveal">
-            <img src="/examples/assets/apple-mac/features/ecosystem-ipad.jpg" alt="Mac 与 iPad 协同使用" loading="lazy" decoding="async">
-            <div class="mac-device-card__copy"><span class="mac-kicker">Mac + iPad</span><h3>合力出奇迹。</h3><p>在 iPad 上的手绘，当即就能在 Mac 上显现；也可将 iPad 当作第二块显示屏。</p></div>
+
+          <article class="product-card" data-category="laptop">
+            <div class="product-card__visual"><img src="assets/apple-mac/macbook-pro.jpg" alt="MacBook Pro 产品展示"></div>
+            <div class="product-card__body">
+              <p class="product-card__type">专业笔记本</p>
+              <h3>MacBook Pro</h3>
+              <p>为代码、影像、音乐与复杂工程，留出更充裕的性能空间。</p>
+              <div class="product-card__foot"><span class="product-card__best">适合：专业创作</span><a class="text-link" href="#compare">了解更多</a></div>
+            </div>
           </article>
-          <article class="mac-device-card mac-reveal" id="service">
-            <img src="/examples/assets/apple-mac/features/ecosystem-watch.jpg" alt="Mac 与 Apple Watch 协同使用" loading="lazy" decoding="async">
-            <div class="mac-device-card__copy"><span class="mac-kicker">Mac + Apple Watch</span><h3>一戴，即开。</h3><p>戴着 Apple Watch 并启用自动解锁时，可自动登录 Mac，无需再输入密码。</p></div>
+
+          <article class="product-card" data-category="desktop">
+            <div class="product-card__visual"><img src="assets/apple-mac/imac.jpg" alt="iMac 一体式电脑产品展示"></div>
+            <div class="product-card__body">
+              <p class="product-card__type">一体式台式机</p>
+              <h3>iMac</h3>
+              <p>纤薄机身与清晰大屏，让桌面简洁，视野更开阔。</p>
+              <div class="product-card__foot"><span class="product-card__best">适合：家庭与工作室</span><a class="text-link" href="#compare">了解更多</a></div>
+            </div>
           </article>
-        </div>
-      </div>
-    </section>
 
-    <!-- 安全与耐用 -->
-    <section class="mac-section" id="insights" aria-labelledby="insights-title">
-      <div class="mac-container">
-        <div class="mac-section-heading mac-reveal">
-          <div><span class="mac-kicker">东方译义</span><h2 id="insights-title">来了解一下<br>Mac。</h2></div>
-          <p>从安全、兼容到耐用，Mac 的体验不只在第一次打开时惊艳，也在每天使用时持续可靠。</p>
-        </div>
-        <div class="mac-insight-grid">
-          <article class="mac-insight-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-security.jpg" alt="Mac 隐私和安全视觉" loading="lazy" decoding="async"><div class="mac-insight-card__copy"><span class="mac-kicker">隐私和安全</span><h3>你的私事，只关你的事。</h3><p>智能又安全，全在设备端。让个人信息留在应该在的地方。</p><a href="#capabilities">进一步了解</a></div></article>
-          <article class="mac-insight-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-compatibility.jpg" alt="Mac 兼容性视觉" loading="lazy" decoding="async"><div class="mac-insight-card__copy"><span class="mac-kicker">兼容性</span><h3>各种常用 App，Mac 都能跑。</h3><p>熟悉的工具、文件和工作方式，都可以顺畅延续。</p><a href="#capabilities">查看兼容性</a></div></article>
-          <article class="mac-insight-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-planet.jpg" alt="Mac 环境责任视觉" loading="lazy" decoding="async"><div class="mac-insight-card__copy"><span class="mac-kicker">耐用性与价值观</span><h3>经得起时间考验。</h3><p>精心打造，也把环境责任、辅助功能和长期使用放进产品考量。</p><a href="#benefits">了解 Apple 价值观</a></div></article>
-        </div>
-      </div>
-    </section>
+          <article class="product-card" data-category="desktop">
+            <div class="product-card__visual"><img src="assets/apple-mac/mac-mini.jpg" alt="Mac mini 产品展示"></div>
+            <div class="product-card__body">
+              <p class="product-card__type">小型台式机</p>
+              <h3>Mac mini</h3>
+              <p>小巧机身接入你已有的显示器与配件，灵活组成桌面。</p>
+              <div class="product-card__foot"><span class="product-card__best">适合：灵活搭配</span><a class="text-link" href="#compare">了解更多</a></div>
+            </div>
+          </article>
 
-    <!-- 迁移 -->
-    <section class="mac-section mac-switch" id="switch-mac" aria-labelledby="switch-title">
-      <div class="mac-container">
-        <div class="mac-section-heading mac-reveal">
-          <div><span class="mac-kicker">东方译义</span><h2 id="switch-title">换成<br>Mac。</h2></div>
-          <p>无论你来自 PC，还是正在开始新的学习与工作阶段，Mac 都提供清楚、友好的过渡路径。</p>
-        </div>
-        <div class="mac-banner-grid">
-          <article class="mac-banner-card mac-reveal"><img src="/examples/assets/apple-mac/features/banner-students.jpg" alt="学生使用 Mac 学习" loading="lazy" decoding="async"><div class="mac-banner-card__copy"><span class="mac-kicker">教育</span><h3>学什么专业，Mac 都专业。</h3><p>高校学生和教职员工在 Apple Store 选购，可享教育优惠。</p><a href="#benefits">了解高校学生优惠 →</a></div></article>
-          <article class="mac-banner-card mac-reveal"><img src="/examples/assets/apple-mac/features/banner-business.jpg" alt="商务团队使用 Mac" loading="lazy" decoding="async"><div class="mac-banner-card__copy"><span class="mac-kicker">商务</span><h3>做生意，Mac 也是好帮手。</h3><p>从小型团队到专业企业，为工作提供稳定、灵活的设备选择。</p><a href="#benefits">了解 Mac 商务应用 →</a></div></article>
-        </div>
-      </div>
-    </section>
+          <article class="product-card" data-category="desktop">
+            <div class="product-card__visual"><img src="assets/apple-mac/mac-studio.jpg" alt="Mac Studio 产品展示"></div>
+            <div class="product-card__body">
+              <p class="product-card__type">专业台式机</p>
+              <h3>Mac Studio</h3>
+              <p>面向高负载专业流程，在紧凑体积里集中释放性能。</p>
+              <div class="product-card__foot"><span class="product-card__best">适合：高阶工作流</span><a class="text-link" href="#compare">了解更多</a></div>
+            </div>
+          </article>
 
-    <!-- 购买支持 -->
-    <section class="mac-section mac-benefits" id="benefits" aria-labelledby="benefits-title">
-      <div class="mac-container">
-        <div class="mac-section-heading mac-reveal">
-          <div><span class="mac-kicker">东方译义</span><h2 id="benefits-title">在 Apple 购买 Mac<br>好处多多。</h2></div>
-          <p>从个性化配置、付款方式，到换购、配送和设置辅导，把选购 Mac 的每一步都安排得更清楚。</p>
-        </div>
-        <div class="mac-benefit-grid">
-          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-customize.jpg" alt="Mac 个性化配置" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">Mac 定制</span><h3>专属于你的配置</h3><p>选择你想要的芯片、内存、存储容量，以及外观颜色。</p><a href="#products">进一步了解 Mac 定制</a></div></article>
-          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-financing.jpg" alt="Mac 灵活付款方案" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">购买支持</span><h3>灵活的付款方案</h3><p>多种免息分期可选，购买 Apple 产品最长可享 24 个月免息分期。</p><a href="#final-cta">了解付款方案</a></div></article>
-          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-tradein.png" alt="Apple Trade In 换购计划" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">Apple Trade In</span><h3>辞旧迎新，还能省一笔。</h3><p>通过换购计划折抵现有设备；不符合条件的设备也可免费回收。</p><a href="#final-cta">查看设备折抵金额</a></div></article>
-          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-display.png" alt="Mac 配件" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">Mac 配件</span><h3>Mac 的好搭档</h3><p>来看看键盘、鼠标、显示器等各种精彩配件。</p><a href="#products">选购 Mac 配件</a></div></article>
-          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-setup.jpg" alt="Mac 个人设置辅导" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">个人设置辅导</span><h3>个人设置辅导</h3><p>引导你转移数据，了解各种新功能，并提供更多帮助。</p><a href="#final-cta">进一步了解你的新 Mac</a></div></article>
-          <article class="mac-benefit-card mac-reveal"><img src="/examples/assets/apple-mac/features/value-delivery.jpg" alt="Mac 送货和取货服务" loading="lazy" decoding="async"><div class="mac-benefit-card__copy"><span class="mac-kicker">购买支持</span><h3>送货和取货</h3><p>所有订单均可享免费送货，部分订单支持快送或到店取货。</p><a href="#final-cta">了解送货和取货</a></div></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Apple 世界 -->
-    <section class="mac-section mac-world" id="world" aria-labelledby="world-title">
-      <div class="mac-container">
-        <div class="mac-section-heading mac-reveal">
-          <div><span class="mac-kicker">东方译义</span><h2 id="world-title">解锁 Apple<br>世界。</h2></div>
-          <p>从 macOS 的日常体验，到 Mac 与 iPhone 的默契配合，技术成为空间，而不是负担。</p>
-        </div>
-        <div class="mac-world-grid">
-          <article class="mac-world-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-macos.jpg" alt="macOS 操作系统视觉" loading="lazy" decoding="async"><div class="mac-world-card__copy"><span class="mac-kicker">macOS</span><h3>简简单单，用起来就喜欢。</h3><p>熟悉、顺滑、稳定，把每天的工作和创作都安排在自然的节奏里。</p><a href="#capabilities">探索 macOS</a></div></article>
-          <article class="mac-world-card mac-reveal"><img src="/examples/assets/apple-mac/features/feature-iphone.jpg" alt="Mac 与 iPhone 协同视觉" loading="lazy" decoding="async"><div class="mac-world-card__copy"><span class="mac-kicker">Mac + iPhone</span><h3>配合 iPhone，更好用。</h3><p>照片、信息、来电和接续，把设备之间的距离收进一个连续的体验。</p><a href="#ecosystem">了解各款 Apple 设备如何更默契地配合</a></div></article>
+          <article class="product-card" data-category="display">
+            <div class="product-card__visual"><img src="assets/apple-mac/studio-display.jpg" alt="Studio Display 显示器产品展示"></div>
+            <div class="product-card__body">
+              <p class="product-card__type">专业显示器</p>
+              <h3>Studio Display</h3>
+              <p>清晰画面、摄像头与扬声器集于一体，完整你的 Mac 桌面。</p>
+              <div class="product-card__foot"><span class="product-card__best">适合：桌面扩展</span><a class="text-link" href="#compare">了解更多</a></div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- 最终 CTA -->
-    <section class="mac-final" id="final-cta" aria-labelledby="final-title">
-      <div class="mac-container mac-final__inner">
-        <span class="mac-kicker">找到适合你的那一台</span>
-        <h2 id="final-title">从容，<br>就是一种性能。</h2>
-        <p>选择你的使用方式，了解适合你的 Mac。这里是一个当代中国风产品体验概念页，并非 Apple 官方页面。</p>
-        <button type="button" class="han-btn-seal han-btn-seal--lg" id="final-cta-button">开始选择</button>
+    <section class="performance" id="performance">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">为什么选 MAC</p>
+            <h2>落笔要轻，出手要快。</h2>
+          </div>
+          <p>从打开应用到处理复杂项目，苹果芯片与 macOS 协同工作，让速度、续航与安静体验不必相互取舍。</p>
+        </div>
+
+        <div class="performance-stage">
+          <img src="assets/apple-mac/features/feature-performance.jpg" alt="MacBook Pro 同时运行影像、音频与三维设计专业应用">
+          <div class="performance-stage__note">
+            <strong>灵感不等进度条</strong>
+            <span>面对剪辑、调色、建模和音乐制作等复杂任务，工作流依然保持连贯。</span>
+          </div>
+        </div>
+
+        <div class="story-grid">
+          <article class="story-panel story-panel--wide story-panel--split">
+            <img src="assets/apple-mac/features/feature-macos.jpg" alt="macOS 桌面界面与小组件展示">
+            <div class="story-panel__copy">
+              <p class="eyebrow">MACOS</p>
+              <h3>熟悉，很快就能上手。</h3>
+              <p>清楚的界面、实用的内置应用与稳定的日常体验，让注意力留给真正重要的事。</p>
+            </div>
+          </article>
+          <article class="story-panel story-panel--narrow story-panel--dark">
+            <img src="assets/apple-mac/features/feature-security.jpg" alt="Mac 隐私与安全功能界面展示">
+            <div class="story-panel__copy">
+              <p class="eyebrow">隐私与安全</p>
+              <h3>重要的内容，始终由你掌握。</h3>
+              <p>软硬件共同守护设备与数据，权限设置清楚可见。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ecosystem" id="ecosystem">
+      <div class="shell ecosystem__layout">
+        <div class="ecosystem__copy">
+          <div>
+            <p class="eyebrow">设备协同</p>
+            <h2>各自精彩，<span>合起来更顺手。</span></h2>
+            <p>在 iPhone 上开始，在 Mac 上继续；用 iPad 扩展工作空间，用 Apple Watch 完成轻巧操作。</p>
+          </div>
+          <ul class="ecosystem__list">
+            <li><strong>接力</strong><span>跨设备继续手头任务</span></li>
+            <li><strong>隔空投送</strong><span>快速传送照片与文件</span></li>
+            <li><strong>通用剪贴板</strong><span>一处复制，多处粘贴</span></li>
+          </ul>
+        </div>
+        <div class="ecosystem__media">
+          <figure>
+            <img src="assets/apple-mac/features/ecosystem-iphone.jpg" alt="iPhone 与 Mac 协同使用场景">
+            <figcaption>iPhone + Mac</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/apple-mac/features/ecosystem-ipad.jpg" alt="iPad 与 Mac 协同使用场景">
+            <figcaption>iPad + Mac</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/apple-mac/features/ecosystem-watch.jpg" alt="Apple Watch 与 Mac 协同使用场景">
+            <figcaption>Apple Watch + Mac</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="compare" id="compare">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">选购指南</p>
+            <h2>不必选最强，只选最合适。</h2>
+          </div>
+          <p>先想清楚使用场景，再决定形态与性能。下面这张表可以帮你快速缩小范围。</p>
+        </div>
+
+        <section class="compare-table-wrap" tabindex="0" aria-label="Mac 机型对比表">
+          <table class="compare-table">
+            <thead>
+              <tr><th scope="col">关注点</th><th scope="col"><span class="model">MacBook Air</span>轻薄随行</th><th scope="col"><span class="model">MacBook Pro</span>专业性能</th><th scope="col"><span class="model">iMac</span>一体桌面</th><th scope="col"><span class="model">Mac mini</span>灵活组合</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>更适合谁</td><td>学生、通勤办公、轻创作</td><td>开发者、影像与音乐创作者</td><td>家庭用户、设计工作室</td><td>已有显示器与外设的用户</td></tr>
+              <tr><td>主要优势</td><td>轻、安静、便于携带</td><td>持续性能与专业扩展能力</td><td>屏幕与主机一体，桌面简洁</td><td>体积小，组合自由</td></tr>
+              <tr><td>常见任务</td><td>文档、学习、轻量剪辑</td><td>编译、调色、三维与音频</td><td>设计、影音、家庭管理</td><td>办公、开发、家庭服务器</td></tr>
+              <tr><td>选择建议</td><td>看重便携，优先考虑</td><td>工作负载较重，优先考虑</td><td>希望开箱即用，优先考虑</td><td>想沿用现有桌面，优先考虑</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <div class="compare-note">
+          <span>页面内容用于产品设计演示，具体配置与在售信息请以 Apple 官方页面为准。</span>
+          <a class="text-link" href="#lineup">返回全系产品</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta" aria-labelledby="final-title">
+      <img class="final-cta__image" src="assets/apple-mac/macbook-pro.jpg" alt="MacBook Pro 产品展示">
+      <div class="shell">
+        <div class="final-cta__copy">
+          <p class="eyebrow">下一台 MAC</p>
+          <h2 id="final-title">把好工具，交给好想法。</h2>
+          <p>无论是第一台 Mac，还是工作流的下一次升级，从你的真实需求出发，找到那台用起来刚刚好的设备。</p>
+          <a class="button" href="#compare">开始选择</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="mac-footer">
-    <div class="mac-container">
-      <div class="mac-footer__top">
-        <div class="mac-footer__brand">Mac<span>·</span>东方产品志</div>
-        <p class="mac-footer__note">当代中国风视觉概念，由 Han design skill 构建。本地开发版使用 Apple 官方页面产品图，仅供非官方概念演示；产品名称与品牌归其各自所有者所有。</p>
-      </div>
-      <nav class="mac-footer__directory" aria-label="页脚导航">
-        <div class="mac-footer__column"><h3>探索 Mac</h3><a href="#products">MacBook Neo</a><a href="#products">MacBook Air</a><a href="#products">MacBook Pro</a><a href="#products">iMac</a><a href="#products">Mac mini</a><a href="#products">Mac Studio</a><a href="#compare">机型比较</a></div>
-        <div class="mac-footer__column"><h3>Mac 相关</h3><a href="#capabilities">性能和电池续航</a><a href="#capabilities">Apple Intelligence</a><a href="#world">macOS</a><a href="#ecosystem">配合 iPhone 更好用</a><a href="#insights">兼容性</a><a href="#insights">隐私和安全</a><a href="#insights">耐用性</a></div>
-        <div class="mac-footer__column"><h3>购买与支持</h3><a href="#benefits">选购 Mac</a><a href="#benefits">Mac 配件</a><a href="#benefits">Mac 定制</a><a href="#benefits">Apple Trade In 换购计划</a><a href="#benefits">分期付款</a><a href="#benefits">个人设置辅导</a><a href="#benefits">送货和取货</a></div>
-        <div class="mac-footer__column"><h3>更多内容</h3><a href="#switch-mac">教育</a><a href="#switch-mac">商务应用</a><a href="#benefits">辅助功能</a><a href="#insights">环境责任</a><a href="#final-cta">隐私</a><a href="#final-cta">使用条款</a><a href="#final-cta">网站地图</a></div>
-      </nav>
-      <div class="mac-footer__bottom"><span>© 2026 Han Design Concept</span><span>Song-inspired · Accessible · Responsive</span></div>
+  <footer class="site-footer">
+    <div class="shell site-footer__inner">
+      <span>Mac 产品概念页 · 使用 Han Design 构建</span>
+      <span>本页仅作设计演示，产品图与商标归其权利人所有。 <a href="#top">回到顶部</a></span>
     </div>
   </footer>
 
   <script>
-    (() => {
-      const nav = document.querySelector('.mac-navbar');
-      const toggle = document.querySelector('.mac-navbar__toggle');
-      const menu = document.getElementById('main-menu');
-      const revealItems = document.querySelectorAll('.mac-reveal');
-      const chapterLinks = document.querySelectorAll('.mac-chapter-link');
+    const header = document.querySelector("#site-header");
+    const navToggle = document.querySelector(".nav__toggle");
+    const navLinks = document.querySelectorAll(".nav__links a");
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const productCards = document.querySelectorAll("[data-category]");
 
-      // 滚动指示导航
-      const setScrolled = () => nav?.classList.toggle('is-scrolled', window.scrollY > 12);
-      setScrolled();
-      window.addEventListener('scroll', setScrolled, { passive: true });
+    function closeNavigation() {
+      header.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "打开导航菜单");
+    }
 
-      // 移动端菜单
-      toggle.addEventListener('click', () => {
-        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!isOpen));
-        toggle.setAttribute('aria-label', isOpen ? '打开导航菜单' : '关闭导航菜单');
-        nav?.classList.toggle('mac-navbar--open', !isOpen);
-      });
+    navToggle.addEventListener("click", () => {
+      const open = navToggle.getAttribute("aria-expanded") === "true";
+      header.classList.toggle("is-open", !open);
+      navToggle.setAttribute("aria-expanded", String(!open));
+      navToggle.setAttribute("aria-label", open ? "打开导航菜单" : "关闭导航菜单");
+    });
 
-      // 点击菜单项关闭移动端菜单
-      menu?.addEventListener('click', (event) => {
-        if (event.target.closest('a')) {
-          toggle?.setAttribute('aria-expanded', 'false');
-          toggle?.setAttribute('aria-label', '打开导航菜单');
-          nav?.classList.remove('mac-navbar--open');
-        }
-      });
+    navLinks.forEach((link) => link.addEventListener("click", closeNavigation));
 
-      // 章节导航激活
-      const chapterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const link = document.querySelector(`.mac-chapter-link[href="#${entry.target.id}"]`);
-          if (link) {
-            link.classList.toggle('is-active', entry.isIntersecting);
-          }
-        });
-      }, { rootMargin: '-20% 0px -50% 0px', threshold: 0 });
-
-      document.querySelectorAll('section[id]').forEach(target => chapterObserver.observe(target));
-
-      // 滚动到产品
-      document.getElementById('scroll-to-products')?.addEventListener('click', () => {
-        document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
-      });
-
-      // 标签切换功能
-      const tabs = [...document.querySelectorAll('.mac-tab')];
-      const panels = [...document.querySelectorAll('[data-panel-content]')];
-
-      const activateTab = (tab) => {
-        const target = tab.dataset.panel;
-        tabs.forEach(item => {
-          const active = item === tab;
-          item.setAttribute('aria-selected', String(active));
-          item.tabIndex = active ? 0 : -1;
-        });
-        panels.forEach(panel => {
-          panel.hidden = panel.dataset.panelContent !== target;
-        });
-      };
-
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => activateTab(tab));
-        tab.addEventListener('keydown', (event) => {
-          const direction = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? -1 : 0;
-          if (!direction) return;
-          event.preventDefault();
-          const next = tabs[(index + direction + tabs.length) % tabs.length];
-          activateTab(next);
-          next.focus();
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+        productCards.forEach((card) => {
+          card.hidden = filter !== "all" && card.dataset.category !== filter;
         });
       });
-
-      // 滚动显现动画
-      const revealObserver = new IntersectionObserver((entries, instance) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            instance.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-
-      revealItems.forEach(item => revealObserver.observe(item));
-    })();
+    });
   </script>
 
-  <!-- 页面导航（复用自示例） -->
+  <!-- 页面导航浮球 -->
   <style>
     .han-nav-fab{position:fixed!important;right:16px!important;top:16px!important;z-index:99999!important;width:44px!important;height:44px!important;border-radius:50%!important;background:var(--han-color-ink-700,#2a2824)!important;color:#fff!important;border:none!important;cursor:pointer!important;box-shadow:0 4px 16px rgba(0,0,0,.25)!important;font-size:18px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-family:var(--han-font-kai,KaiTi,serif)!important;}
     .han-nav-fab:hover{transform:scale(1.1)!important;}
@@ -1476,11 +1309,11 @@
   <div class="han-nav-panel" id="hanNavPanel">
     <h4>示例页面</h4>
     <ul>
-      <li><a href="/landing-page" aria-current="page">Mac · 东方产品志</a></li>
-      <li><a href="/contemporary-themes">当代配色主题</a></li>
+      <li><a href="/landing-page" aria-current="page">落地页</a></li>
       <li><a href="/quick-start">快速上手</a></li>
       <li><a href="/theme-showcase">主题展示</a></li>
-      <li><a href="/showcase">完整组件</a></li>
+      <li><a href="/showcase">完整组件展示</a></li>
+      <li><a href="/contemporary-themes">当代配色主题</a></li>
     </ul>
     <hr>
     <h4>当代主题示例</h4>
@@ -1503,6 +1336,26 @@
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>(()=>{const b=document.querySelector(".han-nav-fab");const p=document.getElementById("hanNavPanel");if(!b||!p)return;const setOpen=(open)=>{p.classList.toggle("is-open",open);b.setAttribute("aria-expanded",String(open));b.setAttribute("aria-label",open?"关闭示例页面导航":"打开示例页面导航");};b.addEventListener("click",()=>setOpen(b.getAttribute("aria-expanded")!=="true"));document.addEventListener("click",(event)=>{if(!p.contains(event.target)&&event.target!==b)setOpen(false);});document.addEventListener("keydown",(event)=>{if(event.key==="Escape")setOpen(false);b.focus();})();})();</script>
+  <script>
+    const pageNavButton = document.querySelector('.han-nav-fab');
+    const pageNavPanel = document.getElementById('hanNavPanel');
+    const setPageNavOpen = (open) => {
+      pageNavPanel.classList.toggle('is-open', open);
+      pageNavButton.setAttribute('aria-expanded', String(open));
+      pageNavButton.setAttribute('aria-label', open ? '关闭示例页面导航' : '打开示例页面导航');
+    };
+    pageNavButton.addEventListener('click', () => {
+      setPageNavOpen(pageNavButton.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('click', (event) => {
+      if (!pageNavPanel.contains(event.target) && event.target !== pageNavButton) setPageNavOpen(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setPageNavOpen(false);
+        pageNavButton.focus();
+      }
+    });
+  </script>
 </body>
 </html>
