@@ -2,7 +2,11 @@
 
 一个面向 AI Agent 的中国文化设计 Skill。它将宣纸、墨色、朱红、书法、卷轴和传统构图转化为可复用的设计令牌、主题、视觉配方与文化决策规则。
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-c68a2e.svg)](LICENSE)
+**语言 / Languages：** [简体中文](README.md)（默认） · [English](README.en.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+
+## 为什么叫 Han
+
+我们身份证上写的是汉族，说的是汉语，写的是汉字。我们做的这套中国风设计系统，自然就该叫 han-design。
 
 ## 项目特点
 
@@ -85,7 +89,7 @@ node scripts/package-plugin.mjs
 
 > 使用 han-design，帮我生成一个克制的宋韵产品落地页。
 
-> 用汉重构当前页面，保留现有 React 组件和交互。
+> 用 han-design 重构当前页面，保留现有 React 组件和交互。
 
 也可以把设计判断直接交给 Han：
 
