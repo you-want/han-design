@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +18,7 @@
   </style>
 </head>
 <body>
+<main>
   <div class="han-container">
     <h1 style="text-align:center; margin-bottom:8px;">印章按钮</h1>
     <p style="text-align:center; color:var(--han-color-text-secondary); margin-bottom:48px;">
@@ -29,23 +30,23 @@
       <h3>基础用法</h3>
       <div class="demo-row">
         <div class="demo-item">
-          <button class="han-btn-seal">确认</button>
+          <button type="button" class="han-btn-seal">确认</button>
           <div class="demo-label">默认</div>
         </div>
         <div class="demo-item">
-          <button class="han-btn-seal han-btn-seal--lg">提交</button>
+          <button type="button" class="han-btn-seal han-btn-seal--lg">提交</button>
           <div class="demo-label">大号</div>
         </div>
         <div class="demo-item">
-          <button class="han-btn-seal han-btn-seal--sm">返回</button>
+          <button type="button" class="han-btn-seal han-btn-seal--sm">返回</button>
           <div class="demo-label">小号</div>
         </div>
         <div class="demo-item">
-          <button class="han-btn-seal han-btn-seal--circle">印</button>
+          <button type="button" class="han-btn-seal han-btn-seal--circle">印</button>
           <div class="demo-label">圆形</div>
         </div>
         <div class="demo-item">
-          <button class="han-btn-seal han-btn-seal--drop">汉</button>
+          <button type="button" class="han-btn-seal han-btn-seal--drop">汉</button>
           <div class="demo-label">盖章动画</div>
         </div>
       </div>
@@ -55,13 +56,13 @@
     <div class="demo-section">
       <h3>使用说明</h3>
       <pre><code><!-- 基础印章按钮 -->
-<button class="han-btn-seal">确认</button>
+<button type="button" class="han-btn-seal">确认</button>
 
 <!-- 大号 -->
-<button class="han-btn-seal han-btn-seal--lg">提交</button>
+<button type="button" class="han-btn-seal han-btn-seal--lg">提交</button>
 
 <!-- 带盖章动画 -->
-<button class="han-btn-seal han-btn-seal--drop">汉</button></code></pre>
+<button type="button" class="han-btn-seal han-btn-seal--drop">汉</button></code></pre>
     </div>
 
     <!-- 使用场景 -->
@@ -80,15 +81,15 @@
       <h3>自定义色调（通过 CSS 变量）</h3>
       <div class="demo-row">
         <div class="demo-item">
-          <button class="han-btn-seal" style="--han-seal-bg: var(--han-color-indigo-500); --han-seal-bg-hover: var(--han-color-indigo-600); --han-seal-border: var(--han-color-gold-400);">靛蓝</button>
+          <button type="button" class="han-btn-seal" style="--han-seal-bg: var(--han-color-indigo-500); --han-seal-bg-hover: var(--han-color-indigo-600); --han-seal-border: var(--han-color-gold-400);">靛蓝</button>
           <div class="demo-label">靛蓝</div>
         </div>
         <div class="demo-item">
-          <button class="han-btn-seal" style="--han-seal-bg: var(--han-color-bamboo); --han-seal-bg-hover: #3d6649; --han-seal-border: var(--han-color-gold-500);">竹青</button>
+          <button type="button" class="han-btn-seal" style="--han-seal-bg: var(--han-color-bamboo); --han-seal-bg-hover: #3d6649; --han-seal-border: var(--han-color-gold-500);">竹青</button>
           <div class="demo-label">竹青</div>
         </div>
         <div class="demo-item">
-          <button class="han-btn-seal" style="--han-seal-bg: var(--han-color-ink-700); --han-seal-bg-hover: var(--han-color-ink-800); --han-seal-border: var(--han-color-gold-500);">墨色</button>
+          <button type="button" class="han-btn-seal" style="--han-seal-bg: var(--han-color-ink-700); --han-seal-bg-hover: var(--han-color-ink-800); --han-seal-border: var(--han-color-gold-500);">墨色</button>
           <div class="demo-label">墨色</div>
         </div>
       </div>
@@ -109,8 +110,8 @@
     .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
     @media(max-width:768px){.han-nav-panel{width:180px!important;}}
   </style>
-  <button class="han-nav-fab" onclick="document.getElementById('hanNavPanel').classList.toggle('is-open')">☰</button>
-  <div class="han-nav-panel" id="hanNavPanel" onclick="event.stopPropagation()">
+  <button type="button" class="han-nav-fab" id="hanNavFab">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel">
     <h4>示例页面</h4>
     <ul>
       <li><a href="/landing-page">落地页</a></li>
@@ -141,7 +142,9 @@
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>document.addEventListener("click",function(e){var p=document.getElementById("hanNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("han-nav-fab"))p.classList.remove("is-open");});</script>
+  <script>(function(){var f=document.getElementById("hanNavFab"),p=document.getElementById("hanNavPanel");if(f)f.addEventListener("click",function(e){e.stopPropagation();p.classList.toggle("is-open");});if(p)p.addEventListener("click",function(e){e.stopPropagation();});})();</script>
+<script>document.addEventListener("click",function(e){var p=document.getElementById("hanNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("han-nav-fab"))p.classList.remove("is-open");});</script>
 
+</main>
 </body>
 </html>

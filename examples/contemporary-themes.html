@@ -499,7 +499,7 @@
     <header class="site-header">
       <div class="container">
         <nav class="site-nav">
-          <a class="brand" href="#">
+          <a class="brand" href="javascript:void(0)">
             <span class="brand-mark">汉</span>
             当代配色
           </a>
@@ -525,8 +525,8 @@
         <h1 id="heroTitle">松麦</h1>
         <p id="heroDesc">自然、清新、安静 — 这套主题适合追求生活品质的品牌</p>
         <div class="hero-actions">
-          <button class="btn-primary" onclick="document.getElementById('palette').scrollIntoView({behavior:'smooth'})">探索配色</button>
-          <button class="btn-secondary" onclick="document.getElementById('usage').scrollIntoView({behavior:'smooth'})">查看适用场景</button>
+          <button type="button" class="btn-primary" id="btnExplorePalette">探索配色</button>
+          <button type="button" class="btn-secondary" id="btnViewUsage">查看适用场景</button>
         </div>
       </section>
 
@@ -583,12 +583,12 @@
           <div class="demo-card">
             <h4>按钮</h4>
             <div class="demo-buttons">
-              <button class="han-btn-seal">印章按钮</button>
-              <button class="han-btn-seal han-btn-seal--outline">线框按钮</button>
+              <button type="button" class="han-btn-seal">印章按钮</button>
+              <button type="button" class="han-btn-seal han-btn-seal--outline">线框按钮</button>
             </div>
             <div class="demo-buttons">
-              <button class="han-btn-pill">胶囊按钮</button>
-              <button class="han-btn-ghost">幽灵按钮</button>
+              <button type="button" class="han-btn-pill">胶囊按钮</button>
+              <button type="button" class="han-btn-ghost">幽灵按钮</button>
             </div>
           </div>
           <div class="demo-card">
@@ -622,8 +622,8 @@
             <h3 class="preview-title" id="previewTitle">与自然同行</h3>
             <p class="preview-desc" id="previewDesc">简约设计，清晰信息层级，让视觉与内容完美结合。这套配色将为你的品牌带来独特的气质。</p>
             <div class="preview-actions">
-              <button class="btn-primary">开始体验</button>
-              <button class="btn-secondary">了解更多</button>
+              <button type="button" class="btn-primary">开始体验</button>
+              <button type="button" class="btn-secondary">了解更多</button>
             </div>
             <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--han-color-border);">
               <div class="han-card-scroll" style="max-width: 400px;">
@@ -852,7 +852,7 @@
           <div class="usage-icon">${item.icon}</div>
           <h3>${item.title}</h3>
           <div class="usage-tags">
-            ${item.tags.map(tag => `<span class="usage-tag">${tag}</span>`).join('')}
+            ${item.tags.map(tag => '<span class="usage-tag">' + tag + '</span>').join('')}
           </div>
           <p>${item.desc}</p>
         </div>
@@ -904,6 +904,13 @@
     darkToggle.checked = savedDark;
     if (savedDark) html.setAttribute('data-color-mode', 'dark');
     setTheme(savedTheme);
+
+    document.getElementById('btnExplorePalette').addEventListener('click', function() {
+      document.getElementById('palette').scrollIntoView({behavior: 'smooth'});
+    });
+    document.getElementById('btnViewUsage').addEventListener('click', function() {
+      document.getElementById('usage').scrollIntoView({behavior: 'smooth'});
+    });
   </script>
   <!-- 页面导航 -->
   <style>

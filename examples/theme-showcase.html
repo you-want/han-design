@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-han-static-reference="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -189,6 +189,7 @@
   </style>
 </head>
 <body>
+<main>
   <div class="theme-showcase">
     <div class="theme-header">
       <h1>汉 · 主题花园</h1>
@@ -196,27 +197,27 @@
     </div>
 
     <div class="theme-switcher" id="themeSwitcher">
-      <button class="theme-btn active" data-theme="">汉</button>
-      <button class="theme-btn" data-theme="ink">水墨</button>
-      <button class="theme-btn" data-theme="landscape">青绿山水</button>
-      <button class="theme-btn" data-theme="porcelain">青花瓷</button>
-      <button class="theme-btn" data-theme="dunhuang">敦煌</button>
-      <button class="theme-btn" data-theme="imperial">宫廷金</button>
-      <button class="theme-btn" data-theme="wuxia">武侠玄墨</button>
-      <button class="theme-btn" data-theme="tea">当代茶空间</button>
-      <button class="theme-btn" data-theme="vermilion">朱砂喜庆</button>
-      <button class="theme-btn" data-theme="celadon">青瓷</button>
+      <button type="button" class="theme-btn active" data-theme="">汉</button>
+      <button type="button" class="theme-btn" data-theme="ink">水墨</button>
+      <button type="button" class="theme-btn" data-theme="landscape">青绿山水</button>
+      <button type="button" class="theme-btn" data-theme="porcelain">青花瓷</button>
+      <button type="button" class="theme-btn" data-theme="dunhuang">敦煌</button>
+      <button type="button" class="theme-btn" data-theme="imperial">宫廷金</button>
+      <button type="button" class="theme-btn" data-theme="wuxia">武侠玄墨</button>
+      <button type="button" class="theme-btn" data-theme="tea">当代茶空间</button>
+      <button type="button" class="theme-btn" data-theme="vermilion">朱砂喜庆</button>
+      <button type="button" class="theme-btn" data-theme="celadon">青瓷</button>
     </div>
 
     <div class="preview-label" style="text-align:center; margin-bottom:16px;">◆ 朝代主题 · 千年穿越</div>
     <div class="theme-switcher" id="dynastySwitcher">
-      <button class="theme-btn" data-theme="qinhan">秦汉·雄浑</button>
-      <button class="theme-btn" data-theme="weijin">魏晋·飘逸</button>
-      <button class="theme-btn" data-theme="tang">大唐·华美</button>
-      <button class="theme-btn" data-theme="song">大宋·清雅</button>
-      <button class="theme-btn" data-theme="yuan">元代·多元交汇</button>
-      <button class="theme-btn" data-theme="ming">大明·精致</button>
-      <button class="theme-btn" data-theme="qing">大清·繁缛</button>
+      <button type="button" class="theme-btn" data-theme="qinhan">秦汉·雄浑</button>
+      <button type="button" class="theme-btn" data-theme="weijin">魏晋·飘逸</button>
+      <button type="button" class="theme-btn" data-theme="tang">大唐·华美</button>
+      <button type="button" class="theme-btn" data-theme="song">大宋·清雅</button>
+      <button type="button" class="theme-btn" data-theme="yuan">元代·多元交汇</button>
+      <button type="button" class="theme-btn" data-theme="ming">大明·精致</button>
+      <button type="button" class="theme-btn" data-theme="qing">大清·繁缛</button>
     </div>
 
     <div class="dark-mode-toggle">
@@ -230,7 +231,7 @@
         <div class="demo-hero">
           <h2 id="themeName">汉</h2>
           <p id="themeDesc">朱红印章 + 宣纸质感，典雅东方</p>
-          <button class="han-btn-seal han-btn-seal--lg">立即体验</button>
+          <button type="button" class="han-btn-seal han-btn-seal--lg">立即体验</button>
         </div>
       </div>
 
@@ -246,7 +247,7 @@
             <h4>双字印章</h4>
           </div>
           <div class="demo-item">
-            <button class="han-btn-seal han-btn-seal--sm">按钮</button>
+            <button type="button" class="han-btn-seal han-btn-seal--sm">按钮</button>
             <h4>印章按钮</h4>
           </div>
         </div>
@@ -417,8 +418,8 @@
     .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
     @media(max-width:768px){.han-nav-panel{width:180px!important;}}
   </style>
-  <button class="han-nav-fab" onclick="document.getElementById('hanNavPanel').classList.toggle('is-open')">☰</button>
-  <div class="han-nav-panel" id="hanNavPanel" onclick="event.stopPropagation()">
+  <button type="button" class="han-nav-fab" id="hanNavFab">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel">
     <h4>示例页面</h4>
     <ul>
       <li><a href="/landing-page">落地页</a></li>
@@ -449,7 +450,9 @@
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>document.addEventListener("click",function(e){var p=document.getElementById("hanNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("han-nav-fab"))p.classList.remove("is-open");});</script>
+  <script>(function(){var f=document.getElementById("hanNavFab"),p=document.getElementById("hanNavPanel");if(f)f.addEventListener("click",function(e){e.stopPropagation();p.classList.toggle("is-open");});if(p)p.addEventListener("click",function(e){e.stopPropagation();});})();</script>
+<script>document.addEventListener("click",function(e){var p=document.getElementById("hanNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("han-nav-fab"))p.classList.remove("is-open");});</script>
 
+</main>
 </body>
 </html>

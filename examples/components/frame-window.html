@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="song" data-han-static-reference="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,7 @@
   </style>
 </head>
 <body>
+<main>
   <div class="han-container">
     <h1 style="text-align:center; margin-bottom:8px;">窗花边框</h1>
     <p style="text-align:center; color:var(--han-color-text-secondary); margin-bottom:48px;">
@@ -109,8 +110,8 @@
     .han-nav-panel hr{border:none!important;border-top:1px solid var(--han-color-border,#e0dcd4)!important;margin:10px 0!important;}
     @media(max-width:768px){.han-nav-panel{width:180px!important;}}
   </style>
-  <button class="han-nav-fab" onclick="document.getElementById('hanNavPanel').classList.toggle('is-open')">☰</button>
-  <div class="han-nav-panel" id="hanNavPanel" onclick="event.stopPropagation()">
+  <button type="button" class="han-nav-fab" id="hanNavFab">☰</button>
+  <div class="han-nav-panel" id="hanNavPanel">
     <h4>示例页面</h4>
     <ul>
       <li><a href="/landing-page">落地页</a></li>
@@ -141,7 +142,9 @@
       <li><a href="/components/stamp">印章</a></li>
     </ul>
   </div>
-  <script>document.addEventListener("click",function(e){var p=document.getElementById("hanNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("han-nav-fab"))p.classList.remove("is-open");});</script>
+  <script>(function(){var f=document.getElementById("hanNavFab"),p=document.getElementById("hanNavPanel");if(f)f.addEventListener("click",function(e){e.stopPropagation();p.classList.toggle("is-open");});if(p)p.addEventListener("click",function(e){e.stopPropagation();});})();</script>
+<script>document.addEventListener("click",function(e){var p=document.getElementById("hanNavPanel");if(p&&!p.contains(e.target)&&!e.target.classList.contains("han-nav-fab"))p.classList.remove("is-open");});</script>
 
+</main>
 </body>
 </html>
