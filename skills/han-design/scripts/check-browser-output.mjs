@@ -3,18 +3,58 @@
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
+import { evaluateHardConstraints, validateIntentContract } from "./intent-contract.mjs";
 
 const args = process.argv.slice(2);
 const strictIndex = args.indexOf("--strict");
 const strict = strictIndex !== -1;
 if (strict) args.splice(strictIndex, 1);
+
+function takeOption(name) {
+  const index = args.indexOf(name);
+  if (index === -1) return null;
+  const value = args[index + 1];
+  if (!value || value.startsWith("--")) {
+    console.error(`Missing value for ${name}`);
+    process.exit(2);
+  }
+  args.splice(index, 2);
+  return value;
+}
+
+const contractArgument = takeOption("--contract");
+const reportArgument = takeOption("--report");
 const rootIndex = args.indexOf("--root");
 const serveRoot = path.resolve(rootIndex === -1 ? process.cwd() : args[rootIndex + 1]);
 if (rootIndex !== -1) args.splice(rootIndex, 2);
 
 if (args.length === 0) {
-  console.error("Usage: node scripts/check-browser-output.mjs [--strict] <html-file-or-directory> [...]");
+  console.error(
+    "Usage: node scripts/check-browser-output.mjs [--strict] [--contract file.json] " +
+      "[--report report.json] [--root directory] <html-file-or-directory> [...]",
+  );
   process.exit(2);
+}
+
+let intentContract = null;
+let contractPath = null;
+if (contractArgument) {
+  contractPath = path.resolve(contractArgument);
+  if (!fs.existsSync(contractPath)) {
+    console.error("Missing intent contract: " + contractArgument);
+    process.exit(2);
+  }
+  try {
+    intentContract = JSON.parse(fs.readFileSync(contractPath, "utf8"));
+  } catch (error) {
+    console.error("Invalid intent contract JSON: " + error.message);
+    process.exit(2);
+  }
+  const contractErrors = validateIntentContract(intentContract);
+  if (contractErrors.length > 0) {
+    for (const error of contractErrors) console.error("Invalid intent contract: " + error);
+    process.exit(2);
+  }
 }
 
 let chromium;
@@ -85,10 +125,12 @@ const address = server.address();
 const origin = `http://127.0.0.1:${address.port}`;
 let errorCount = 0;
 let warningCount = 0;
+const fileReports = [];
 
 for (const file of files) {
   const errors = [];
   const warnings = [];
+  const intentMessages = [];
   const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const page = await context.newPage();
   let stage = "initial load";
@@ -158,6 +200,87 @@ for (const file of files) {
     errors.push(`first keyboard target (${focus.tag}) has no computed focus indicator`);
   }
 
+  let intentResult = null;
+  let intentMetrics = null;
+  let accentEvidenceViolation = null;
+  if (intentContract) {
+    stage = "intent checks";
+    intentMetrics = await page.evaluate(() => {
+      const intensityValue = document.documentElement.getAttribute("data-han-intensity");
+      const parsedIntensity = intensityValue && /^[0-3]$/.test(intensityValue)
+        ? Number(intensityValue)
+        : null;
+      const root = document.documentElement;
+      const accentEvidenceDeclared = root.hasAttribute("data-han-accent-families") ||
+        document.querySelector("[data-han-accent-family]") !== null;
+      const accentFamilies = new Set();
+      const rootFamilies = root.getAttribute("data-han-accent-families") ?? "";
+      for (const family of rootFamilies.split(/[\s,]+/)) {
+        if (family) accentFamilies.add(family);
+      }
+      for (const element of document.querySelectorAll("[data-han-accent-family]")) {
+        const family = element.getAttribute("data-han-accent-family")?.trim();
+        if (family) accentFamilies.add(family);
+      }
+
+      const animatedElements = new Set();
+      for (const element of document.querySelectorAll("[data-han-entry-animation]")) {
+        animatedElements.add(element);
+      }
+      for (const element of document.querySelectorAll("*")) {
+        const style = getComputedStyle(element);
+        const names = style.animationName.split(",").map((value) => value.trim());
+        const durations = style.animationDuration.split(",").map((value) => value.trim());
+        if (names.some((name, index) => name !== "none" && parseFloat(durations[index] ?? durations[0]) > 0)) {
+          animatedElements.add(element);
+        }
+      }
+      for (const animation of document.getAnimations()) {
+        if (animation.constructor?.name !== "CSSAnimation") continue;
+        const target = animation.effect?.target;
+        if (target instanceof Element) animatedElements.add(target);
+      }
+
+      return {
+        visualIntensity: parsedIntensity,
+        accentColorFamilies: accentFamilies.size,
+        accentEvidenceDeclared,
+        entryAnimations: animatedElements.size,
+      };
+    });
+
+    const accentConstraint = intentContract.constraints.hard.find(
+      (constraint) => constraint.metric === "accentColorFamilies",
+    );
+    if (accentConstraint && !intentMetrics.accentEvidenceDeclared) {
+      accentEvidenceViolation = {
+        id: accentConstraint.id,
+        metric: accentConstraint.metric,
+        expected: accentConstraint.value,
+        actual: null,
+        reason: "missing semantic accent-family evidence",
+      };
+      errors.push(
+        `INTENT ${accentConstraint.id}: missing semantic accent evidence; ` +
+          "declare data-han-accent-families on <html> or data-han-accent-family on accent elements",
+      );
+    }
+
+    intentResult = evaluateHardConstraints(intentContract, intentMetrics);
+    for (const result of intentResult.results) {
+      if (result.passed) {
+        intentMessages.push(
+          `INTENT PASS ${result.id}: ${result.metric}=${JSON.stringify(result.actual)}`,
+        );
+      } else {
+        errors.push(
+          `INTENT ${result.id}: expected ${result.operator} ${JSON.stringify(result.expected)}, ` +
+            `got ${JSON.stringify(result.actual)}${result.reason ? ` (${result.reason})` : ""}`,
+        );
+      }
+    }
+  }
+
   stage = "reduced-motion reload";
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.reload({ waitUntil: "domcontentloaded" });
@@ -173,12 +296,49 @@ for (const file of files) {
   console.log(`\n${path.relative(process.cwd(), file)}`);
   for (const message of errors) console.log("  ERROR: " + message);
   for (const message of warnings) console.log("  WARN:  " + message);
+  for (const message of intentMessages) console.log("  " + message);
   if (errors.length === 0 && warnings.length === 0) console.log("  OK");
   errorCount += errors.length;
   warningCount += warnings.length;
+  fileReports.push({
+    file: path.relative(process.cwd(), file),
+    passed: errors.length === 0 && (!strict || warnings.length === 0),
+    errors,
+    warnings,
+    intent: intentResult
+      ? {
+          passed: intentResult.passed && !accentEvidenceViolation,
+          metrics: intentMetrics,
+          results: intentResult.results,
+          violations: accentEvidenceViolation
+            ? [...intentResult.violations, accentEvidenceViolation]
+            : intentResult.violations,
+        }
+      : null,
+  });
 }
 
 await browser.close();
 await new Promise((resolve) => server.close(resolve));
 console.log(`\nChecked ${files.length} HTML file(s): ${errorCount} error(s), ${warningCount} warning(s).`);
+if (reportArgument) {
+  const reportPath = path.resolve(reportArgument);
+  fs.mkdirSync(path.dirname(reportPath), { recursive: true });
+  fs.writeFileSync(
+    reportPath,
+    JSON.stringify({
+      version: 1,
+      contract: contractPath ? path.relative(process.cwd(), contractPath) : null,
+      summary: {
+        total: files.length,
+        passed: fileReports.filter((item) => item.passed).length,
+        failed: fileReports.filter((item) => !item.passed).length,
+        errors: errorCount,
+        warnings: warningCount,
+      },
+      files: fileReports,
+    }, null, 2) + "\n",
+  );
+  console.log("Report: " + path.relative(process.cwd(), reportPath));
+}
 if (errorCount > 0 || (strict && warningCount > 0)) process.exit(1);

@@ -48,6 +48,7 @@ jobs:
         run: |
           npm run test:browser
           npm run check:browser-output -- --strict tests/fixtures/scoped-host.html
+          npm run check:intent
       - name: Build clean Plugin package
         run: node scripts/package-plugin.mjs
       - name: Validate generated Plugin package

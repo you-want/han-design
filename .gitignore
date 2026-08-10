@@ -79,6 +79,7 @@ evals/results/
 playwright-report/
 test-results/
 screenshots/
+my/
 
 # OS generated
 Thumbs.db

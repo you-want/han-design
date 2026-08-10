@@ -13,6 +13,7 @@ Reject or revise the output when any item applies:
 - invented cultural provenance, pseudo-characters, false historical certainty, or an entire dynasty reduced to one definitive style;
 - sacred, funerary, rank-specific, ethnic, regional, or living-tradition material used without necessary context;
 - the design solves “look Chinese” but fails the user's actual product task.
+- the rendered result contradicts an explicit user visual direction or avoid instruction without a documented product reason.
 
 ## Scoring rubric
 
@@ -53,6 +54,7 @@ For substantial pages, the delivery should include evidence from [visual-review.
 - at least one revision was made after rendering;
 - the weakest two craft areas were identified and addressed;
 - the selected theme and visual intensity are stated.
+- any intent contract hard constraints were checked, and the rendered result was compared with the brief.
 
 If no browser or screenshot capability is available, say so explicitly and perform the strongest static review available instead of claiming visual verification.
 
@@ -69,5 +71,6 @@ Modern adaptations:
 Desktop and mobile reviewed:
 Revision made after rendering:
 Accessibility checks:
+Intent checks and brief alignment:
 Known limitations or specialist review needed:
 ```

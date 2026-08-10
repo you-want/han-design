@@ -25,6 +25,7 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
 
 2. Compile the design brief.
    - For vague requests or delegated design decisions, read [references/autopilot.md](references/autopilot.md), infer the brief, and continue without asking the user to choose themes or components.
+   - When the user gives qualitative visual direction or an explicit avoid instruction, read [references/intent-alignment.md](references/intent-alignment.md), compile a minimal intent contract, and keep non-measurable qualities in the brief-to-result review.
    - Ask only when missing information would materially change the product task, target audience, required content, or authorized scope.
    - Classify the request as historical reconstruction, historically inspired, or contemporary Chinese-inspired design.
    - Identify the relevant period, region, medium, social setting, and desired visual intensity when cultural accuracy matters.
@@ -62,7 +63,9 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
    - Read [references/output-evaluation.md](references/output-evaluation.md) and score the result when the task is substantial or culturally sensitive.
    - Resolve `<skill-root>` as the directory containing this `SKILL.md`. Run `node <skill-root>/scripts/check-output.mjs --strict <output.html>` as a dependency-free static preflight.
    - When Playwright and axe are available in the host project, also run `node <skill-root>/scripts/check-browser-output.mjs --strict --root <project-root> <output.html>` for computed accessibility, focus, overflow, runtime errors, and reduced-motion checks.
+   - When an intent contract exists, pass `--contract <intent-contract.json> --report <intent-report.json>` to the browser checker, keep `data-han-intensity` on the root, and expose semantic accent-family evidence as described in `intent-alignment.md`.
    - Fix actionable issues found by rendering or checks, then rerun the failed checks. Do not stop after reporting a fixable contrast, overflow, focus, asset, or runtime problem.
+   - Compare the rendered desktop and mobile result with the original brief. Record whether measurable intent checks passed and summarize any remaining soft-alignment assumptions.
    - Inspect specific CSS files with search tools only when extending or debugging a class; do not load every stylesheet into context.
    - Deliver the inferred brief, chosen theme and intensity, revision made, checks run, and remaining assumptions when they materially affect the result.
 
@@ -74,6 +77,7 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
 - Read [references/regional-and-ethnic-contexts.md](references/regional-and-ethnic-contexts.md) for region-specific, ethnic, religious, ritual, or living-tradition work.
 - Use [references/cultural-sources.md](references/cultural-sources.md) to locate authoritative starting sources and record provenance.
 - Use [references/output-evaluation.md](references/output-evaluation.md) to reject outputs that are decorative but unusable, culturally overconfident, or structurally incomplete.
+- Use [references/intent-alignment.md](references/intent-alignment.md) to convert explicit visual direction into minimal measurable guardrails without freezing the design solution.
 
 ## Theme selection
 

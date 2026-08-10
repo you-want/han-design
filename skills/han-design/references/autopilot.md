@@ -26,6 +26,8 @@ Contemporary product landing page for small design teams; primary action is requ
 
 Use the brief to keep every layout and decoration decision aligned. Share a short version at delivery when it helps explain the result.
 
+When the user gives qualitative visual direction or an explicit avoid instruction, read [intent-alignment.md](intent-alignment.md). Keep the one-line brief, then compile a versioned intent contract containing only the small set of explicit requirements that can be measured reliably. Do not turn the contract into a complete visual specification.
+
 ## Defaults for vague requests
 
 - Preserve the existing stack, behavior, routes, and product terminology.
@@ -70,10 +72,10 @@ Good layout requires enough real content to establish hierarchy. When the user h
 ## Autonomous delivery loop
 
 1. Inspect the project and infer the brief.
-2. Select a page archetype, primary theme, and intensity.
+2. Select a page archetype, primary theme, and intensity. Compile an intent contract when the request contains measurable visual direction.
 3. Start from the closest file in `assets/starters/` when creating a new page; translate it into the host framework rather than embedding it as a raw string.
 4. Fill the page with realistic content and a complete action path.
 5. Render desktop and mobile views.
 6. Read `visual-review.md`, critique the result, and make at least one revision for substantial work.
-7. Run the static and browser checks available in the host project. Fix actionable failures and rerun until they pass or progress is genuinely blocked by missing authority, assets, or product information.
-8. Deliver the implementation, decisions, checks, and any assumptions still requiring user review.
+7. Run the static and browser checks available in the host project. Pass `--contract` to the browser checker when an intent contract exists. Fix actionable failures and rerun until they pass or progress is genuinely blocked by missing authority, assets, or product information.
+8. Compare the rendered result with the brief, record a short alignment note, and deliver the implementation, decisions, checks, and any assumptions still requiring user review.

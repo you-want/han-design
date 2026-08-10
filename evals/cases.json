@@ -60,9 +60,37 @@
       "expectedReferences": [
         "references/design-guide.md",
         "references/contemporary-palettes.md",
+        "references/intent-alignment.md",
         "references/task-recipes.md"
       ],
       "expectedAssetEntry": "assets/han.css"
+    },
+    {
+      "id": "quiet-intent-alignment",
+      "prompt": "使用 han-design，为一个生活方式品牌做移动优先首页。整体安静一点，保留一个清晰主行动，不要默认入场动画。",
+      "shouldTrigger": true,
+      "expectedReferences": [
+        "references/autopilot.md",
+        "references/intent-alignment.md",
+        "references/page-archetypes.md",
+        "references/design-guide.md",
+        "references/visual-review.md"
+      ],
+      "expectedAssetEntry": "assets/han.css",
+      "expectedIntensityMax": 1,
+      "requiresDesignBrief": true,
+      "requiresIntentContract": true,
+      "expectedIntentKeyword": "quiet",
+      "requiredIntentConstraints": [
+        "intensity-cap",
+        "accent-family-cap",
+        "entry-motion-default-off"
+      ],
+      "requiresIntentChecksPassed": true,
+      "requiresBriefAlignmentNote": true,
+      "requiresRevision": true,
+      "requiresChecksPassed": true,
+      "requiredViewports": ["desktop", "mobile"]
     },
     {
       "id": "autopilot-brand-polish",

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "sourcePrompt": "整体安静一点，保留一个清晰主行动，不要默认入场动画。",
+  "brief": "当代生活方式品牌首页；主行动是了解产品；低噪音、单一强调色、默认无入场动画；视觉强度 1。",
+  "intent": {
+    "keywords": ["quiet"],
+    "confidence": "high",
+    "rationale": "用户明确要求安静，并指定不要默认入场动画。"
+  },
+  "interpretation": {
+    "intensity": 1,
+    "mode": "contemporary-chinese-inspired"
+  },
+  "constraints": {
+    "hard": [
+      {
+        "id": "intensity-cap",
+        "metric": "visualIntensity",
+        "operator": "lte",
+        "value": 1,
+        "reason": "安静优先于戏剧化表达"
+      },
+      {
+        "id": "accent-family-cap",
+        "metric": "accentColorFamilies",
+        "operator": "lte",
+        "value": 1,
+        "reason": "避免多个强调色同时争夺注意力"
+      },
+      {
+        "id": "entry-motion-default-off",
+        "metric": "entryAnimations",
+        "operator": "eq",
+        "value": 0,
+        "reason": "安静方向默认不做入场动画"
+      }
+    ],
+    "soft": [
+      "首屏只保留一个主视觉焦点",
+      "装饰服务于内容，不形成第二条叙事线",
+      "保留 hover、focus 和状态反馈，但避免持续运动"
+    ]
+  }
+}

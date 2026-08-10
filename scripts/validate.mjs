@@ -47,6 +47,7 @@ const requiredFiles = [
   "skills/han-design/agents/openai.yaml",
   "skills/han-design/scripts/check-output.mjs",
   "skills/han-design/scripts/check-browser-output.mjs",
+  "skills/han-design/scripts/intent-contract.mjs",
   "skills/han-design/assets/han.css",
   "skills/han-design/assets/han-scoped.css",
   "skills/han-design/assets/tokens-scoped.css",
@@ -73,6 +74,7 @@ const requiredFiles = [
   "skills/han-design/references/cultural-sources.md",
   "skills/han-design/references/task-recipes.md",
   "skills/han-design/references/autopilot.md",
+  "skills/han-design/references/intent-alignment.md",
   "skills/han-design/references/page-archetypes.md",
   "skills/han-design/references/visual-review.md",
   "skills/han-design/references/output-evaluation.md",
@@ -564,6 +566,23 @@ if (evalSuite) {
         if (!item.expectedAssetEntry || !fs.existsSync(path.join(skillDir, item.expectedAssetEntry))) {
           report("Positive eval " + item.id + " has a missing expectedAssetEntry.");
         }
+        if (item.requiresIntentContract) {
+          if (!item.expectedIntentKeyword) {
+            report("Intent eval " + item.id + " requires expectedIntentKeyword.");
+          }
+          if (!Array.isArray(item.requiredIntentConstraints) || item.requiredIntentConstraints.length === 0) {
+            report("Intent eval " + item.id + " requires requiredIntentConstraints.");
+          }
+          if (item.expectedIntensityMax === undefined) {
+            report("Intent eval " + item.id + " requires expectedIntensityMax.");
+          }
+          if (!item.requiresIntentChecksPassed || !item.requiresBriefAlignmentNote) {
+            report(
+              "Intent eval " + item.id +
+                " must require intent checks and a brief alignment note.",
+            );
+          }
+        }
       } else if (!item.reason) {
         report("Negative eval " + item.id + " requires a reason.");
       }
@@ -638,6 +657,7 @@ for (const reference of [
   "regional-and-ethnic-contexts.md",
   "cultural-sources.md",
   "task-recipes.md",
+  "intent-alignment.md",
   "output-evaluation.md",
 ]) {
   if (!skillInstructions.includes(reference)) {

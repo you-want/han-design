@@ -9,6 +9,7 @@
     "eval:check": "node scripts/run-evals.mjs --validate-only",
     "test:browser": "playwright test",
     "check:browser-output": "node skills/han-design/scripts/check-browser-output.mjs",
+    "check:intent": "node skills/han-design/scripts/check-browser-output.mjs --contract tests/fixtures/quiet-intent.contract.json --report test-results/quiet-intent-report.json --strict tests/fixtures/quiet-intent-pass.html",
     "package:plugin": "node scripts/package-plugin.mjs"
   },
   "devDependencies": {
