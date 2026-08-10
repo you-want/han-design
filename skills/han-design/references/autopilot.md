@@ -72,10 +72,10 @@ Good layout requires enough real content to establish hierarchy. When the user h
 ## Autonomous delivery loop
 
 1. Inspect the project and infer the brief.
-2. Select a page archetype, primary theme, and intensity. Compile an intent contract when the request contains measurable visual direction.
-3. Start from the closest file in `assets/starters/` when creating a new page; translate it into the host framework rather than embedding it as a raw string.
-4. Fill the page with realistic content and a complete action path.
-5. Render desktop and mobile views.
-6. Read `visual-review.md`, critique the result, and make at least one revision for substantial work.
-7. Run the static and browser checks available in the host project. Pass `--contract` to the browser checker when an intent contract exists. Fix actionable failures and rerun until they pass or progress is genuinely blocked by missing authority, assets, or product information.
-8. Compare the rendered result with the brief, record a short alignment note, and deliver the implementation, decisions, checks, and any assumptions still requiring user review.
+2. Read `validation-modes.md` and select `fast` unless strict mode is explicitly requested or required by shared changes, complex interaction, or cultural sensitivity.
+3. Select a page archetype, primary theme, and intensity. Compile an intent contract when the request contains measurable visual direction.
+4. Start from the closest file in `assets/starters/` when creating a new page; translate it into the host framework rather than embedding it as a raw string.
+5. Fill the page with realistic content and a complete action path.
+6. In fast mode, run `npm run check:page -- <page>` and deliver after fixing blocking issues. Do not require screenshots or a cosmetic revision before the first usable result.
+7. In strict mode, run `npm run check:page:strict -- <page>`, read `visual-review.md`, review desktop and mobile renders, and revise when an actionable issue is found.
+8. Record the selected mode, brief alignment, completed checks, and assumptions still requiring user review.

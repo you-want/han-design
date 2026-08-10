@@ -9,6 +9,9 @@ const args = process.argv.slice(2);
 const strictIndex = args.indexOf("--strict");
 const strict = strictIndex !== -1;
 if (strict) args.splice(strictIndex, 1);
+const fastIndex = args.indexOf("--fast");
+const fast = fastIndex !== -1;
+if (fast) args.splice(fastIndex, 1);
 
 function takeOption(name) {
   const index = args.indexOf(name);
@@ -30,7 +33,7 @@ if (rootIndex !== -1) args.splice(rootIndex, 2);
 
 if (args.length === 0) {
   console.error(
-    "Usage: node scripts/check-browser-output.mjs [--strict] [--contract file.json] " +
+    "Usage: node scripts/check-browser-output.mjs [--fast] [--strict] [--contract file.json] " +
       "[--report report.json] [--root directory] <html-file-or-directory> [...]",
   );
   process.exit(2);
@@ -131,7 +134,8 @@ for (const file of files) {
   const errors = [];
   const warnings = [];
   const intentMessages = [];
-  const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const initialViewport = fast ? { width: 375, height: 800 } : { width: 1280, height: 800 };
+  const context = await browser.newContext({ viewport: initialViewport });
   const page = await context.newPage();
   let stage = "initial load";
   const loadedResourceNames = new Set();
@@ -174,7 +178,7 @@ for (const file of files) {
   }
 
   stage = "viewport checks";
-  for (const width of [375, 1280]) {
+  for (const width of fast ? [375] : [375, 1280]) {
     await page.setViewportSize({ width, height: 800 });
     const overflow = await page.evaluate(() =>
       Math.max(document.documentElement.scrollWidth, document.body?.scrollWidth ?? 0) -
@@ -183,7 +187,7 @@ for (const file of files) {
     if (overflow > 1) errors.push(`horizontal overflow at ${width}px: ${overflow}px`);
   }
 
-  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.setViewportSize(initialViewport);
   await page.keyboard.press("Tab");
   const focus = await page.evaluate(() => {
     const element = document.activeElement;
@@ -260,17 +264,33 @@ for (const file of files) {
         actual: null,
         reason: "missing semantic accent-family evidence",
       };
-      errors.push(
-        `INTENT ${accentConstraint.id}: missing semantic accent evidence; ` +
-          "declare data-han-accent-families on <html> or data-han-accent-family on accent elements",
-      );
     }
 
     intentResult = evaluateHardConstraints(intentContract, intentMetrics);
+    if (accentEvidenceViolation) {
+      intentResult = {
+        ...intentResult,
+        passed: false,
+        results: intentResult.results.map((result) =>
+          result.id === accentEvidenceViolation.id
+            ? { ...result, actual: null, passed: false, reason: accentEvidenceViolation.reason }
+            : result,
+        ),
+        violations: [
+          ...intentResult.violations.filter((violation) => violation.id !== accentEvidenceViolation.id),
+          accentEvidenceViolation,
+        ],
+      };
+    }
     for (const result of intentResult.results) {
       if (result.passed) {
         intentMessages.push(
           `INTENT PASS ${result.id}: ${result.metric}=${JSON.stringify(result.actual)}`,
+        );
+      } else if (result.reason === "missing semantic accent-family evidence") {
+        errors.push(
+          `INTENT ${result.id}: missing semantic accent evidence; ` +
+            "declare data-han-accent-families on <html> or data-han-accent-family on accent elements",
         );
       } else {
         errors.push(
@@ -281,16 +301,18 @@ for (const file of files) {
     }
   }
 
-  stage = "reduced-motion reload";
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.reload({ waitUntil: "domcontentloaded" });
-  const longAnimations = await page.evaluate(() =>
-    document.getAnimations().filter((animation) => {
-      const duration = Number(animation.effect?.getTiming().duration ?? 0);
-      return Number.isFinite(duration) && duration > 100 && animation.playState === "running";
-    }).length,
-  );
-  if (longAnimations > 0) warnings.push(`${longAnimations} long-running animation(s) remain under reduced motion`);
+  if (!fast) {
+    stage = "reduced-motion reload";
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.reload({ waitUntil: "domcontentloaded" });
+    const longAnimations = await page.evaluate(() =>
+      document.getAnimations().filter((animation) => {
+        const duration = Number(animation.effect?.getTiming().duration ?? 0);
+        return Number.isFinite(duration) && duration > 100 && animation.playState === "running";
+      }).length,
+    );
+    if (longAnimations > 0) warnings.push(`${longAnimations} long-running animation(s) remain under reduced motion`);
+  }
 
   await context.close();
   console.log(`\n${path.relative(process.cwd(), file)}`);
@@ -307,12 +329,10 @@ for (const file of files) {
     warnings,
     intent: intentResult
       ? {
-          passed: intentResult.passed && !accentEvidenceViolation,
+          passed: intentResult.passed,
           metrics: intentMetrics,
           results: intentResult.results,
-          violations: accentEvidenceViolation
-            ? [...intentResult.violations, accentEvidenceViolation]
-            : intentResult.violations,
+          violations: intentResult.violations,
         }
       : null,
   });
@@ -328,6 +348,7 @@ if (reportArgument) {
     reportPath,
     JSON.stringify({
       version: 1,
+      mode: fast ? "fast" : strict ? "strict" : "full",
       contract: contractPath ? path.relative(process.cwd(), contractPath) : null,
       summary: {
         total: files.length,

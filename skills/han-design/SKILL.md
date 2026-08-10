@@ -55,17 +55,19 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
    - Prefer relevant user or repository media. When no media exists, use an intentional CSS composition or a clearly replaceable media region rather than broken placeholders.
    - Treat behavior-required examples as visual recipes, not complete widgets. Supply the keyboard behavior, focus management, state, and ARIA required by the host framework.
 
-5. Render, review, and revise.
-   - For substantial work, read [references/visual-review.md](references/visual-review.md), render desktop and mobile views, and revise at least once based on the weakest two craft areas.
-   - Test desktop and mobile layouts.
-   - Verify keyboard navigation, visible focus, contrast, semantic headings, labels, and reduced-motion behavior.
+5. Validate and deliver.
+   - Read [references/validation-modes.md](references/validation-modes.md) and use fast mode by default for a single-page request.
+   - In fast mode, run the strict static check and current-page mobile browser check. Do not block the first usable result on screenshots, a forced visual revision, or repository-wide tests.
+   - Use strict mode when the user requests formal review, shared Han files or interaction behavior changed, or the work is complex or culturally sensitive.
+   - In strict mode, read [references/visual-review.md](references/visual-review.md), render desktop and mobile views, and revise when the review identifies an actionable issue.
+   - Verify keyboard navigation, visible focus, contrast, semantic headings, labels, and reduced-motion behavior at the level required by the selected mode.
    - Check that every referenced asset is copied or resolvable in the final project.
    - Read [references/output-evaluation.md](references/output-evaluation.md) and score the result when the task is substantial or culturally sensitive.
-   - Resolve `<skill-root>` as the directory containing this `SKILL.md`. Run `node <skill-root>/scripts/check-output.mjs --strict <output.html>` as a dependency-free static preflight.
-   - When Playwright and axe are available in the host project, also run `node <skill-root>/scripts/check-browser-output.mjs --strict --root <project-root> <output.html>` for computed accessibility, focus, overflow, runtime errors, and reduced-motion checks.
+   - In this repository, run `npm run check:page -- <output.html>` for fast mode or `npm run check:page:strict -- <output.html>` for strict mode.
+   - Outside this repository, resolve `<skill-root>` as the directory containing this `SKILL.md`; run `node <skill-root>/scripts/check-output.mjs --strict <output.html>` plus `node <skill-root>/scripts/check-browser-output.mjs --fast --root <project-root> <output.html>` for the fast equivalent.
    - When an intent contract exists, pass `--contract <intent-contract.json> --report <intent-report.json>` to the browser checker, keep `data-han-intensity` on the root, and expose semantic accent-family evidence as described in `intent-alignment.md`.
    - Fix actionable issues found by rendering or checks, then rerun the failed checks. Do not stop after reporting a fixable contrast, overflow, focus, asset, or runtime problem.
-   - Compare the rendered desktop and mobile result with the original brief. Record whether measurable intent checks passed and summarize any remaining soft-alignment assumptions.
+   - In strict mode, compare the rendered desktop and mobile result with the original brief. In fast mode, record measurable intent results and any obvious soft-alignment assumptions without delaying delivery for a second render.
    - Inspect specific CSS files with search tools only when extending or debugging a class; do not load every stylesheet into context.
    - Deliver the inferred brief, chosen theme and intensity, revision made, checks run, and remaining assumptions when they materially affect the result.
 
@@ -78,6 +80,7 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
 - Use [references/cultural-sources.md](references/cultural-sources.md) to locate authoritative starting sources and record provenance.
 - Use [references/output-evaluation.md](references/output-evaluation.md) to reject outputs that are decorative but unusable, culturally overconfident, or structurally incomplete.
 - Use [references/intent-alignment.md](references/intent-alignment.md) to convert explicit visual direction into minimal measurable guardrails without freezing the design solution.
+- Use [references/validation-modes.md](references/validation-modes.md) to choose the default fast path or an explicitly justified strict review.
 
 ## Theme selection
 

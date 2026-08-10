@@ -35,6 +35,7 @@ const requiredFiles = [
   "requirements-dev.txt",
   "scripts/package-plugin.mjs",
   "scripts/generate-scoped-css.mjs",
+  "scripts/check-page.mjs",
   "scripts/run-evals.mjs",
   "scripts/eval-adapters/agent-command.mjs",
   "scripts/serve-tests.mjs",
@@ -78,6 +79,7 @@ const requiredFiles = [
   "skills/han-design/references/page-archetypes.md",
   "skills/han-design/references/visual-review.md",
   "skills/han-design/references/output-evaluation.md",
+  "skills/han-design/references/validation-modes.md",
 ];
 
 for (const file of requiredFiles) {
@@ -659,6 +661,7 @@ for (const reference of [
   "task-recipes.md",
   "intent-alignment.md",
   "output-evaluation.md",
+  "validation-modes.md",
 ]) {
   if (!skillInstructions.includes(reference)) {
     report("SKILL.md does not route agents to " + reference);

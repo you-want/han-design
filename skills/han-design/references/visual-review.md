@@ -1,6 +1,6 @@
 # Visual review loop
 
-Use this review after the first rendered implementation. A substantial page is not complete after the first pass.
+Use this review in strict mode, or when fast-mode inspection reveals a visual problem. It is not required before the first fast-mode delivery.
 
 ## Required views
 
@@ -33,9 +33,9 @@ Revise when any answer is unclear or when decoration wins over the product task.
 | Responsive | Mobile preserves hierarchy instead of merely stacking | Horizontal overflow, giant headings, hidden actions, or awkward card order |
 | Interaction | Hover, focus, selected, disabled, loading, and error states are coherent | A screenshot-only state is presented as a working control |
 
-## Mandatory revision
+## Revision rule
 
-For substantial work, make at least one revision after rendering. Choose the weakest two craft areas rather than adding more decoration. Typical high-value revisions include:
+Revise when the review identifies an actionable issue. Do not make a cosmetic change only to prove that an iteration occurred. Choose the weakest craft areas rather than adding more decoration. Typical high-value revisions include:
 
 - reducing competing accents;
 - rewriting the hero to clarify the promise and action;
@@ -45,7 +45,7 @@ For substantial work, make at least one revision after rendering. Choose the wea
 - simplifying the mobile composition;
 - lowering visual intensity around forms and dense controls.
 
-Identifying a problem is not the revision. Apply the change, render again, and rerun the failed check. Deliver unresolved actionable issues only when the task is genuinely blocked, and state the blocker precisely.
+When a problem is identified, apply the change, render again, and rerun the failed check. Deliver unresolved actionable issues only when the task is genuinely blocked, and state the blocker precisely.
 
 ## Delivery evidence
 

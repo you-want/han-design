@@ -45,14 +45,16 @@ Interpretation:
 - A red square containing text is not automatically traditional seal engraving.
 - A complete screenshot is not proof of working interaction.
 
-## Visual iteration evidence
+## Mode-specific evidence
 
-For substantial pages, the delivery should include evidence from [visual-review.md](visual-review.md):
+Fast mode should report the target-page static check, mobile browser check, intent constraints when present, and any known manual checks. It does not require a desktop screenshot or a forced revision.
+
+Strict mode should include evidence from [visual-review.md](visual-review.md):
 
 - a desktop render was reviewed;
 - a mobile render was reviewed;
-- at least one revision was made after rendering;
-- the weakest two craft areas were identified and addressed;
+- any actionable issue found after rendering was revised and checked again;
+- the weakest craft areas were identified when a revision was needed;
 - the selected theme and visual intensity are stated.
 - any intent contract hard constraints were checked, and the rendered result was compared with the brief.
 

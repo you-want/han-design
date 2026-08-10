@@ -91,13 +91,10 @@ Expose machine-checkable evidence in the rendered document:
 Run:
 
 ```bash
-node skills/han-design/scripts/check-browser-output.mjs \
-  --contract path/to/intent-contract.json \
-  --report path/to/intent-report.json \
-  --strict path/to/output.html
+npm run check:page -- path/to/output.html
 ```
 
-The checker evaluates the hard constraints. A passing browser report does not replace the brief-to-result visual review.
+The page command automatically uses a sibling `*.intent.json` contract when present. Pass `--contract` only when the contract uses another path. Strict mode uses `npm run check:page:strict -- path/to/output.html`. A passing browser report does not replace brief-to-result review when strict mode is selected.
 
 ## Brief-to-result review
 

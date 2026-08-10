@@ -41,6 +41,7 @@ process.stdout.write(JSON.stringify({
   assetEntry: item.expectedAssetEntry ?? null,
   starter: item.expectedStarter ?? null,
   intensity: item.expectedIntensity ?? item.expectedIntensityMax ?? null,
+  validationMode: item.expectedValidationMode ?? null,
   designBrief: item.requiresDesignBrief ? "Synthetic design brief for runner plumbing." : null,
   intentContract,
   intentChecksPassed: item.requiresIntentChecksPassed ? true : null,

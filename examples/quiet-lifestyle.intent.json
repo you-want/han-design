@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "sourcePrompt": "使用 han-design，为一个生活方式品牌做移动优先首页。整体安静一点，保留一个清晰主行动，不要默认入场动画。做的页面放到 examples 目录下边。",
+  "brief": "当代生活方式品牌移动优先首页；以留白、自然材质和克制排版营造安静感；主行动是浏览本季日用；视觉强度 1。",
+  "intent": {
+    "keywords": ["quiet"],
+    "confidence": "high",
+    "rationale": "用户明确要求整体安静、保留清晰主行动，并要求默认不使用入场动画。"
+  },
+  "interpretation": {
+    "intensity": 1,
+    "mode": "contemporary-chinese-inspired"
+  },
+  "constraints": {
+    "hard": [
+      {
+        "id": "intensity-cap",
+        "metric": "visualIntensity",
+        "operator": "lte",
+        "value": 1,
+        "reason": "安静方向不应升级为表现性或戏剧化视觉。"
+      },
+      {
+        "id": "accent-family-cap",
+        "metric": "accentColorFamilies",
+        "operator": "lte",
+        "value": 1,
+        "reason": "只保留一个品牌强调色家族，避免多个色彩焦点争夺注意力。"
+      },
+      {
+        "id": "entry-motion-default-off",
+        "metric": "entryAnimations",
+        "operator": "eq",
+        "value": 0,
+        "reason": "用户明确要求不要默认入场动画。"
+      }
+    ],
+    "soft": [
+      "首屏只保留一个主要行动和一个明确视觉焦点。",
+      "通过留白、阅读节奏与材质层次表达安静，而不是删除必要内容。",
+      "保留 hover、focus 和必要状态反馈，不使用持续运动。",
+      "移动端优先保证标题、主行动和产品信息的阅读顺序。"
+    ]
+  }
+}

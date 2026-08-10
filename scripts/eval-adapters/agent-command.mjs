@@ -24,7 +24,7 @@ const prompt = `${payload.case.prompt}
 Available skill directory: ${payload.skillRoot}
 Decide from the skill metadata whether it applies; do not force it for an out-of-scope request.
 After completing enough work to determine routing and, when requested, the autonomous design loop, return only this observation JSON:
-{"triggered":boolean,"references":["relative paths actually read"],"assetEntry":"relative path actually selected or null","starter":"relative starter path or null","intensity":"0-3 or null","designBrief":"brief or null","intentContract":"version 1 object or null","intentChecksPassed":"boolean or null","intentViolations":["remaining machine-checkable violations"],"briefAlignmentNote":"short comparison of the brief and rendered result or null","reviewedViewports":["desktop","mobile"],"revisionPerformed":boolean,"checksPassed":boolean,"outputPath":"optional repository-relative artifact path"}`;
+{"triggered":boolean,"references":["relative paths actually read"],"assetEntry":"relative path actually selected or null","starter":"relative starter path or null","intensity":"0-3 or null","validationMode":"fast|strict|null","designBrief":"brief or null","intentContract":"version 1 object or null","intentChecksPassed":"boolean or null","intentViolations":["remaining machine-checkable violations"],"briefAlignmentNote":"short comparison of the brief and rendered result or null","reviewedViewports":["desktop","mobile"],"revisionPerformed":boolean,"checksPassed":boolean,"outputPath":"optional repository-relative artifact path"}`;
 
 const result = spawnSync(executable, agentArgs, {
   cwd: payload.repositoryRoot,

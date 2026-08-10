@@ -111,6 +111,11 @@ function score(item, result) {
     if (item.expectedIntensity && String(result.intensity) !== item.expectedIntensity) {
       failures.push(`intensity=${result.intensity ?? "null"}; expected ${item.expectedIntensity}`);
     }
+    if (item.expectedValidationMode && result.validationMode !== item.expectedValidationMode) {
+      failures.push(
+        `validationMode=${result.validationMode ?? "null"}; expected ${item.expectedValidationMode}`,
+      );
+    }
     if (item.expectedIntensityMax !== undefined) {
       const intensity = Number(result.intensity);
       if (

@@ -74,10 +74,11 @@
         "references/intent-alignment.md",
         "references/page-archetypes.md",
         "references/design-guide.md",
-        "references/visual-review.md"
+        "references/validation-modes.md"
       ],
       "expectedAssetEntry": "assets/han.css",
       "expectedIntensityMax": 1,
+      "expectedValidationMode": "fast",
       "requiresDesignBrief": true,
       "requiresIntentContract": true,
       "expectedIntentKeyword": "quiet",
@@ -88,9 +89,8 @@
       ],
       "requiresIntentChecksPassed": true,
       "requiresBriefAlignmentNote": true,
-      "requiresRevision": true,
       "requiresChecksPassed": true,
-      "requiredViewports": ["desktop", "mobile"]
+      "requiredViewports": ["mobile"]
     },
     {
       "id": "autopilot-brand-polish",
@@ -100,15 +100,15 @@
         "references/autopilot.md",
         "references/page-archetypes.md",
         "references/design-guide.md",
-        "references/visual-review.md"
+        "references/validation-modes.md"
       ],
       "expectedAssetEntry": "assets/han-scoped.css",
       "expectedStarter": "assets/starters/brand-landing.html",
       "expectedIntensity": "1",
+      "expectedValidationMode": "fast",
       "requiresDesignBrief": true,
-      "requiresRevision": true,
       "requiresChecksPassed": true,
-      "requiredViewports": ["desktop", "mobile"]
+      "requiredViewports": ["mobile"]
     },
     {
       "id": "autopilot-product-site",
@@ -117,11 +117,13 @@
       "expectedReferences": [
         "references/autopilot.md",
         "references/page-archetypes.md",
+        "references/validation-modes.md",
         "references/visual-review.md"
       ],
       "expectedAssetEntry": "assets/han.css",
       "expectedStarter": "assets/starters/product-launch.html",
       "expectedIntensity": "1",
+      "expectedValidationMode": "strict",
       "requiresDesignBrief": true,
       "requiresRevision": true,
       "requiresChecksPassed": true,
@@ -135,15 +137,15 @@
         "references/autopilot.md",
         "references/page-archetypes.md",
         "references/component-catalog.md",
-        "references/visual-review.md"
+        "references/validation-modes.md"
       ],
       "expectedAssetEntry": "assets/han-scoped.css",
       "expectedStarter": "assets/starters/dashboard-shell.html",
       "expectedIntensity": "0",
+      "expectedValidationMode": "fast",
       "requiresDesignBrief": true,
-      "requiresRevision": true,
       "requiresChecksPassed": true,
-      "requiredViewports": ["desktop", "mobile"]
+      "requiredViewports": ["mobile"]
     },
     {
       "id": "raster-poster",
