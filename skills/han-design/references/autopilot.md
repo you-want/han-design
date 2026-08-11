@@ -71,11 +71,23 @@ Good layout requires enough real content to establish hierarchy. When the user h
 
 ## Autonomous delivery loop
 
-1. Inspect the project and infer the brief.
+1. Inspect only the files needed to identify the stack, closest page archetype, content source, and existing Han entry point.
 2. Read `validation-modes.md` and select `fast` unless strict mode is explicitly requested or required by shared changes, complex interaction, or cultural sensitivity.
 3. Select a page archetype, primary theme, and intensity. Compile an intent contract when the request contains measurable visual direction.
-4. Start from the closest file in `assets/starters/` when creating a new page; translate it into the host framework rather than embedding it as a raw string.
+4. Start from the closest file in `assets/starters/` or an existing page example; do not rebuild a complete visual system from scratch when a suitable structure already exists.
 5. Fill the page with realistic content and a complete action path.
-6. In fast mode, run `npm run check:page -- <page>` and deliver after fixing blocking issues. Do not require screenshots or a cosmetic revision before the first usable result.
+6. In fast mode, run `npm run check:page -- <page>` once, fix only blocking issues it reports, and deliver the first usable result. Do not add screenshots, full-repository validation, strict-mode checks, or cosmetic revision loops unless the user asks for them or the fast check exposes a problem that needs them.
 7. In strict mode, run `npm run check:page:strict -- <page>`, read `visual-review.md`, review desktop and mobile renders, and revise when an actionable issue is found.
 8. Record the selected mode, brief alignment, completed checks, and assumptions still requiring user review.
+
+### Fast-path budget
+
+Fast mode is an end-to-end delivery choice, not only a browser-check setting. For a single standalone page, the default path is:
+
+- inspect the minimum relevant skill guidance and one or two closest examples;
+- reuse an existing shell, starter, or page archetype when available;
+- create the page, local styles, and intent contract in one implementation pass;
+- run `npm run check:page -- <page>` once and fix only reported blockers;
+- stop after the page passes and report any manual follow-up separately.
+
+Do not default to repository-wide tests, desktop and mobile screenshots, visual scorecards, or a second render in fast mode. Escalate to strict mode when the fast check fails repeatedly, the change touches shared Han assets or validation logic, the page introduces behavior-heavy interaction, or the user requests formal visual review.

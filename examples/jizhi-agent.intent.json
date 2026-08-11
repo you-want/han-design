@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "sourcePrompt": "使用 han-design 这个 skill，帮我做一个 AI Agent 的产品宣传官网，要求符合 AI Agent，页面实现放在 examples 里边。",
+  "brief": "当代中国风 AI Agent 产品官网；以目标驱动、任务规划、工具调用、过程复核和权限边界表达 Agent 产品特征；主行动是预约产品演示；视觉强度 2。",
+  "intent": {
+    "keywords": ["agentic", "goal-driven", "controllable"],
+    "confidence": "high",
+    "rationale": "用户明确要求产品宣传官网符合 AI Agent，而非泛化 AI 聊天产品，因此页面必须可见地表达自主执行闭环、工具使用与人工控制。"
+  },
+  "interpretation": {
+    "intensity": 2,
+    "mode": "contemporary-chinese-inspired"
+  },
+  "constraints": {
+    "hard": [
+      {
+        "id": "intensity-cap",
+        "metric": "visualIntensity",
+        "operator": "lte",
+        "value": 2,
+        "reason": "科技产品需要明确的信息层级和产品感，但不应依赖高强度光效或装饰制造 Agent 感。"
+      },
+      {
+        "id": "accent-family-cap",
+        "metric": "accentColorFamilies",
+        "operator": "lte",
+        "value": 1,
+        "reason": "以单一靛蓝强调家族维持品牌识别和界面秩序，状态色仅承担语义用途。"
+      },
+      {
+        "id": "entry-motion-default-off",
+        "metric": "entryAnimations",
+        "operator": "eq",
+        "value": 0,
+        "reason": "默认快速交付不使用入场动画，让产品机制与内容承担表现力。"
+      }
+    ],
+    "soft": [
+      "首屏同时说明 Agent 的目标驱动属性与一个清晰主行动。",
+      "用目标、计划、工具调用、执行状态和可复核结果组成可见的 Agent 工作闭环。",
+      "强调权限边界、过程留痕和人工复核，避免把自主描述为不受控制。",
+      "避免使用泛聊天气泡、机器人头像或无含义的霓虹光效代表 AI Agent。",
+      "移动端优先保持主张、产品界面示意、能力和安全信息的阅读顺序。"
+    ]
+  }
+}

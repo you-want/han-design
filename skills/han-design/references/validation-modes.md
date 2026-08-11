@@ -6,10 +6,10 @@ Han page work has two delivery modes. Use `fast` unless the user explicitly requ
 
 Fast mode is the default for creating or restyling a single page.
 
-1. Inspect the target and infer the brief.
-2. Build the complete page and compile an intent contract when explicit visual constraints are measurable.
-3. Run the strict static check and the current page's mobile browser check.
-4. Fix blocking errors, then deliver the usable page immediately.
+1. Inspect the minimum relevant context and infer the brief.
+2. Reuse the closest shell or page archetype, then build the complete page and compile an intent contract when explicit visual constraints are measurable.
+3. Run the current page's fast check once.
+4. Fix blocking errors, rerun the failed check, then deliver the usable page immediately.
 
 Run:
 
@@ -17,7 +17,7 @@ Run:
 npm run check:page -- path/to/page.html
 ```
 
-Fast mode checks the current page only. It includes semantic structure, asset references, mobile overflow, Axe serious or critical violations, keyboard focus, runtime errors, and intent hard constraints. It does not run the repository-wide browser suite, require desktop screenshots, or force a visual revision when no actionable problem is visible.
+Fast mode checks the current page only. It includes semantic structure, asset references, mobile overflow, Axe serious or critical violations, keyboard focus, runtime errors, and intent hard constraints. It does not run the repository-wide browser suite, require desktop screenshots, or force a visual revision when no actionable problem is visible. A passing fast check ends the default delivery loop; extra screenshots, full example validation, and broad regression checks are opt-in or strict-mode work.
 
 ## Strict mode
 

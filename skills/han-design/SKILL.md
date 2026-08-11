@@ -21,6 +21,7 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
 1. Inspect the target project before editing.
    - Preserve its framework, routing, build system, accessibility conventions, and existing component architecture.
    - For an existing product, integrate Han selectively instead of replacing unrelated styles.
+   - In the default fast path, inspect only the minimum relevant files plus one or two closest examples. Broaden the inspection only when the page cannot be implemented safely from that context.
    - Inspect available content and media. Identify the page archetype, audience, primary action, and gaps that would prevent a complete layout.
 
 2. Compile the design brief.
@@ -57,7 +58,9 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
 
 5. Validate and deliver.
    - Read [references/validation-modes.md](references/validation-modes.md) and use fast mode by default for a single-page request.
-   - In fast mode, run the strict static check and current-page mobile browser check. Do not block the first usable result on screenshots, a forced visual revision, or repository-wide tests.
+   - In fast mode, run the strict static check and current-page mobile browser check once. Do not block the first usable result on screenshots, a forced visual revision, or repository-wide tests.
+   - Treat fast mode as the default end-to-end delivery path: reuse a nearby shell or archetype, make one implementation pass, fix only reported blockers, and stop after the page passes.
+   - Do not run extra screenshots, full example validation, full Playwright regression, or broad documentation scans in fast mode unless the user asks for them or a blocking issue requires escalation.
    - Use strict mode when the user requests formal review, shared Han files or interaction behavior changed, or the work is complex or culturally sensitive.
    - In strict mode, read [references/visual-review.md](references/visual-review.md), render desktop and mobile views, and revise when the review identifies an actionable issue.
    - Verify keyboard navigation, visible focus, contrast, semantic headings, labels, and reduced-motion behavior at the level required by the selected mode.
@@ -66,7 +69,7 @@ Build Chinese-inspired interfaces with the bundled Han assets while preserving t
    - In this repository, run `npm run check:page -- <output.html>` for fast mode or `npm run check:page:strict -- <output.html>` for strict mode.
    - Outside this repository, resolve `<skill-root>` as the directory containing this `SKILL.md`; run `node <skill-root>/scripts/check-output.mjs --strict <output.html>` plus `node <skill-root>/scripts/check-browser-output.mjs --fast --root <project-root> <output.html>` for the fast equivalent.
    - When an intent contract exists, pass `--contract <intent-contract.json> --report <intent-report.json>` to the browser checker, keep `data-han-intensity` on the root, and expose semantic accent-family evidence as described in `intent-alignment.md`.
-   - Fix actionable issues found by rendering or checks, then rerun the failed checks. Do not stop after reporting a fixable contrast, overflow, focus, asset, or runtime problem.
+   - Fix actionable issues found by rendering or checks, then rerun the failed check. Do not stop after reporting a fixable contrast, overflow, focus, asset, or runtime problem.
    - In strict mode, compare the rendered desktop and mobile result with the original brief. In fast mode, record measurable intent results and any obvious soft-alignment assumptions without delaying delivery for a second render.
    - Inspect specific CSS files with search tools only when extending or debugging a class; do not load every stylesheet into context.
    - Deliver the inferred brief, chosen theme and intensity, revision made, checks run, and remaining assumptions when they materially affect the result.
