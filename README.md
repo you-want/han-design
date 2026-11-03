@@ -8,6 +8,8 @@
 
 我们身份证上写的是汉族，说的是汉语，写的是汉字。我们做的这套中国风设计系统，自然就该叫 han-design。
 
+<img width="1730" height="1008" alt="image" src="https://github.com/user-attachments/assets/688fdea0-3b70-43cd-82bc-89bf5bfded92" />
+
 ## 项目特点
 
 - 7 个朝代启发主题：秦汉、魏晋、唐、宋、元、明、清
